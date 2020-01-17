@@ -7,7 +7,7 @@ package toptrumps;
  * @author Team TRY-CATCH - Arnold Umakhihe 2445734U Team
  * 
  */
-class DataCard {
+class DataCard{
 	/** string representing card name */
 	private String name;
 	
@@ -37,7 +37,7 @@ class DataCard {
 	 * @param ferocity integer representing card ferocity
 	 * @param intelligence integer representing card intelligence
 	 */
-	protected DataCard(String name, int height, int weight, int length, int ferocity, int intelligence){
+	DataCard(String name, int height, int weight, int length, int ferocity, int intelligence){
 		this.name = name;
 		this.height = height;
 		this.weight = weight;
@@ -55,9 +55,8 @@ class DataCard {
 	 * @param category String representing the category
 	 * @return true if this card category value is greater than the other card's "otherCard". Returns false otherwise.
 	 */
-	protected boolean greaterThan(DataCard otherCard, String category){
-		boolean result = false;
-		
+	boolean greaterThan(DataCard otherCard, String category) throws exceptions.CategoryNotFoundException{
+		boolean result;
 		/* 
 		 * uses switch to set the result to true or false, depending on the category chosen.
 		 * since the first letter of all categories are different, we check for this (and its uppercase) only
@@ -86,7 +85,7 @@ class DataCard {
 			return result = this.intelligence > otherCard.intelligence ? true : false;
 			
 		default:
-			return result;
+			throw new exceptions.CategoryNotFoundException();
 		}
 	}
 	
@@ -96,7 +95,7 @@ class DataCard {
 	 * Getter method
 	 * @return name string representing card name
 	 */
-	protected String getName() {
+	String getName() {
 		return this.name;
 	}
 	
@@ -104,7 +103,7 @@ class DataCard {
 	 * Getter method
 	 * @return height integer representing card height
 	 */
-	protected int getHeight() {
+	int getHeight() {
 		return this.height;
 	}
 	
@@ -112,7 +111,7 @@ class DataCard {
 	 * Getter method
 	 * @return weight integer representing card weight
 	 */
-	protected int getWeight() {
+	int getWeight() {
 		return this.weight;
 	}
 	
@@ -120,7 +119,7 @@ class DataCard {
 	 * Getter method
 	 * @return length integer representing card length
 	 */
-	protected int getLength() {
+	int getLength() {
 		return this.length;
 	}
 	
@@ -128,7 +127,7 @@ class DataCard {
 	 * Getter method
 	 * @return ferocity integer representing card ferocity
 	 */
-	protected int getFerocity() {
+	int getFerocity() {
 		return this.ferocity;
 	}
 	
@@ -136,7 +135,7 @@ class DataCard {
 	 * Getter method
 	 * @return intelligence integer representing card intelligence
 	 */
-	protected int getIntelligence() {
+	int getIntelligence() {
 		return this.intelligence;
 	}
 	
