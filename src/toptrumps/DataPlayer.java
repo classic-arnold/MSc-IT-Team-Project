@@ -1,0 +1,5 @@
+package toptrumps;
+
+class DataPlayer {
+
+}
