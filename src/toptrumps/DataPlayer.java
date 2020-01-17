@@ -53,19 +53,15 @@ class DataPlayer {
 	}
 	
 	DataCard[] createRandomDeck() {
-		FileReader fileReader;
-		try {
-			fileReader = new FileReader("../../StarCitizenDeck.txt");
-			
-			Scanner s = new Scanner(fileReader);
-			
-			
-			
-			s.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		DataCard[] cardDeck = new DataCard[7];
+		
+		for(DataCard card:cardDeck) {
+			card = DataCardCache.getRandomCard();
 		}
 		
+		return cardDeck;
 	}
+	
+	
 	
 }
