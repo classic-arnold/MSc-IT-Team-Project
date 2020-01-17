@@ -57,6 +57,13 @@ class DataCard {
 	 */
 	protected boolean greaterThan(DataCard otherCard, String category){
 		boolean result = false;
+		
+		/* 
+		 * uses switch to set the result to true or false, depending on the category chosen.
+		 * since the first letter of all categories are different, we check for this (and its uppercase) only
+		 * to avoid formatting error.
+		 * 
+		 */
 		switch (category.charAt(0)) {
 		case 'h':
 		case 'H':
