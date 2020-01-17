@@ -1,7 +1,7 @@
 package toptrumps;
 
 class DataGame {
-	private static DataGame instance = new DataGame();
+	private static DataGame instance = new DataGame(); // initialize again during game reset
 	
 	private DataGame() {
 		
