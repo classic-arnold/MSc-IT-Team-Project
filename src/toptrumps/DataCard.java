@@ -7,13 +7,35 @@ package toptrumps;
  * @author Team TRY-CATCH - Arnold Umakhihe 2445734U Team
  */
 class DataCard {
+	/** string representing card name */
 	private String name;
+	
+	/** integer representing card height */
 	private int height;
+	
+	/** integer representing card weight */
 	private int weight;
+	
+	/** integer representing card length */
 	private int length;
+	
+	/** integer representing card ferocity */
 	private int ferocity;
+	
+	/** integer representing card intelligence */
 	private int intelligence;
 	
+	/**
+	 * 
+	 * DataCard class constructor
+	 * 
+	 * @param name string representing card name
+	 * @param height integer representing card height
+	 * @param weight integer representing card weight
+	 * @param length integer representing card length
+	 * @param ferocity integer representing card ferocity
+	 * @param intelligence integer representing card intelligence
+	 */
 	protected DataCard(String name, int height, int weight, int length, int ferocity, int intelligence){
 		this.name = name;
 		this.height = height;
@@ -50,6 +72,58 @@ class DataCard {
 			return result;
 		}
 	}
+	
+	// GETTER METHODS START
+	
+	/**
+	 * Getter method
+	 * @return name string representing card name
+	 */
+	protected String getName() {
+		return this.name;
+	}
+	
+	/**
+	 * Getter method
+	 * @return height integer representing card height
+	 */
+	protected int getHeight() {
+		return this.height;
+	}
+	
+	/**
+	 * Getter method
+	 * @return weight integer representing card weight
+	 */
+	protected int getWeight() {
+		return this.weight;
+	}
+	
+	/**
+	 * Getter method
+	 * @return length integer representing card length
+	 */
+	protected int getLength() {
+		return this.length;
+	}
+	
+	/**
+	 * Getter method
+	 * @return ferocity integer representing card ferocity
+	 */
+	protected int getFerocity() {
+		return this.ferocity;
+	}
+	
+	/**
+	 * Getter method
+	 * @return intelligence integer representing card intelligence
+	 */
+	protected int getIntelligence() {
+		return this.intelligence;
+	}
+	
+	// GETTER METHODS END
 	
 	
 	
