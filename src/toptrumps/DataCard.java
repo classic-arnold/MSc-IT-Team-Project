@@ -14,10 +14,6 @@ class DataCard {
 	private int ferocity;
 	private int intelligence;
 	
-	enum CardCategories{
-		NAME, HEIGHT, WEIGHT, LENGTH, FEROCITY, INTELLIGENCE
-	}
-	
 	protected DataCard(String name, int height, int weight, int length, int ferocity, int intelligence){
 		this.name = name;
 		this.height = height;
@@ -54,6 +50,7 @@ class DataCard {
 			return result;
 		}
 	}
+	
 	
 	
 }
