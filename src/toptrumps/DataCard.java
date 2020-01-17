@@ -5,6 +5,7 @@ package toptrumps;
  * This class represents a card
  * 
  * @author Team TRY-CATCH - Arnold Umakhihe 2445734U Team
+ * 
  */
 class DataCard {
 	/** string representing card name */
@@ -45,6 +46,15 @@ class DataCard {
 		this.intelligence = intelligence;
 	}
 	
+	/**
+	 * 
+	 * compares two cards based on the category provided. If this card category value is greater than
+	 * the other card "otherCard", returns true. Returns false otherwise.
+	 * 
+	 * @param otherCard DataCard class representing the other card
+	 * @param category String representing the category
+	 * @return true if this card category value is greater than the other card's "otherCard". Returns false otherwise.
+	 */
 	protected boolean greaterThan(DataCard otherCard, String category){
 		boolean result = false;
 		switch (category.charAt(0)) {
@@ -124,6 +134,7 @@ class DataCard {
 	}
 	
 	// GETTER METHODS END
+	
 	
 	
 	
