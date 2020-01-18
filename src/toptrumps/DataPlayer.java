@@ -31,19 +31,24 @@ class DataPlayer {
 	/** String representing the player's name */
 	private String name;
 	
-	DataPlayer(PlayerType type) {
+	DataPlayer(String type) {
 		this.createPlayer(type);
 		this.cardDeck = this.createRandomDeck();
 		
 	}
 	
-	void createPlayer(PlayerType type) {
-		this.type = type;
+	void createPlayer(String type) {
+		switch (Character.toLowerCase(type.charAt(0))) {
+		case 'h':
+			this.type = PlayerType.HUMAN;
+		case 'a':
+			this.type = PlayerType.AI;
+		}
 		
-		if (type == PlayerType.HUMAN) {
+		if (this.type == PlayerType.HUMAN) {
 			this.name = "You";
 			this.score = 0;
-		} else if (type == PlayerType.AI) {
+		} else if (this.type == PlayerType.AI) {
 			this.name = "AI Player " + ARTIFICIAL_INTELLIGENCE_ID++;
 			this.score = 0;
 		}
@@ -65,8 +70,13 @@ class DataPlayer {
 		return this.score;
 	}
 	
-	PlayerType getType() {
-		return this.type;
+	String getType() {
+		if (this.type == PlayerType.HUMAN) {
+			return "human";
+		} else if (this.type == PlayerType.AI) {
+			return "ai";
+		}
+		return null;
 	}
 	
 	String getName() {
@@ -75,10 +85,8 @@ class DataPlayer {
 	
 	// GETTER METHODS END
 	
-	
-	
-	
-	
-	
+	void updateScore(int points) {
+		this.score += points;
+	}
 	
 }

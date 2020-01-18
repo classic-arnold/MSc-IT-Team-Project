@@ -63,25 +63,20 @@ class DataCard implements Cloneable{
 		 * to avoid formatting error.
 		 * 
 		 */
-		switch (category.charAt(0)) {
-		case 'h':
-		case 'H':
+		switch (Character.toLowerCase(category.charAt(0))+""+Character.toLowerCase(category.charAt(1))) {
+		case "si":
 			return result = this.size > otherCard.size ? true : false;
 
-		case 'w':
-		case 'W':
+		case "sp":
 			return result = this.speed > otherCard.speed ? true : false;
 
-		case 'l':
-		case 'L':
+		case "ra":
 			return result = this.range > otherCard.range ? true : false;
 
-		case 'f':
-		case 'F':
+		case "fi":
 			return result = this.firePower > otherCard.firePower ? true : false;
 
-		case 'i':
-		case 'I':
+		case "ca":
 			return result = this.cargo > otherCard.cargo ? true : false;
 
 		default:

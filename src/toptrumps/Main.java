@@ -10,7 +10,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		DataCardCache.loadCardCacheFromFile();
 		
-		DataPlayer p = new DataPlayer(PlayerType.HUMAN);
+		DataPlayer p = new DataPlayer("human");
 		DataCard[] cards = p.createRandomDeck();
 		
 		for(DataCard card:cards) {
