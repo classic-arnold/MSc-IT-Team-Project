@@ -8,8 +8,8 @@ package toptrumps;
  * 
  */
 class DataCard implements Cloneable{
-	/** string representing card name */
-	private String name;
+	/** string representing card description */
+	private String description;
 
 	/** integer representing card size */
 	private int size;
@@ -37,8 +37,8 @@ class DataCard implements Cloneable{
 	 * @param firePower integer representing card firePower
 	 * @param cargo integer representing card cargo
 	 */
-	DataCard(String name, int size, int speed, int range, int firePower, int cargo){
-		this.name = name;
+	DataCard(String description, int size, int speed, int range, int firePower, int cargo){
+		this.description = description;
 		this.size = size;
 		this.speed = speed;
 		this.range = range;
@@ -56,7 +56,6 @@ class DataCard implements Cloneable{
 	 * @return true if this card category value is greater than the other card's "otherCard". Returns false otherwise.
 	 */
 	boolean greaterThan(DataCard otherCard, String category) throws exceptions.CategoryNotFoundException{
-		boolean result;
 		/* 
 		 * uses switch to set the result to true or false, depending on the category chosen.
 		 * since the first letter of all categories are different, we check for this (and its uppercase) only
@@ -65,19 +64,24 @@ class DataCard implements Cloneable{
 		 */
 		switch (Character.toLowerCase(category.charAt(0))+""+Character.toLowerCase(category.charAt(1))) {
 		case "si":
-			return result = this.size > otherCard.size ? true : false;
+			boolean result = this.size > otherCard.size ? true : false;
+			return result;
 
 		case "sp":
-			return result = this.speed > otherCard.speed ? true : false;
+			result = this.speed > otherCard.speed ? true : false;
+			return result;
 
 		case "ra":
-			return result = this.range > otherCard.range ? true : false;
+			result = this.range > otherCard.range ? true : false;
+			return result;
 
 		case "fi":
-			return result = this.firePower > otherCard.firePower ? true : false;
+			result = this.firePower > otherCard.firePower ? true : false;
+			return result;
 
 		case "ca":
-			return result = this.cargo > otherCard.cargo ? true : false;
+			result = this.cargo > otherCard.cargo ? true : false;
+			return result;
 
 		default:
 			throw new exceptions.CategoryNotFoundException();
@@ -90,8 +94,8 @@ class DataCard implements Cloneable{
 	 * Getter method
 	 * @return name string representing card name
 	 */
-	String getName() {
-		return this.name;
+	String getDescription() {
+		return this.description;
 	}
 
 	/**

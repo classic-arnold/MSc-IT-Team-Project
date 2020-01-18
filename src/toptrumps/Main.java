@@ -1,7 +1,5 @@
 package toptrumps;
 
-import toptrumps.DataPlayer.PlayerType;
-
 // not needed. delete.
 // used only for quick testing.
 public class Main {
@@ -10,13 +8,25 @@ public class Main {
 		// TODO Auto-generated method stub
 		DataCardCache.loadCardCacheFromFile();
 		
-		DataPlayer p = new DataPlayer("human");
-		DataCard[] cards = p.createRandomDeck();
 		
-		for(DataCard card:cards) {
-			System.out.println(card);
-		}
 		
+//		DataGame dG = DataGame.getInstance();
+//		dG.loadDeck();
+//		DataCard[] ca = dG.getCompleteDeck();
+//		for (DataCard c : ca) {
+//			System.out.println(c);
+//		}
+		
+//		DataPlayer p = new DataPlayer("human");
+//		DataCard[] cards = p.createRandomDeck();
+//		
+//		System.out.println(p.getType());
+//		
+//		for(DataCard card:cards) {
+//			System.out.println(card);
+//		}
+//		
+//		System.out.println(DataCardCache.get());
 	}
 
 }
