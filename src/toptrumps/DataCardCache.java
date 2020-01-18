@@ -36,7 +36,7 @@ public class DataCardCache {
 		return CARDMAP;
 	}
 
-	public static void loadCardCacheFromFile() {
+	public static void loadCardFromFileAndCache() {
 		
 		FileReader fileReader;
 		try {
@@ -47,7 +47,7 @@ public class DataCardCache {
 			try {
 				s.nextLine();
 				
-				int i = 0; int lineCount = 0;
+				int i = 0;
 				
 				while(s.hasNextLine()) {
 					String description = s.next();
