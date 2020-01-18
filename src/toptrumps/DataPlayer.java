@@ -20,7 +20,7 @@ class DataPlayer {
 	private static int ARTIFICIAL_INTELLIGENCE_ID = 1; //reset this when you restart game
 	
 	/** DataCard array representing the deck of cards */
-	private DataCard[] cardDeck = new DataCard[7];
+	private DataCard[] cardDeck;
 	
 	/** PlayerType enum representing the type of player - human or AI */
 	private PlayerType type;
