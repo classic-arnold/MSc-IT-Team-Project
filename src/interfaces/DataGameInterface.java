@@ -1,4 +1,4 @@
-package toptrumps;
+package interfaces;
 
 public interface DataGameInterface {
 	

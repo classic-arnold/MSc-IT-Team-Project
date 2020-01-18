@@ -1,5 +1,7 @@
 package toptrumps;
 
+import interfaces.DataGameInterface;
+
 class DataGame implements DataGameInterface{
 	private static DataGame instance = null; // initialize again during game reset
 
