@@ -11,39 +11,39 @@ class DataCard implements Cloneable{
 	/** string representing card name */
 	private String name;
 
-	/** integer representing card height */
-	private int height;
+	/** integer representing card size */
+	private int size;
 
-	/** integer representing card weight */
-	private int weight;
+	/** integer representing card speed */
+	private int speed;
 
-	/** integer representing card length */
-	private int length;
+	/** integer representing card range */
+	private int range;
 
-	/** integer representing card ferocity */
-	private int ferocity;
+	/** integer representing card firePower */
+	private int firePower;
 
-	/** integer representing card intelligence */
-	private int intelligence;
+	/** integer representing card cargo */
+	private int cargo;
 
 	/**
 	 * 
 	 * DataCard class constructor
 	 * 
 	 * @param name string representing card name
-	 * @param height integer representing card height
-	 * @param weight integer representing card weight
-	 * @param length integer representing card length
-	 * @param ferocity integer representing card ferocity
-	 * @param intelligence integer representing card intelligence
+	 * @param size integer representing card size
+	 * @param speed integer representing card speed
+	 * @param range integer representing card range
+	 * @param firePower integer representing card firePower
+	 * @param cargo integer representing card cargo
 	 */
-	DataCard(String name, int height, int weight, int length, int ferocity, int intelligence){
+	DataCard(String name, int size, int speed, int range, int firePower, int cargo){
 		this.name = name;
-		this.height = height;
-		this.weight = weight;
-		this.length = length;
-		this.ferocity = ferocity;
-		this.intelligence = intelligence;
+		this.size = size;
+		this.speed = speed;
+		this.range = range;
+		this.firePower = firePower;
+		this.cargo = cargo;
 	}
 
 	/**
@@ -66,23 +66,23 @@ class DataCard implements Cloneable{
 		switch (category.charAt(0)) {
 		case 'h':
 		case 'H':
-			return result = this.height > otherCard.height ? true : false;
+			return result = this.size > otherCard.size ? true : false;
 
 		case 'w':
 		case 'W':
-			return result = this.weight > otherCard.weight ? true : false;
+			return result = this.speed > otherCard.speed ? true : false;
 
 		case 'l':
 		case 'L':
-			return result = this.length > otherCard.length ? true : false;
+			return result = this.range > otherCard.range ? true : false;
 
 		case 'f':
 		case 'F':
-			return result = this.ferocity > otherCard.ferocity ? true : false;
+			return result = this.firePower > otherCard.firePower ? true : false;
 
 		case 'i':
 		case 'I':
-			return result = this.intelligence > otherCard.intelligence ? true : false;
+			return result = this.cargo > otherCard.cargo ? true : false;
 
 		default:
 			throw new exceptions.CategoryNotFoundException();
@@ -101,42 +101,42 @@ class DataCard implements Cloneable{
 
 	/**
 	 * Getter method
-	 * @return height integer representing card height
+	 * @return size integer representing card size
 	 */
-	int getHeight() {
-		return this.height;
+	int getSize() {
+		return this.size;
 	}
 
 	/**
 	 * Getter method
-	 * @return weight integer representing card weight
+	 * @return speed integer representing card speed
 	 */
-	int getWeight() {
-		return this.weight;
+	int getSpeed() {
+		return this.speed;
 	}
 
 	/**
 	 * Getter method
-	 * @return length integer representing card length
+	 * @return range integer representing card range
 	 */
-	int getLength() {
-		return this.length;
+	int getRange() {
+		return this.range;
 	}
 
 	/**
 	 * Getter method
-	 * @return ferocity integer representing card ferocity
+	 * @return firePower integer representing card fire power
 	 */
-	int getFerocity() {
-		return this.ferocity;
+	int getFirePower() {
+		return this.firePower;
 	}
 
 	/**
 	 * Getter method
-	 * @return intelligence integer representing card intelligence
+	 * @return cargo integer representing card cargo
 	 */
-	int getIntelligence() {
-		return this.intelligence;
+	int getCargo() {
+		return this.cargo;
 	}
 
 	// GETTER METHODS END
@@ -155,6 +155,23 @@ class DataCard implements Cloneable{
 		}
 
 		return cloneCard;
+	}
+	
+	@Override
+	public String toString() {
+		String string = "";
+		String space = " ";
+		String arrow = ">";
+		String colon = ":";
+		String newLine = "\n";
+		
+		string += arrow + space + "size" + colon + space + this.size + newLine;
+		string += arrow + space + "speed" + colon + space + this.speed + newLine;
+		string += arrow + space + "range" + colon + space + this.range + newLine;
+		string += arrow + space + "fire power" + colon + space + this.firePower + newLine;
+		string += arrow + space + "cargo" + colon + space + this.cargo + newLine;
+		
+		return string;
 	}
 
 

@@ -1,9 +1,5 @@
 package toptrumps;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Scanner;
-
 /**
  * 
  * This class represents a player
@@ -21,7 +17,7 @@ class DataPlayer {
 	}
 	
 	/** static int to keep track of AI player count */
-	private static int AIID = 1; //reset this when you restart game
+	private static int ARTIFICIAL_INTELLIGENCE_ID = 1; //reset this when you restart game
 	
 	/** DataCard array representing the deck of cards */
 	private DataCard[] cardDeck = new DataCard[7];
@@ -38,6 +34,7 @@ class DataPlayer {
 	DataPlayer(PlayerType type) {
 		this.createPlayer(type);
 		this.cardDeck = this.createRandomDeck();
+		
 	}
 	
 	void createPlayer(PlayerType type) {
@@ -47,7 +44,7 @@ class DataPlayer {
 			this.name = "You";
 			this.score = 0;
 		} else if (type == PlayerType.AI) {
-			this.name = "AI Player " + AIID++;
+			this.name = "AI Player " + ARTIFICIAL_INTELLIGENCE_ID++;
 			this.score = 0;
 		}
 	}
@@ -55,12 +52,32 @@ class DataPlayer {
 	DataCard[] createRandomDeck() {
 		DataCard[] cardDeck = new DataCard[7];
 		
-		for(DataCard card:cardDeck) {
-			card = DataCardCache.getRandomCard();
+		for(int i=0; i<cardDeck.length; i++) {
+			cardDeck[i] = DataCardCache.getRandomCard();
 		}
 		
 		return cardDeck;
 	}
+	
+	// GETTER METHODS START
+	
+	int getScore() {
+		return this.score;
+	}
+	
+	PlayerType getType() {
+		return this.type;
+	}
+	
+	String getName() {
+		return this.getName();
+	}
+	
+	// GETTER METHODS END
+	
+	
+	
+	
 	
 	
 	

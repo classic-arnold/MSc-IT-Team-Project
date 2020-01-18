@@ -1,54 +1,55 @@
 package toptrumps;
+/*
+ * REMINDER: load cache before using getCard. Load cache in main method.
+ */
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class DataCardCache {
-	private static HashMap<String, DataCard> cardMap  = new HashMap<String, DataCard>();
+	private static HashMap<String, DataCard> CARDMAP  = new HashMap<String, DataCard>();
 
 	public static DataCard getCard(String cardId) {
-		DataCard cachedCard = cardMap.get(cardId);
+		DataCard cachedCard = CARDMAP.get(cardId);
 		return (DataCard) cachedCard.clone();
 	}
 	
 	public static DataCard getRandomCard() {
-		DataCard cachedCard = new DataCard("remove", 1, 1, 1, 1, 1); // remove this
-//		set String cardId to random card
-//		DataCard cachedCard = cardMap.get(cardId); // use this
-//		return (DataCard) cachedCard.clone();
-		return cachedCard;
+		List<String> arrayOfKeys = new ArrayList<String>(CARDMAP.keySet());
+		Random r = new Random();
+		
+		DataCard cachedCard = CARDMAP.get(arrayOfKeys.get(r.nextInt(arrayOfKeys.size())));
+		return (DataCard) cachedCard.clone();
 	}
 
-	// load cache before using getCard. load cache in main method.
-
-	public static void loadCache() {
-//		DataCard card350r = new DataCard("350r", 1, );
-//		circle.setId("1");
-//		shapeMap.put(circle.getId(),circle);
-//
-//		Square square = new Square();
-//		square.setId("2");
-//		shapeMap.put(square.getId(),square);
-//
-//		Rectangle rectangle = new Rectangle();
-//		rectangle.setId("3");
-//		shapeMap.put(rectangle.getId(), rectangle);
+	public static void loadCardCacheFromFile() {
 		
-//		FileReader fileReader;
-//		try {
-//			fileReader = new FileReader("../../StarCitizenDeck.txt");
-//			
-//			Scanner s = new Scanner(fileReader);
-//			
-//			
-//			
-//			s.close();
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
+		FileReader fileReader;
+		try {
+			fileReader = new FileReader("StarCitizenDeck.txt");
+			
+			Scanner s = new Scanner(fileReader);
+			
+			try {
+				s.nextLine();
+				
+				while(s.hasNextLine()) {
+					String name = s.next();
+					CARDMAP.put(name, new DataCard(name, s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			s.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
-		// read all cards from file once and put here
 	}
 }
