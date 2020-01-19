@@ -14,6 +14,8 @@ public class ViewCLI {
     private int categoryChoice;
     //test attributes
     int round = 1;
+   
+ 
 
 
     //view constructor
@@ -46,6 +48,7 @@ public class ViewCLI {
 
 
     }
+    //display card
     private void displayPlayerCard(){
         System.out.println("You drew 'Ornithomimus':");
         System.out.println("> height:10");
@@ -55,10 +58,11 @@ public class ViewCLI {
         System.out.println("> height:10");
 
     }
+    //display number of cards in deck
     private void displayNumDeckCards(){
         System.out.println("There are 7 cards in your deck");
     }
-
+    //display category selection menu
     private void displayCategorySelection() {
         System.out.println("It is your turn to select a category, the categories are: ");
         System.out.println("1: height");
@@ -73,7 +77,7 @@ public class ViewCLI {
 
 
 
-    //
+    //update view function
     public void updateView(){
         displayRound();
         displayPlayerCard();
@@ -81,19 +85,32 @@ public class ViewCLI {
         displayCategorySelection();
 
     }
-
+    //display round result function
     public void displayRoundResult() {
     	System.out.println("");
         System.out.println("Round " + round + " Round result message here");
         System.out.println("If there was a winning card, details would go here.");
 
     }
+    //display game end and stats
+    public void gameEnd() {
+    	System.out.println("Game End");
+    	System.out.println("");
+    	System.out.println("The overall winner was AI Player 1");
+    	System.out.println("AI Player 1: 20");
+    	System.out.println("AI Player 2: 30");
+    	System.out.println("AI Player 4: 40");
+    	System.out.println("You:50 ");
+    	System.out.println("AI Player 3:60");
+    	
+    }
 
-
+    //test main
     public static void main(String[] args) {
         ViewCLI view = new ViewCLI();
         view.chooseDisplay();
         view.updateView();
         view.displayRoundResult();
+        view.gameEnd();
     }
 }
