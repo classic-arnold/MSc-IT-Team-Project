@@ -31,10 +31,6 @@ public class DataCardCache {
 	public static DataCard[] getAllCardsInOrder() {
 		return CARDARRAY;
 	}
-	
-	public static HashMap<String, DataCard> get() {
-		return CARDMAP;
-	}
 
 	public static void loadCardFromFileAndCache() {
 		
