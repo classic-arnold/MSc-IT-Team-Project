@@ -104,6 +104,16 @@ public class ViewCLI {
     	System.out.println("AI Player 3:60");
     	
     }
+    
+    //display game statistics
+    public void displayStats() {
+    	System.out.println("\nGame Statistics:");
+    	System.out.println("Number of Games");
+    	System.out.println("Number of Human Wins:");
+    	System.out.println("Number of AI Wins");
+    	System.out.println("Average number of Draws");
+    	System.out.println("Longest Game");
+    }
 
     //test main
     public static void main(String[] args) {
@@ -112,5 +122,6 @@ public class ViewCLI {
         view.updateView();
         view.displayRoundResult();
         view.gameEnd();
+        view.displayStats();
     }
 }
