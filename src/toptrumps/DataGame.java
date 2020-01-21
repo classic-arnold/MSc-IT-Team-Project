@@ -81,6 +81,23 @@ class DataGame{
 		return shuffledDeck;
 	}
 	
+	public static <t> ArrayList<t> arrayToArrayList(t[] array){
+		ArrayList<t> arrayList = new ArrayList<t>();
+		for(int i = 0; i<array.length;i++) {
+			arrayList.add(array[i]);
+		}
+		return arrayList;
+	}
+	
+	public static DataCard[] arrayListToArrayCard(ArrayList<DataCard> arrayList){
+		int length = arrayList.size();
+		DataCard[] array = new DataCard[length];
+		for(int i = 0; i<length;i++) {
+			array[i] = arrayList.get(i);
+		}
+		return array;
+	}
+	
 	// GETTER METHODS START
 	
 	public DataCard[] getCompleteDeck() {

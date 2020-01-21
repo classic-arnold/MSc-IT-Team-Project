@@ -11,7 +11,14 @@ public class DataCardCache {
 	private static DataCard[] CARDARRAY = new DataCard[40];
 	
 	public static DataCard[] getAllCardsInOrder() {
-		return CARDARRAY.clone();
+		int length = CARDARRAY.length;
+		DataCard[] deepCopyArray = new DataCard[length];
+		
+		for(int i = 0; i<length; i++) {
+			deepCopyArray[i] = (DataCard)CARDARRAY[i].clone();
+		}
+		
+		return deepCopyArray;
 	}
 
 	public static void loadCardFromFileAndCache() {

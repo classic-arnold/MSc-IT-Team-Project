@@ -57,7 +57,7 @@ class DataPlayer {
 	}
 	
 	DataCard[] createRandomDeck() {
-		DataCard[] completeDeck = DataCardCache.getAllCardsInOrder();
+		DataCard[] completeDeck = DataGame.getInstance().getCompleteDeck();
 		DataCard[] cardDeck = new DataCard[7];
 		ArrayList<Integer> randomNumbers = new ArrayList<Integer>();
 
