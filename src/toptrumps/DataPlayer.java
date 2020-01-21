@@ -1,5 +1,6 @@
 package toptrumps;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -58,12 +59,18 @@ class DataPlayer {
 	DataCard[] createRandomDeck() {
 		DataCard[] completeDeck = DataCardCache.getAllCardsInOrder();
 		DataCard[] cardDeck = new DataCard[7];
+		ArrayList<Integer> randomNumbers = new ArrayList<Integer>();
 
-		Random r = new Random();
+		Random random = new Random();
 		for(int i=0;i<cardDeck.length;i++) {
-			r.nextInt(completeDeck.length);
+			Integer randomNumber;
+			do {
+				randomNumber = random.nextInt(completeDeck.length);
+			} while(randomNumbers.contains(randomNumber));
 			
+			cardDeck[i] = completeDeck[randomNumber];
 			
+			randomNumbers.add(randomNumber);
 		}
 		
 		return cardDeck;

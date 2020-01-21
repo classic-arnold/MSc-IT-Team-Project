@@ -11,7 +11,7 @@ public class DataCardCache {
 	private static DataCard[] CARDARRAY = new DataCard[40];
 	
 	public static DataCard[] getAllCardsInOrder() {
-		return CARDARRAY;
+		return CARDARRAY.clone();
 	}
 
 	public static void loadCardFromFileAndCache() {
