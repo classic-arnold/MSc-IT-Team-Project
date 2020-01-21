@@ -1,5 +1,7 @@
 package toptrumps;
 
+import java.util.Random;
+
 /**
  * 
  * This class represents a player
@@ -52,14 +54,18 @@ class DataPlayer {
 
 		this.cardDeck = this.createRandomDeck();
 	}
-
+	
 	DataCard[] createRandomDeck() {
+		DataCard[] completeDeck = DataCardCache.getAllCardsInOrder();
 		DataCard[] cardDeck = new DataCard[7];
 
-		for(int i=0; i<cardDeck.length; i++) {
-			cardDeck[i] = DataCardCache.getRandomCard();
+		Random r = new Random();
+		for(int i=0;i<cardDeck.length;i++) {
+			r.nextInt(completeDeck.length);
+			
+			
 		}
-
+		
 		return cardDeck;
 	}
 
