@@ -55,7 +55,7 @@ class DataCard implements Cloneable{
 	 * @param category String representing the category
 	 * @return true if this card category value is greater than the other card's "otherCard". Returns false otherwise.
 	 */
-	boolean greaterThan(DataCard otherCard, String category) throws exceptions.CategoryNotFoundException{
+	int compare(DataCard otherCard, String category){
 		/* 
 		 * uses switch to set the result to true or false, depending on the category chosen.
 		 * since the first letter of all categories are different, we check for this (and its uppercase) only
@@ -64,23 +64,32 @@ class DataCard implements Cloneable{
 		 */
 		switch (Character.toLowerCase(category.charAt(0))+""+Character.toLowerCase(category.charAt(1))) {
 		case "si":
-			boolean result = this.size > otherCard.size ? true : false;
+			int result = 0;
+			result = this.size > otherCard.size ? 1 : result;
+			result = this.size == otherCard.size ? 2 : result;
 			return result;
-
 		case "sp":
-			result = this.speed > otherCard.speed ? true : false;
+			result = 0;
+			result = this.speed > otherCard.speed ? 1 : result;
+			result = this.speed == otherCard.speed ? 2 : result;
 			return result;
 
 		case "ra":
-			result = this.range > otherCard.range ? true : false;
+			result = 0;
+			result = this.range > otherCard.range ? 1 : result;
+			result = this.range == otherCard.range ? 2 : result;
 			return result;
 
 		case "fi":
-			result = this.firePower > otherCard.firePower ? true : false;
+			result = 0;
+			result = this.firePower > otherCard.firePower ? 1 : result;
+			result = this.firePower == otherCard.firePower ? 2 : result;
 			return result;
 
 		case "ca":
-			result = this.cargo > otherCard.cargo ? true : false;
+			result = 0;
+			result = this.cargo > otherCard.cargo ? 1 : result;
+			result = this.cargo == otherCard.cargo ? 2 : result;
 			return result;
 
 		default:
