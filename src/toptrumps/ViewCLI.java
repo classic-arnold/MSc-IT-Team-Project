@@ -2,7 +2,7 @@ package toptrumps;
 
 import java.util.Scanner;
 
-/*
+/**
  * ViewCLI- creates the commandline view for the TopTrumps application
  *  @author Team TRY-CATCH - Anne-Marie Gill 2431989G
  */
@@ -12,8 +12,8 @@ public class ViewCLI {
     //class attributes
     private int startChoice;
     private int categoryChoice;
-    //test attributes
-    int round = 1;
+    private DataGame model;
+ 
    
  
 
@@ -40,11 +40,11 @@ public class ViewCLI {
 
     //display round
     private void displayRound() {
-        if (round == 1) {
+        if (model.getRoundNumber() == 1) {
             System.out.println("Game Start");
         }
-        System.out.println("Round " + round);
-        System.out.println("Round " + round + " : Players have drawn their cards");
+        System.out.println("Round " + model.getRoundNumber());
+        System.out.println("Round " + model.getRoundNumber() + " : Players have drawn their cards");
 
 
     }
@@ -88,7 +88,7 @@ public class ViewCLI {
     //display round result function
     public void displayRoundResult() {
     	System.out.println("");
-        System.out.println("Round " + round + " Round result message here");
+        System.out.println("Round " + model.getRoundNumber() + " Round result message here");
         System.out.println("If there was a winning card, details would go here.");
 
     }
@@ -123,5 +123,6 @@ public class ViewCLI {
         view.displayRoundResult();
         view.gameEnd();
         view.displayStats();
+        
     }
 }
