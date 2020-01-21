@@ -1,5 +1,7 @@
 package toptrumps;
 
+import java.util.ArrayList;
+
 // not needed. delete.
 // used only for quick testing.
 public class Main {
@@ -7,7 +9,6 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		DataCardCache.loadCardFromFileAndCache();
-		
 		
 		
 //		DataGame dG = DataGame.getInstance();

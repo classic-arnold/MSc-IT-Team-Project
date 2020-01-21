@@ -6,7 +6,7 @@ import java.util.Random;
 class DataGame{
 	private static DataGame instance = null; // initialize again during game reset
 	
-	private DataPlayer[] players;
+	private ArrayList<DataPlayer> players;
 	
 	enum GameState {
 		RUNNING, ENDED
@@ -16,7 +16,7 @@ class DataGame{
 	
 	private int roundNumber;
 	
-	private DataCard[] completeDeck = new DataCard[40];
+	private ArrayList<DataCard> commonDeck = new ArrayList<DataCard>();
 
 	private DataGame(int numberOfArtificialIntelligencePlayers) {
 		
@@ -29,11 +29,11 @@ class DataGame{
 		return DataGame.instance; 
 	}
 	
-	public DataCard[] getNewDeck() {
-		return DataCardCache.getAllCardsInOrder();
+	public ArrayList<DataCard> getNewDeck() {
+		return DataGame.arrayToArrayList(DataCardCache.getAllCardsInOrder());
 	}
 	
-	public DataCard[] getWinningCards(DataCard[] cards, String category) {
+	public ArrayList<DataCard> getWinningCards(DataCard[] cards, String category) {
 		ArrayList<DataCard> winningCards = new ArrayList<DataCard>();
 		
 		DataCard lastWinnerCard = cards[0];
@@ -49,33 +49,25 @@ class DataGame{
 			}
 		}
 		
-		int noOfWinningCards = winningCards.size();
-		
-		DataCard[] winningCardsToArray = new DataCard[noOfWinningCards];
-		
-		for(int i=0; i<noOfWinningCards; i++) {
-			winningCardsToArray[i] = winningCards.get(i);
-		}
-		
-		return winningCardsToArray;
+		return winningCards;
 	}
 	
-	public DataCard[] shuffleDeck() throws exceptions.NoCardInDeckException {
-		if(this.completeDeck.length==0) {
+	public ArrayList<DataCard> shuffleDeck() {
+		if(this.commonDeck.size()==0) {
 			throw new exceptions.NoCardInDeckException();
 		}
 		
-		DataCard[] shuffledDeck = new DataCard[40];
+		ArrayList<DataCard> shuffledDeck = new ArrayList<DataCard>();
 		
-		for (DataCard card : this.completeDeck) {
+		for (DataCard card : this.commonDeck) {
 			Random r = new Random();
-			int randomNumber = r.nextInt(shuffledDeck.length);
+			int randomNumber = r.nextInt(shuffledDeck.size());
 			
-			while(shuffledDeck[randomNumber] != null) {
-				randomNumber = r.nextInt(shuffledDeck.length);
+			while(shuffledDeck.get(randomNumber) != null) {
+				randomNumber = r.nextInt(shuffledDeck.size());
 			}
 			
-			shuffledDeck[randomNumber] = card;
+			shuffledDeck.add(randomNumber, card);
 		}
 		
 		return shuffledDeck;
@@ -100,8 +92,12 @@ class DataGame{
 	
 	// GETTER METHODS START
 	
-	public DataCard[] getCompleteDeck() {
-		return this.completeDeck;
+	public DataCard[] getCompleteDeckAsArray() {
+		return DataGame.arrayListToArrayCard(this.commonDeck);
+	}
+	
+	public ArrayList<DataCard> getCompleteDeckAsArrayList() {
+		return this.commonDeck;
 	}
 	
 	public int getRoundNumber() {

@@ -20,10 +20,10 @@ class DataPlayer {
 	}
 
 	/** static int to keep track of AI player count */
-	private static int ARTIFICIAL_INTELLIGENCE_ID = 1; //reset this when you restart game
+	private static int ARTIFICIAL_INTELLIGENCE_ID = 1;
 
 	/** DataCard array representing the deck of cards */
-	private DataCard[] cardDeck;
+	private ArrayList<DataCard> cardDeck;
 
 	/** PlayerType enum representing the type of player - human or AI */
 	private PlayerType type;
@@ -50,25 +50,33 @@ class DataPlayer {
 			this.score = 0;
 		} else if (this.type == PlayerType.AI) {
 			this.name = "AI Player " + ARTIFICIAL_INTELLIGENCE_ID++;
+			this.resetArtificialIntelligenceId();
 			this.score = 0;
 		}
 
 		this.cardDeck = this.createRandomDeck();
 	}
 	
-	DataCard[] createRandomDeck() {
-		DataCard[] completeDeck = DataGame.getInstance().getCompleteDeck();
-		DataCard[] cardDeck = new DataCard[7];
+	void resetArtificialIntelligenceId(){
+		if(DataPlayer.ARTIFICIAL_INTELLIGENCE_ID>4) {
+			DataPlayer.ARTIFICIAL_INTELLIGENCE_ID = 1;
+		}
+	}
+	
+	ArrayList<DataCard> createRandomDeck() {
+		ArrayList<DataCard> completeDeck = DataGame.getInstance().getCompleteDeckAsArrayList();
+		ArrayList<DataCard> cardDeck = new ArrayList<DataCard>();
 		ArrayList<Integer> randomNumbers = new ArrayList<Integer>();
 
 		Random random = new Random();
-		for(int i=0;i<cardDeck.length;i++) {
-			Integer randomNumber;
+		for(int i=0;i<cardDeck.size();i++) {
+			int randomNumber;
 			do {
-				randomNumber = random.nextInt(completeDeck.length);
+				randomNumber = random.nextInt(completeDeck.size());
 			} while(randomNumbers.contains(randomNumber));
 			
-			cardDeck[i] = completeDeck[randomNumber];
+			cardDeck.add(completeDeck.get(randomNumber));
+			completeDeck.remove(randomNumber);
 			
 			randomNumbers.add(randomNumber);
 		}

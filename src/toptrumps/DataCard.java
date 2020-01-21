@@ -150,7 +150,8 @@ class DataCard implements Cloneable{
 	// GETTER METHODS END
 
 	/**
-	 * used to clone the card objects
+	 * used to clone the card objects of this card class
+	 * @return object representing new clone of this class
 	 */
 	public Object clone() {
 		Object cloneCard = null;
@@ -165,6 +166,10 @@ class DataCard implements Cloneable{
 		return cloneCard;
 	}
 	
+	/**
+	 * used to render this class to string
+	 * @return string representing class
+	 */
 	@Override
 	public String toString() {
 		String string = "";
