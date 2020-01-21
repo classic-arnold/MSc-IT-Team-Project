@@ -83,6 +83,18 @@ class DataPlayer {
 		
 		return cardDeck;
 	}
+	
+	void addCardsToDeck(ArrayList<DataCard> newCards) {
+		for(DataCard card : newCards) {
+			this.cardDeck.add(card);
+		}
+	}
+	
+	void removeCardsFromDeck(ArrayList<DataCard> newCards) {
+		for(DataCard card : newCards) {
+			this.cardDeck.remove(card);
+		}
+	}
 
 	// GETTER METHODS START
 

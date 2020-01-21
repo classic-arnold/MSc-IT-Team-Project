@@ -26,7 +26,7 @@ class DataGame{
 		if (DataGame.instance == null) { 
 			DataGame.instance = new DataGame(4); // 4 or 3?
 		} 
-		return DataGame.instance; 
+		return DataGame.instance;
 	}
 	
 	public ArrayList<DataCard> getNewDeck() {
