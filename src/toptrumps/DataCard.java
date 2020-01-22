@@ -93,7 +93,8 @@ class DataCard implements Cloneable{
 			return result;
 
 		default:
-			throw new exceptions.CategoryNotFoundException();
+//			throw new exceptions.CategoryNotFoundException();
+			return 0;
 		}
 	}
 

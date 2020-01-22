@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 class DataGame{
-	private static DataGame instance = null; // initialize again during game reset
+	private static DataGame instance = new DataGame(4);
 	
 	private ArrayList<DataPlayer> players;
 	
@@ -20,9 +20,11 @@ class DataGame{
 	
 	private int roundNumber;
 	
-	private int numberOfDraws;
+//	private int numberOfDraws;
 	
 	private DataCommonDeck commonDeck = new DataCommonDeck();
+	
+	private ArrayList<DataCard> deck = new ArrayList<DataCard>();
 	
 	private DataPlayer winner;
 
@@ -35,9 +37,6 @@ class DataGame{
 	}
 
 	public static DataGame getInstance(){
-		if (DataGame.instance == null) { 
-			DataGame.instance = new DataGame(4); // 4 or 3?
-		} 
 		return DataGame.instance;
 	}
 	
@@ -46,7 +45,7 @@ class DataGame{
 	}
 	
 	public GameState checkGameState() {
-		if(this.commonDeck.size() == 0) {
+		if(this.deck.size() == 0) {
 			for(DataPlayer player : players) {
 				if(player.getDeck().size() == 40) {
 					this.winner = player;
@@ -80,6 +79,19 @@ class DataGame{
 		this.roundNumber += 1;
 	}
 	
+	public void playRound() {
+		this.incrementRound();
+		
+		this.deck = this.shuffleDeck();
+		
+		for(DataPlayer player : this.players) {
+			player.createRandomDeck();
+		}
+		
+		System.out.println(this.deck.get(0));
+		
+	}
+	
 	public RoundResults getRoundState(DataCard[] winningCards) {
 		if(winningCards.length > 1) {
 			return RoundResults.DRAW;
@@ -89,13 +101,14 @@ class DataGame{
 	}
 	
 	public ArrayList<DataCard> shuffleDeck() {
-		if(this.commonDeck.size()==0) {
-			throw new exceptions.NoCardInDeckException();
+		if(this.deck.size()==0) {
+//			throw new exceptions.NoCardInDeckException();
+			return null;
 		}
 		
 		ArrayList<DataCard> shuffledDeck = new ArrayList<DataCard>();
 		
-		for (DataCard card : this.commonDeck) {
+		for (DataCard card : this.deck) {
 			Random r = new Random();
 			int randomNumber = r.nextInt(shuffledDeck.size());
 			
@@ -129,11 +142,11 @@ class DataGame{
 	// GETTER METHODS START
 	
 	public DataCard[] getCompleteDeckAsArray() {
-		return DataGame.arrayListToArrayCard(this.commonDeck.getArrayList());
+		return DataGame.arrayListToArrayCard(this.deck);
 	}
 	
 	public ArrayList<DataCard> getCompleteDeckAsArrayList() {
-		return this.commonDeck.getArrayList();
+		return this.deck;
 	}
 	
 	public int getRoundNumber() {
@@ -185,20 +198,20 @@ class DataGame{
 /**
  * Updates database using methods provided in the database class
  */
-//	public void saveGameStats() {
+	public void saveGameStats() {
 //		Database.incrementNumberOfGames();
-//		
-//		if(winner.getType()==DataPlayer.PlayerType.HUMAN) {
+		
+		if(winner.getType()==DataPlayer.PlayerType.HUMAN) {
 //			Database.incrementNumberOfHumanWins();
-//		} else if(winner.getType()==DataPlayer.PlayerType.AI) {
+		} else if(winner.getType()==DataPlayer.PlayerType.AI) {
 //			Database.incrementNumberOfAIWins();
-//		}
-//		
+		}
+		
 //		Database.incrementNumberOfDraws(this.numberOfDraws);
-//		
-//		if(this.gameState == GameState.ENDED) {
+		
+		if(this.gameState == GameState.ENDED) {
 //			Database.calculateLongestGame(this.roundNumber);
-//		}
-//	}
+		}
+	}
 	
 }

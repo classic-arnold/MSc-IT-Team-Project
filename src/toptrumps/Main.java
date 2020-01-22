@@ -10,6 +10,8 @@ public class Main {
 		// TODO Auto-generated method stub
 		DataCardCache.loadCardFromFileAndCache();
 		
+		DataGame.getInstance().playRound();
+		
 		
 //		DataGame dG = DataGame.getInstance();
 //		dG.loadDeck();
