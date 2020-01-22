@@ -6,10 +6,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		DataCardCache.loadCardFromFileAndCache();
 		
 		DataGame game = new DataGame(4);
-		game.playRound();
+		game.startGame();
 		
 		
 //		DataGame dG = DataGame.getInstance();

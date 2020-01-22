@@ -54,27 +54,27 @@ class DataPlayer {
 		}
 	}
 	
-	ArrayList<DataCard> createRandomDeck(ArrayList<DataCard> deck) {
-		ArrayList<DataCard> completeDeck = deck;
-		ArrayList<DataCard> cardDeck = new ArrayList<DataCard>(Collections.nCopies(7, null));
-		ArrayList<Integer> randomNumbers = new ArrayList<Integer>();
-
-		Random random = new Random();
-		for(int i=0;i<cardDeck.size();i++) {
-			int randomNumber;
-			do {
-				randomNumber = random.nextInt(completeDeck.size());
-			} while(randomNumbers.contains(randomNumber));
-			
-			cardDeck.remove(i);
-			cardDeck.add(i, completeDeck.get(randomNumber));
-			completeDeck.remove(randomNumber);
-			
-			randomNumbers.add(randomNumber);
-		}
-		
-		return cardDeck;
-	}
+//	ArrayList<DataCard> createRandomDeck(ArrayList<DataCard> deck) {
+//		ArrayList<DataCard> completeDeck = deck;
+//		ArrayList<DataCard> cardDeck = new ArrayList<DataCard>(Collections.nCopies(7, null));
+//		ArrayList<Integer> randomNumbers = new ArrayList<Integer>();
+//
+//		Random random = new Random();
+//		for(int i=0;i<cardDeck.size();i++) {
+//			int randomNumber;
+//			do {
+//				randomNumber = random.nextInt(completeDeck.size());
+//			} while(randomNumbers.contains(randomNumber));
+//			
+//			cardDeck.remove(i);
+//			cardDeck.add(i, completeDeck.get(randomNumber));
+//			completeDeck.remove(randomNumber);
+//			
+//			randomNumbers.add(randomNumber);
+//		}
+//		
+//		return cardDeck;
+//	}
 	
 	void addCardsToDeck(ArrayList<DataCard> newCards) {
 		for(DataCard card : newCards) {
@@ -82,10 +82,18 @@ class DataPlayer {
 		}
 	}
 	
-	void removeCardsFromDeck(ArrayList<DataCard> newCards) {
-		for(DataCard card : newCards) {
+	void addCardToDeck(DataCard newCard) {
+		this.cardDeck.add(newCard);
+	}
+	
+	void removeCardsFromDeck(ArrayList<DataCard> cardsToRemove) {
+		for(DataCard card : cardsToRemove) {
 			this.cardDeck.remove(card);
 		}
+	}
+	
+	void removeCardFromDeck(DataCard cardToRemove) {
+		this.cardDeck.remove(cardToRemove);
 	}
 	
 	void setDeck(ArrayList<DataCard> deck) {

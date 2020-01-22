@@ -43,10 +43,16 @@ class DataGame{
 	private DataCommonDeck commonDeck = new DataCommonDeck();
 	
 	/** represents the deck of cards */
-	private ArrayList<DataCard> deck = new ArrayList<DataCard>();
+	private ArrayList<DataCard> originalDeck = new ArrayList<DataCard>();
 	
 	/** represents the winner */
 	private DataPlayer winner;
+	
+	/** represents the status of last round */
+	private boolean lastRoundWasDraw;
+	
+	/** represents the last category */
+//	private String category;
 
 	/**
 	 * creates a new DataGame Object
@@ -68,7 +74,21 @@ class DataGame{
 	 */
 	public void startGame() {
 		
-		this.deck = this.shuffleDeck(this.getNewDeck()); // shuffle the deck
+		DataCardCache.loadCardFromFileAndCache();
+		
+		this.originalDeck = this.shuffleDeck(this.getNewDeck()); // shuffle the deck
+		
+		int numberOfCardsPerPlayer = this.originalDeck.size()/this.players.size();
+		int numberOfCardsLeftOver = this.originalDeck.size()%this.players.size();
+		
+		int j = 0;
+		for(DataPlayer player : this.players) {
+			for(int i = 0; i<numberOfCardsPerPlayer; i++) {
+				player.addCardToDeck(this.originalDeck.get(j));
+				this.originalDeck.remove(j);
+				j++;
+			}
+		}
 		
 //		for testing
 //		for(int i=0;i<this.deck.size();i++) {
@@ -81,27 +101,26 @@ class DataGame{
 //		}
 		
 		// dish out cards to players from deck
-		for(DataCard card : this.deck) {
-			while(this.deck.size()%this.players.size() ) {
-				
-			}
-			for(DataPlayer player : this.players) {
-				player.addCardsToDeck(card);
-			}
-		}
+//		for(DataCard card : this.deck) {
+//			while(this.deck.size()%this.players.size() ) {
+//				
+//			}
+//			for(DataPlayer player : this.players) {
+//				player.addCardsToDeck(card);
+//			}
+//		}
 		
 		// check if cards remaining and dish or
-		if(this.deck.size()%this.players.size() != 0) {
-			if this.deck.clear();
-		}
+//		if(this.deck.size()%this.players.size() != 0) {
+//			if this.deck.clear();
+//		}
 		
 //		for testing
 //		System.out.println(this.players.get(0).getDeck().get(0));
 		
 //		for testing
-//		System.out.println(this.deck.size());
+		System.out.println(this.originalDeck.size());
 		
-
 		this.incrementRound(); // increase the round number
 		
 	}
@@ -323,6 +342,18 @@ class DataGame{
 	public DataPlayer[] getPlayers() {
 		return DataGame.arrayListToArrayPlayer(this.players);
 	}
+	
+	public boolean getLastRoundResults() {
+		return this.lastRoundWasDraw;
+	}
+	
+	public int getNumberOfCardsInCommonPile() {
+		return this.commonDeck.size();
+	}
+	
+//	public String getLastCategory() {
+//		return this.category;
+//	}
 	
 //	getters from database - waiting on Estelle
 //	public int getNumberOfHumanWins() {
