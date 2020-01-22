@@ -12,14 +12,22 @@ class DataGame{
 		RUNNING, ENDED
 	}
 	
+	enum RoundResults {
+		DRAW, WIN
+	}
+	
 	private GameState gameState;
 	
 	private int roundNumber;
 	
-	private ArrayList<DataCard> commonDeck = new ArrayList<DataCard>();
+	private DataCommonDeck commonDeck = new DataCommonDeck();
 
 	private DataGame(int numberOfArtificialIntelligencePlayers) {
-		
+		this.gameState = GameState.RUNNING;
+		this.players.add(new DataPlayer(DataPlayer.PlayerType.HUMAN));
+		for(int i=0;i<numberOfArtificialIntelligencePlayers;i++) {
+			this.players.add(new DataPlayer(DataPlayer.PlayerType.AI));
+		}
 	}
 
 	public static DataGame getInstance(){
@@ -31,6 +39,17 @@ class DataGame{
 	
 	public ArrayList<DataCard> getNewDeck() {
 		return DataGame.arrayToArrayList(DataCardCache.getAllCardsInOrder());
+	}
+	
+	public GameState checkGameState() {
+		if(this.commonDeck.size() == 0) {
+			for(DataPlayer player : players) {
+				if(player.getDeck().size() == 40) {
+					return GameState.ENDED;
+				}
+			}
+		}
+		return GameState.RUNNING;
 	}
 	
 	public ArrayList<DataCard> getWinningCards(DataCard[] cards, String category) {
@@ -50,6 +69,18 @@ class DataGame{
 		}
 		
 		return winningCards;
+	}
+	
+	public void incrementRound() {
+		this.roundNumber += 1;
+	}
+	
+	public RoundResults getRoundState(DataCard[] winningCards) {
+		if(winningCards.length > 1) {
+			return RoundResults.DRAW;
+		} else {
+			return RoundResults.WIN;
+		}
 	}
 	
 	public ArrayList<DataCard> shuffleDeck() {
@@ -93,11 +124,11 @@ class DataGame{
 	// GETTER METHODS START
 	
 	public DataCard[] getCompleteDeckAsArray() {
-		return DataGame.arrayListToArrayCard(this.commonDeck);
+		return DataGame.arrayListToArrayCard(this.commonDeck.getArrayList());
 	}
 	
 	public ArrayList<DataCard> getCompleteDeckAsArrayList() {
-		return this.commonDeck;
+		return this.commonDeck.getArrayList();
 	}
 	
 	public int getRoundNumber() {

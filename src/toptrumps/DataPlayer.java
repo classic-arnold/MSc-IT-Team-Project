@@ -34,16 +34,8 @@ class DataPlayer {
 	/** String representing the player's name */
 	private String name;
 
-	DataPlayer(String type) {
-		switch (Character.toLowerCase(type.charAt(0))) {
-
-		case 'h':
-			this.type = PlayerType.HUMAN;
-			break;
-		case 'a':
-			this.type = PlayerType.AI;
-			break;
-		}
+	DataPlayer(PlayerType type) {
+		this.type = type;
 
 		if (this.type == PlayerType.HUMAN) {
 			this.name = "You";
@@ -113,6 +105,10 @@ class DataPlayer {
 
 	String getName() {
 		return this.name;
+	}
+	
+	ArrayList<DataCard> getDeck() {
+		return this.cardDeck;
 	}
 
 	// GETTER METHODS END
