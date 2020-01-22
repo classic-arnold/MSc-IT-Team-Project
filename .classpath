@@ -12,6 +12,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/UofG/MScSD/ITSD project/workspace/MSc-IT-Team-Project/Lib/postgresql-9.4-1206-jdbc4.jar"/>
+	<classpathentry kind="lib" path="Lib/postgresql-9.4-1206-jdbc4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
