@@ -66,6 +66,7 @@ class DataPlayer {
 				randomNumber = random.nextInt(completeDeck.size());
 			} while(randomNumbers.contains(randomNumber));
 			
+			cardDeck.remove(i);
 			cardDeck.add(i, completeDeck.get(randomNumber));
 			completeDeck.remove(randomNumber);
 			

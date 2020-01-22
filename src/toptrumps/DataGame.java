@@ -64,10 +64,9 @@ class DataGame{
 	}
 	
 	/**
-	 * plays the round
+	 * starts the game
 	 */
-	public void playRound() {
-		this.incrementRound(); // increase the round number
+	public void startGame() {
 		
 		this.deck = this.shuffleDeck(this.getNewDeck()); // shuffle the deck
 		
@@ -76,12 +75,34 @@ class DataGame{
 //			System.out.println(this.deck.get(i));	
 //		}
 		
-		// dish out cards to players from deck - not working yet
-		for(DataPlayer player : this.players) {
-			player.setDeck(player.createRandomDeck(this.deck));
+		// dish out cards to players from deck
+//		for(DataPlayer player : this.players) {
+//			player.setDeck(player.createRandomDeck(this.deck));
+//		}
+		
+		// dish out cards to players from deck
+		for(DataCard card : this.deck) {
+			while(this.deck.size()%this.players.size() ) {
+				
+			}
+			for(DataPlayer player : this.players) {
+				player.addCardsToDeck(card);
+			}
 		}
 		
-		System.out.println(this.players.get(0).getDeck().get(0));
+		// check if cards remaining and dish or
+		if(this.deck.size()%this.players.size() != 0) {
+			if this.deck.clear();
+		}
+		
+//		for testing
+//		System.out.println(this.players.get(0).getDeck().get(0));
+		
+//		for testing
+//		System.out.println(this.deck.size());
+		
+
+		this.incrementRound(); // increase the round number
 		
 	}
 	
@@ -274,7 +295,13 @@ class DataGame{
 //				Database.incrementNumberOfAIWins();
 			}
 			
-//			Database.incrementNumberOfDraws(this.numberOfDraws);
+			for (DataPlayer player : this.players) {
+//				Database.setPlayerScore(player);
+			}
+			
+			
+			
+//			Database.setNumberOfDraws(this.numberOfDraws);
 			
 			if(this.gameState == GameState.ENDED) {
 //				Database.calculateLongestGame(this.roundNumber);
