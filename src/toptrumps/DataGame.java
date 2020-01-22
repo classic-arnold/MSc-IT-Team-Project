@@ -85,8 +85,8 @@ class DataGame{
 	}
 	
 	/**
-	 * 
-	 * @param cards
+	 * takes an array of cards and return the winning cards
+	 * @param cards the array of cards
 	 * @param category
 	 * @return
 	 */
@@ -178,6 +178,15 @@ class DataGame{
 		return array;
 	}
 	
+	public static DataPlayer[] arrayListToArrayPlayer(ArrayList<DataPlayer> arrayList){
+		int length = arrayList.size();
+		DataPlayer[] array = new DataPlayer[length];
+		for(int i = 0; i<length;i++) {
+			array[i] = arrayList.get(i);
+		}
+		return array;
+	}
+	
 	// GETTER METHODS START
 	
 	public DataCard[] getCompleteDeckAsArray() {
@@ -190,6 +199,10 @@ class DataGame{
 	
 	public int getRoundNumber() {
 		return this.roundNumber;
+	}
+	
+	public DataPlayer[] getPlayers() {
+		return DataGame.arrayListToArrayPlayer(this.players);
 	}
 	
 //	public int getNumberOfHumanWins() {
