@@ -1,7 +1,5 @@
 package toptrumps;
 
-import java.util.ArrayList;
-
 // not needed. delete.
 // used only for quick testing.
 public class Main {

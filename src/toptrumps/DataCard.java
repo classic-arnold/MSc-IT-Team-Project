@@ -8,6 +8,7 @@ package toptrumps;
  * 
  */
 class DataCard implements Cloneable{
+	
 	/** string representing card description */
 	private String description;
 
