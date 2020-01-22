@@ -221,6 +221,12 @@ class DataGame{
 		return shuffledDeck;
 	}
 	
+	/**
+	 * Static method used to convert an array of generic objects to an ArrayList
+	 * @param <t> generic type
+	 * @param array original array
+	 * @return an ArrayList shallow copy of array
+	 */
 	public static <t> ArrayList<t> arrayToArrayList(t[] array){
 		ArrayList<t> arrayList = new ArrayList<t>();
 		for(int i = 0; i<array.length;i++) {
@@ -229,6 +235,11 @@ class DataGame{
 		return arrayList;
 	}
 	
+	/**
+	 * Static method used to convert an ArrayList of DataCard to an array
+	 * @param arrayList original array list
+	 * @return an array shallow copy of ArrayList
+	 */
 	public static DataCard[] arrayListToArrayCard(ArrayList<DataCard> arrayList){
 		int length = arrayList.size();
 		DataCard[] array = new DataCard[length];
@@ -238,6 +249,11 @@ class DataGame{
 		return array;
 	}
 	
+	/**
+	 * Static method used to convert an ArrayList of DataPlayer to an array
+	 * @param arrayList original array list
+	 * @return an array shallow copy of ArrayList
+	 */
 	public static DataPlayer[] arrayListToArrayPlayer(ArrayList<DataPlayer> arrayList){
 		int length = arrayList.size();
 		DataPlayer[] array = new DataPlayer[length];
@@ -246,6 +262,25 @@ class DataGame{
 		}
 		return array;
 	}
+	
+	/**
+	 * Updates database using methods provided in the database class
+	 */
+		public void saveGameStats() {
+//			Database.incrementNumberOfGames();
+			
+			if(winner.getType()==DataPlayer.PlayerType.HUMAN) {
+//				Database.incrementNumberOfHumanWins();
+			} else if(winner.getType()==DataPlayer.PlayerType.AI) {
+//				Database.incrementNumberOfAIWins();
+			}
+			
+//			Database.incrementNumberOfDraws(this.numberOfDraws);
+			
+			if(this.gameState == GameState.ENDED) {
+//				Database.calculateLongestGame(this.roundNumber);
+			}
+		}
 	
 	// GETTER METHODS START
 	
@@ -265,6 +300,7 @@ class DataGame{
 		return DataGame.arrayListToArrayPlayer(this.players);
 	}
 	
+//	getters from database - waiting on Estelle
 //	public int getNumberOfHumanWins() {
 //		return Database.getNumberOfHumanWins();
 //	}
@@ -285,7 +321,7 @@ class DataGame{
 //		return Database.getLongestGame();
 //	}
 	
-	
+	// fake getters from database to return mock values
 	public int getNumberOfHumanWins() {
 		return 2;
 	}
@@ -307,24 +343,5 @@ class DataGame{
 	}
 	
 	// GETTER METHODS END
-	
-/**
- * Updates database using methods provided in the database class
- */
-	public void saveGameStats() {
-//		Database.incrementNumberOfGames();
-		
-		if(winner.getType()==DataPlayer.PlayerType.HUMAN) {
-//			Database.incrementNumberOfHumanWins();
-		} else if(winner.getType()==DataPlayer.PlayerType.AI) {
-//			Database.incrementNumberOfAIWins();
-		}
-		
-//		Database.incrementNumberOfDraws(this.numberOfDraws);
-		
-		if(this.gameState == GameState.ENDED) {
-//			Database.calculateLongestGame(this.roundNumber);
-		}
-	}
 	
 }
