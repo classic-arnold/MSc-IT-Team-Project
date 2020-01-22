@@ -5,31 +5,20 @@ package toptrumps;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class DataCardCache {
-	private static HashMap<String, DataCard> CARDMAP  = new HashMap<String, DataCard>();
 	private static DataCard[] CARDARRAY = new DataCard[40];
-
-	public static DataCard getCard(String cardDescription) {
-		DataCard cachedCard = CARDMAP.get(cardDescription);
-		return (DataCard) cachedCard.clone();
-	}
-	
-	public static DataCard getRandomCard() {
-		List<String> listOfKeys = new ArrayList<String>(CARDMAP.keySet());
-		Random r = new Random();
-		
-		DataCard cachedCard = CARDMAP.get(listOfKeys.get(r.nextInt(listOfKeys.size())));
-		return (DataCard) cachedCard.clone();
-	}
 	
 	public static DataCard[] getAllCardsInOrder() {
-		return CARDARRAY;
+		int length = CARDARRAY.length;
+		DataCard[] deepCopyArray = new DataCard[length];
+		
+		for(int i = 0; i<length; i++) {
+			deepCopyArray[i] = (DataCard)CARDARRAY[i].clone();
+		}
+		
+		return deepCopyArray;
 	}
 
 	public static void loadCardFromFileAndCache() {
@@ -48,9 +37,8 @@ public class DataCardCache {
 				while(s.hasNextLine()) {
 					String description = s.next();
 					int size = s.nextInt(); int speed = s.nextInt(); int range = s.nextInt(); int firePower = s.nextInt(); int cargo = s.nextInt();
-					CARDMAP.put(description, new DataCard(description, size, speed, range, firePower, cargo));
 					
-					CARDARRAY[i] = DataCardCache.getCard(description);
+					CARDARRAY[i] = new DataCard(description, size, speed, range, firePower, cargo);
 					i++;
 				}
 			} catch(Exception e) {

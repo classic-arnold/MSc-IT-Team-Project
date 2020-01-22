@@ -1,5 +1,5 @@
 package exceptions;
 
-public class NoCardInDeckException extends Exception {
+public class NoCardInDeckException extends RuntimeException {
 
 }
