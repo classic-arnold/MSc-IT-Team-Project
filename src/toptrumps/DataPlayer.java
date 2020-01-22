@@ -1,6 +1,7 @@
 package toptrumps;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -45,8 +46,6 @@ class DataPlayer {
 			this.resetArtificialIntelligenceId();
 			this.score = 0;
 		}
-
-		this.cardDeck = this.createRandomDeck(game);
 	}
 	
 	void resetArtificialIntelligenceId(){
@@ -57,7 +56,7 @@ class DataPlayer {
 	
 	ArrayList<DataCard> createRandomDeck(DataGame game) {
 		ArrayList<DataCard> completeDeck = game.getCompleteDeckAsArrayList();
-		ArrayList<DataCard> cardDeck = new ArrayList<DataCard>();
+		ArrayList<DataCard> cardDeck = new ArrayList<DataCard>(Collections.nCopies(7, null));
 		ArrayList<Integer> randomNumbers = new ArrayList<Integer>();
 
 		Random random = new Random();
@@ -86,6 +85,10 @@ class DataPlayer {
 		for(DataCard card : newCards) {
 			this.cardDeck.remove(card);
 		}
+	}
+	
+	void setDeck(ArrayList<DataCard> deck) {
+		this.cardDeck = deck;
 	}
 
 	// GETTER METHODS START

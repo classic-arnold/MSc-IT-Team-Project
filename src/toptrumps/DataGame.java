@@ -81,9 +81,15 @@ class DataGame{
 		
 		this.deck = this.shuffleDeck(this.getNewDeck());
 		
-		for(int i=0;i<this.deck.size();i++) {
-			System.out.println(this.deck.get(i));	
+//		for(int i=0;i<this.deck.size();i++) {
+//			System.out.println(this.deck.get(i));	
+//		}
+		
+		for(DataPlayer player : this.players) {
+			player.setDeck(player.createRandomDeck(this));
 		}
+		
+		return;
 		
 	}
 	
