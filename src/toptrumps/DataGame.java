@@ -1,6 +1,7 @@
 package toptrumps;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
@@ -100,10 +101,12 @@ class DataGame{
 	 * takes an array of cards and return the winning cards
 	 * @param cards the array of all cards
 	 * @param category the category selected
-	 * @return ArrayList<DataCard> representing list of winning cards
+	 * @return HashMap<String, Object> containing list of winning cards and a set of winning players
 	 */
-	public ArrayList<DataCard> getWinningCards(DataCard[] cards, String category) {
+	public HashMap<String, Object> getWinningCards(DataCard[] cards, String category) {
+		HashMap<String, Object> results = new HashMap<String, Object>();
 		ArrayList<DataCard> winningCards = new ArrayList<DataCard>(); // initialize winning cards list
+		HashSet<DataPlayer> winningPlayers = new HashSet<DataPlayer>(); // initialize winning cards list
 		
 		DataCard lastWinnerCard = cards[0]; //store 1st card as winning card
 		
@@ -113,14 +116,33 @@ class DataGame{
 			if (cards[i].compare(lastWinnerCard, category) == 2) {
 				lastWinnerCard = cards[i];
 				winningCards.add(cards[i]); // add new higher card
+				
+				// store winning players
+				for (DataPlayer player : this.players) {
+					if(player.getDeck().contains(cards[i])) {
+						winningPlayers.add(player);
+					}
+				}
+				
 			} else if (cards[i].compare(lastWinnerCard, category) == 1) {
 				lastWinnerCard = cards[i];
 				winningCards.clear(); // reset list of winning cards, because we have a new higher card
 				winningCards.add(cards[i]); // add new higher card
+				
+				// store winning players
+				for (DataPlayer player : this.players) {
+					if(player.getDeck().contains(cards[i])) {
+						winningPlayers.clear();
+						winningPlayers.add(player);
+					}
+				}
 			}
 		}
 		
-		return winningCards;
+		// store both lists in results
+		results.put("winning cards", winningCards);
+		results.put("winning players", winningPlayers);
+		return results;
 	}
 	
 	public void incrementRound() {
