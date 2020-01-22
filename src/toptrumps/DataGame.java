@@ -5,7 +5,7 @@ import java.util.Random;
 
 class DataGame{
 	
-	private ArrayList<DataPlayer> players;
+	private ArrayList<DataPlayer> players = new ArrayList<DataPlayer>();
 	
 	enum GameState {
 		RUNNING, ENDED
@@ -77,6 +77,7 @@ class DataGame{
 	public void playRound() {
 		this.incrementRound();
 		
+		this.deck = this.getNewDeck();
 		this.deck = this.shuffleDeck();
 		
 		System.out.println(this.deck.get(0));
@@ -93,8 +94,7 @@ class DataGame{
 	
 	public ArrayList<DataCard> shuffleDeck() {
 		if(this.deck.size()==0) {
-//			throw new exceptions.NoCardInDeckException();
-			return null;
+			throw new exceptions.NoCardInDeckException();
 		}
 		
 		ArrayList<DataCard> shuffledDeck = new ArrayList<DataCard>();
