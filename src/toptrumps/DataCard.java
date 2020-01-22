@@ -9,8 +9,6 @@ package toptrumps;
  */
 class DataCard implements Cloneable{
 	
-	public static final String[] CATEGORYNAMES = {"size", "speed", "range", "firePower", "cargo"};
-	
 	/** string representing card description */
 	private String description;
 

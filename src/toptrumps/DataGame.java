@@ -1,6 +1,7 @@
 package toptrumps;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -14,6 +15,8 @@ import java.util.Random;
 // We should use singleton design pattern to ensure it is only created once to avoid hard to detect bug, as the program is quite complex.
 // Do not bother about enums. I'm using it only in the model. It makes my work easier and i cant convert to string for anyone to use.
 class DataGame{
+
+	public static final String[] CATEGORYNAMES = {"size", "speed", "range", "firePower", "cargo"};
 	
 	/** represents a list of players in the game */
 	private ArrayList<DataPlayer> players = new ArrayList<DataPlayer>();
@@ -70,19 +73,27 @@ class DataGame{
 	
 	/**
 	 * checks if game has ended
-	 * @return GameState enum representing the new game state
+	 * @return GameState HashMap containing the winning player and the new game state
 	 */
-	public GameState checkGameState() {
+	public HashMap<String, Object> checkGameState() {
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		// check if there is any card in the deck. If there is, game cant be finished
 		if(this.deck.size() == 0) {
+			// check if any player has all cards. If they do, game is over, and that player is the winner
 			for(DataPlayer player : players) {
 				if(player.getDeck().size() == 40) {
-					this.winner = player;
-					return GameState.ENDED;
+					result.put("winner", player);
+					result.put("gamestate", GameState.ENDED);
+					return result;
 				}
 			}
 		}
-		return GameState.RUNNING;
+		result.put("winner", null);
+		result.put("gamestate", GameState.RUNNING);
+		return result;
 	}
+	
+	
 	
 	/**
 	 * takes an array of cards and return the winning cards
