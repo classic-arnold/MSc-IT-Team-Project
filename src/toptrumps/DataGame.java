@@ -1,37 +1,60 @@
 package toptrumps;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
 
+/**
+ * 
+ * DataGame represents the game class. It should only be created once per game.
+ * @author Team TRY-CATCH - Arnold Umakhihe 2445734U Team
+ *
+ */
+// NOTES FOR TEAM
+// We should use singleton design pattern to ensure it is only created once to avoid hard to detect bug, as the program is quite complex.
+// Do not bother about enums. I'm using it only in the model. It makes my work easier and i cant convert to string for anyone to use.
 class DataGame{
 	
+	/** represents a list of players in the game */
 	private ArrayList<DataPlayer> players = new ArrayList<DataPlayer>();
 	
+	/** enum to represent the game state */
 	enum GameState {
 		RUNNING, ENDED
 	}
 	
+	/** enum to represent the game state */
 	enum RoundResults {
 		DRAW, WIN
 	}
 	
+	/** represents the game state */
 	private GameState gameState;
 	
+	/** represents the current round number */
 	private int roundNumber;
 	
-//	private int numberOfDraws;
+//	private int numberOfDraws; // Will be uncommented when I get Estelle's code
 	
+	/** represents the common deck */
 	private DataCommonDeck commonDeck = new DataCommonDeck();
 	
+	/** represents the deck of cards */
 	private ArrayList<DataCard> deck = new ArrayList<DataCard>();
 	
+	/** represents the winner */
 	private DataPlayer winner;
 
+	/**
+	 * creates a new DataGame Object
+	 * @param numberOfArtificialIntelligencePlayers represents the number of AI player in the game
+	 */
 	public DataGame(int numberOfArtificialIntelligencePlayers) {
-		this.gameState = GameState.RUNNING;
-		this.players.add(new DataPlayer(DataPlayer.PlayerType.HUMAN, this));
+		this.gameState = GameState.RUNNING; // set game state to running
+		
+		this.players.add(new DataPlayer(DataPlayer.PlayerType.HUMAN, this)); // add one human player
+		
+		// add the artificial intelligence players to the DataGame players depending on the number specified above
 		for(int i=0;i<numberOfArtificialIntelligencePlayers;i++) {
 			this.players.add(new DataPlayer(DataPlayer.PlayerType.AI, this));
 		}
@@ -174,6 +197,7 @@ class DataGame{
 //	public int getLongestGame() {
 //		return Database.getLongestGame();
 //	}
+	
 	
 	public int getNumberOfHumanWins() {
 		return 2;
