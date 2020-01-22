@@ -34,7 +34,7 @@ class DataPlayer {
 	/** String representing the player's name */
 	private String name;
 
-	DataPlayer(PlayerType type) {
+	DataPlayer(PlayerType type, DataGame game) {
 		this.type = type;
 
 		if (this.type == PlayerType.HUMAN) {
@@ -46,7 +46,7 @@ class DataPlayer {
 			this.score = 0;
 		}
 
-		this.cardDeck = this.createRandomDeck();
+		this.cardDeck = this.createRandomDeck(game);
 	}
 	
 	void resetArtificialIntelligenceId(){
@@ -55,8 +55,8 @@ class DataPlayer {
 		}
 	}
 	
-	ArrayList<DataCard> createRandomDeck() {
-		ArrayList<DataCard> completeDeck = DataGame.getInstance().getCompleteDeckAsArrayList();
+	ArrayList<DataCard> createRandomDeck(DataGame game) {
+		ArrayList<DataCard> completeDeck = game.getCompleteDeckAsArrayList();
 		ArrayList<DataCard> cardDeck = new ArrayList<DataCard>();
 		ArrayList<Integer> randomNumbers = new ArrayList<Integer>();
 

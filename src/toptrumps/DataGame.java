@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 class DataGame{
-	private static DataGame instance = new DataGame(4);
 	
 	private ArrayList<DataPlayer> players;
 	
@@ -28,16 +27,12 @@ class DataGame{
 	
 	private DataPlayer winner;
 
-	private DataGame(int numberOfArtificialIntelligencePlayers) {
+	public DataGame(int numberOfArtificialIntelligencePlayers) {
 		this.gameState = GameState.RUNNING;
-		this.players.add(new DataPlayer(DataPlayer.PlayerType.HUMAN));
+		this.players.add(new DataPlayer(DataPlayer.PlayerType.HUMAN, this));
 		for(int i=0;i<numberOfArtificialIntelligencePlayers;i++) {
-			this.players.add(new DataPlayer(DataPlayer.PlayerType.AI));
+			this.players.add(new DataPlayer(DataPlayer.PlayerType.AI, this));
 		}
-	}
-
-	public static DataGame getInstance(){
-		return DataGame.instance;
 	}
 	
 	public ArrayList<DataCard> getNewDeck() {
@@ -83,10 +78,6 @@ class DataGame{
 		this.incrementRound();
 		
 		this.deck = this.shuffleDeck();
-		
-		for(DataPlayer player : this.players) {
-			player.createRandomDeck();
-		}
 		
 		System.out.println(this.deck.get(0));
 		
