@@ -20,7 +20,11 @@ class DataGame{
 	
 	private int roundNumber;
 	
+	private int numberOfDraws;
+	
 	private DataCommonDeck commonDeck = new DataCommonDeck();
+	
+	private DataPlayer winner;
 
 	private DataGame(int numberOfArtificialIntelligencePlayers) {
 		this.gameState = GameState.RUNNING;
@@ -45,6 +49,7 @@ class DataGame{
 		if(this.commonDeck.size() == 0) {
 			for(DataPlayer player : players) {
 				if(player.getDeck().size() == 40) {
+					this.winner = player;
 					return GameState.ENDED;
 				}
 			}
@@ -135,6 +140,65 @@ class DataGame{
 		return this.roundNumber;
 	}
 	
+//	public int getNumberOfHumanWins() {
+//		return Database.getNumberOfHumanWins();
+//	}
+//	
+//	public int getNumberOfAIWins() {
+//		return Database.getNumberOfAIWins();
+//	}
+//	
+//	public int getNumberOfGames() {
+//		return Database.getNumberOfGames();
+//	}
+//	
+//	public int getAvgNumberOfDraws() {
+//		return Database.getAvgNumberOfDraws();
+//	}
+//	
+//	public int getLongestGame() {
+//		return Database.getLongestGame();
+//	}
+	
+	public int getNumberOfHumanWins() {
+		return 2;
+	}
+	
+	public int getNumberOfAIWins() {
+		return 2;
+	}
+	
+	public int getNumberOfGames() {
+		return 56;
+	}
+	
+	public int getAvgNumberOfDraws() {
+		return 4;
+	}
+	
+	public int getLongestGame() {
+		return 55;
+	}
+	
 	// GETTER METHODS END
+	
+/**
+ * Updates database using methods provided in the database class
+ */
+//	public void saveGameStats() {
+//		Database.incrementNumberOfGames();
+//		
+//		if(winner.getType()==DataPlayer.PlayerType.HUMAN) {
+//			Database.incrementNumberOfHumanWins();
+//		} else if(winner.getType()==DataPlayer.PlayerType.AI) {
+//			Database.incrementNumberOfAIWins();
+//		}
+//		
+//		Database.incrementNumberOfDraws(this.numberOfDraws);
+//		
+//		if(this.gameState == GameState.ENDED) {
+//			Database.calculateLongestGame(this.roundNumber);
+//		}
+//	}
 	
 }

@@ -94,13 +94,8 @@ class DataPlayer {
 		return this.score;
 	}
 
-	String getType() {
-		if (this.type == PlayerType.HUMAN) {
-			return PlayerType.HUMAN.toString().toLowerCase();
-		} else if (this.type == PlayerType.AI) {
-			return PlayerType.AI.toString().toLowerCase();
-		}
-		return null;
+	PlayerType getType() {
+		return this.type;
 	}
 
 	String getName() {
@@ -109,6 +104,10 @@ class DataPlayer {
 	
 	ArrayList<DataCard> getDeck() {
 		return this.cardDeck;
+	}
+	
+	int getNumberOfCardsInDeck() {
+		return this.cardDeck.size();
 	}
 
 	// GETTER METHODS END
