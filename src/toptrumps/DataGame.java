@@ -145,19 +145,27 @@ class DataGame{
 		return results;
 	}
 	
+	/**
+	 * increase the round number
+	 */
 	public void incrementRound() {
 		this.roundNumber += 1;
 	}
 	
+	/**
+	 * plays the round
+	 */
 	public void playRound() {
-		this.incrementRound();
+		this.incrementRound(); // increase the round number
 		
-		this.deck = this.shuffleDeck(this.getNewDeck());
+		this.deck = this.shuffleDeck(this.getNewDeck()); // shuffle the deck
 		
+//		for testing
 //		for(int i=0;i<this.deck.size();i++) {
 //			System.out.println(this.deck.get(i));	
 //		}
 		
+		// dish out cards to players from deck - not working yet
 		for(DataPlayer player : this.players) {
 			player.setDeck(player.createRandomDeck(this));
 		}
@@ -166,15 +174,27 @@ class DataGame{
 		
 	}
 	
-	public RoundResults getRoundState(DataCard[] winningCards) {
-		if(winningCards.length > 1) {
+	/**
+	 * calculates if round was a draw or not by counting the number of winning playes
+	 * @param winningPlayers represents the list of winning players
+	 * @return RoundResults enum representing the round result
+	 */
+	public RoundResults getRoundState(DataPlayer[] winningPlayers) {
+		// if there are more than 1 player, its a draw, else its win
+		if(winningPlayers.length > 1) {
 			return RoundResults.DRAW;
 		} else {
 			return RoundResults.WIN;
 		}
 	}
 	
+	/**
+	 * shuffles the deck by rearranging the cards randomly
+	 * @param deck the list of cards that needs to be shuffled
+	 * @return ArrayList<DataCard> representing a new deck
+	 */
 	public ArrayList<DataCard> shuffleDeck(ArrayList<DataCard> deck) {
+		// if deck.size() is 0, throw exception as there is nothing to shuffle
 		if(deck.size()==0) {
 			throw new exceptions.NoCardInDeckException();
 		}
@@ -185,14 +205,18 @@ class DataGame{
 		
 		Random r = new Random();
 		
-		do {
-			int randomNumber = r.nextInt(deck.size());
-			if(listOfRandoms.contains(randomNumber)) {
+		// run this loop until the shuffledDeck has 40 cards
+		while(shuffledDeck.size()<40){
+			int randomNumber;
+			
+			// check if this random number has been used before, and keep getting random numbers until we find one that hasn't
+			do{
 				randomNumber = r.nextInt(deck.size());
-			}
+			} while(listOfRandoms.contains(randomNumber));
+			
 			shuffledDeck.add(deck.get(randomNumber));
 			listOfRandoms.add(randomNumber);
-		} while(shuffledDeck.size()<40);
+		}
 		
 		return shuffledDeck;
 	}
