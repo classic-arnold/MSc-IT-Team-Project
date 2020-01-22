@@ -79,7 +79,7 @@ class DataGame{
 		this.originalDeck = this.shuffleDeck(this.getNewDeck()); // shuffle the deck
 		
 		int numberOfCardsPerPlayer = this.originalDeck.size()/this.players.size();
-		int numberOfCardsLeftOver = this.originalDeck.size()%this.players.size();
+//		int numberOfCardsLeftOver = this.originalDeck.size()%this.players.size();
 		
 		int j = 0;
 		for(DataPlayer player : this.players) {
@@ -93,26 +93,6 @@ class DataGame{
 //		for testing
 //		for(int i=0;i<this.deck.size();i++) {
 //			System.out.println(this.deck.get(i));	
-//		}
-		
-		// dish out cards to players from deck
-//		for(DataPlayer player : this.players) {
-//			player.setDeck(player.createRandomDeck(this.deck));
-//		}
-		
-		// dish out cards to players from deck
-//		for(DataCard card : this.deck) {
-//			while(this.deck.size()%this.players.size() ) {
-//				
-//			}
-//			for(DataPlayer player : this.players) {
-//				player.addCardsToDeck(card);
-//			}
-//		}
-		
-		// check if cards remaining and dish or
-//		if(this.deck.size()%this.players.size() != 0) {
-//			if this.deck.clear();
 //		}
 		
 //		for testing
