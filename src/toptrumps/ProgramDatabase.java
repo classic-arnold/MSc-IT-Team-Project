@@ -34,9 +34,10 @@ public class ProgramDatabase {
 				/*				
 				 * pass datas that should be printed when Game Statistics run
 				*/
-				DataGame data=new DataGame();
-				data.setCountGameOverall(gameID);
-				data.setCountAIWins()
+//				DataGame data = new DataGame(); // NOTE FROM ARNOLD: DataGame object should not be created multiple times, as this will be a completely different game.
+				//we will need to resolve this with the controller.
+//				data.setCountGameOverall(gameID);
+//				data.setCountAIWins()
 			}
 			if(connection!=null) {
 				System.out.println("Connected to the database");

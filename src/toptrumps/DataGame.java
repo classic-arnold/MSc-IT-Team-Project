@@ -14,7 +14,7 @@ import java.util.Random;
 // NOTES FOR TEAM
 // We should use singleton design pattern to ensure it is only created once to avoid hard to detect bug, as the program is quite complex.
 // Do not bother about enums. I'm using it only in the model. It makes my work easier and i cant convert to string for anyone to use.
-class DataGame{
+public class DataGame{
 
 	public static final String[] CATEGORYNAMES = {"size", "speed", "range", "firePower", "cargo"};
 	
@@ -140,7 +140,7 @@ class DataGame{
 	public HashMap<String, Object> checkGameState() {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		// check if there is any card in the deck. If there is, game cant be finished
-		if(this.deck.size() == 0) {
+		if(this.originalDeck.size() == 0) {
 			// check if any player has all cards. If they do, game is over, and that player is the winner
 			for(DataPlayer player : players) {
 				if(player.getDeck().size() == 40) {
@@ -328,11 +328,11 @@ class DataGame{
 	// GETTER METHODS START
 	
 	public DataCard[] getCompleteDeckAsArray() {
-		return DataGame.arrayListToArrayCard(this.deck);
+		return DataGame.arrayListToArrayCard(this.originalDeck);
 	}
 	
 	public ArrayList<DataCard> getCompleteDeckAsArrayList() {
-		return this.deck;
+		return this.originalDeck;
 	}
 	
 	public int getRoundNumber() {
