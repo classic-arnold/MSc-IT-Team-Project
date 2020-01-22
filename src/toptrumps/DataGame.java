@@ -60,10 +60,18 @@ class DataGame{
 		}
 	}
 	
+	/**
+	 * used to get a fresh new deck
+	 * @return ArrayList representing lists of cards in new deck
+	 */
 	public ArrayList<DataCard> getNewDeck() {
 		return DataGame.arrayToArrayList(DataCardCache.getAllCardsInOrder());
 	}
 	
+	/**
+	 * checks if game has ended
+	 * @return GameState enum representing the new game state
+	 */
 	public GameState checkGameState() {
 		if(this.deck.size() == 0) {
 			for(DataPlayer player : players) {
@@ -76,6 +84,12 @@ class DataGame{
 		return GameState.RUNNING;
 	}
 	
+	/**
+	 * 
+	 * @param cards
+	 * @param category
+	 * @return
+	 */
 	public ArrayList<DataCard> getWinningCards(DataCard[] cards, String category) {
 		ArrayList<DataCard> winningCards = new ArrayList<DataCard>();
 		
