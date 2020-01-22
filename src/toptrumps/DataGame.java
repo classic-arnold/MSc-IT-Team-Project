@@ -299,8 +299,6 @@ class DataGame{
 //				Database.setPlayerScore(player);
 			}
 			
-			
-			
 //			Database.setNumberOfDraws(this.numberOfDraws);
 			
 			if(this.gameState == GameState.ENDED) {
