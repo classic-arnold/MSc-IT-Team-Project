@@ -1,6 +1,8 @@
 package toptrumps;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Random;
 
 class DataGame{
@@ -77,10 +79,11 @@ class DataGame{
 	public void playRound() {
 		this.incrementRound();
 		
-		this.deck = this.getNewDeck();
-		this.deck = this.shuffleDeck();
+		this.deck = this.shuffleDeck(this.getNewDeck());
 		
-		System.out.println(this.deck.get(0));
+		for(int i=0;i<this.deck.size();i++) {
+			System.out.println(this.deck.get(i));	
+		}
 		
 	}
 	
@@ -92,23 +95,25 @@ class DataGame{
 		}
 	}
 	
-	public ArrayList<DataCard> shuffleDeck() {
-		if(this.deck.size()==0) {
+	public ArrayList<DataCard> shuffleDeck(ArrayList<DataCard> deck) {
+		if(deck.size()==0) {
 			throw new exceptions.NoCardInDeckException();
 		}
 		
 		ArrayList<DataCard> shuffledDeck = new ArrayList<DataCard>();
 		
-		for (DataCard card : this.deck) {
-			Random r = new Random();
-			int randomNumber = r.nextInt(shuffledDeck.size());
-			
-			while(shuffledDeck.get(randomNumber) != null) {
-				randomNumber = r.nextInt(shuffledDeck.size());
+		HashSet<Integer> listOfRandoms = new HashSet<Integer>();
+		
+		Random r = new Random();
+		
+		do {
+			int randomNumber = r.nextInt(deck.size());
+			if(listOfRandoms.contains(randomNumber)) {
+				randomNumber = r.nextInt(deck.size());
 			}
-			
-			shuffledDeck.add(randomNumber, card);
-		}
+			shuffledDeck.add(deck.get(randomNumber));
+			listOfRandoms.add(randomNumber);
+		} while(shuffledDeck.size()<40);
 		
 		return shuffledDeck;
 	}
