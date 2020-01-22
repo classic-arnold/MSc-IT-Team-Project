@@ -100,6 +100,16 @@ class DataPlayer {
 	PlayerType getType() {
 		return this.type;
 	}
+	
+	String getTypeAsString() {
+		if(this.type == PlayerType.AI) {
+			return "ai";
+		} else if (this.type == PlayerType.HUMAN) {
+			return "human";
+		} else {
+			return null;
+		}
+	}
 
 	String getName() {
 		return this.name;
