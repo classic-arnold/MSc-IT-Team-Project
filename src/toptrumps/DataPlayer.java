@@ -54,8 +54,8 @@ class DataPlayer {
 		}
 	}
 	
-	ArrayList<DataCard> createRandomDeck(DataGame game) {
-		ArrayList<DataCard> completeDeck = game.getCompleteDeckAsArrayList();
+	ArrayList<DataCard> createRandomDeck(ArrayList<DataCard> deck) {
+		ArrayList<DataCard> completeDeck = deck;
 		ArrayList<DataCard> cardDeck = new ArrayList<DataCard>(Collections.nCopies(7, null));
 		ArrayList<Integer> randomNumbers = new ArrayList<Integer>();
 
@@ -66,7 +66,7 @@ class DataPlayer {
 				randomNumber = random.nextInt(completeDeck.size());
 			} while(randomNumbers.contains(randomNumber));
 			
-			cardDeck.add(completeDeck.get(randomNumber));
+			cardDeck.add(i, completeDeck.get(randomNumber));
 			completeDeck.remove(randomNumber);
 			
 			randomNumbers.add(randomNumber);

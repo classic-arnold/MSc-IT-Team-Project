@@ -1,7 +1,6 @@
 package toptrumps;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
@@ -62,6 +61,28 @@ class DataGame{
 		for(int i=0;i<numberOfArtificialIntelligencePlayers;i++) {
 			this.players.add(new DataPlayer(DataPlayer.PlayerType.AI, this));
 		}
+	}
+	
+	/**
+	 * plays the round
+	 */
+	public void playRound() {
+		this.incrementRound(); // increase the round number
+		
+		this.deck = this.shuffleDeck(this.getNewDeck()); // shuffle the deck
+		
+//		for testing
+//		for(int i=0;i<this.deck.size();i++) {
+//			System.out.println(this.deck.get(i));	
+//		}
+		
+		// dish out cards to players from deck - not working yet
+		for(DataPlayer player : this.players) {
+			player.setDeck(player.createRandomDeck(this.deck));
+		}
+		
+		System.out.println(this.players.get(0).getDeck().get(0));
+		
 	}
 	
 	/**
@@ -150,28 +171,6 @@ class DataGame{
 	 */
 	public void incrementRound() {
 		this.roundNumber += 1;
-	}
-	
-	/**
-	 * plays the round
-	 */
-	public void playRound() {
-		this.incrementRound(); // increase the round number
-		
-		this.deck = this.shuffleDeck(this.getNewDeck()); // shuffle the deck
-		
-//		for testing
-//		for(int i=0;i<this.deck.size();i++) {
-//			System.out.println(this.deck.get(i));	
-//		}
-		
-		// dish out cards to players from deck - not working yet
-		for(DataPlayer player : this.players) {
-			player.setDeck(player.createRandomDeck(this));
-		}
-		
-		return;
-		
 	}
 	
 	/**
