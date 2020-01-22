@@ -24,7 +24,7 @@ class DataPlayer {
 	private static int ARTIFICIAL_INTELLIGENCE_ID = 1;
 
 	/** DataCard array representing the deck of cards */
-	private ArrayList<DataCard> cardDeck;
+	private ArrayList<DataCard> cardDeck = new ArrayList<DataCard>();
 
 	/** PlayerType enum representing the type of player - human or AI */
 	private PlayerType type;

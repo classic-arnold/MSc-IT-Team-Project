@@ -34,8 +34,8 @@ public class ProgramDatabase {
 				/*				
 				 * pass datas that should be printed when Game Statistics run
 				*/
-//				DataGame data = new DataGame(); // NOTE FROM ARNOLD: DataGame object should not be created multiple times, as this will be a completely different game.
-				//we will need to resolve this with the controller.
+//				DataGame data = new DataGame(); // NOTE FROM ARNOLD: DataGame object should not be created multiple times, as this will be a completely new game.
+				//we will need to resolve this with the controller. Remember to remove this.
 //				data.setCountGameOverall(gameID);
 //				data.setCountAIWins()
 			}
