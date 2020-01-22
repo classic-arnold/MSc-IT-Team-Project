@@ -82,38 +82,41 @@ class DataGame{
 			// check if any player has all cards. If they do, game is over, and that player is the winner
 			for(DataPlayer player : players) {
 				if(player.getDeck().size() == 40) {
+					// store winner and game state
 					result.put("winner", player);
 					result.put("gamestate", GameState.ENDED);
 					return result;
 				}
 			}
 		}
+		
+		// store winner and game state
 		result.put("winner", null);
 		result.put("gamestate", GameState.RUNNING);
 		return result;
 	}
 	
-	
-	
 	/**
 	 * takes an array of cards and return the winning cards
-	 * @param cards the array of cards
-	 * @param category
-	 * @return
+	 * @param cards the array of all cards
+	 * @param category the category selected
+	 * @return ArrayList<DataCard> representing list of winning cards
 	 */
 	public ArrayList<DataCard> getWinningCards(DataCard[] cards, String category) {
-		ArrayList<DataCard> winningCards = new ArrayList<DataCard>();
+		ArrayList<DataCard> winningCards = new ArrayList<DataCard>(); // initialize winning cards list
 		
-		DataCard lastWinnerCard = cards[0];
+		DataCard lastWinnerCard = cards[0]; //store 1st card as winning card
 		
+		// check each card against last winning card
 		for(int i=0; i<cards.length; i++) {
+			// if both cards equal, else if current card greater than last winning card
 			if (cards[i].compare(lastWinnerCard, category) == 2) {
 				lastWinnerCard = cards[i];
-				winningCards.add(cards[i]);
+				winningCards.add(cards[i]); // add new higher card
 			} else if (cards[i].compare(lastWinnerCard, category) == 1) {
 				lastWinnerCard = cards[i];
-				winningCards.clear();
-				winningCards.add(cards[i]);
+				winningCards.clear(); // reset list of winning cards, because we have a new higher card
+				winningCards.add(cards[i]); // add new higher card
 			}
 		}
 		
