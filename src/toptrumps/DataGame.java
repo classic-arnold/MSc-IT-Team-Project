@@ -81,11 +81,11 @@ public class DataGame{
 	private DataGame(int numberOfArtificialIntelligencePlayers) {
 		this.gameState = GameState.RUNNING; // set game state to running
 		
-		this.players.add(new DataPlayer(DataPlayer.PlayerType.HUMAN, this)); // add one human player
+		this.players.add(new DataPlayer(DataPlayer.PlayerType.HUMAN, numberOfArtificialIntelligencePlayers)); // add one human player
 		
 		// add the artificial intelligence players to the DataGame players depending on the number specified above
 		for(int i=0;i<numberOfArtificialIntelligencePlayers;i++) {
-			this.players.add(new DataPlayer(DataPlayer.PlayerType.AI, this));
+			this.players.add(new DataPlayer(DataPlayer.PlayerType.AI, numberOfArtificialIntelligencePlayers));
 		}
 	}
 	
@@ -200,7 +200,7 @@ public class DataGame{
 			this.saveGameStats();
 			if(this.winner!=null) {
 				System.out.println("Winner: " + this.winner.getName());
-				System.out.println("This should be 40: "+(this.winner.getDeck().size() + this.commonDeck.size()));
+				System.out.println("This should be (floor(Number of cards/number of players)): "+(this.winner.getDeck().size() + this.commonDeck.size()));
 			} else {
 				System.out.println("No winner. Game Drawn.");
 			}

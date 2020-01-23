@@ -35,7 +35,7 @@ class DataPlayer {
 	/** String representing the player's name */
 	private String name;
 
-	DataPlayer(PlayerType type, DataGame game) {
+	DataPlayer(PlayerType type, int numberOfArtificialIntelligencePlayers) {
 		this.type = type;
 
 		if (this.type == PlayerType.HUMAN) {
@@ -43,13 +43,13 @@ class DataPlayer {
 			this.score = 0;
 		} else if (this.type == PlayerType.AI) {
 			this.name = "AI Player " + ARTIFICIAL_INTELLIGENCE_ID++;
-			this.resetArtificialIntelligenceId();
+			this.resetArtificialIntelligenceId(numberOfArtificialIntelligencePlayers);
 			this.score = 0;
 		}
 	}
 	
-	void resetArtificialIntelligenceId(){
-		if(DataPlayer.ARTIFICIAL_INTELLIGENCE_ID>4) {
+	void resetArtificialIntelligenceId(int numberOfArtificialIntelligencePlayers){
+		if(DataPlayer.ARTIFICIAL_INTELLIGENCE_ID>numberOfArtificialIntelligencePlayers) {
 			DataPlayer.ARTIFICIAL_INTELLIGENCE_ID = 1;
 		}
 	}
