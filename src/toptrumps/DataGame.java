@@ -16,6 +16,7 @@ import java.util.Random;
 // Do not bother about enums. I'm using it only in the model. It makes my work easier and i can convert to string for anyone to use.
 public class DataGame{
 	
+	/** represents the DataGame instance */
 	private static DataGame instance = null;
 
 	public static final String[] CATEGORYNAMES = {"size", "speed", "range", "firePower", "cargo"};
@@ -81,6 +82,11 @@ public class DataGame{
 		if(DataGame.instance == null) {
 			DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers);
 		}
+		return DataGame.instance;
+	}
+	
+	public static DataGame resetAndGetInstance(int numberOfArtificialIntelligencePlayers) {
+		DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers);
 		return DataGame.instance;
 	}
 	
