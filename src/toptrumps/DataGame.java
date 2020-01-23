@@ -19,6 +19,7 @@ public class DataGame{
 	/** represents the DataGame instance */
 	private static DataGame instance = null;
 
+	/** represents an array of the category names */
 	public static final String[] CATEGORYNAMES = {"size", "speed", "range", "firePower", "cargo"};
 	
 	/** represents a list of players in the game */
@@ -40,7 +41,8 @@ public class DataGame{
 	/** represents the current round number */
 	private int roundNumber;
 	
-	private int numberOfDraws; // Will be uncommented when I get Estelle's code
+	/** represents the number of draws for this game */
+	private int numberOfDraws; // Will be used when I get Estelle's code
 	
 	/** represents the common deck */
 	private DataCommonDeck commonDeck = new DataCommonDeck();
@@ -48,7 +50,7 @@ public class DataGame{
 	/** represents the deck of cards */
 	private ArrayList<DataCard> originalDeck = new ArrayList<DataCard>();
 	
-	/** represents the winner */
+	/** represents the winner of the game(not round) */
 	private DataPlayer winner;
 	
 	/** represents the status of last round */
@@ -60,8 +62,8 @@ public class DataGame{
 	/** represents the players of last round */
 	private ArrayList<DataPlayer> lastRoundWinningPlayers = new ArrayList<DataPlayer>();
 	
-	/** represents the last category */
-//	private String category;
+//	/** represents the last round category */
+//	private String lastRoundCategory;
 
 	/**
 	 * creates a new DataGame Object
@@ -78,15 +80,26 @@ public class DataGame{
 		}
 	}
 	
+	/**
+	 * gets the instance of the single DataGame
+	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players in the game
+	 * @return DataGame object representing the current game
+	 */
 	public static DataGame getInstance(int numberOfArtificialIntelligencePlayers) {
+		// if game hasnt been started, start it
 		if(DataGame.instance == null) {
 			DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers);
 		}
 		return DataGame.instance;
 	}
 	
+	/**
+	 * starts a new game by resetting the instance
+	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players in the game
+	 * @return DataGame object representing the current game
+	 */
 	public static DataGame resetAndGetInstance(int numberOfArtificialIntelligencePlayers) {
-		DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers);
+		DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers); // start game
 		return DataGame.instance;
 	}
 	
@@ -95,12 +108,13 @@ public class DataGame{
 	 */
 	public void startGame() {
 		
-		DataCardCache.loadCardFromFileAndCache();
+		DataCardCache.loadCardFromFileAndCache(); // load cards from file and cache them
 		
 		this.originalDeck = this.shuffleDeck(this.getNewDeck()); // shuffle the deck
 		
-		int numberOfCardsPerPlayer = this.originalDeck.size()/this.players.size();
+		int numberOfCardsPerPlayer = this.originalDeck.size()/this.players.size(); // get number of cards per player
 		
+		// serve cards to player from deck
 		for(DataPlayer player : this.players) {
 			for(int i = 0; i<numberOfCardsPerPlayer; i++) {
 				player.addCardToDeck(this.originalDeck.get(0));
@@ -108,7 +122,7 @@ public class DataGame{
 			}
 		}
 		
-		this.originalDeck.clear(); // clear the original deck
+		this.originalDeck.clear(); // clear the leftover cards in the deck
 		
 //		for testing
 //		for(int i=0;i<this.deck.size();i++) {
@@ -133,18 +147,19 @@ public class DataGame{
 		this.lastRoundWinningPlayers.clear();
 		this.lastRoundWinningCards.clear();
 		
-		HashMap<String, Object> roundDetails = this.getNewGameStateAndWinner();
 		
 		ArrayList<DataCard> roundCards = new ArrayList<DataCard>();
 		
 		ArrayList<DataPlayer> playersToRemove = new ArrayList<DataPlayer>();
 		
 		for(DataPlayer player : this.players) {
-			System.out.println(player.getName());
+//			System.out.println(player.getName());
 			if(player.getDeck().size()==0) {
 				playersToRemove.add(player);
-				System.out.println("No cards\n");
+//				System.out.println(player.getName());
+//				System.out.println("No cards\n");
 			} else {
+				System.out.println(player.getName());
 				System.out.println(player.getDeck().get(0));
 				DataCard card = player.getDeck().get(0);
 //				player.removeTopCardFromDeck();
@@ -155,6 +170,21 @@ public class DataGame{
 		
 		for(DataPlayer player : playersToRemove) {
 			this.players.remove(player);
+		}
+		
+		HashMap<String, Object> roundDetails = this.getNewGameStateAndWinner();
+		
+		this.gameState = (GameState)roundDetails.get("gamestate");
+		this.winner = (DataPlayer)roundDetails.get("winner");
+		
+		if(this.getGameState() == GameState.RUNNING) {
+			this.incrementRound(); // increase the round number
+		} else {
+			this.saveGameStats();
+			System.out.println("Winner: " + this.winner.getName());
+			System.out.println(this.winner.getDeck().size() + this.commonDeck.size());
+			System.out.println("Final round: "+this.roundNumber);
+			return;
 		}
 		
 		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(DataGame.arrayListToArrayCard(roundCards), category);
@@ -175,18 +205,7 @@ public class DataGame{
 			this.incrementNumberOfDraws();
 			this.lastRoundWasDraw = true;
 			this.commonDeck.addCardsToDeck(roundCards);
-			System.out.println("Round " + this.roundNumber + "draw\n");
-		}
-		
-		this.gameState = (GameState)roundDetails.get("gamestate");
-		this.winner = (DataPlayer)roundDetails.get("winner");
-		
-		if(this.getGameState() == GameState.RUNNING) {
-			this.incrementRound(); // increase the round number
-		} else {
-			this.saveGameStats();
-			System.out.println("Winner: " + this.winner.getName());
-			System.out.println(this.winner.getDeck().size() + this.commonDeck.size());
+			System.out.println("Round " + this.roundNumber + " draw\n");
 		}
 		
 	}
@@ -206,6 +225,12 @@ public class DataGame{
 	public HashMap<String, Object> getNewGameStateAndWinner() {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		// check if there is any card in the deck. If there is, game cant be finished
+//		int checker = 0;
+//		for(DataPlayer player : this.players) {
+//			if(player.getDeck().size()>0) {
+//				checker += 1;
+//			}
+//		}
 		if(this.players.size()==1) {
 			// check if any player has all cards. If they do, game is over, and that player is the winner
 			result.put("winner", this.players.get(0));
@@ -440,8 +465,8 @@ public class DataGame{
 		return this.lastRoundWinningPlayers;
 	}
 	
-//	public String getLastCategory() {
-//		return this.category;
+//	public String getLastRoundCategory() {
+//		return this.lastRoundCategory;
 //	}
 	
 //	getters from database - waiting on Estelle

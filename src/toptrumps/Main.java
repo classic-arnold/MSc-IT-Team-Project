@@ -9,7 +9,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		DataGame game = DataGame.getInstance(4);
+		DataGame game = DataGame.getInstance(1); // get the game instance with 1 AI player
 		game.startGame();
 		while(game.getGameState()==DataGame.GameState.RUNNING) {
 			Random r = new Random();
