@@ -69,7 +69,7 @@ public class DataGame{
 	private DataCard roundHumanPlayerCard;
 	
 	/** represents the players of last round */
-	private ArrayList<DataCard> roundAIPlayerCards;
+	private ArrayList<DataCard> roundAIPlayerCards = new ArrayList<DataCard>();
 	
 //	/** represents the last round category */
 //	private String roundCategory;
