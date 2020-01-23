@@ -180,6 +180,7 @@ public class DataGame{
 		} else {
 			this.saveGameStats();
 			System.out.println("Winner: " + this.winner.getName());
+			System.out.println(this.winner.getDeck().size() + this.commonDeck.size());
 		}
 		
 	}

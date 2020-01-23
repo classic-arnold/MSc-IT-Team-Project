@@ -1,5 +1,7 @@
 package toptrumps;
 
+import java.util.Random;
+
 // not needed. delete.
 // used only for quick testing.
 public class Main {
@@ -10,7 +12,8 @@ public class Main {
 		DataGame game = DataGame.getInstance(4);
 		game.startGame();
 		while(game.getGameState()==DataGame.GameState.RUNNING) {
-			game.playRound("speed");
+			Random r = new Random();
+			game.playRound(DataGame.CATEGORYNAMES[r.nextInt(5)]);
 		}
 		
 		return;
