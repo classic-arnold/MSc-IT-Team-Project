@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		DataGame game = new DataGame(4);
+		DataGame game = DataGame.getInstance(4);
 		game.startGame();
 		while(game.getGameState()==DataGame.GameState.RUNNING) {
 			game.playRound("speed");

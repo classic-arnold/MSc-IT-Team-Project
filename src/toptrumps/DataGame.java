@@ -12,9 +12,11 @@ import java.util.Random;
  *
  */
 // NOTES FOR TEAM
-// We should use singleton design pattern to ensure it is only created once to avoid hard to detect bug, as the program is quite complex.
-// Do not bother about enums. I'm using it only in the model. It makes my work easier and i cant convert to string for anyone to use.
+// We should use singleton design pattern to ensure this object is only created once to avoid hard to detect bugs, as the program is quite complex.
+// Do not bother about enums. I'm using it only in the model. It makes my work easier and i can convert to string for anyone to use.
 public class DataGame{
+	
+	private static DataGame instance = null;
 
 	public static final String[] CATEGORYNAMES = {"size", "speed", "range", "firePower", "cargo"};
 	
@@ -64,7 +66,7 @@ public class DataGame{
 	 * creates a new DataGame Object
 	 * @param numberOfArtificialIntelligencePlayers represents the number of AI player in the game
 	 */
-	public DataGame(int numberOfArtificialIntelligencePlayers) {
+	private DataGame(int numberOfArtificialIntelligencePlayers) {
 		this.gameState = GameState.RUNNING; // set game state to running
 		
 		this.players.add(new DataPlayer(DataPlayer.PlayerType.HUMAN, this)); // add one human player
@@ -73,6 +75,13 @@ public class DataGame{
 		for(int i=0;i<numberOfArtificialIntelligencePlayers;i++) {
 			this.players.add(new DataPlayer(DataPlayer.PlayerType.AI, this));
 		}
+	}
+	
+	public static DataGame getInstance(int numberOfArtificialIntelligencePlayers) {
+		if(DataGame.instance == null) {
+			DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers);
+		}
+		return DataGame.instance;
 	}
 	
 	/**
@@ -155,12 +164,12 @@ public class DataGame{
 		if(this.lastRoundWinningPlayers.size()==1) {
 			this.lastRoundWinningPlayers.get(0).addCardsToDeck(roundCards);
 			this.lastRoundWasDraw = false;
-			System.out.println("Round winner: " + this.lastRoundWinningPlayers.get(0).getName() + "\n");
+			System.out.println("Round " + this.roundNumber + " winner: " + this.lastRoundWinningPlayers.get(0).getName() + "\n");
 		} else if (this.lastRoundWinningPlayers.size()>1) {
 			this.incrementNumberOfDraws();
 			this.lastRoundWasDraw = true;
 			this.commonDeck.addCardsToDeck(roundCards);
-			System.out.println("draw\n");
+			System.out.println("Round " + this.roundNumber + "draw\n");
 		}
 		
 		this.gameState = (GameState)roundDetails.get("gamestate");
