@@ -54,16 +54,25 @@ public class DataGame{
 	private DataPlayer winner;
 	
 	/** represents the status of last round */
-	private boolean lastRoundWasDraw;
+	private boolean roundWasDraw;
 	
 	/** represents the winning card of the last round */
-	private ArrayList<DataCard> lastRoundWinningCards = new ArrayList<DataCard>();
+	private ArrayList<DataCard> roundWinningCards = new ArrayList<DataCard>();
 	
 	/** represents the players of last round */
-	private ArrayList<DataPlayer> lastRoundWinningPlayers = new ArrayList<DataPlayer>();
+	private ArrayList<DataPlayer> roundWinningPlayers = new ArrayList<DataPlayer>();
+	
+	/** represents the players of last round */
+	private boolean roundHasPlayersDrawnCards;
+	
+	/** represents the players of last round */
+	private DataCard roundHumanPlayerCard;
+	
+	/** represents the players of last round */
+	private ArrayList<DataCard> roundAIPlayerCards;
 	
 //	/** represents the last round category */
-//	private String lastRoundCategory;
+//	private String roundCategory;
 
 	/**
 	 * creates a new DataGame Object
@@ -144,8 +153,8 @@ public class DataGame{
 	 * @param category string representing the chosen category
 	 */
 	public void playRound(String category) {
-		this.lastRoundWinningPlayers.clear();
-		this.lastRoundWinningCards.clear();
+		this.roundWinningPlayers.clear();
+		this.roundWinningCards.clear();
 		
 		
 		ArrayList<DataCard> roundCards = new ArrayList<DataCard>();
@@ -164,6 +173,12 @@ public class DataGame{
 				DataCard card = player.getDeck().get(0);
 //				player.removeTopCardFromDeck();
 				roundCards.add(card);
+				
+				if(player.getType()==DataPlayer.PlayerType.HUMAN) {
+					this.roundHumanPlayerCard = card;
+				} else if (player.getType()==DataPlayer.PlayerType.AI) {
+					this.roundAIPlayerCards.add(card);
+				}
 			}
 //			player.getDeck().remove(0); // moved elsewhere
 		}
@@ -171,6 +186,8 @@ public class DataGame{
 		for(DataPlayer player : playersToRemove) {
 			this.players.remove(player);
 		}
+		
+		this.roundHasPlayersDrawnCards = true;
 		
 		HashMap<String, Object> roundDetails = this.getNewGameStateAndWinner();
 		
@@ -194,21 +211,21 @@ public class DataGame{
 		
 		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(DataGame.arrayListToArrayCard(roundCards), category);
 		
-		this.lastRoundWinningCards = (ArrayList<DataCard>)winningCardsAndPlayers.get("winning cards");
+		this.roundWinningCards = (ArrayList<DataCard>)winningCardsAndPlayers.get("winning cards");
 		
-		HashSet<DataPlayer> lastRoundWinningPlayers = (HashSet<DataPlayer>)winningCardsAndPlayers.get("winning players");
+		HashSet<DataPlayer> roundWinningPlayers = (HashSet<DataPlayer>)winningCardsAndPlayers.get("winning players");
 		
-		for(DataPlayer player : lastRoundWinningPlayers) {
-			this.lastRoundWinningPlayers.add(player);
+		for(DataPlayer player : roundWinningPlayers) {
+			this.roundWinningPlayers.add(player);
 		}
 		
-		if(this.lastRoundWinningPlayers.size()==1) {
-			this.lastRoundWinningPlayers.get(0).addCardsToDeck(roundCards);
-			this.lastRoundWasDraw = false;
-			System.out.println("Round " + this.roundNumber + " winner: " + this.lastRoundWinningPlayers.get(0).getName() + "\n");
-		} else if (this.lastRoundWinningPlayers.size()>1) {
+		if(this.roundWinningPlayers.size()==1) {
+			this.roundWinningPlayers.get(0).addCardsToDeck(roundCards);
+			this.roundWasDraw = false;
+			System.out.println("Round " + this.roundNumber + " winner: " + this.roundWinningPlayers.get(0).getName() + "\n");
+		} else if (this.roundWinningPlayers.size()>1) {
 			this.incrementNumberOfDraws();
-			this.lastRoundWasDraw = true;
+			this.roundWasDraw = true;
 			this.commonDeck.addCardsToDeck(roundCards);
 			System.out.println("Round " + this.roundNumber + " draw\n");
 		}
@@ -221,6 +238,14 @@ public class DataGame{
 	 */
 	public ArrayList<DataCard> getNewDeck() {
 		return DataGame.arrayToArrayList(DataCardCache.getAllCardsInOrder());
+	}
+	
+	public DataCard getRoundHumanPlayerCard() {
+		return this.roundHumanPlayerCard;
+	}
+	
+	public DataCard[] getRoundAIPlayerCards() {
+		return DataGame.arrayListToArrayCard(this.roundAIPlayerCards);
 	}
 	
 	/**
@@ -325,10 +350,12 @@ public class DataGame{
 	}
 	
 	/**
-	 * increase the round number
+	 * increase the round number and reset roundHasPlayersDrawnCards to false
 	 */
 	public void incrementRound() {
 		this.roundNumber += 1;
+		this.roundHasPlayersDrawnCards = false;
+		this.roundAIPlayerCards.clear();
 	}
 	
 	public void incrementNumberOfDraws() {
@@ -466,8 +493,8 @@ public class DataGame{
 		return DataGame.arrayListToArrayPlayer(this.players);
 	}
 	
-	public boolean getLastRoundResults() {
-		return this.lastRoundWasDraw;
+	public boolean getRoundResults() {
+		return this.roundWasDraw;
 	}
 	
 	public int getNumberOfCardsInCommonPile() {
@@ -478,20 +505,20 @@ public class DataGame{
 		return this.gameState;
 	}
 	
-	public ArrayList<DataCard> getLastRoundWinningCards() {
-		return this.lastRoundWinningCards;
+	public ArrayList<DataCard> getRoundWinningCards() {
+		return this.roundWinningCards;
 	}
 	
-	public DataCard getLastRoundWinningCard() {
-		return this.lastRoundWinningCards.get(0);
+	public DataCard getRoundWinningCard() {
+		return this.roundWinningCards.get(0);
 	}
 	
-	public ArrayList<DataPlayer> getLastRoundWinningPlayers() {
-		return this.lastRoundWinningPlayers;
+	public ArrayList<DataPlayer> getRoundWinningPlayers() {
+		return this.roundWinningPlayers;
 	}
 	
-//	public String getLastRoundCategory() {
-//		return this.lastRoundCategory;
+//	public String getRoundCategory() {
+//		return this.roundCategory;
 //	}
 	
 //	getters from database - waiting on Estelle
