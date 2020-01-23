@@ -71,8 +71,8 @@ public class DataGame{
 	/** represents the players of last round */
 	private ArrayList<DataCard> roundAIPlayerCards = new ArrayList<DataCard>();
 	
-//	/** represents the last round category */
-//	private String roundCategory;
+	/** represents the last round category */
+	private String roundCategory;
 
 	/**
 	 * creates a new DataGame Object
@@ -517,9 +517,9 @@ public class DataGame{
 		return this.roundWinningPlayers;
 	}
 	
-//	public String getRoundCategory() {
-//		return this.roundCategory;
-//	}
+	public String getRoundCategory() {
+		return this.roundCategory;
+	}
 	
 //	getters from database - waiting on Estelle
 //	public int getNumberOfHumanWins() {
