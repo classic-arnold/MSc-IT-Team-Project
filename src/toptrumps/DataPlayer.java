@@ -96,6 +96,10 @@ class DataPlayer {
 		this.cardDeck.remove(cardToRemove);
 	}
 	
+	void removeTopCardFromDeck() {
+		this.cardDeck.remove(0);
+	}
+	
 	void setDeck(ArrayList<DataCard> deck) {
 		this.cardDeck = deck;
 	}

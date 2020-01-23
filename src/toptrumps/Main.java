@@ -9,6 +9,11 @@ public class Main {
 		
 		DataGame game = new DataGame(4);
 		game.startGame();
+		while(game.getGameState()==DataGame.GameState.RUNNING) {
+			game.playRound("speed");
+		}
+		
+		return;
 		
 		
 //		DataGame dG = DataGame.getInstance();

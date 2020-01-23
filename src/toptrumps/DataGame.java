@@ -37,7 +37,7 @@ public class DataGame{
 	/** represents the current round number */
 	private int roundNumber;
 	
-//	private int numberOfDraws; // Will be uncommented when I get Estelle's code
+	private int numberOfDraws; // Will be uncommented when I get Estelle's code
 	
 	/** represents the common deck */
 	private DataCommonDeck commonDeck = new DataCommonDeck();
@@ -51,8 +51,11 @@ public class DataGame{
 	/** represents the status of last round */
 	private boolean lastRoundWasDraw;
 	
-	/** represents the status of last round */
-	private DataCard[] lastRoundWinningCards;
+	/** represents the winning card of the last round */
+	private ArrayList<DataCard> lastRoundWinningCards = new ArrayList<DataCard>();
+	
+	/** represents the players of last round */
+	private ArrayList<DataPlayer> lastRoundWinningPlayers = new ArrayList<DataPlayer>();
 	
 	/** represents the last category */
 //	private String category;
@@ -112,20 +115,53 @@ public class DataGame{
 	 * @param category string representing the chosen category
 	 */
 	public void playRound(String category) {
+		this.lastRoundWinningPlayers.clear();
+		this.lastRoundWinningCards.clear();
 		
 		HashMap<String, Object> roundDetails = this.getNewGameStateAndWinner();
 		
 		ArrayList<DataCard> roundCards = new ArrayList<DataCard>();
 		
+		ArrayList<DataPlayer> playersToRemove = new ArrayList<DataPlayer>();
+		
 		for(DataPlayer player : this.players) {
-			roundCards.add(player.getDeck().get(0));
+			System.out.println(player.getName());
+			if(player.getDeck().size()==0) {
+				playersToRemove.add(player);
+				System.out.println("No cards\n");
+			} else {
+				System.out.println(player.getDeck().get(0));
+				DataCard card = player.getDeck().get(0);
+//				player.removeTopCardFromDeck();
+				roundCards.add(card);
+			}
+//			player.getDeck().remove(0); // moved elsewhere
+		}
+		
+		for(DataPlayer player : playersToRemove) {
+			this.players.remove(player);
 		}
 		
 		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(DataGame.arrayListToArrayCard(roundCards), category);
 		
-		this.lastRoundWinningCards = DataGame.arrayListToArrayCard((ArrayList<DataCard>)winningCardsAndPlayers.get("winning cards"));
+		this.lastRoundWinningCards = (ArrayList<DataCard>)winningCardsAndPlayers.get("winning cards");
 		
+		HashSet<DataPlayer> lastRoundWinningPlayers = (HashSet<DataPlayer>)winningCardsAndPlayers.get("winning players");
 		
+		for(DataPlayer player : lastRoundWinningPlayers) {
+			this.lastRoundWinningPlayers.add(player);
+		}
+		
+		if(this.lastRoundWinningPlayers.size()==1) {
+			this.lastRoundWinningPlayers.get(0).addCardsToDeck(roundCards);
+			this.lastRoundWasDraw = false;
+			System.out.println("Round winner: " + this.lastRoundWinningPlayers.get(0).getName() + "\n");
+		} else if (this.lastRoundWinningPlayers.size()>1) {
+			this.incrementNumberOfDraws();
+			this.lastRoundWasDraw = true;
+			this.commonDeck.addCardsToDeck(roundCards);
+			System.out.println("draw\n");
+		}
 		
 		this.gameState = (GameState)roundDetails.get("gamestate");
 		this.winner = (DataPlayer)roundDetails.get("winner");
@@ -133,10 +169,9 @@ public class DataGame{
 		if(this.getGameState() == GameState.RUNNING) {
 			this.incrementRound(); // increase the round number
 		} else {
-			
+			this.saveGameStats();
+			System.out.println("Winner: " + this.winner.getName());
 		}
-		
-		
 		
 	}
 	
@@ -155,16 +190,11 @@ public class DataGame{
 	public HashMap<String, Object> getNewGameStateAndWinner() {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		// check if there is any card in the deck. If there is, game cant be finished
-		if(this.originalDeck.size() == 0) {
+		if(this.players.size()==1) {
 			// check if any player has all cards. If they do, game is over, and that player is the winner
-			for(DataPlayer player : players) {
-				if(player.getDeck().size() == 40) {
-					// store winner and game state
-					result.put("winner", player);
-					result.put("gamestate", GameState.ENDED);
-					return result;
-				}
-			}
+			result.put("winner", this.players.get(0));
+			result.put("gamestate", GameState.ENDED);
+			return result;
 		}
 		
 		// store winner and game state
@@ -186,17 +216,20 @@ public class DataGame{
 		
 		DataCard lastWinnerCard = cards[0]; //store 1st card as winning card
 		
+		
+		
 		// check each card against last winning card
 		for(int i=0; i<cards.length; i++) {
 			// if both cards equal, else if current card greater than last winning card
 			if (cards[i].compare(lastWinnerCard, category) == 2) {
 				lastWinnerCard = cards[i];
-				winningCards.add(cards[i]); // add new higher card
+				winningCards.add(cards[i]); // add new higher and equal card
 				
 				// store winning players
 				for (DataPlayer player : this.players) {
 					if(player.getDeck().contains(cards[i])) {
 						winningPlayers.add(player);
+//						player.getDeck().remove(cards[i]); // remove cards
 					}
 				}
 				
@@ -210,9 +243,14 @@ public class DataGame{
 					if(player.getDeck().contains(cards[i])) {
 						winningPlayers.clear();
 						winningPlayers.add(player);
+//						player.getDeck().remove(cards[i]);
 					}
 				}
 			}
+		}
+		
+		for(DataPlayer player : this.players) {
+			player.removeTopCardFromDeck();
 		}
 		
 		// store both lists in results
@@ -226,6 +264,10 @@ public class DataGame{
 	 */
 	public void incrementRound() {
 		this.roundNumber += 1;
+	}
+	
+	public void incrementNumberOfDraws() {
+		this.numberOfDraws += 1;
 	}
 	
 	/**
@@ -370,8 +412,16 @@ public class DataGame{
 		return this.gameState;
 	}
 	
-	public DataCard[] getLastRoundWinningCards() {
+	public ArrayList<DataCard> getLastRoundWinningCards() {
 		return this.lastRoundWinningCards;
+	}
+	
+	public DataCard getLastRoundWinningCard() {
+		return this.lastRoundWinningCards.get(0);
+	}
+	
+	public ArrayList<DataPlayer> getLastRoundWinningPlayers() {
+		return this.lastRoundWinningPlayers;
 	}
 	
 //	public String getLastCategory() {

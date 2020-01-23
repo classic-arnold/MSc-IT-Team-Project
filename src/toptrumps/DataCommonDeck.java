@@ -33,4 +33,10 @@ public class DataCommonDeck implements Iterable<DataCard> {
 	public Iterator<DataCard> iterator() {
 		return cardDeck.iterator();
 	}
+	
+	void addCardsToDeck(ArrayList<DataCard> newCards) {
+		for(DataCard card : newCards) {
+			this.cardDeck.add(card);
+		}
+	}
 }
