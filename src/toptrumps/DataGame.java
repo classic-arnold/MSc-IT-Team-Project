@@ -181,9 +181,14 @@ public class DataGame{
 			this.incrementRound(); // increase the round number
 		} else {
 			this.saveGameStats();
-			System.out.println("Winner: " + this.winner.getName());
-			System.out.println(this.winner.getDeck().size() + this.commonDeck.size());
-			System.out.println("Final round: "+this.roundNumber);
+			if(this.winner!=null) {
+				System.out.println("Winner: " + this.winner.getName());
+				System.out.println("This should be 40: "+(this.winner.getDeck().size() + this.commonDeck.size()));
+			} else {
+				System.out.println("No winner. Game Drawn.");
+			}
+				
+			System.out.println("Final round: " + this.roundNumber);
 			return;
 		}
 		
@@ -238,10 +243,23 @@ public class DataGame{
 			return result;
 		}
 		
+		if(this.didWholeGameDraw()) {
+			result.put("winner", null);
+			result.put("gamestate", GameState.ENDED);
+			return result;
+		}
+		
 		// store winner and game state
 		result.put("winner", null);
 		result.put("gamestate", GameState.RUNNING);
 		return result;
+	}
+	
+	public boolean didWholeGameDraw() {
+		if(this.commonDeck.size()==40) {
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -255,6 +273,12 @@ public class DataGame{
 		ArrayList<DataCard> winningCards = new ArrayList<DataCard>(); // initialize winning cards list
 		HashSet<DataPlayer> winningPlayers = new HashSet<DataPlayer>(); // initialize winning cards list
 		
+		// this means the game(not round) has been drawn
+//		if (cards.length==0) {
+//			results.put("winning cards", winningCards);
+//			results.put("winning players", winningPlayers);
+//			return results;
+//		}
 		DataCard lastWinnerCard = cards[0]; //store 1st card as winning card
 		
 		
@@ -405,11 +429,12 @@ public class DataGame{
 	 */
 		public void saveGameStats() {
 //			Database.incrementNumberOfGames();
-			
-			if(winner.getType()==DataPlayer.PlayerType.HUMAN) {
-//				Database.incrementNumberOfHumanWins();
-			} else if(winner.getType()==DataPlayer.PlayerType.AI) {
-//				Database.incrementNumberOfAIWins();
+			if(this.winner!=null) {
+				if(winner.getType()==DataPlayer.PlayerType.HUMAN) {
+//					Database.incrementNumberOfHumanWins();
+				} else if(winner.getType()==DataPlayer.PlayerType.AI) {
+//					Database.incrementNumberOfAIWins();
+				}
 			}
 			
 			for (DataPlayer player : this.players) {

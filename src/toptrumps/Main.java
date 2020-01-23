@@ -10,13 +10,12 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		DataGame game = DataGame.getInstance(1); // get the game instance with 1 AI player
+//		game = DataGame.resetAndGetInstance(1); // used to start a new game
 		game.startGame();
 		while(game.getGameState()==DataGame.GameState.RUNNING) {
 			Random r = new Random();
 			game.playRound(DataGame.CATEGORYNAMES[r.nextInt(5)]);
 		}
-		
-		return;
 		
 		
 //		DataGame dG = DataGame.getInstance();
