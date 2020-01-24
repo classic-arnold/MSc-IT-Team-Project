@@ -572,45 +572,81 @@ public class DataGame{
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * get if round was draw
+	 * @return boolean representing if round was drawn
 	 */
-	public boolean getRoundResults() {
+	public boolean getRoundWasDraw() {
 		return this.roundWasDraw;
 	}
 	
+	/**
+	 * get number of cards in common pile
+	 * @return int representing get number of cards in common pile
+	 */
 	public int getNumberOfCardsInCommonPile() {
 		return this.commonDeck.size();
 	}
 	
+	/**
+	 * current game state
+	 * @return GameState enum representing game state
+	 */
 	public GameState getGameState() {
 		return this.gameState;
 	}
 	
+	/**
+	 * get round winning cardS. Might be more than one card
+	 * @return ArrayList<DataCard> containing the winning cards
+	 */
 	public ArrayList<DataCard> getRoundWinningCards() {
 		return this.roundWinningCards;
 	}
 	
+	/**
+	 * get round winning card. Just the card. Used to display info
+	 * @return DataCard object representing the winning card
+	 */
 	public DataCard getRoundWinningCard() {
 		return this.roundWinningCards.get(0);
 	}
 	
+	/**
+	 * get round winning players
+	 * @return ArrayList<DataPlayer> representing list of winning players
+	 */
 	public ArrayList<DataPlayer> getRoundWinningPlayers() {
 		return this.roundWinningPlayers;
 	}
 	
+	/**
+	 * get round category
+	 * @return String representing round category
+	 */
 	public String getRoundCategory() {
 		return this.roundCategory;
 	}
 	
+	/**
+	 * get game winner
+	 * @return DataPlayer representing game winner
+	 */
 	public DataPlayer getGameWinner() {
 		return this.gameWinner;
 	}
 	
+	/**
+	 * get the card drawn by human player for this round
+	 * @return DataCard representing card drawn by human player for this round
+	 */
 	public DataCard getRoundHumanPlayerCard() {
 		return this.roundHumanPlayerCard;
 	}
 	
+	/**
+	 * get all cards drawn by AI player. Card owners cannot be identified.
+	 * @return DataCard array representing the cards drawn by AI player
+	 */
 	public DataCard[] getRoundAIPlayerCards() {
 		return DataGame.arrayListToArrayCard(this.roundAIPlayerCards);
 	}
