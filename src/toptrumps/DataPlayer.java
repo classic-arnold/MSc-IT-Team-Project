@@ -138,8 +138,8 @@ class DataPlayer {
 
 	// GETTER METHODS END
 
-	void updateScore(int points) {
-		this.score += points;
+	void incrementScore() {
+		this.score += 1;
 	}
 
 }

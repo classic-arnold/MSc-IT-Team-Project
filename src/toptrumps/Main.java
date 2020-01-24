@@ -18,6 +18,15 @@ public class Main {
 			game.playRound(DataGame.CATEGORYNAMES[r.nextInt(5)]);
 		}
 		
+		DataPlayer[] p = game.getAllPlayers();
+		
+		System.out.println("\nAll players:");
+		for(DataPlayer pl : p) {
+			System.out.println(pl.getName() + ": " + pl.getScore());
+		}
+		
+		System.out.println("Draw: " + game.getNumberOfDraws());
+		
 		
 //		DataGame dG = DataGame.getInstance();
 //		dG.loadDeck();
