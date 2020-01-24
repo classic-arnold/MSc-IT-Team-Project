@@ -22,10 +22,7 @@ public class ViewCLI {
    
   
     
-    //getter for category choice
-    public int getCategoryChoice() {
-    	return categoryChoice;
-    }
+   
 
     //display initial options for user
     public int chooseDisplay() {
@@ -70,7 +67,7 @@ public class ViewCLI {
 		}
     }
     //display category selection menu
-    private void displayCategorySelection() {
+    private int displayCategorySelection() {
         System.out.println("It is your turn to select a category, the categories are: ");
         System.out.println("1: " + DataGame.CATEGORYNAMES[0]);
         System.out.println("2: " + DataGame.CATEGORYNAMES[1]);
@@ -80,6 +77,7 @@ public class ViewCLI {
         System.out.print("Enter the number for your attribute: ");
         Scanner categoryIn = new Scanner(System.in);
         categoryChoice = categoryIn.nextInt();
+        return categoryChoice;
     }
 
 
