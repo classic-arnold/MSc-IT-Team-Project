@@ -49,8 +49,8 @@ public class ViewCLI {
     private void displayPlayerCard(){
     	for(int i=0;i<model.getAllPlayers().length;i++) {
     		if(model.getAllPlayers()[i].getTypeAsString().equals("human")) {
-    			System.out.println("You drew "+model.getAllPlayers()[i].getDeck().get(0).getDescription()+" :");
-    			System.out.println(model.getAllPlayers()[i].getDeck().get(0));
+    			System.out.println("You drew "+model.getActivePlayers()[i].getDeck().get(0).getDescription()+" :");
+    			System.out.println(model.getActivePlayers()[i].getDeck().get(0));
     		}
     	}
     
@@ -76,11 +76,7 @@ public class ViewCLI {
         System.out.print("Enter the number for your attribute: ");
         Scanner categoryIn = new Scanner(System.in);
         int categoryChoice = categoryIn.nextInt();
-<<<<<<< HEAD
-       
-=======
         categoryIn.nextLine();
->>>>>>> a0b7430ce23bd6100a586a1409246d01430f3e5b
         return categoryChoice;
     }
 
