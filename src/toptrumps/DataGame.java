@@ -149,7 +149,7 @@ public class DataGame{
 //		for testing
 //		System.out.println(this.originalDeck.size());
 		
-		this.incrementRound(); // increase the round number
+//		this.incrementRound(); // increase the round number
 		
 	}
 	
@@ -158,6 +158,31 @@ public class DataGame{
 	 * @param category string representing the chosen category
 	 */
 	public void playRound(String category) {
+		HashMap<String, Object> roundDetails = this.getNewGameStateAndWinner(); // holds the round game state and winner
+		
+		this.gameState = (GameState)roundDetails.get("gamestate");
+		this.gameWinner = (DataPlayer)roundDetails.get("winner");
+		
+		// increment round if game is still running
+		if(this.getGameState() == GameState.RUNNING) {
+			this.incrementRound(); // increase the round number
+		} else { // save game stats to database
+			this.saveGameStats();
+			
+			// REMOVE START
+			if(this.gameWinner!=null) {
+				System.out.println("Winner: " + this.gameWinner.getName());
+				System.out.println("This should be (floor(Number of cards/number of players)): "+(this.gameWinner.getDeck().size() + this.commonDeck.size()));
+			} else {
+				System.out.println("No winner. Game Drawn.");
+			}
+				
+			System.out.println("Final round: " + this.roundNumber);
+			// REMOVE END
+			
+			return;
+		}
+		
 		this.roundWinningPlayers.clear(); // clear last round details
 		this.roundWinningCards.clear(); // clear last round details
 		this.roundAIPlayerCards.clear(); // clear last round details
@@ -204,31 +229,6 @@ public class DataGame{
 		
 //		// set players have drawn cards to true, for the round
 //		this.roundHasPlayersDrawnCards = true;
-		
-		HashMap<String, Object> roundDetails = this.getNewGameStateAndWinner(); // holds the round game state and winner
-		
-		this.gameState = (GameState)roundDetails.get("gamestate");
-		this.gameWinner = (DataPlayer)roundDetails.get("winner");
-		
-		// increment round if game is still running
-		if(this.getGameState() == GameState.RUNNING) {
-			this.incrementRound(); // increase the round number
-		} else { // save game stats to database
-			this.saveGameStats();
-			
-			// REMOVE START
-			if(this.gameWinner!=null) {
-				System.out.println("Winner: " + this.gameWinner.getName());
-				System.out.println("This should be (floor(Number of cards/number of players)): "+(this.gameWinner.getDeck().size() + this.commonDeck.size()));
-			} else {
-				System.out.println("No winner. Game Drawn.");
-			}
-				
-			System.out.println("Final round: " + this.roundNumber);
-			// REMOVE END
-			
-			return;
-		}
 		
 		// holds the winning cards and winning players
 		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(DataGame.arrayListToArrayCard(roundCards), category);
