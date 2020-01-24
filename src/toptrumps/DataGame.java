@@ -5,15 +5,27 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
+/*
+ * 
+ * NOTE TO TEAM
+ * We should use singleton design pattern to ensure this object is only created once to avoid hard to detect bugs, as the program is quite complex.
+ * Do not bother about enums. I'm using it only in the model. It makes my work easier and i can convert to string for anyone to use.
+ *
+ * NOTE TO SELF
+ * TODO: Uncomment database parts and add JavaDoc comments
+ * TODO: Test all functions
+ * TODO: Verify game specifications are accurate
+ * TODO: Remove wasted codes and comments
+ * TODO: 
+ *
+ */
+
 /**
  * 
  * DataGame represents the game class. It should only be created once per game.
  * @author Team TRY-CATCH - Arnold Umakhihe 2445734U Team
  *
  */
-// NOTES FOR TEAM
-// We should use singleton design pattern to ensure this object is only created once to avoid hard to detect bugs, as the program is quite complex.
-// Do not bother about enums. I'm using it only in the model. It makes my work easier and i can convert to string for anyone to use.
 public class DataGame{
 	
 	/** represents the DataGame instance */
@@ -652,24 +664,24 @@ public class DataGame{
 	}
 	
 //	GETTERS FROM DATABASE - waiting on Estelle
-//	public int getNumberOfHumanWins() {
-//		return Database.getNumberOfHumanWins();
+//	public static int getNumberOfHumanWinsDB() {
+//		return ProgramDatabase.getNumberOfHumanWins();
 //	}
 //	
-//	public int getNumberOfAIWins() {
-//		return Database.getNumberOfAIWins();
+//	public static int getNumberOfAIWinsDB() {
+//		return ProgramDatabase.getNumberOfAIWins();
 //	}
 //	
-//	public int getNumberOfGames() {
-//		return Database.getNumberOfGames();
+//	public static int getNumberOfGamesDB() {
+//		return ProgramDatabase.getNumberOfGames();
 //	}
 //	
-//	public int getAvgNumberOfDraws() {
-//		return Database.getAvgNumberOfDraws();
+//	public static int getAvgNumberOfDrawsDB() {
+//		return ProgramDatabase.getAvgNumberOfDraws();
 //	}
 //	
-//	public int getLongestGame() {
-//		return Database.getLongestGame();
+//	public static int getLongestGameDB() {
+//		return ProgramDatabase.getLongestGame();
 //	}
 	
 	// REMOVE START
