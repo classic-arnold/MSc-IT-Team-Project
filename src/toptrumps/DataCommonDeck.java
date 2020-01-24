@@ -10,7 +10,7 @@ public class DataCommonDeck implements Iterable<DataCard> {
 		
 	}
 	
-	ArrayList<DataCard> getArrayList(){
+	ArrayList<DataCard> getAllCards(){
 		return this.cardDeck;
 	}
 	
@@ -24,6 +24,10 @@ public class DataCommonDeck implements Iterable<DataCard> {
 	
 	void remove(int index) {
 		this.cardDeck.remove(index);
+	}
+	
+	void clear() {
+		this.cardDeck.clear();
 	}
 	
 	int size() {

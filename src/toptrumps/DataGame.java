@@ -246,8 +246,13 @@ public class DataGame{
 		
 		//if there is only 1 winning player, round wasn't drawn
 		if(this.roundWinningPlayers.size()==1) {
+			
+			roundCards.addAll(this.commonDeck.getAllCards()); // add common deck cards to round cards
+			this.commonDeck.clear(); // clear common deck
+			
 			this.roundWinningPlayers.get(0).addCardsToDeck(roundCards); // add round cards to his deck
 			this.roundWinningPlayers.get(0).incrementScore();
+			
 			this.roundWasDraw = false;
 			
 			// REMOVE START
