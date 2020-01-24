@@ -40,7 +40,7 @@ public class DataPlayer {
 	 * @param type PlayerType enum representing the type of player
 	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players
 	 */
-	public DataPlayer(PlayerType type, int numberOfArtificialIntelligencePlayers) {
+	DataPlayer(PlayerType type, int numberOfArtificialIntelligencePlayers) {
 		this.type = type; //set type
 		this.score = 0;
 		
