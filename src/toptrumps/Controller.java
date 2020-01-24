@@ -33,7 +33,7 @@ public class Controller {
             		if(this.dataGame.getRoundNumber() == 1) {
             			category = this.getRandomCategory();
             		} else if(this.dataGame.shouldHumanChooseCategory()) {
-            			category = this.viewCli.displayCategorySelection();
+            			category = 2;
             		} else {
             			category = this.getRandomCategory();
             		}
@@ -42,7 +42,9 @@ public class Controller {
             		
             		this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
             		
-            		this.viewCli.displayRoundResult();
+            		if(this.dataGame.getGameState()==DataGame.GameState.RUNNING) {
+                		this.viewCli.displayRoundResult();
+            		}
             		
         		}
         		
