@@ -13,20 +13,14 @@ public class ViewCLI {
     private int startChoice;
     private int categoryChoice;
     private DataGame model;
- 
-   
- 
-
 
     //view constructor
     public ViewCLI() {
 
     }
 
-    //getter for start choice
-    public int getStartChoice() {
-        return startChoice;
-    }
+   
+  
     
     //getter for category choice
     public int getCategoryChoice() {
@@ -34,13 +28,15 @@ public class ViewCLI {
     }
 
     //display initial options for user
-    public void chooseDisplay() {
+    public int chooseDisplay() {
         System.out.println("Do you want to see past results or play a game");
         System.out.println("1:Print Game Statistics");
         System.out.println("2:Play game");
         System.out.print("Enter the number for your selection:");
         Scanner choiceIn = new Scanner(System.in);
         startChoice = choiceIn.nextInt();
+        choiceIn.close();
+        return startChoice;
     }
 
     //display round
@@ -131,6 +127,7 @@ public class ViewCLI {
 
     //test main
     public static void main(String[] args) {
+    
         ViewCLI view = new ViewCLI();
         view.chooseDisplay();
         view.updateView();
