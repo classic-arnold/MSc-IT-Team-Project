@@ -1,5 +1,7 @@
 package toptrumps;
 
+import java.util.Random;
+
 import toptrumps.DataGame;
 
 /**
@@ -24,7 +26,19 @@ public class Controller {
     			this.dataGame.startGame();
     			
     			while(this.dataGame.getGameState()==DataGame.GameState.RUNNING) {
-            		int category = this.viewCli.updateView();
+            		this.viewCli.updateView();
+            		int category;
+            		
+            		
+            		if(this.dataGame.getRoundNumber() == 1) {
+            			category = this.getRandomCategory();
+            		} else if(this.dataGame.shouldHumanChooseCategory()) {
+            			category = this.viewCli.displayCategorySelection();
+            		} else {
+            			category = this.getRandomCategory();
+            		}
+            		
+//            		int category = this.viewCli.displayCategorySelection();
             		
             		this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
             		
@@ -36,6 +50,14 @@ public class Controller {
     		
     	}
     	
+    }
+    
+    public int getRandomCategory() {
+    	Random random = new Random();
+		
+		int randomNumber = random.nextInt(DataGame.CATEGORYNAMES.length) + 1;
+		
+		return randomNumber;
     }
 
 }

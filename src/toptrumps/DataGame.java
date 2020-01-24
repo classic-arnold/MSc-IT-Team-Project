@@ -99,6 +99,9 @@ public class DataGame{
 	
 	/** represents the round category */
 	private String roundCategory;
+	
+	/** represents if a human won last */
+	private boolean didHumanWinLast;
 
 	/**
 	 * creates a new DataGame Object
@@ -178,8 +181,27 @@ public class DataGame{
 //		for testing
 //		System.out.println(this.originalDeck.size());
 		
-//		this.incrementRound(); // increase the round number
+		this.incrementRound(); // increase the round number
 		
+	}
+	
+	/**
+	 * check if human should input category
+	 */
+	public boolean shouldHumanChooseCategory() {
+		if(this.roundWinningPlayers.size()==1) {
+			if(this.roundWinningPlayers.get(0).getType()==DataPlayer.PlayerType.HUMAN) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			if(this.didHumanWinLast) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 	
 	/**
@@ -209,8 +231,8 @@ public class DataGame{
 			} else { // draw player top cards
 				
 				// REMOVE START
-				System.out.println(player.getName());
-				System.out.println(player.getDeck().get(0));
+//				System.out.println(player.getName());
+//				System.out.println(player.getDeck().get(0));
 				// REMOVE END
 				
 				DataCard card = player.getDeck().get(0);
@@ -243,15 +265,15 @@ public class DataGame{
 		} else { // save game stats to database
 			this.saveGameStats();
 			
-			// REMOVE START
-			if(this.gameWinner!=null) {
-				System.out.println("Winner: " + this.gameWinner.getName());
-				System.out.println("This should be (floor(Number of cards/number of players)): "+(this.gameWinner.getDeck().size() + this.commonDeck.size()));
-			} else {
-				System.out.println("No winner. Game Drawn.");
-			}
+//			// REMOVE START
+//			if(this.gameWinner!=null) {
+//				System.out.println("Winner: " + this.gameWinner.getName());
+//				System.out.println("This should be (floor(Number of cards/number of players)): "+(this.gameWinner.getDeck().size() + this.commonDeck.size()));
+//			} else {
+//				System.out.println("No winner. Game Drawn.");
+//			}
 				
-			System.out.println("Final round: " + this.roundNumber);
+//			System.out.println("Final round: " + this.roundNumber);
 			// REMOVE END
 			
 			return;
@@ -285,8 +307,14 @@ public class DataGame{
 			
 			this.roundWasDraw = false;
 			
+			if(this.roundWinningPlayers.get(0).getType()==DataPlayer.PlayerType.HUMAN) {
+				this.didHumanWinLast = true;
+			} else {
+				this.didHumanWinLast = false;
+			}
+			
 			// REMOVE START
-			System.out.println("Round " + this.roundNumber + " winner: " + this.roundWinningPlayers.get(0).getName() + "\n");
+//			System.out.println("Round " + this.roundNumber + " winner: " + this.roundWinningPlayers.get(0).getName() + "\n");
 			// REMOVE END
 			
 		} else if (this.roundWinningPlayers.size()>1) { // if there were multiple winning players, round was drawn
@@ -295,7 +323,7 @@ public class DataGame{
 			this.commonDeck.addCardsToDeck(roundCards); // add round cards to common deck
 			
 			// REMOVE START
-			System.out.println("Round " + this.roundNumber + " draw\n");
+//			System.out.println("Round " + this.roundNumber + " draw\n");
 			// REMOVE END
 		}
 		
@@ -713,6 +741,13 @@ public class DataGame{
 		// no human player found
 		return null;
 	}
+	
+//	/**
+//	 * get if human won last
+//	 */
+//	public boolean getDidHumanWinLast() {
+//		return this.didHumanWinLast;
+//	}
 	
 //	GETTERS FROM DATABASE - waiting on Estelle
 //	public static int getNumberOfHumanWinsDB() {

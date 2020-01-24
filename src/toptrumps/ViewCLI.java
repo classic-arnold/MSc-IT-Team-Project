@@ -47,8 +47,8 @@ public class ViewCLI {
     }
     //display card
     private void displayPlayerCard(){
-    	for(int i=0;i<model.getAllPlayers().length;i++) {
-    		if(model.getAllPlayers()[i].getTypeAsString().equals("human")) {
+    	for(int i=0;i<model.getActivePlayers().length;i++) {
+    		if(model.getActivePlayers()[i].getTypeAsString().equals("human")) {
     			System.out.println("You drew "+model.getActivePlayers()[i].getDeck().get(0).getDescription()+" :");
     			System.out.println(model.getActivePlayers()[i].getDeck().get(0));
     		}
@@ -58,13 +58,9 @@ public class ViewCLI {
     }
     //display number of cards in deck
     private void displayNumDeckCards(){
-    	for(int i=0;i<model.getAllPlayers().length;i++) {
-    		if(model.getAllPlayers()[i].getTypeAsString().equals("human")) {
-    			System.out.println("You have "+model.getAllPlayers()[i].getNumberOfCardsInDeck()+" cards in your deck.");
-    		}
-			
-		}
+    	System.out.println("You have "+model.getHumanPlayer().getNumberOfCardsInDeck()+" cards in your deck.");
     }
+    
     //display category selection menu
     public int displayCategorySelection() {
         System.out.println("It is your turn to select a category, the categories are: ");
