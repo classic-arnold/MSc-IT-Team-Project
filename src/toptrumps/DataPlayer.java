@@ -58,7 +58,7 @@ public class DataPlayer {
 	 * @param numberOfArtificialIntelligencePlayers number of AI players
 	 */
 	private void resetArtificialIntelligenceId(int numberOfArtificialIntelligencePlayers){
-		// if ID is higher than
+		// if ID is higher than no of AI players, reset back to 1
 		if(DataPlayer.ARTIFICIAL_INTELLIGENCE_ID>numberOfArtificialIntelligencePlayers) {
 			DataPlayer.ARTIFICIAL_INTELLIGENCE_ID = 1;
 		}
@@ -86,6 +86,10 @@ public class DataPlayer {
 //		return cardDeck;
 //	}
 	
+	/**
+	 * 
+	 * @param newCards
+	 */
 	protected void addCardsToDeck(ArrayList<DataCard> newCards) {
 		for(DataCard card : newCards) {
 			this.cardDeck.add(card);
