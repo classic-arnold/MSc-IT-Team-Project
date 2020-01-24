@@ -11,11 +11,11 @@ import java.util.Random;
  */
 public class Controller {
     private DataGame dataGame;
-    private ViewCli viewCli;
+    private ViewCLI viewCli;
     private DataPlayer humman;
 
-    public Controller(DataGame dataGame, ViewCli viewCli) {
-        this.dataGame = dataGame;
+    public Controller(DataGame dataGame, ViewCLI viewCli) {
+        this.dataGame = DataGame.getInstance(2);
         this.viewCli = viewCli;
         humman = dataGame.getPlayers()[0];
     }
