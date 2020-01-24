@@ -33,7 +33,8 @@ public class Controller {
             		if(this.dataGame.getRoundNumber() == 1) {
             			category = this.getRandomCategory();
             		} else if(this.dataGame.shouldHumanChooseCategory()) {
-            			category = 2;
+            			category = this.viewCli.displayCategorySelection();
+//            			category = 2;
             		} else {
             			category = this.getRandomCategory();
             		}
