@@ -23,9 +23,14 @@ public class ViewCLI {
 
     }
 
-    //getter for choice
+    //getter for start choice
     public int getStartChoice() {
         return startChoice;
+    }
+    
+    //getter for category choice
+    public int getCategoryChoice() {
+    	return categoryChoice;
     }
 
     //display initial options for user
@@ -50,26 +55,32 @@ public class ViewCLI {
     }
     //display card
     private void displayPlayerCard(){
-        System.out.println("You drew 'Ornithomimus':");
-        System.out.println("> height:10");
-        System.out.println("> height:10");
-        System.out.println("> height:10");
-        System.out.println("> height:10");
-        System.out.println("> height:10");
+    	for(int i=0;i<model.getPlayers().length;i++) {
+    		if(model.getPlayers()[i].getTypeAsString().equals("human")) {
+    			System.out.println("You drew "+model.getPlayers()[i].getDeck().get(0).getDescription()+" :");
+    			System.out.println(model.getPlayers()[i].getDeck().get(0));
+    		}
+    	}
+    
 
     }
     //display number of cards in deck
     private void displayNumDeckCards(){
-        System.out.println("There are 7 cards in your deck");
+    	for(int i=0;i<model.getPlayers().length;i++) {
+    		if(model.getPlayers()[i].getTypeAsString().equals("human")) {
+    			System.out.println("You have "+model.getPlayers()[i].getNumberOfCardsInDeck()+" cards in your deck.");
+    		}
+			
+		}
     }
     //display category selection menu
     private void displayCategorySelection() {
         System.out.println("It is your turn to select a category, the categories are: ");
-        System.out.println("1: height");
-        System.out.println("1: height");
-        System.out.println("1: height");
-        System.out.println("1: height");
-        System.out.println("1: height");
+        System.out.println("1: CATEGORYNAMES[0]");
+        System.out.println("2: CATEGORYNAMES[1]");
+        System.out.println("3: CATEGORYNAMES[2]");
+        System.out.println("4: CATEGORYNAMES[3]");
+        System.out.println("5: CATEGORYNAMES[4]");
         System.out.print("Enter the number for your attribute: ");
         Scanner categoryIn = new Scanner(System.in);
         categoryChoice = categoryIn.nextInt();
@@ -88,20 +99,24 @@ public class ViewCLI {
     //display round result function
     public void displayRoundResult() {
     	System.out.println("");
-        System.out.println("Round " + model.getRoundNumber() + " Round result message here");
-        System.out.println("If there was a winning card, details would go here.");
+    	if(!model.didWholeGameDraw()) {
+			System.out.println("Round " + model.getRoundNumber() +model.getRoundWinningPlayers().get(0).getName() +"won this round.");
+	        System.out.println(model.getRoundWinningCard());
+    	}
+        System.out.println("This round was a draw.There are now "+model.getNumberOfCardsInCommonPile()+"cards in the common pile");
+       
 
     }
     //display game end and stats
     public void gameEnd() {
     	System.out.println("Game End");
     	System.out.println("");
-    	System.out.println("The overall winner was AI Player 1");
-    	System.out.println("AI Player 1: 20");
-    	System.out.println("AI Player 2: 30");
-    	System.out.println("AI Player 4: 40");
-    	System.out.println("You:50 ");
-    	System.out.println("AI Player 3:60");
+    	//IS THERE A GET GAME WINNING PLAYER METHOD?
+    	System.out.println("The overall winner was");
+    	for(int i=0;i<model.getPlayers().length;i++) {
+    		System.out.println(model.getPlayers()[i].getName()+" :"+model.getPlayers()[i].getScore());
+    	}
+    
     	
     }
     
