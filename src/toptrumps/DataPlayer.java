@@ -87,47 +87,85 @@ public class DataPlayer {
 //	}
 	
 	/**
-	 * 
-	 * @param newCards
+	 * add cardS to player deck
+	 * @param newCards represents the lists of cards to be added to deck
 	 */
-	protected void addCardsToDeck(ArrayList<DataCard> newCards) {
+	void addCardsToDeck(ArrayList<DataCard> newCards) {
 		for(DataCard card : newCards) {
 			this.cardDeck.add(card);
 		}
 	}
 	
+	/**
+	 * add card to player deck
+	 * @param newCard represents the card to be added to deck
+	 */
 	void addCardToDeck(DataCard newCard) {
 		this.cardDeck.add(newCard);
 	}
 	
+	/**
+	 * remove cardS from player deck
+	 * @param cardsToRemove represents the lists of cards to be removed from deck
+	 */
 	void removeCardsFromDeck(ArrayList<DataCard> cardsToRemove) {
 		for(DataCard card : cardsToRemove) {
 			this.cardDeck.remove(card);
 		}
 	}
 	
+	/**
+	 * increment players score by 1
+	 */
+	void incrementScore() {
+		this.score += 1;
+	}
+	
+	/**
+	 * remove card from player deck
+	 * @param cardToRemove represents the card to be removed from deck
+	 */
 	void removeCardFromDeck(DataCard cardToRemove) {
 		this.cardDeck.remove(cardToRemove);
 	}
 	
+	/**
+	 * remove top card from player deck
+	 */
 	void removeTopCardFromDeck() {
 		this.cardDeck.remove(0);
 	}
 	
+	/**
+	 * set player deck
+	 * @param deck the list of cards we want to set player deck to
+	 */
 	void setDeck(ArrayList<DataCard> deck) {
 		this.cardDeck = deck;
 	}
 
 	// GETTER METHODS START
 
+	/**
+	 * get player score
+	 * @return int representing the player's score for the game
+	 */
 	int getScore() {
 		return this.score;
 	}
 
+	/**
+	 * get player type
+	 * @return PlayerType enum representing the player's type
+	 */
 	PlayerType getType() {
 		return this.type;
 	}
 	
+	/**
+	 * get players type as string
+	 * @return String representing the player's type
+	 */
 	String getTypeAsString() {
 		if(this.type == PlayerType.AI) {
 			return "ai";
@@ -138,22 +176,30 @@ public class DataPlayer {
 		}
 	}
 
+	/**
+	 * get player's name
+	 * @return String representing the player's name
+	 */
 	String getName() {
 		return this.name;
 	}
 	
+	/**
+	 * get players deck
+	 * @return ArrayList<DataCard> representing the list of cards in players deck
+	 */
 	ArrayList<DataCard> getDeck() {
 		return this.cardDeck;
 	}
 	
+	/**
+	 * get number of cards in players deck
+	 * @return int representing the number of cards in players deck
+	 */
 	int getNumberOfCardsInDeck() {
 		return this.cardDeck.size();
 	}
 
 	// GETTER METHODS END
-
-	void incrementScore() {
-		this.score += 1;
-	}
 
 }

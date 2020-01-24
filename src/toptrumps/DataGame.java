@@ -20,7 +20,7 @@ import java.util.Random;
  * TODO: Improve code algorithms
  * TODO: Add methods and class visibility
  * TODO: Reduce couplings and increase cohesion
- * TODO: 
+ * TODO: Maybe create abstract class Cardable and move all deck methods there
  *
  */
 
