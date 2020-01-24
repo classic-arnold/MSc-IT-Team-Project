@@ -66,7 +66,7 @@ public class ViewCLI {
 		}
     }
     //display category selection menu
-    private int displayCategorySelection() {
+    public int displayCategorySelection() {
         System.out.println("It is your turn to select a category, the categories are: ");
         System.out.println("1: " + DataGame.CATEGORYNAMES[0]);
         System.out.println("2: " + DataGame.CATEGORYNAMES[1]);
@@ -83,11 +83,11 @@ public class ViewCLI {
 
 
     //update view function
-    public int updateView(){
+    public void updateView(){
         displayRound();
         displayPlayerCard();
         displayNumDeckCards();
-        return displayCategorySelection();
+        
 
     }
     
@@ -96,7 +96,7 @@ public class ViewCLI {
     public void displayRoundResult() {
     	System.out.println("");
     	if(!model.getRoundWasDraw()) {
-			System.out.println("Round " + model.getRoundNumber() +model.getRoundWinningPlayers().get(0).getName() +"won this round.");
+			System.out.println("Round " + model.getRoundNumber()+" " +model.getRoundWinningPlayers().get(0).getName() +" won this round.");
 	        System.out.println(model.getRoundWinningCard());
     	}
         if(model.getRoundWasDraw()) {
