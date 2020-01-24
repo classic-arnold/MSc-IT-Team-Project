@@ -10,37 +10,29 @@ import java.util.Scanner;
 //IT ALSO HAS A TEST MAIN SO THAT DEVS CAN SEE HOW IT PRINTS OUT
 public class ViewCLI {
     //class attributes
-    private int startChoice;
-    private int categoryChoice;
+    
     private DataGame model;
- 
-   
- 
-
 
     //view constructor
     public ViewCLI() {
 
     }
 
-    //getter for start choice
-    public int getStartChoice() {
-        return startChoice;
-    }
+   
+  
     
-    //getter for category choice
-    public int getCategoryChoice() {
-    	return categoryChoice;
-    }
+   
 
     //display initial options for user
-    public void chooseDisplay() {
+    public int chooseDisplay() {
         System.out.println("Do you want to see past results or play a game");
         System.out.println("1:Print Game Statistics");
         System.out.println("2:Play game");
         System.out.print("Enter the number for your selection:");
         Scanner choiceIn = new Scanner(System.in);
-        startChoice = choiceIn.nextInt();
+        int startChoice = choiceIn.nextInt();
+        choiceIn.close();
+        return startChoice;
     }
 
     //display round
@@ -74,7 +66,7 @@ public class ViewCLI {
 		}
     }
     //display category selection menu
-    private void displayCategorySelection() {
+    private int displayCategorySelection() {
         System.out.println("It is your turn to select a category, the categories are: ");
         System.out.println("1: " + DataGame.CATEGORYNAMES[0]);
         System.out.println("2: " + DataGame.CATEGORYNAMES[1]);
@@ -83,19 +75,22 @@ public class ViewCLI {
         System.out.println("5: " + DataGame.CATEGORYNAMES[4]);
         System.out.print("Enter the number for your attribute: ");
         Scanner categoryIn = new Scanner(System.in);
-        categoryChoice = categoryIn.nextInt();
+        int categoryChoice = categoryIn.nextInt();
+        return categoryChoice;
     }
 
 
 
     //update view function
-    public void updateView(){
+    public int updateView(){
         displayRound();
         displayPlayerCard();
         displayNumDeckCards();
-        displayCategorySelection();
+        return displayCategorySelection();
 
     }
+    
+    
     //display round result function
     public void displayRoundResult() {
     	System.out.println("");
@@ -131,12 +126,14 @@ public class ViewCLI {
 
     //test main
     public static void main(String[] args) {
+    
         ViewCLI view = new ViewCLI();
         view.chooseDisplay();
         view.updateView();
         view.displayRoundResult();
         view.gameEnd();
         view.displayStats();
+        int testint=view.updateView();
         
     }
 }
