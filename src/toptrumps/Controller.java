@@ -38,24 +38,6 @@ public class Controller {
     		
     		
     	}
-    	
-    	DataGame game = DataGame.getInstance(numberOfArtificialIntelligencePlayers); // used to start a new game
-		
-    	game.startGame();
-		while(game.getGameState()==DataGame.GameState.RUNNING) {
-			Random r = new Random();
-			game.playRound(DataGame.CATEGORYNAMES[r.nextInt(5)]);
-		}
-		
-		DataPlayer[] p = game.getAllPlayers();
-		
-		System.out.println("\nAll players:");
-		for(DataPlayer pl : p) {
-			System.out.println(pl.getName() + ": " + pl.getScore());
-		}
-		
-		System.out.println("Draw: " + game.getNumberOfDraws());
-    }
     
 
 //    public void running() {
