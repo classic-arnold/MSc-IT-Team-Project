@@ -22,9 +22,20 @@ public class Controller {
 
     public void startGame() {
     	int startChoice = this.viewCli.chooseDisplay();
-    	if(startChoice == 1) {   		
+    	
+    	if(startChoice == 1) {		
     		this.viewCli.displayStats();
     	} else if(startChoice == 2) {
+    		this.dataGame.startGame();
+    		
+    		int category = this.viewCli.updateView();
+    		
+    		String[] categoryNames = DataGame.CATEGORYNAMES;
+    		
+    		this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
+    		
+    		
+    		
     		
     	}
     	
