@@ -14,8 +14,8 @@ public class ViewCLI {
     private DataGame model;
 
     //view constructor
-    public ViewCLI() {
-
+    public ViewCLI(DataGame model) {
+         this.model=model;
     }
 
    
@@ -126,16 +126,5 @@ public class ViewCLI {
     	System.out.println("Longest Game" + model.getLongestGame());
     }
 
-    //test main
-    public static void main(String[] args) {
-    
-        ViewCLI view = new ViewCLI();
-        view.chooseDisplay();
-        view.updateView();
-        view.displayRoundResult();
-        view.gameEnd();
-        view.displayStats();
-        int testint=view.updateView();
-        
-    }
+  
 }
