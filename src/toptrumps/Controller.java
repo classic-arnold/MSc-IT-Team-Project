@@ -28,11 +28,14 @@ public class Controller {
     	} else if(startChoice == 2) {
     		this.dataGame.startGame();
     		
-    		int category = this.viewCli.updateView();
-    		
-    		String[] categoryNames = DataGame.CATEGORYNAMES;
-    		
-    		this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
+    		while(this.dataGame.) {
+        		int category = this.viewCli.updateView();
+        		
+        		String[] categoryNames = DataGame.CATEGORYNAMES;
+        		
+        		this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
+    		}
+
     		
     		
     		

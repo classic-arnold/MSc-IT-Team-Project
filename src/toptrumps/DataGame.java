@@ -186,7 +186,7 @@ public class DataGame{
 	 * plays a round
 	 * @param category string representing the chosen category
 	 */
-	public int playRound(String category) {
+	public void playRound(String category) {
 		
 		this.roundWinningPlayers.clear(); // clear last round details
 		this.roundWinningCards.clear(); // clear last round details
@@ -254,7 +254,7 @@ public class DataGame{
 			System.out.println("Final round: " + this.roundNumber);
 			// REMOVE END
 			
-			return 0;
+			return;
 		}
 		
 //		// set players have drawn cards to true, for the round
@@ -299,7 +299,6 @@ public class DataGame{
 			// REMOVE END
 		}
 		
-		return 1;
 		
 	}
 	
