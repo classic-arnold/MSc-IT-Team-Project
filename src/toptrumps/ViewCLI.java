@@ -10,8 +10,7 @@ import java.util.Scanner;
 //IT ALSO HAS A TEST MAIN SO THAT DEVS CAN SEE HOW IT PRINTS OUT
 public class ViewCLI {
     //class attributes
-    private int startChoice;
-    private int categoryChoice;
+    
     private DataGame model;
 
     //view constructor
@@ -31,7 +30,7 @@ public class ViewCLI {
         System.out.println("2:Play game");
         System.out.print("Enter the number for your selection:");
         Scanner choiceIn = new Scanner(System.in);
-        startChoice = choiceIn.nextInt();
+        int startChoice = choiceIn.nextInt();
         choiceIn.close();
         return startChoice;
     }
@@ -76,20 +75,22 @@ public class ViewCLI {
         System.out.println("5: " + DataGame.CATEGORYNAMES[4]);
         System.out.print("Enter the number for your attribute: ");
         Scanner categoryIn = new Scanner(System.in);
-        categoryChoice = categoryIn.nextInt();
+        int categoryChoice = categoryIn.nextInt();
         return categoryChoice;
     }
 
 
 
     //update view function
-    public void updateView(){
+    public int updateView(){
         displayRound();
         displayPlayerCard();
         displayNumDeckCards();
-        displayCategorySelection();
+        return displayCategorySelection();
 
     }
+    
+    
     //display round result function
     public void displayRoundResult() {
     	System.out.println("");
@@ -132,6 +133,7 @@ public class ViewCLI {
         view.displayRoundResult();
         view.gameEnd();
         view.displayStats();
+        int testint=view.updateView();
         
     }
 }
