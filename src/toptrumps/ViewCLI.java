@@ -55,10 +55,10 @@ public class ViewCLI {
     }
     //display card
     private void displayPlayerCard(){
-    	for(int i=0;i<model.getPlayers().length;i++) {
-    		if(model.getPlayers()[i].getTypeAsString().equals("human")) {
-    			System.out.println("You drew "+model.getPlayers()[i].getDeck().get(0).getDescription()+" :");
-    			System.out.println(model.getPlayers()[i].getDeck().get(0));
+    	for(int i=0;i<model.getAllPlayers().length;i++) {
+    		if(model.getAllPlayers()[i].getTypeAsString().equals("human")) {
+    			System.out.println("You drew "+model.getAllPlayers()[i].getDeck().get(0).getDescription()+" :");
+    			System.out.println(model.getAllPlayers()[i].getDeck().get(0));
     		}
     	}
     
@@ -66,9 +66,9 @@ public class ViewCLI {
     }
     //display number of cards in deck
     private void displayNumDeckCards(){
-    	for(int i=0;i<model.getPlayers().length;i++) {
-    		if(model.getPlayers()[i].getTypeAsString().equals("human")) {
-    			System.out.println("You have "+model.getPlayers()[i].getNumberOfCardsInDeck()+" cards in your deck.");
+    	for(int i=0;i<model.getAllPlayers().length;i++) {
+    		if(model.getAllPlayers()[i].getTypeAsString().equals("human")) {
+    			System.out.println("You have "+model.getAllPlayers()[i].getNumberOfCardsInDeck()+" cards in your deck.");
     		}
 			
 		}
@@ -110,11 +110,10 @@ public class ViewCLI {
     //display game end and stats
     public void gameEnd() {
     	System.out.println("Game End");
-    	System.out.println("");
-    	//IS THERE A GET GAME WINNING PLAYER METHOD?
+    	System.out.println(model.getGameWinner().getName()+" won the game");
     	System.out.println("The overall winner was");
-    	for(int i=0;i<model.getPlayers().length;i++) {
-    		System.out.println(model.getPlayers()[i].getName()+" :"+model.getPlayers()[i].getScore());
+    	for(int i=0;i<model.getAllPlayers().length;i++) {
+    		System.out.println(model.getAllPlayers()[i].getName()+" :"+model.getAllPlayers()[i].getScore());
     	}
     
     	
