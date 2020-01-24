@@ -11,7 +11,7 @@ import java.util.Random;
  * @author Team TRY-CATCH - Arnold Umakhihe 2445734U Team
  *
  */
-class DataPlayer {
+public class DataPlayer {
 	/**
 	 * enum to represents the different types of player
 	 * @author salistechltd
@@ -35,20 +35,30 @@ class DataPlayer {
 	/** String representing the player's name */
 	private String name;
 
-	DataPlayer(PlayerType type, int numberOfArtificialIntelligencePlayers) {
-		this.type = type;
-
+	/**
+	 * creates a new player
+	 * @param type PlayerType enum representing the type of player
+	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players
+	 */
+	public DataPlayer(PlayerType type, int numberOfArtificialIntelligencePlayers) {
+		this.type = type; //set type
+		this.score = 0;
+		
+		// name players based on type
 		if (this.type == PlayerType.HUMAN) {
 			this.name = "You";
-			this.score = 0;
 		} else if (this.type == PlayerType.AI) {
-			this.name = "AI Player " + ARTIFICIAL_INTELLIGENCE_ID++;
+			this.name = "AI Player " + ARTIFICIAL_INTELLIGENCE_ID++; // name AI players using static ID based on the number
 			this.resetArtificialIntelligenceId(numberOfArtificialIntelligencePlayers);
-			this.score = 0;
 		}
 	}
 	
-	void resetArtificialIntelligenceId(int numberOfArtificialIntelligencePlayers){
+	/**
+	 * reset static ID used to name AI players
+	 * @param numberOfArtificialIntelligencePlayers number of AI players
+	 */
+	private void resetArtificialIntelligenceId(int numberOfArtificialIntelligencePlayers){
+		// if ID is higher than
 		if(DataPlayer.ARTIFICIAL_INTELLIGENCE_ID>numberOfArtificialIntelligencePlayers) {
 			DataPlayer.ARTIFICIAL_INTELLIGENCE_ID = 1;
 		}
@@ -76,7 +86,7 @@ class DataPlayer {
 //		return cardDeck;
 //	}
 	
-	void addCardsToDeck(ArrayList<DataCard> newCards) {
+	protected void addCardsToDeck(ArrayList<DataCard> newCards) {
 		for(DataCard card : newCards) {
 			this.cardDeck.add(card);
 		}
