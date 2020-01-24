@@ -697,6 +697,22 @@ public class DataGame{
 		return DataGame.arrayListToArrayCard(this.roundAIPlayerCards);
 	}
 	
+	/**
+	 * get the human player
+	 * @return DataPlayer representing the human player
+	 */
+	public DataPlayer getHumanPlayer() {
+		// check all players
+		for(DataPlayer player : this.allPlayers) {
+			// return any player thats human
+			if(player.getType() == DataPlayer.PlayerType.HUMAN) {
+				return player;
+			}
+		}
+		// no human player found
+		return null;
+	}
+	
 //	GETTERS FROM DATABASE - waiting on Estelle
 //	public static int getNumberOfHumanWinsDB() {
 //		return ProgramDatabase.getNumberOfHumanWins();
