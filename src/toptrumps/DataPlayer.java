@@ -1,14 +1,12 @@
 package toptrumps;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
 /**
  * 
  * This class represents a player
  * 
- * @author Team TRY-CATCH - Arnold Umakhihe 2445734U Team
+ * @author Team TRY-CATCH - Arnold Umakhihe 2445734U
  *
  */
 public class DataPlayer {

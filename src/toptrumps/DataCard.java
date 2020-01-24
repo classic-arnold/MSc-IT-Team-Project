@@ -4,7 +4,7 @@ package toptrumps;
  * 
  * This class represents a card
  * 
- * @author Team TRY-CATCH - Arnold Umakhihe 2445734U Team
+ * @author Team TRY-CATCH - Arnold Umakhihe 2445734U
  * 
  */
 class DataCard implements Cloneable{

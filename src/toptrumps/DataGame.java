@@ -27,7 +27,7 @@ import java.util.Random;
 /**
  * 
  * DataGame represents the game class. It should only be created once per game.
- * @author Team TRY-CATCH - Arnold Umakhihe 2445734U Team
+ * @author Team TRY-CATCH - Arnold Umakhihe 2445734U
  *
  */
 public class DataGame{

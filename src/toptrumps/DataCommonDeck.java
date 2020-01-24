@@ -1,8 +1,13 @@
 package toptrumps;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
+/**
+ * 
+ * This class represents the common deck
+ * @author Team TRY-CATCH - Arnold Umakhihe 2445734U
+ *
+ */
 public class DataCommonDeck {
 	/** stores the list of cards in the common deck */
 	private ArrayList<DataCard> cardDeck = new ArrayList<DataCard>();
