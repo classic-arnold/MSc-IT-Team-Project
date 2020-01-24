@@ -76,7 +76,11 @@ public class ViewCLI {
         System.out.print("Enter the number for your attribute: ");
         Scanner categoryIn = new Scanner(System.in);
         int categoryChoice = categoryIn.nextInt();
+<<<<<<< HEAD
        
+=======
+        categoryIn.nextLine();
+>>>>>>> a0b7430ce23bd6100a586a1409246d01430f3e5b
         return categoryChoice;
     }
 
