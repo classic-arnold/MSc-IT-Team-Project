@@ -67,6 +67,12 @@ public class DataGame{
 	/** represents the deck of cards */
 	private ArrayList<DataCard> originalDeck = new ArrayList<DataCard>();
 	
+	/** represents the initial unshuffled deck of cards */
+	private ArrayList<DataCard> initialUnshuffledDeck = new ArrayList<DataCard>();
+	
+	/** represents the initial shuffled deck of cards */
+	private ArrayList<DataCard> initialShuffledDeck = new ArrayList<DataCard>();
+	
 	/** represents the winner of the game(not round) */
 	private DataPlayer gameWinner;
 	
@@ -141,7 +147,13 @@ public class DataGame{
 		
 		DataCardCache.loadCardFromFileAndCache(); // load cards from file and cache them
 		
-		this.originalDeck = this.shuffleDeck(this.getNewDeck()); // shuffle the deck
+		ArrayList<DataCard> deck = this.getNewDeck();
+		
+		this.initialUnshuffledDeck = deck; // store initial unshuffled deck
+		
+		this.originalDeck = this.shuffleDeck(deck); // shuffle the deck
+		
+		this.initialShuffledDeck = (ArrayList<DataCard>)this.originalDeck.clone(); // store initial shuffled deck in array
 		
 		int numberOfCardsPerPlayer = this.originalDeck.size()/this.activePlayers.size(); // get number of cards per player
 		
@@ -547,6 +559,22 @@ public class DataGame{
 	// this might not be useful(for CLI at least)
 	public DataCard[] getCompleteDeckAsArray() {
 		return DataGame.arrayListToArrayCard(this.originalDeck);
+	}
+	
+	/**
+	 * get initial unshuffled deck as array
+	 * @return DataCard array containing all cards in initial unshuffled deck
+	 */
+	public DataCard[] getInitialUnshuffledDeck() {
+		return DataGame.arrayListToArrayCard(this.initialUnshuffledDeck);
+	}
+	
+	/**
+	 * get initial shuffled deck as array
+	 * @return DataCard array containing all cards in initial shuffled deck
+	 */
+	public DataCard[] getInitialShuffledDeck() {
+		return DataGame.arrayListToArrayCard(this.initialShuffledDeck);
 	}
 	
 	/**
