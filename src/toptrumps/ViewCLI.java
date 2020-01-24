@@ -94,11 +94,13 @@ public class ViewCLI {
     //display round result function
     public void displayRoundResult() {
     	System.out.println("");
-    	if(!model.didWholeGameDraw()) {
+    	if(!model.getRoundWasDraw()) {
 			System.out.println("Round " + model.getRoundNumber() +model.getRoundWinningPlayers().get(0).getName() +"won this round.");
 	        System.out.println(model.getRoundWinningCard());
     	}
-        System.out.println("This round was a draw.There are now "+model.getNumberOfCardsInCommonPile()+"cards in the common pile");
+        if(model.getRoundWasDraw()) {
+        	System.out.println("This round was a draw.There are now "+model.getNumberOfCardsInCommonPile()+"cards in the common pile");
+        }
        
 
     }
