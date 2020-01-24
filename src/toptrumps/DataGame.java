@@ -16,11 +16,12 @@ import java.util.Random;
  * TODO: Test all functions
  * TODO: Verify game specifications are accurate
  * TODO: Remove wasted codes and comments
- * TODO: Remove unneccessary codes
+ * TODO: Remove unnecessary and unused codes
  * TODO: Improve code algorithms
  * TODO: Add methods and class visibility
  * TODO: Reduce couplings and increase cohesion
  * TODO: Maybe create abstract class Cardable and move all deck methods there
+ * TODO: Deal with all warnings
  *
  */
 
