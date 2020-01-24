@@ -76,11 +76,11 @@ public class ViewCLI {
     //display category selection menu
     private void displayCategorySelection() {
         System.out.println("It is your turn to select a category, the categories are: ");
-        System.out.println("1: CATEGORYNAMES[0]");
-        System.out.println("2: CATEGORYNAMES[1]");
-        System.out.println("3: CATEGORYNAMES[2]");
-        System.out.println("4: CATEGORYNAMES[3]");
-        System.out.println("5: CATEGORYNAMES[4]");
+        System.out.println("1: " + DataGame.CATEGORYNAMES[0]);
+        System.out.println("2: " + DataGame.CATEGORYNAMES[1]);
+        System.out.println("3: " + DataGame.CATEGORYNAMES[2]);
+        System.out.println("4: " + DataGame.CATEGORYNAMES[3]);;
+        System.out.println("5: " + DataGame.CATEGORYNAMES[4]);
         System.out.print("Enter the number for your attribute: ");
         Scanner categoryIn = new Scanner(System.in);
         categoryChoice = categoryIn.nextInt();
