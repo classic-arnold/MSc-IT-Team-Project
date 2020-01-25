@@ -43,9 +43,7 @@ public class Controller {
             		
             		this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
             		
-            		if(this.dataGame.getGameState()==DataGame.GameState.RUNNING) {
-                		this.viewCli.displayRoundResult();
-            		}
+            		this.viewCli.displayRoundResult();
             		
         		}
         		

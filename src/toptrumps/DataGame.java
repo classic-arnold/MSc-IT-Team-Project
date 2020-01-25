@@ -224,63 +224,31 @@ public class DataGame{
 //			System.out.println(player.getName());
 			
 			// remove players without cards
-			if(player.getDeck().size()==0) {
-				playersToRemove.add(player);
-//				System.out.println(player.getName());
-//				System.out.println("No cards\n");
-			} else { // draw player top cards
-				
-				// REMOVE START
+		// draw player top cards
+			
+			// REMOVE START
 //				System.out.println(player.getName());
 //				System.out.println(player.getDeck().get(0));
-				// REMOVE END
-				
-				DataCard card = player.getDeck().get(0);
+			// REMOVE END
+			
+			DataCard card = player.getDeck().get(0);
 //				player.removeTopCardFromDeck();
-				roundCards.add(card);
-				
-				// store cards in round details
-				if(player.getType()==DataPlayer.PlayerType.HUMAN) {
-					this.roundHumanPlayerCard = card;
-				} else if (player.getType()==DataPlayer.PlayerType.AI) {
-					this.roundAIPlayerCards.add(card);
-				}
+			roundCards.add(card);
+			
+			// store cards in round details
+			if(player.getType()==DataPlayer.PlayerType.HUMAN) {
+				this.roundHumanPlayerCard = card;
+			} else if (player.getType()==DataPlayer.PlayerType.AI) {
+				this.roundAIPlayerCards.add(card);
 			}
 //			player.getDeck().remove(0); // moved elsewhere
 		}
 		
-		// remove players marked for removal because they have no cards anymore
-		for(DataPlayer player : playersToRemove) {
-			this.activePlayers.remove(player);
-		}
-		
-		HashMap<String, Object> roundDetails = this.getNewGameStateAndWinner(); // holds the round game state and winner
-		
-		this.gameState = (GameState)roundDetails.get("gamestate");
-		this.gameWinner = (DataPlayer)roundDetails.get("winner");
-		
-		// increment round if game is still running
-		if(this.getGameState() == GameState.RUNNING) {
-			this.incrementRound(); // increase the round number
-		} else { // save game stats to database
-			this.saveGameStats();
-			
-//			// REMOVE START
-//			if(this.gameWinner!=null) {
-//				System.out.println("Winner: " + this.gameWinner.getName());
-//				System.out.println("This should be (floor(Number of cards/number of players)): "+(this.gameWinner.getDeck().size() + this.commonDeck.size()));
-//			} else {
-//				System.out.println("No winner. Game Drawn.");
-//			}
-				
-//			System.out.println("Final round: " + this.roundNumber);
-			// REMOVE END
-			
-			return;
-		}
+		System.out.println("size: " + this.activePlayers.size());
 		
 //		// set players have drawn cards to true, for the round
 //		this.roundHasPlayersDrawnCards = true;
+		
 		
 		// holds the winning cards and winning players
 		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(DataGame.arrayListToArrayCard(roundCards), category);
@@ -327,6 +295,43 @@ public class DataGame{
 			// REMOVE END
 		}
 		
+		// remove players marked for removal because they have no cards anymore
+		for(DataPlayer player : this.activePlayers) {
+			if(player.getDeck().size()==0) {
+				playersToRemove.add(player);
+//				System.out.println(player.getName());
+//				System.out.println("No cards\n");
+			}
+		}
+		
+		for(DataPlayer player : playersToRemove) {
+			this.activePlayers.remove(player);
+		}
+		
+		HashMap<String, Object> roundDetails = this.getNewGameStateAndWinner(); // holds the round game state and winner
+		
+		this.gameState = (GameState)roundDetails.get("gamestate");
+		this.gameWinner = (DataPlayer)roundDetails.get("winner");
+		
+		// increment round if game is still running
+		if(this.getGameState() != GameState.RUNNING) {
+			this.saveGameStats();
+			
+//			// REMOVE START
+//			if(this.gameWinner!=null) {
+//				System.out.println("Winner: " + this.gameWinner.getName());
+//				System.out.println("This should be (floor(Number of cards/number of players)): "+(this.gameWinner.getDeck().size() + this.commonDeck.size()));
+//			} else {
+//				System.out.println("No winner. Game Drawn.");
+//			}
+				
+//			System.out.println("Final round: " + this.roundNumber);
+			// REMOVE END
+			
+			return;
+		}
+		
+		this.incrementRound(); // increase the round number
 		
 	}
 	
@@ -575,9 +580,8 @@ public class DataGame{
 			
 //			Database.setNumberOfDraws(this.numberOfDraws);
 			
-			if(this.gameState == GameState.ENDED) {
-//				Database.calculateLongestGame(this.roundNumber);
-			}
+//			Database.setRoundNumber(this.roundNumber);
+			System.out.println("round: "+this.roundNumber);
 		}
 	
 	// GETTER METHODS START

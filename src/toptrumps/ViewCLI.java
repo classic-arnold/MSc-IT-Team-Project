@@ -89,7 +89,7 @@ public class ViewCLI {
     public void displayRoundResult() {
     	System.out.println("");
     	if(!model.getRoundWasDraw()) {
-			System.out.println("Round " + model.getRoundNumber()+" " +model.getRoundWinningPlayers().get(0).getName() +" won this round.");
+			System.out.println("Round " + model.getRoundNumber() + " " +model.getRoundWinningPlayers().get(0).getName() +" won this round.");
 	        System.out.println(model.getRoundWinningCard());
     	}
         if(model.getRoundWasDraw()) {
