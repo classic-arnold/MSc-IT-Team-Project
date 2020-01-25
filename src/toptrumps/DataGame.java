@@ -687,6 +687,15 @@ public class DataGame{
 	public DataCard getRoundWinningCard() {
 		return this.roundWinningCards.get(0);
 	}
+	
+	/**
+	 * get round winning card. The card string with winning arrow added.
+	 * @param category the current category selection
+	 * @return String representing the winning card
+	 */
+	public String getRoundWinningCardToString(String category) {
+		return this.roundWinningCards.get(0).toString(category);
+	}
 
 	/**
 	 * get round winning players

@@ -86,18 +86,17 @@ public class ViewCLI {
     
     
     //display round result function
-    public void displayRoundResult() {
+    public void displayRoundResult(String category) {
     	System.out.println("");
     	if(!model.getRoundWasDraw()) {
 			System.out.println("Round " + model.getRoundNumber() + " " +model.getRoundWinningPlayers().get(0).getName() +" won this round.");
-	        System.out.println(model.getRoundWinningCard());
+	        System.out.println(model.getRoundWinningCardToString(category));
     	}
         if(model.getRoundWasDraw()) {
         	System.out.println("This round was a draw.There are now "+model.getNumberOfCardsInCommonPile()+"cards in the common pile");
         }
-       
-
     }
+    
     //display game end and stats
     public void gameEnd() {
     	System.out.println("Game End");

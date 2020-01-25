@@ -43,7 +43,7 @@ public class Controller {
 
 				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
 
-				this.viewCli.displayRoundResult();
+				this.viewCli.displayRoundResult(DataGame.CATEGORYNAMES[category-1]);
 
 				this.dataGame.incrementRound();
 
