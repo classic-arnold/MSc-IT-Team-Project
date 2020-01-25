@@ -331,8 +331,6 @@ public class DataGame{
 			return;
 		}
 		
-		this.incrementRound(); // increase the round number
-		
 	}
 	
 	/**

@@ -45,6 +45,8 @@ public class Controller {
             		
             		this.viewCli.displayRoundResult();
             		
+            		this.dataGame.incrementRound();
+            		
         		}
         		
         		this.viewCli.gameEnd();
