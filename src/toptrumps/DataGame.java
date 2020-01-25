@@ -244,7 +244,7 @@ public class DataGame{
 			//			player.getDeck().remove(0); // moved elsewhere
 		}
 
-		System.out.println("size: " + this.activePlayers.size());
+//		System.out.println("size: " + this.activePlayers.size());
 
 		//		// set players have drawn cards to true, for the round
 		//		this.roundHasPlayersDrawnCards = true;
@@ -579,7 +579,7 @@ public class DataGame{
 		//			Database.setNumberOfDraws(this.numberOfDraws);
 
 		//			Database.setRoundNumber(this.roundNumber);
-		System.out.println("round: "+this.roundNumber);
+//		System.out.println("round: "+this.roundNumber);
 	}
 
 	// GETTER METHODS START
