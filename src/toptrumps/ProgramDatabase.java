@@ -14,34 +14,36 @@ public class ProgramDatabase {
 	protected static String connectionString="jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/";
 
 	public static void main(String[] args) {
-		
+
 		String SQL_SELECT="Select * from TopTrumps.gameStats";
-		
-		try (Connection connection=DriverManager.getConnection(
-				connectionString, "m_19_2431088l", "2431088l"); 
+
+		try (
+				Connection connection=DriverManager.getConnection(
+						connectionString, "m_19_2431088l", "2431088l"); 
 				PreparedStatement preparedStatement=connection.prepareStatement(SQL_SELECT)){
-			
+
 			ResultSet resultSet=preparedStatement.executeQuery();
-			
+
 			while(resultSet.next()) {
 				int gameID=resultSet.getInt("GameID");
 				int countAIWins=resultSet.getInt("isHumanWon");
 				int countHumanWins=resultSet.getInt("isHumanWon");
 				int draws=resultSet.getInt("draws");
 				int roundNumber=resultSet.getInt("roundNumber");
-				
-				
+
+
 				/*				
 				 * pass datas that should be printed when Game Statistics run
-				*/
-//				DataGame data = new DataGame(); // NOTE FROM ARNOLD: DataGame object should not be created multiple times, as this will be a completely new game.
+				 */
+				//				DataGame data = new DataGame(); // NOTE FROM ARNOLD: DataGame object should not be created multiple times, as this will be a completely new game.
 				//we will need to resolve this with the controller. Remember to remove this.
-//				data.setCountGameOverall(gameID);
-//				data.setCountAIWins()
+				//				data.setCountGameOverall(gameID);
+				//				data.setCountAIWins()
 			}
+
 			if(connection!=null) {
 				System.out.println("Connected to the database");
-			}else {
+			} else {
 				System.out.println("Failed to make connection");
 			}
 		}catch(SQLException e) {

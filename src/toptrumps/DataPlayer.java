@@ -41,7 +41,7 @@ public class DataPlayer {
 	DataPlayer(PlayerType type, int numberOfArtificialIntelligencePlayers) {
 		this.type = type; //set type
 		this.score = 0;
-		
+
 		// name players based on type
 		if (this.type == PlayerType.HUMAN) {
 			this.name = "You";
@@ -50,7 +50,7 @@ public class DataPlayer {
 			this.resetArtificialIntelligenceId(numberOfArtificialIntelligencePlayers);
 		}
 	}
-	
+
 	/**
 	 * reset static ID used to name AI players
 	 * @param numberOfArtificialIntelligencePlayers number of AI players
@@ -61,29 +61,29 @@ public class DataPlayer {
 			DataPlayer.ARTIFICIAL_INTELLIGENCE_ID = 1;
 		}
 	}
-	
-//	ArrayList<DataCard> createRandomDeck(ArrayList<DataCard> deck) {
-//		ArrayList<DataCard> completeDeck = deck;
-//		ArrayList<DataCard> cardDeck = new ArrayList<DataCard>(Collections.nCopies(7, null));
-//		ArrayList<Integer> randomNumbers = new ArrayList<Integer>();
-//
-//		Random random = new Random();
-//		for(int i=0;i<cardDeck.size();i++) {
-//			int randomNumber;
-//			do {
-//				randomNumber = random.nextInt(completeDeck.size());
-//			} while(randomNumbers.contains(randomNumber));
-//			
-//			cardDeck.remove(i);
-//			cardDeck.add(i, completeDeck.get(randomNumber));
-//			completeDeck.remove(randomNumber);
-//			
-//			randomNumbers.add(randomNumber);
-//		}
-//		
-//		return cardDeck;
-//	}
-	
+
+	//	ArrayList<DataCard> createRandomDeck(ArrayList<DataCard> deck) {
+	//		ArrayList<DataCard> completeDeck = deck;
+	//		ArrayList<DataCard> cardDeck = new ArrayList<DataCard>(Collections.nCopies(7, null));
+	//		ArrayList<Integer> randomNumbers = new ArrayList<Integer>();
+	//
+	//		Random random = new Random();
+	//		for(int i=0;i<cardDeck.size();i++) {
+	//			int randomNumber;
+	//			do {
+	//				randomNumber = random.nextInt(completeDeck.size());
+	//			} while(randomNumbers.contains(randomNumber));
+	//			
+	//			cardDeck.remove(i);
+	//			cardDeck.add(i, completeDeck.get(randomNumber));
+	//			completeDeck.remove(randomNumber);
+	//			
+	//			randomNumbers.add(randomNumber);
+	//		}
+	//		
+	//		return cardDeck;
+	//	}
+
 	/**
 	 * add cardS to player deck
 	 * @param newCards represents the lists of cards to be added to deck
@@ -93,7 +93,7 @@ public class DataPlayer {
 			this.cardDeck.add(card);
 		}
 	}
-	
+
 	/**
 	 * add card to player deck
 	 * @param newCard represents the card to be added to deck
@@ -101,7 +101,7 @@ public class DataPlayer {
 	void addCardToDeck(DataCard newCard) {
 		this.cardDeck.add(newCard);
 	}
-	
+
 	/**
 	 * remove cardS from player deck
 	 * @param cardsToRemove represents the lists of cards to be removed from deck
@@ -111,14 +111,14 @@ public class DataPlayer {
 			this.cardDeck.remove(card);
 		}
 	}
-	
+
 	/**
 	 * increment players score by 1
 	 */
 	void incrementScore() {
 		this.score += 1;
 	}
-	
+
 	/**
 	 * remove card from player deck
 	 * @param cardToRemove represents the card to be removed from deck
@@ -126,14 +126,14 @@ public class DataPlayer {
 	void removeCardFromDeck(DataCard cardToRemove) {
 		this.cardDeck.remove(cardToRemove);
 	}
-	
+
 	/**
 	 * remove top card from player deck
 	 */
 	void removeTopCardFromDeck() {
 		this.cardDeck.remove(0);
 	}
-	
+
 	/**
 	 * set player deck
 	 * @param deck the list of cards we want to set player deck to
@@ -159,7 +159,7 @@ public class DataPlayer {
 	PlayerType getType() {
 		return this.type;
 	}
-	
+
 	/**
 	 * get players type as string
 	 * @return String representing the player's type
@@ -181,7 +181,7 @@ public class DataPlayer {
 	String getName() {
 		return this.name;
 	}
-	
+
 	/**
 	 * get players deck
 	 * @return ArrayList<DataCard> representing the list of cards in players deck
@@ -189,7 +189,7 @@ public class DataPlayer {
 	ArrayList<DataCard> getDeck() {
 		return this.cardDeck;
 	}
-	
+
 	/**
 	 * get number of cards in players deck
 	 * @return int representing the number of cards in players deck
