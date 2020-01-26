@@ -60,10 +60,12 @@ public class ProgramDatabase {
 		}//try-catch exception
 		
 
-		//connection to the database is done
-		if(connection!=null) {
-			try {
-				System.out.println("Controlling your database");
+			while(resultSet.next()) {
+				int gameID=resultSet.getInt("GameID");
+				int countAIWins=resultSet.getInt("isHumanWon");
+				int countHumanWins=resultSet.getInt("isHumanWon");
+				int draws=resultSet.getInt("draws");
+				int roundNumber=resultSet.getInt("roundNumber");
 
 				//do not forget to close the connection to the database
 				connection.close();
