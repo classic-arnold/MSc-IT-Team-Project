@@ -50,7 +50,7 @@ public class ProgramDatabase {
 //			}
 //			rs.close();
 //			stmt.close();
-//			connection.close();
+			connection.close();
 		}catch(SQLException e) {
 			System.out.println("Connection Failed!");
 			e.printStackTrace();
