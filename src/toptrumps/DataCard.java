@@ -188,6 +188,55 @@ class DataCard implements Cloneable{
 		
 		return string;
 	}
+	
+	/**
+	 * used to render this class to string with winning category
+	 * @return string representing class details
+	 */
+	public String toString(String category) {
+		// store constants
+		String string = "";
+		String space = " ";
+		String arrow = ">";
+		String colon = ":";
+		String newLine = "\n";
+		
+		// create strings
+		string += arrow + space + "size" + colon + space + this.size;
+		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equals("si")){
+			string += " <--";
+		}
+		string += newLine;
+		
+		
+		string += arrow + space + "speed" + colon + space + this.speed;
+		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equals("sp")){
+			string += " <--";
+		}
+		string += newLine;
+		
+		
+		string += arrow + space + "range" + colon + space + this.range;
+		if((Character.toLowerCase(category.charAt(0))) == 'r'){
+			string += " <--";
+		}
+		string += newLine;
+		
+		
+		string += arrow + space + "fire power" + colon + space + this.firePower;
+		if((Character.toLowerCase(category.charAt(0))) == 'f'){
+			string += " <--";
+		}
+		string += newLine;
+		
+		string += arrow + space + "cargo" + colon + space + this.cargo;
+		if((Character.toLowerCase(category.charAt(0))) == 'c'){
+			string += " <--";
+		}
+		string += newLine;
+		
+		return string;
+	}
 
 
 }
