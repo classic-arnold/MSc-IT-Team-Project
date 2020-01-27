@@ -216,6 +216,8 @@ public class DataGame{
 		this.roundWinningPlayers.clear(); // clear last round details
 		this.roundWinningCards.clear(); // clear last round details
 		this.roundAIPlayerCards.clear(); // clear last round details
+		
+		this.roundCategory = category;
 
 
 		ArrayList<DataCard> roundCards = new ArrayList<DataCard>(); // holds the card drawn for this round
