@@ -62,7 +62,7 @@ public class DataGame{
 	private int numberOfDraws; // Will be used when I get Estelle's code
 
 	/** represents the common deck */
-	private DataCommonDeck commonDeck = new DataCommonDeck();
+	private ArrayList<DataCard> commonDeck = new ArrayList<DataCard>();
 
 	/** represents the deck of cards */
 	private ArrayList<DataCard> originalDeck = new ArrayList<DataCard>();
@@ -102,6 +102,9 @@ public class DataGame{
 
 	/** represents if a human won last */
 	private boolean didHumanWinLast;
+	
+	/** represents the last round winner */
+	private DataPlayer roundLastWinner;
 
 	/**
 	 * creates a new DataGame Object
@@ -213,6 +216,8 @@ public class DataGame{
 		this.roundWinningPlayers.clear(); // clear last round details
 		this.roundWinningCards.clear(); // clear last round details
 		this.roundAIPlayerCards.clear(); // clear last round details
+		
+		this.roundCategory = category;
 
 
 		ArrayList<DataCard> roundCards = new ArrayList<DataCard>(); // holds the card drawn for this round
@@ -267,7 +272,7 @@ public class DataGame{
 		//if there is only 1 winning player, round wasn't drawn
 		if(this.roundWinningPlayers.size()==1) {
 
-			roundCards.addAll(this.commonDeck.getAllCards()); // add common deck cards to round cards
+			roundCards.addAll(this.commonDeck); // add common deck cards to round cards
 			this.commonDeck.clear(); // clear common deck
 
 			this.roundWinningPlayers.get(0).addCardsToDeck(roundCards); // add round cards to his deck
@@ -280,6 +285,8 @@ public class DataGame{
 			} else {
 				this.didHumanWinLast = false;
 			}
+			
+			this.roundLastWinner = this.roundWinningPlayers.get(0); // stores last round winner
 
 			// REMOVE START
 			//			System.out.println("Round " + this.roundNumber + " winner: " + this.roundWinningPlayers.get(0).getName() + "\n");
@@ -288,7 +295,7 @@ public class DataGame{
 		} else if (this.roundWinningPlayers.size()>1) { // if there were multiple winning players, round was drawn
 			this.incrementNumberOfDraws(); // increment number of draws
 			this.roundWasDraw = true;
-			this.commonDeck.addCardsToDeck(roundCards); // add round cards to common deck
+			this.commonDeck.addAll(roundCards); // add round cards to common deck
 
 			// REMOVE START
 			//			System.out.println("Round " + this.roundNumber + " draw\n");
@@ -662,6 +669,22 @@ public class DataGame{
 	 */
 	public int getNumberOfCardsInCommonPile() {
 		return this.commonDeck.size();
+	}
+	
+	/**
+	 * get cards in common pile
+	 * @return DataCard array containing the cards in the common pile
+	 */
+	public DataCard[] getCardsInCommonPile() {
+		return DataGame.arrayListToArrayCard(this.commonDeck);
+	}
+	
+	/**
+	 * get the round last winner
+	 * @return DataPlayer representing the last winner
+	 */
+	public DataPlayer getRoundLastWinner() {
+		return this.roundLastWinner;
 	}
 
 	/**

@@ -32,7 +32,7 @@ public class TopTrumpsCLIApplication {
 			while(true) {
 				DataGame model = DataGame.resetAndGetInstance(4);
 				ViewCLI view = new ViewCLI(model); // we need to pass in view here
-				Controller controller = new Controller(model, view);
+				Controller controller = new Controller(model, view, writeGameLogsToFile);
 				controller.startGame();
 			}
 			
