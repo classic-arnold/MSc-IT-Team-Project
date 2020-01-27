@@ -4,7 +4,7 @@ package toptrumps;
  * 
  * This class represents a card
  * 
- * @author Team TRY-CATCH - Arnold Umakhihe 2445734U Team
+ * @author Team TRY-CATCH - Arnold Umakhihe 2445734U
  * 
  */
 class DataCard implements Cloneable{
@@ -29,7 +29,7 @@ class DataCard implements Cloneable{
 
 	/**
 	 * 
-	 * DataCard class constructor
+	 * creates a new card
 	 * 
 	 * @param name string representing card name
 	 * @param size integer representing card size
@@ -94,55 +94,55 @@ class DataCard implements Cloneable{
 			return result;
 
 		default:
-			throw new exceptions.CategoryNotFoundException();
+			throw new exceptions.CategoryNotFoundException(); // if category does not exist
 		}
 	}
 
 	// GETTER METHODS START
 
 	/**
-	 * Getter method
-	 * @return name string representing card name
+	 * get description
+	 * @return string representing card description
 	 */
 	String getDescription() {
 		return this.description;
 	}
 
 	/**
-	 * Getter method
-	 * @return size integer representing card size
+	 * get size
+	 * @return integer representing card value for category - size
 	 */
 	int getSize() {
 		return this.size;
 	}
 
 	/**
-	 * Getter method
-	 * @return speed integer representing card speed
+	 * get speed
+	 * @return integer representing card value for category - speed
 	 */
 	int getSpeed() {
 		return this.speed;
 	}
 
 	/**
-	 * Getter method
-	 * @return range integer representing card range
+	 * get range
+	 * @return integer representing card value for category - range
 	 */
 	int getRange() {
 		return this.range;
 	}
 
 	/**
-	 * Getter method
-	 * @return firePower integer representing card fire power
+	 * get fire power
+	 * @return firePower integer representing card value for category - fire power
 	 */
 	int getFirePower() {
 		return this.firePower;
 	}
 
 	/**
-	 * Getter method
-	 * @return cargo integer representing card cargo
+	 * get cargo
+	 * @return integer representing card value for category - cargo
 	 */
 	int getCargo() {
 		return this.cargo;
@@ -152,16 +152,15 @@ class DataCard implements Cloneable{
 
 	/**
 	 * used to clone the card objects of this card class
-	 * @return object representing new clone of this class
+	 * @return object representing new clone of this class instance
 	 */
 	public Object clone() {
-		Object cloneCard = null;
+		Object cloneCard = null; // holds the clone
 
 		try {
-			cloneCard = super.clone();
-
+			cloneCard = super.clone(); // try to clone
 		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
+			e.printStackTrace(); // if clone not supported, print stack trace
 		}
 
 		return cloneCard;
@@ -169,21 +168,72 @@ class DataCard implements Cloneable{
 	
 	/**
 	 * used to render this class to string
-	 * @return string representing class
+	 * @return string representing class details
 	 */
 	@Override
 	public String toString() {
+		// store constants
 		String string = "";
 		String space = " ";
 		String arrow = ">";
 		String colon = ":";
 		String newLine = "\n";
 		
+		// create strings
 		string += arrow + space + "size" + colon + space + this.size + newLine;
 		string += arrow + space + "speed" + colon + space + this.speed + newLine;
 		string += arrow + space + "range" + colon + space + this.range + newLine;
 		string += arrow + space + "fire power" + colon + space + this.firePower + newLine;
 		string += arrow + space + "cargo" + colon + space + this.cargo + newLine;
+		
+		return string;
+	}
+	
+	/**
+	 * used to render this class to string with winning category
+	 * @return string representing class details
+	 */
+	public String toString(String category) {
+		// store constants
+		String string = "";
+		String space = " ";
+		String arrow = ">";
+		String colon = ":";
+		String newLine = "\n";
+		
+		// create strings
+		string += arrow + space + "size" + colon + space + this.size;
+		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equals("si")){
+			string += " <--";
+		}
+		string += newLine;
+		
+		
+		string += arrow + space + "speed" + colon + space + this.speed;
+		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equals("sp")){
+			string += " <--";
+		}
+		string += newLine;
+		
+		
+		string += arrow + space + "range" + colon + space + this.range;
+		if((Character.toLowerCase(category.charAt(0))) == 'r'){
+			string += " <--";
+		}
+		string += newLine;
+		
+		
+		string += arrow + space + "fire power" + colon + space + this.firePower;
+		if((Character.toLowerCase(category.charAt(0))) == 'f'){
+			string += " <--";
+		}
+		string += newLine;
+		
+		string += arrow + space + "cargo" + colon + space + this.cargo;
+		if((Character.toLowerCase(category.charAt(0))) == 'c'){
+			string += " <--";
+		}
+		string += newLine;
 		
 		return string;
 	}

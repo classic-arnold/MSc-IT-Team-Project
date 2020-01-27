@@ -1,36 +1,14 @@
 package toptrumps;
 
-import java.util.ArrayList;
-
-// not needed. delete.
-// used only for quick testing.
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		DataCardCache.loadCardFromFileAndCache();
-		
-		DataGame game = new DataGame(4);
-		game.playRound();
-		
-		
-//		DataGame dG = DataGame.getInstance();
-//		dG.loadDeck();
-//		DataCard[] ca = dG.getCompleteDeck();
-//		for (DataCard c : ca) {
-//			System.out.println(c);
-//		}
-		
-//		DataPlayer p = new DataPlayer("human");
-//		DataCard[] cards = p.createRandomDeck();
-//		
-//		System.out.println(p.getType());
-//		
-//		for(DataCard card:cards) {
-//			System.out.println(card);
-//		}
-//		
-//		System.out.println(DataCardCache.get());
+		while(true) {
+			DataGame model = DataGame.resetAndGetInstance(4);
+			ViewCLI view = new ViewCLI(model); // we need to pass in view here
+			Controller controller = new Controller(model, view);
+			controller.startGame();
+		}
 	}
 
 }

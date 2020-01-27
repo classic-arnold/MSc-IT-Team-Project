@@ -1,0 +1,45 @@
+-- Insert single game datas in roundDetails table.
+-- CLI version should print overall winner, each player's score(count of winning rounds, count of losing rounds)
+-- Table stores the count of total round, number of draws, each AI player's winning count. 
+
+-- -- TopTrumps/DataGame.java : public int getRoundNumber()==totalRoundCount
+-- -- TopTrumps/DataGame.java :
+-- -- -- public void saveGameStats(){
+-- -- -- 	if(winner.getType()==DataPlayer.PlayerType.HUMAN){
+-- -- -- 	   Database.incrementNumberOfHumanWins();
+-- -- -- 	}else if(winner.getType()==DataPlayer.PlayerType.AI){
+-- -- -- 		Database.incrementNumberOfAIWins();
+-- -- -- 	}
+-- -- -- }
+
+-- who won the game?->isHumanWon
+-- create schema TopTrumps
+
+-- create table TopTrumps.gameStats
+-- (
+-- 	GameID	smallserial primary key,
+-- 	isHumanWon	boolean,
+-- 	humanScore	integer,
+-- 	AI1Score	integer,
+-- 	AI2Score	integer,
+-- 	AI3Score	integer,
+-- 	AI4Score	integer,
+-- 	draws	integer,
+-- 	roundNumber	integer
+-- );
+
+-- Number of games played overall: GameID
+-- How many times the computer has won: count(isHumanWon)=false
+-- How many times the human has won: count(isHumanWon)
+-- The average number of draws: avg(draws)
+-- The largest number of rounds played in a single game: max(roundNumber)
+
+
+-- insert into toptrumps.gameStats (isHumanWon, humanScore, AI1Score, AI2Score, AI3Score, AI4Score, draws, roundNumber)
+-- values (true,30,20,5,10,15,20,100);
+
+select *
+from toptrumps.gameStats;
+
+-- delete from toptrumps.gameStats;
+

@@ -1,5 +1,9 @@
 package commandline;
 
+import toptrumps.Controller;
+import toptrumps.DataGame;
+import toptrumps.ViewCLI;
+
 /**
  * Top Trumps command line application
  */
@@ -25,7 +29,14 @@ public class TopTrumpsCLIApplication {
 			// Add your game logic here based on the requirements
 			// ----------------------------------------------------
 			
-			userWantsToQuit=true; // use this when the user wants to exit the game
+			while(true) {
+				DataGame model = DataGame.resetAndGetInstance(4);
+				ViewCLI view = new ViewCLI(model); // we need to pass in view here
+				Controller controller = new Controller(model, view);
+				controller.startGame();
+			}
+			
+//			userWantsToQuit=true; // use this when the user wants to exit the game
 			
 		}
 
