@@ -102,6 +102,9 @@ public class DataGame{
 
 	/** represents if a human won last */
 	private boolean didHumanWinLast;
+	
+	/** represents the last round winner */
+	private DataPlayer roundLastWinner;
 
 	/**
 	 * creates a new DataGame Object
@@ -280,6 +283,8 @@ public class DataGame{
 			} else {
 				this.didHumanWinLast = false;
 			}
+			
+			this.roundLastWinner = this.roundWinningPlayers.get(0); // stores last round winner
 
 			// REMOVE START
 			//			System.out.println("Round " + this.roundNumber + " winner: " + this.roundWinningPlayers.get(0).getName() + "\n");
@@ -662,6 +667,22 @@ public class DataGame{
 	 */
 	public int getNumberOfCardsInCommonPile() {
 		return this.commonDeck.size();
+	}
+	
+	/**
+	 * get cards in common pile
+	 * @return DataCard array containing the cards in the common pile
+	 */
+	public DataCard[] getCardsInCommonPile() {
+		return DataGame.arrayListToArrayCard(this.commonDeck.getAllCards());
+	}
+	
+	/**
+	 * get the round last winner
+	 * @return DataPlayer representing the last winner
+	 */
+	public DataPlayer getRoundLastWinner() {
+		return this.roundLastWinner;
 	}
 
 	/**

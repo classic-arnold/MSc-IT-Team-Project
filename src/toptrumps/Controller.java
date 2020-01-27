@@ -10,10 +10,12 @@ import toptrumps.DataGame;
 public class Controller {
 	private DataGame dataGame;
 	private ViewCLI viewCli;
+	private boolean writeGameLogsToFile;
 
-	public Controller(DataGame dataGame, ViewCLI viewCli) {
+	public Controller(DataGame dataGame, ViewCLI viewCli, boolean writeGameLogsToFile) {
 		this.dataGame = dataGame;
 		this.viewCli = viewCli;
+		this.writeGameLogsToFile = writeGameLogsToFile;
 	}
 
 	public void startGame() {
@@ -39,11 +41,13 @@ public class Controller {
 					category = this.getRandomCategory();
 				}
 
-				//            		int category = this.viewCli.displayCategorySelection();
+				// int category = this.viewCli.displayCategorySelection();
 
 				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
 
 				this.viewCli.displayRoundResult(DataGame.CATEGORYNAMES[category-1]);
+				
+//				this.testLog.printSomething;
 
 				this.dataGame.incrementRound();
 
