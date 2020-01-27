@@ -67,6 +67,11 @@ public class ProgramDatabase {
 		return draws;
 	}
 
+	/** 
+	 * Largest round among games
+	 * @return
+	 * int largestRound 
+	 * */
 	public int getLargestRound() {
 		return largestRound;
 	}
