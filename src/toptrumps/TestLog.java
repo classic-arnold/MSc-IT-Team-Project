@@ -202,12 +202,12 @@ public class TestLog {
             }
         }
     }}
-	//NEED A FUNCTION TO RETURN ARRAY OF CARDS IN COMMUNAL PILE
+
 	public void writeCommunalPile() {
 		  FileWriter fw = null;
           BufferedWriter bw = null;
           try {
-              fw = new FileWriter(outF);
+              fw = new FileWriter(outF,true);
               bw = new BufferedWriter(fw);
               bw.write("Communal Pile Contents");
               bw.newLine();
@@ -217,15 +217,15 @@ public class TestLog {
               bw.newLine();
               bw.newLine();
              
-               for(int i=0;i<model.getInitialUnshuffledDeck().length;i++) {
+               for(int i=0;i<model.getCardsInCommonPile().length;i++) {
             	 
             	   String space=" ";
-            	   String description =model.getInitialUnshuffledDeck()[i].getDescription();
-            	   String size=String.valueOf(model.getInitialUnshuffledDeck()[i].getSize());
-            	   String speed=String.valueOf(model.getInitialUnshuffledDeck()[i].getSpeed());
-            	   String range=String.valueOf(model.getInitialUnshuffledDeck()[i].getRange());
-            	   String firepower=String.valueOf(model.getInitialUnshuffledDeck()[i].getFirePower());
-            	   String cargo=String.valueOf(model.getInitialUnshuffledDeck()[i].getCargo());
+            	   String description =model.getCardsInCommonPile()[i].getDescription();
+            	   String size=String.valueOf(model.getCardsInCommonPile()[i].getSize());
+            	   String speed=String.valueOf(model.getCardsInCommonPile()[i].getSpeed());
+            	   String range=String.valueOf(model.getCardsInCommonPile()[i].getRange());
+            	   String firepower=String.valueOf(model.getCardsInCommonPile()[i].getFirePower());
+            	   String cargo=String.valueOf(model.getCardsInCommonPile()[i].getCargo());
                    bw.write(description);
                    bw.write(space);
                    bw.write(size);
@@ -368,6 +368,7 @@ public class TestLog {
 		          tester.writeShuffledDeckContents();
 		          tester.writePlayerDecks();
 		          tester.writeCardsInPlay();
+		          tester.writeCommunalPile();
 		          
 
     }
