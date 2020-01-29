@@ -17,12 +17,7 @@ public class ViewCLI {
     public ViewCLI(DataGame model) {
          this.model=model;
     }
-
-   
-  
     
-   
-
     //display initial options for user
     public int chooseDisplay() {
         System.out.println("Do you want to see past results or play a game");
@@ -84,6 +79,15 @@ public class ViewCLI {
 
     }
     
+    //next round options function
+    //NOTE IF USER PRESSES ENTER WILL RETURN AN EMPTY STRING
+    public String nextRoundChoice() {
+    	System.out.println("Press enter to move to next round or press q to quit");
+    	Scanner nextRoundChoiceIn=new Scanner(System.in);
+    	String nextRoundAction=nextRoundChoiceIn.nextLine();
+    	return nextRoundAction; 
+    }
+    
     
     //display round result function
     public void displayRoundResult(String category) {
@@ -118,6 +122,14 @@ public class ViewCLI {
     	System.out.println("Average number of Draws" + model.getAvgNumberOfDraws());
     	System.out.println("Longest Game" + model.getLongestGame());
     }
-
+     
+    public static void main(String[] args) {
+           DataGame model = DataGame.resetAndGetInstance(4);
+			model.startGame();
+			ViewCLI testview = new ViewCLI(model);
+			testview.nextRoundChoice();
+    
+    	
+    }
   
 }
