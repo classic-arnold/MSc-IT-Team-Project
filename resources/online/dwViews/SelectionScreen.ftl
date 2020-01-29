@@ -93,8 +93,18 @@
 		   border:0px;
 		}
 		.card-header:first-child {
-           border-radius: 0px;
-}
+           border-radius: 0px;         
+       }
+         /*LINK STYLES*/
+         a {
+           color: black;
+            }
+          a:hover{
+          color:black;
+          text-decoration: none;
+          
+          
+          }
 		
 		</style>
 		
@@ -111,10 +121,10 @@
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
          <li class="nav-item">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/toptrumps/game">Game <span class="sr-only">(current)</span></a>
          </li>
          <li class="nav-item">
-            <a class="nav-link" href="#">View Statistics</a>
+            <a class="nav-link" href="/toptrumps/stats">View Statistics</a>
          </li>
       </ul>
    </div>
@@ -130,21 +140,23 @@
 <div class="col-sm-9 section2  d-flex justify-content-center">
 <div class="row h-100 d-flex align-items-center">
 <div id="new-game-col" class="col-sm-6">
-<div class="card" style="width: 18rem;">
+<a href="/toptrumps/game"><div class="card" style="width: 18rem;">
  <div class="card-header"></div>
   <div class="card-body">
     <h5 class="card-title">New <br> Game</h5>
   </div>
 </div>
+</a>
 
 </div>
 <div class="col-sm-6">
-<div class="card" style="width: 18rem;">
+<a href="/toptrumps/stats"><div class="card" style="width: 18rem;">
  <div class="card-header"></div>
   <div class="card-body">
     <h5 class="card-title">View Statistics</h5>
   </div>
 </div>
+</a>
 </div>
 
 
