@@ -12,12 +12,15 @@ import java.sql.*;
  * */
 public class ProgramDatabase {
 
-	private static final String url="jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/m_19_2431088l";
-	private static final String userID="m_19_2431088l";
-	private static final String password="2431088l";
-	//	private final String url="jdbc:postgresql://localhost:5432/postgres";
-	//	private final String userID="postgres";
-	//	private final String password="qmffldqmffld3";
+	//When running database via lab desktop, release annotation below 3 line
+	//	private static final String url="jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/m_19_2431088l";
+	//	private static final String userID="m_19_2431088l";
+	//	private static final String password="2431088l";
+
+	//When running database via laptop(Estelle's), release annotation below 3 line
+	private static final String url="jdbc:postgresql://localhost:5432/postgres";
+	private static final String userID="postgres";
+	private static final String password="qmffldqmffld3";
 
 	private int gameCount;
 	private int humanWon;
@@ -71,8 +74,8 @@ public class ProgramDatabase {
 		return largestRound;
 	}
 
-	
-	
+
+
 	/**
 	 *  Connection method 
 	 *  @returns connection (DriverManager.getConnection)
@@ -133,8 +136,8 @@ public class ProgramDatabase {
 		}
 	}
 
-	
-	
+
+
 	/**
 	 * selection method
 	 * 
@@ -145,7 +148,7 @@ public class ProgramDatabase {
 	 * 'counts for draws',
 	 * 'largestRound'
 	 */	
-	public void selectGameStats(DataGame model, Connection conn) {
+	public void selectGameStats(Connection conn) {
 		try{
 			Statement stmt=conn.createStatement();
 
@@ -177,8 +180,8 @@ public class ProgramDatabase {
 	}
 
 
-	
-	
+
+
 	public static void main(String[] args) {
 		//load the JDBC driver
 		try {
