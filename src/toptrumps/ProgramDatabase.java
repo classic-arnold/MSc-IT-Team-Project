@@ -11,28 +11,20 @@ import java.sql.*;
  * postgresql-9.4-1206-jdbc4.jar
  * */
 public class ProgramDatabase {
-	
-//	private final String url="jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/m_19_2431088l";
-//	private final String userID="m_19_2431088l";
-//	private final String password="2431088l";
-	private final String url="jdbc:postgresql://localhost:5432/postgres";
-	private final String userID="postgres";
-	private final String password="qmffldqmffld3";
-	
+
+	private static final String url="jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/m_19_2431088l";
+	private static final String userID="m_19_2431088l";
+	private static final String password="2431088l";
+	//	private final String url="jdbc:postgresql://localhost:5432/postgres";
+	//	private final String userID="postgres";
+	//	private final String password="qmffldqmffld3";
+
 	private int gameCount;
 	private int humanWon;
 	private int AIWon;
 	private double draws;
 	private int largestRound;
-	
-	/**
-	 *  Connection method 
-	 *  @returns connection (DriverManager.getConnection)
-	 *  */
-	public Connection connection() throws SQLException{
-		return DriverManager.getConnection(url,userID,password);
-	}
-	
+
 	//Getters
 	/** 
 	 * Count game number
@@ -79,6 +71,18 @@ public class ProgramDatabase {
 		return largestRound;
 	}
 
+	
+	
+	/**
+	 *  Connection method 
+	 *  @returns connection (DriverManager.getConnection)
+	 *  */
+	public static Connection connection() throws SQLException{
+		return DriverManager.getConnection(url,userID,password);
+	}
+
+
+
 	/** 
 	 * insertion method
 	 * 
@@ -98,29 +102,29 @@ public class ProgramDatabase {
 	 * */
 	public void insertGameStats(DataGame model, Connection conn) throws SQLException {
 		String SQL="INSERT INTO TOPTRUMPS.GAMESTATS "
-	+"VALUES (default, ?,?,?,?,?,?,?,?)";
-		
+				+"VALUES (default, ?,?,?,?,?,?,?,?)";
+
 		try{
 			PreparedStatement pstmt=conn.prepareStatement(SQL);
-			
+
 			//get boolean value for isHumanWon
 			if(model.getGameWinner().getName()!="You") {
 				pstmt.setBoolean(1, false);
 			}else {
 				pstmt.setBoolean(1, true);
 			}
-			
+
 			//get int value for humanScore, AI1Score, AI2Score, AI3Score, AI4Score respectively
 			for(int i=0;i<model.getAllPlayers().length;i++) {
-	    		pstmt.setInt(2+i, model.getAllPlayers()[i].getScore());
-	    	}
-			
+				pstmt.setInt(2+i, model.getAllPlayers()[i].getScore());
+			}
+
 			//get int value for draws
 			pstmt.setInt(7, model.getNumberOfDraws());
-			
+
 			//get int value for total round number
 			pstmt.setInt(8, model.getRoundNumber());
-			
+
 			//execute the preparedstatement insert
 			pstmt.executeUpdate();
 			pstmt.close();
@@ -128,6 +132,8 @@ public class ProgramDatabase {
 			throw e;
 		}
 	}
+
+	
 	
 	/**
 	 * selection method
@@ -141,32 +147,36 @@ public class ProgramDatabase {
 	 */	
 	public void selectGameStats(DataGame model, Connection conn) {
 		try{
-				Statement stmt=conn.createStatement();
-				
-				ResultSet rs=stmt.executeQuery("select" + 
-						"	count(gameid) as gameCount," + 
-						"	count(*) filter(where isHumanWon) as humanWon," + 
-						"	count(*) filter(where not isHumanWon) as AIWon," + 
-						"	round(avg(draws)::numeric,1) as averageDraws," + 
-						"	max(roundNumber) as largestRound" + 
-						"from TopTrumps.gameStats;");
-				
-				while(rs.next()) {
-					gameCount=rs.getInt("gameCount");
-					humanWon=rs.getInt("humanWon");
-					AIWon=rs.getInt("AIWon");
-					draws=rs.getDouble("averageDraws");
-					largestRound=rs.getInt("largestRound");
-				}
-				rs.close();
-				stmt.close();
+			Statement stmt=conn.createStatement();
 
-				//close the connection to the database
-				conn.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}//try-catch exception
+			ResultSet rs=stmt.executeQuery("select" + 
+					"	count(gameid) as gameCount," + 
+					"	count(*) filter(where isHumanWon) as humanWon," + 
+					"	count(*) filter(where not isHumanWon) as AIWon," + 
+					"	round(avg(draws)::numeric,1) as averageDraws," + 
+					"	max(roundNumber) as largestRound" + 
+					"from TopTrumps.gameStats;");
+
+			while(rs.next()) {
+				gameCount=rs.getInt("gameCount");
+				humanWon=rs.getInt("humanWon");
+				AIWon=rs.getInt("AIWon");
+				draws=rs.getDouble("averageDraws");
+				largestRound=rs.getInt("largestRound");
+			}
+			rs.close();
+			stmt.close();
+
+			//close the connection to the database
+			conn.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}//try-catch exception
+
+
 	}
+
+
 	
 	
 	public static void main(String[] args) {
@@ -182,12 +192,9 @@ public class ProgramDatabase {
 		//the driver is loaded
 		System.out.println("PostgreSQL JDBC Driver found!");
 
-		//proceed with a database connection
-		Connection connection = null;
-		
 		//connect to the yacata.dcs.gla.ac.uk server, on port=5432
 		try {
-			connection=DriverManager.getConnection("jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/m_19_2431088l", "m_19_2431088l", "2431088l");
+			connection();
 			System.out.println("Opened database successfully");
 		}catch(SQLException e) {
 			System.out.println("Connection Failed!");
@@ -196,5 +203,7 @@ public class ProgramDatabase {
 		}catch(Exception e) {
 			System.exit(0);
 		}//try-catch exception
+
+
 	}
 }
