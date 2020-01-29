@@ -134,8 +134,8 @@
 <div class="alert alert-info" role="alert">
    STATUS BAR
 </div>
-<div>
-   <div>
+</div>
+   </div>
       <div class="row justify-content-center">
          <div class="card-deck">
             <div class="card" style="width: 3rem;">
