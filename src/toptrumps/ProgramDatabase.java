@@ -12,9 +12,12 @@ import java.sql.*;
  * */
 public class ProgramDatabase {
 	
-	private final String url="jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/m_19_2431088l";
-	private final String userID="m_19_2431088l";
-	private final String password="2431088l";
+//	private final String url="jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/m_19_2431088l";
+//	private final String userID="m_19_2431088l";
+//	private final String password="2431088l";
+	private final String url="jdbc:postgresql://localhost:5432/postgres";
+	private final String userID="postgres";
+	private final String password="qmffldqmffld3";
 	
 	private int gameCount;
 	private int humanWon;
@@ -149,16 +152,16 @@ public class ProgramDatabase {
 						"from TopTrumps.gameStats;");
 				
 				while(rs.next()) {
-					int gameCount=rs.getInt("gameCount");
-					int humanWon=rs.getInt("humanWon");
-					int AIWon=rs.getInt("AIWon");
-					double draws=rs.getDouble("averageDraws");
-					int largestRound=rs.getInt("largestRound");
+					gameCount=rs.getInt("gameCount");
+					humanWon=rs.getInt("humanWon");
+					AIWon=rs.getInt("AIWon");
+					draws=rs.getDouble("averageDraws");
+					largestRound=rs.getInt("largestRound");
 				}
 				rs.close();
 				stmt.close();
 
-				//do not forget to close the connection to the database
+				//close the connection to the database
 				conn.close();
 			}catch(SQLException e) {
 				e.printStackTrace();
