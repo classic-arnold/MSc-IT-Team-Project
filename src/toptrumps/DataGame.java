@@ -102,7 +102,7 @@ public class DataGame{
 
 	/** represents if a human won last */
 	private boolean didHumanWinLast;
-	
+
 	/** represents the last round winner */
 	private DataPlayer roundLastWinner;
 
@@ -216,7 +216,7 @@ public class DataGame{
 		this.roundWinningPlayers.clear(); // clear last round details
 		this.roundWinningCards.clear(); // clear last round details
 		this.roundAIPlayerCards.clear(); // clear last round details
-		
+
 		this.roundCategory = category;
 
 
@@ -249,7 +249,7 @@ public class DataGame{
 			//			player.getDeck().remove(0); // moved elsewhere
 		}
 
-//		System.out.println("size: " + this.activePlayers.size());
+		//		System.out.println("size: " + this.activePlayers.size());
 
 		//		// set players have drawn cards to true, for the round
 		//		this.roundHasPlayersDrawnCards = true;
@@ -285,7 +285,7 @@ public class DataGame{
 			} else {
 				this.didHumanWinLast = false;
 			}
-			
+
 			this.roundLastWinner = this.roundWinningPlayers.get(0); // stores last round winner
 
 			// REMOVE START
@@ -586,7 +586,7 @@ public class DataGame{
 		//			Database.setNumberOfDraws(this.numberOfDraws);
 
 		//			Database.setRoundNumber(this.roundNumber);
-//		System.out.println("round: "+this.roundNumber);
+		//		System.out.println("round: "+this.roundNumber);
 	}
 
 	// GETTER METHODS START
@@ -670,7 +670,7 @@ public class DataGame{
 	public int getNumberOfCardsInCommonPile() {
 		return this.commonDeck.size();
 	}
-	
+
 	/**
 	 * get cards in common pile
 	 * @return DataCard array containing the cards in the common pile
@@ -678,7 +678,7 @@ public class DataGame{
 	public DataCard[] getCardsInCommonPile() {
 		return DataGame.arrayListToArrayCard(this.commonDeck);
 	}
-	
+
 	/**
 	 * get the round last winner
 	 * @return DataPlayer representing the last winner
@@ -710,7 +710,7 @@ public class DataGame{
 	public DataCard getRoundWinningCard() {
 		return this.roundWinningCards.get(0);
 	}
-	
+
 	/**
 	 * get round winning card. The card string with winning arrow added.
 	 * @param category the current category selection

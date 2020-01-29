@@ -18,12 +18,14 @@ public class Controller {
 		this.writeGameLogsToFile = writeGameLogsToFile;
 	}
 
-	public void startGame() {
+	public int startGame() {
 		int startChoice = this.viewCli.chooseDisplay();
 
 		if(startChoice == 1) {	
 			this.viewCli.displayStats();
 		} else if(startChoice == 2) {
+
+			String continueOrEndGameChoice = null;
 
 			this.dataGame.startGame();
 
@@ -46,17 +48,34 @@ public class Controller {
 				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
 
 				this.viewCli.displayRoundResult(DataGame.CATEGORYNAMES[category-1]);
-				
-//				this.testLog.printSomething;
+
+				//				this.testLog.printSomething;
+
+				continueOrEndGameChoice = this.viewCli.nextRoundChoice();
+
+				System.out.print(continueOrEndGameChoice);
+
+				if(continueOrEndGameChoice.contentEquals("")) {
+
+				} else if (continueOrEndGameChoice.contentEquals("q")) {
+					break;
+				}
 
 				this.dataGame.incrementRound();
 
 			}
 
-			this.viewCli.gameEnd();
+			if(continueOrEndGameChoice.contentEquals("")) {
+				this.viewCli.gameEnd();
+			} else if (continueOrEndGameChoice.contentEquals("q")) {
+				//	this.viewCli.gameEndByUser();
+			}
 
+		} else {
+			return 1;
 		}
-
+			
+		return 0;
 	}
 
 	public int getRandomCategory() {
