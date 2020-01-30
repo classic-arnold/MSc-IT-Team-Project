@@ -67,9 +67,7 @@ public class Controller {
 
 //				System.out.print(continueOrEndGameChoice);
 
-				if(continueOrEndGameChoice.contentEquals("")) {
-
-				} else if (continueOrEndGameChoice.contentEquals("q")) {
+				if (continueOrEndGameChoice.contentEquals("q")) {
 					break;
 				}
 
