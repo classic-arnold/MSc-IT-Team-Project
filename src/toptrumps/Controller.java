@@ -6,24 +6,31 @@ import toptrumps.DataGame;
 
 /**
  * The controller update the Model and View according to user input
+ * 
+ * @author Team TRY-CATCH - Jialiang Song 2410536s
  */
 public class Controller {
 	private DataGame dataGame;
 	private ViewCLI viewCli;
 	private boolean writeGameLogsToFile;
+	private TestLog testlog;
 
 	public Controller(DataGame dataGame, ViewCLI viewCli, boolean writeGameLogsToFile) {
 		this.dataGame = dataGame;
 		this.viewCli = viewCli;
 		this.writeGameLogsToFile = writeGameLogsToFile;
+		
+		testlog = new TestLog (dataGame);
 	}
 
-	public void startGame() {
+	public int startGame() {
 		int startChoice = this.viewCli.chooseDisplay();
 
 		if(startChoice == 1) {	
 			this.viewCli.displayStats();
 		} else if(startChoice == 2) {
+
+			String continueOrEndGameChoice = null;
 
 			this.dataGame.startGame();
 
@@ -46,17 +53,34 @@ public class Controller {
 				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
 
 				this.viewCli.displayRoundResult(DataGame.CATEGORYNAMES[category-1]);
-				
-//				this.testLog.printSomething;
+
+				//				this.testLog.printSomething;
+
+				continueOrEndGameChoice = this.viewCli.nextRoundChoice();
+
+				System.out.print(continueOrEndGameChoice);
+
+				if(continueOrEndGameChoice.contentEquals("")) {
+
+				} else if (continueOrEndGameChoice.contentEquals("q")) {
+					break;
+				}
 
 				this.dataGame.incrementRound();
 
 			}
 
-			this.viewCli.gameEnd();
+			if(continueOrEndGameChoice.contentEquals("")) {
+				this.viewCli.gameEnd();
+			} else if (continueOrEndGameChoice.contentEquals("q")) {
+				//	this.viewCli.gameEndByUser();
+			}
 
+		} else {
+			return 1;
 		}
-
+			
+		return 0;
 	}
 
 	public int getRandomCategory() {

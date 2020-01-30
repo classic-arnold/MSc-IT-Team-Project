@@ -3,3 +3,4 @@ resources/.DS_Store
 /target/
 .classpath
 .settings/org.eclipse.jdt.core.prefs
+.DS_Store
