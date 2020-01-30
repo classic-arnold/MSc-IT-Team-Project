@@ -8,6 +8,7 @@ import java.util.Random;
 /*
  * 
  * NOTE TO TEAM
+
  * We should use singleton design pattern to ensure this object is only created once to avoid hard to detect bugs, as the program is quite complex.
  * Do not bother about enums. I'm using it only in the model. It makes my work easier and i can convert to string for anyone to use.
  *
@@ -22,6 +23,7 @@ import java.util.Random;
  * TODO: Reduce couplings and increase cohesion
  * TODO: Maybe create abstract class Cardable and move all deck methods there
  * TODO: Deal with all warnings
+ * TODO: Refactor database to prevent object creation everytime
  *
  */
 
@@ -783,48 +785,68 @@ public class DataGame{
 	//		return this.didHumanWinLast;
 	//	}
 
-	//	GETTERS FROM DATABASE - waiting on Estelle
-	//	public static int getNumberOfHumanWinsDB() {
-	//		return ProgramDatabase.getNumberOfHumanWins();
-	//	}
-	//	
-	//	public static int getNumberOfAIWinsDB() {
-	//		return ProgramDatabase.getNumberOfAIWins();
-	//	}
-	//	
-	//	public static int getNumberOfGamesDB() {
-	//		return ProgramDatabase.getNumberOfGames();
-	//	}
-	//	
-	//	public static int getAvgNumberOfDrawsDB() {
-	//		return ProgramDatabase.getAvgNumberOfDraws();
-	//	}
-	//	
-	//	public static int getLongestGameDB() {
-	//		return ProgramDatabase.getLongestGame();
-	//	}
+	//		GETTERS FROM DATABASE - waiting on Estelle
+	/**
+	 * get number of human wins from database
+	 * @return int representing number of human wins
+	 */
+	public static int getNumberOfHumanWins() {
+		return new ProgramDatabase().getHumanWon();
+	}
+
+	/**
+	 * get number of ai wins from database
+	 * @return int representing number of ai wins
+	 */
+	public static int getNumberOfAIWins() {
+		return new ProgramDatabase().getAIWon();
+	}
+
+	/**
+	 * get number of games played from database
+	 * @return int representing number of games played
+	 */
+	public static int getNumberOfGames() {
+		return new ProgramDatabase().getGameCount();
+	}
+
+	/**
+	 * get the average number of draws that have occurred during all games from database
+	 * @return double representing the average of all draws
+	 */
+	public static double getAvgNumberOfDraws() {
+		return new ProgramDatabase().getDraws();
+	}
+
+	/**
+	 * get the number of rounds in the longest game from database
+	 * @return int representing number of rounds in the longest game
+	 */
+	public static int getLongestGame() {
+		return new ProgramDatabase().getLargestRound();
+	}
 
 	// REMOVE START
 	// FAKE GETTERS FROM DATABASE - returns mock values
-	public int getNumberOfHumanWins() {
-		return 2;
-	}
-
-	public int getNumberOfAIWins() {
-		return 2;
-	}
-
-	public int getNumberOfGames() {
-		return 56;
-	}
-
-	public int getAvgNumberOfDraws() {
-		return 4;
-	}
-
-	public int getLongestGame() {
-		return 55;
-	}
+	//	public int getNumberOfHumanWins() {
+	//		return 2;
+	//	}
+	//
+	//	public int getNumberOfAIWins() {
+	//		return 2;
+	//	}
+	//
+	//	public int getNumberOfGames() {
+	//		return 56;
+	//	}
+	//
+	//	public int getAvgNumberOfDraws() {
+	//		return 4;
+	//	}
+	//
+	//	public int getLongestGame() {
+	//		return 55;
+	//	}
 	// REMOVE END
 
 	// GETTER METHODS END

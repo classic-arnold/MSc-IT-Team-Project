@@ -103,7 +103,7 @@ public class ProgramDatabase {
 	 * 'roundNumber:int' 
 	 * into Database table.
 	 * */
-	public void insertGameStats(DataGame model, Connection conn) throws SQLException {
+	public void insertGameStats(DataGame model, Connection conn) {
 		String SQL="INSERT INTO TOPTRUMPS.GAMESTATS "
 				+"VALUES (default, ?,?,?,?,?,?,?,?)";
 
@@ -132,7 +132,7 @@ public class ProgramDatabase {
 			pstmt.executeUpdate();
 			pstmt.close();
 		}catch(SQLException e) {
-			throw e;
+			e.printStackTrace();
 		}
 	}
 
