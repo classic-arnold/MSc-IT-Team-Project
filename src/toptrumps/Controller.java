@@ -6,16 +6,21 @@ import toptrumps.DataGame;
 
 /**
  * The controller update the Model and View according to user input
+ * 
+ * @author Team TRY-CATCH - Jialiang Song 2410536s
  */
 public class Controller {
 	private DataGame dataGame;
 	private ViewCLI viewCli;
 	private boolean writeGameLogsToFile;
+	private TestLog testlog;
 
 	public Controller(DataGame dataGame, ViewCLI viewCli, boolean writeGameLogsToFile) {
 		this.dataGame = dataGame;
 		this.viewCli = viewCli;
 		this.writeGameLogsToFile = writeGameLogsToFile;
+		
+		testlog = new TestLog (dataGame);
 	}
 
 	public int startGame() {
