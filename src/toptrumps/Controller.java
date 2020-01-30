@@ -40,12 +40,12 @@ public class Controller {
 
 
 				if(this.dataGame.getRoundNumber() == 1) {
-					category = this.getRandomCategory();
+					category = this.dataGame.getBestCategoryForCurrentAIPlayers(this.dataGame.getFirstPlayer());
 				} else if(this.dataGame.shouldHumanChooseCategory()) {
 					category = this.viewCli.displayCategorySelection();
-					//            			category = 2;
+					// category = 2;
 				} else {
-					category = this.getRandomCategory();
+					category = this.dataGame.getBestCategoryForCurrentAIPlayers();
 				}
 
 				// int category = this.viewCli.displayCategorySelection();

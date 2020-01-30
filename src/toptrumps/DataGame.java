@@ -1,7 +1,7 @@
 package toptrumps;
 
 import java.util.ArrayList;
-
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
@@ -108,6 +108,11 @@ public class DataGame{
 
 	/** represents the last round winner */
 	private DataPlayer roundLastWinner;
+	
+	/** represents the last round winner */
+	private DataPlayer firstPlayer;
+	
+	private boolean didHumanPlayFirst;
 
 	/**
 	 * creates a new DataGame Object
@@ -137,6 +142,44 @@ public class DataGame{
 			DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers);
 		}
 		return DataGame.instance;
+	}
+	
+	public DataPlayer getFirstPlayer() {
+		Random r = new Random();
+		this.firstPlayer = this.activePlayers.get(r.nextInt(this.activePlayers.size()));
+		if(this.firstPlayer.getType()==DataPlayer.PlayerType.HUMAN) {
+			this.didHumanPlayFirst = true;
+		} else {
+			this.didHumanPlayFirst = false;
+		}
+		return this.firstPlayer;
+	}
+	
+	public int getBestCategoryForCurrentAIPlayers(DataPlayer player) {
+		if(player.getType()==DataPlayer.PlayerType.AI) {
+//			System.out.println(player.getDeck().get(0).findTopCategory());
+			return player.getDeck().get(0).findTopCategory();
+		}
+		
+		return 0;
+	}
+	
+	public int getBestCategoryForCurrentAIPlayers() {
+		
+		DataPlayer player;
+		
+		if (this.roundLastWinner != null) {
+			player = this.roundLastWinner;
+		} else {
+			player = this.firstPlayer;
+		}
+		
+		if(player.getType()==DataPlayer.PlayerType.AI) {
+//			System.out.println(player.getDeck().get(0).findTopCategory());
+			return player.getDeck().get(0).findTopCategory();
+		}
+		
+		return 0;
 	}
 
 	/**
@@ -203,6 +246,8 @@ public class DataGame{
 			}
 		} else {
 			if(this.didHumanWinLast) {
+				return true;
+			} else if (this.didHumanPlayFirst){
 				return true;
 			} else {
 				return false;
@@ -348,7 +393,7 @@ public class DataGame{
 	 * @return ArrayList representing lists of cards in new deck
 	 */
 	public ArrayList<DataCard> getNewDeck() {
-		return DataGame.arrayToArrayList(DataCardCache.getAllCardsInOrder());
+		return new ArrayList<DataCard>(Arrays.asList(DataCardCache.getAllCardsInOrder()));
 	}
 
 	/**
@@ -524,20 +569,20 @@ public class DataGame{
 		return shuffledDeck;
 	}
 
-	/**
-	 * Static method used to convert an array of objects of generic types to an ArrayList
-	 * @param <t> generic type
-	 * @param array original array
-	 * @return an ArrayList shallow copy of array
-	 */
-	public static <t> ArrayList<t> arrayToArrayList(t[] array){
-		ArrayList<t> arrayList = new ArrayList<t>();
-		// copy all elements in order
-		for(int i = 0; i<array.length;i++) {
-			arrayList.add(array[i]);
-		}
-		return arrayList;
-	}
+//	/**
+//	 * Static method used to convert an array of objects of generic types to an ArrayList
+//	 * @param <t> generic type
+//	 * @param array original array
+//	 * @return an ArrayList shallow copy of array
+//	 */
+//	public static <t> ArrayList<t> arrayToArrayList(t[] array){
+//		ArrayList<t> arrayList = new ArrayList<t>();
+//		// copy all elements in order
+//		for(int i = 0; i<array.length;i++) {
+//			arrayList.add(array[i]);
+//		}
+//		return arrayList;
+//	}
 
 //	/**
 //	 * Static method used to convert an ArrayList of Generic to an array

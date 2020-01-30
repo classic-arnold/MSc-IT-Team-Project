@@ -106,6 +106,25 @@ class DataCard implements Cloneable{
 		
 		throw new exceptions.CategoryNotFoundException(); // if category does not exist
 	}
+	
+	public int findTopCategory() {
+		if(this.category1>=this.category2 && this.category1>=this.category3 && this.category1>=this.category4 && this.category1>=this.category5) {
+			return 1;
+		}
+		if(this.category2>=this.category1 && this.category2>=this.category3 && this.category2>=this.category4 && this.category2>=this.category5) {
+			return 2;
+		}
+		if(this.category3>=this.category1 && this.category3>=this.category2 && this.category3>=this.category4 && this.category3>=this.category5) {
+			return 3;
+		}
+		if(this.category4>=this.category1 && this.category4>=this.category2 && this.category4>=this.category3 && this.category4>=this.category5) {
+			return 4;
+		}
+		if(this.category5>=this.category1 && this.category5>=this.category2 && this.category5>=this.category3 && this.category5>=this.category4) {
+			return 5;
+		}
+		return 0;
+	}
 
 	// GETTER METHODS START
 
