@@ -1,6 +1,7 @@
 package toptrumps;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
@@ -39,7 +40,7 @@ public class DataGame{
 	private static DataGame instance = null;
 
 	/** represents an array of the category names */
-	public static final String[] CATEGORYNAMES = {"size", "speed", "range", "firePower", "cargo"};
+	public static String[] CATEGORYNAMES;
 
 	/** represents the list of players in the game */
 	private ArrayList<DataPlayer> activePlayers = new ArrayList<DataPlayer>();
@@ -258,7 +259,7 @@ public class DataGame{
 
 
 		// holds the winning cards and winning players
-		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(DataGame.arrayListToArrayCard(roundCards), category);
+		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(roundCards.toArray(new DataCard[roundCards.size()]), category);
 
 		// set round winning cards
 		this.roundWinningCards = (ArrayList<DataCard>)winningCardsAndPlayers.get("winning cards");
@@ -538,35 +539,35 @@ public class DataGame{
 		return arrayList;
 	}
 
-	/**
-	 * Static method used to convert an ArrayList of DataCard to an array
-	 * @param arrayList original array list
-	 * @return an array shallow copy of ArrayList
-	 */
-	public static DataCard[] arrayListToArrayCard(ArrayList<DataCard> arrayList){
-		int length = arrayList.size();
-		DataCard[] array = new DataCard[length];
-		// copy all elements in order
-		for(int i = 0; i<length;i++) {
-			array[i] = arrayList.get(i);
-		}
-		return array;
-	}
+//	/**
+//	 * Static method used to convert an ArrayList of Generic to an array
+//	 * @param arrayList original array list
+//	 * @return an array shallow copy of ArrayList
+//	 */
+//	public static <E> E[] arrayListToArray(ArrayList<E> arrayList){
+//		int length = arrayList.size();
+//		E[] array = (E[]) new Object[length];
+//		// copy all elements in order
+//		for(int i = 0; i<length;i++) {
+//			array[i] = arrayList.get(i);
+//		}
+//		return array;
+//	}
 
-	/**
-	 * Static method used to convert an ArrayList of DataPlayer to an array
-	 * @param arrayList original array list
-	 * @return an array shallow copy of ArrayList
-	 */
-	public static DataPlayer[] arrayListToArrayPlayer(ArrayList<DataPlayer> arrayList){
-		int length = arrayList.size();
-		DataPlayer[] array = new DataPlayer[length];
-		// copy all elements in order
-		for(int i = 0; i<length;i++) {
-			array[i] = arrayList.get(i);
-		}
-		return array;
-	}
+//	/**
+//	 * Static method used to convert an ArrayList of DataPlayer to an array
+//	 * @param arrayList original array list
+//	 * @return an array shallow copy of ArrayList
+//	 */
+//	public static DataPlayer[] arrayListToArrayPlayer(ArrayList<DataPlayer> arrayList){
+//		int length = arrayList.size();
+//		DataPlayer[] array = new DataPlayer[length];
+//		// copy all elements in order
+//		for(int i = 0; i<length;i++) {
+//			array[i] = arrayList.get(i);
+//		}
+//		return array;
+//	}
 
 	/**
 	 * Updates database, using methods provided in the database class
@@ -598,7 +599,7 @@ public class DataGame{
 	 */
 	// this might not be useful(for CLI at least)
 	public DataCard[] getCompleteDeckAsArray() {
-		return DataGame.arrayListToArrayCard(this.originalDeck);
+		return this.originalDeck.toArray(new DataCard[this.originalDeck.size()]);
 	}
 
 	/**
@@ -606,7 +607,7 @@ public class DataGame{
 	 * @return DataCard array containing all cards in initial unshuffled deck
 	 */
 	public DataCard[] getInitialUnshuffledDeck() {
-		return DataGame.arrayListToArrayCard(this.initialUnshuffledDeck);
+		return this.initialUnshuffledDeck.toArray(new DataCard[this.initialUnshuffledDeck.size()]);
 	}
 
 	/**
@@ -614,7 +615,7 @@ public class DataGame{
 	 * @return DataCard array containing all cards in initial shuffled deck
 	 */
 	public DataCard[] getInitialShuffledDeck() {
-		return DataGame.arrayListToArrayCard(this.initialShuffledDeck);
+		return this.initialShuffledDeck.toArray(new DataCard[this.initialShuffledDeck.size()]);
 	}
 
 	/**
@@ -638,7 +639,7 @@ public class DataGame{
 	 * @return DataPlayer array containing active players still in the game
 	 */
 	public DataPlayer[] getActivePlayers() {
-		return DataGame.arrayListToArrayPlayer(this.activePlayers);
+		return this.activePlayers.toArray(new DataPlayer[this.activePlayers.size()]);
 	}
 
 	/**
@@ -646,7 +647,7 @@ public class DataGame{
 	 * @return DataPlayer array containing all players still in the game
 	 */
 	public DataPlayer[] getAllPlayers() {
-		return DataGame.arrayListToArrayPlayer(this.allPlayers);
+		return this.allPlayers.toArray(new DataPlayer[this.allPlayers.size()]);
 	}
 
 	/**
@@ -678,7 +679,7 @@ public class DataGame{
 	 * @return DataCard array containing the cards in the common pile
 	 */
 	public DataCard[] getCardsInCommonPile() {
-		return DataGame.arrayListToArrayCard(this.commonDeck);
+		return this.commonDeck.toArray(new DataCard[this.commonDeck.size()]);
 	}
 
 	/**
@@ -759,7 +760,7 @@ public class DataGame{
 	 * @return DataCard array representing the cards drawn by AI player
 	 */
 	public DataCard[] getRoundAIPlayerCards() {
-		return DataGame.arrayListToArrayCard(this.roundAIPlayerCards);
+		return this.roundAIPlayerCards.toArray(new DataCard[this.roundAIPlayerCards.size()]);
 	}
 
 	/**
