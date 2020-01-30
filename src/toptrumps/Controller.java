@@ -65,7 +65,7 @@ public class Controller {
 
 				continueOrEndGameChoice = this.viewCli.nextRoundChoice();
 
-				System.out.print(continueOrEndGameChoice);
+//				System.out.print(continueOrEndGameChoice);
 
 				if(continueOrEndGameChoice.contentEquals("")) {
 

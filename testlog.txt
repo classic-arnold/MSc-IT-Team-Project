@@ -88,85 +88,85 @@ Initial Shuffled Deck
 
 Description Size Speed Range Firepower Cargo
 
-Hornet 2 5 3 4 1
+Constellation 4 5 7 3 4
 
 Orion 10 1 6 2 9
-
-Hornet 2 5 3 4 1
-
-Merchantman 7 3 5 6 8
-
-Merchantman 7 3 5 6 8
-
-Avenger 2 5 4 3 2
-
-m50 1 10 2 2 0
-
-Idris 8 2 7 10 6
-
-m50 1 10 2 2 0
-
-Hurricane 2 5 3 5 0
-
-Hawk 1 3 2 4 0
-
-Hornet 2 5 3 4 1
-
-Vanguard 3 4 5 5 2
-
-350r 1 9 2 3 0
-
-Avenger 2 5 4 3 2
-
-Orion 10 1 6 2 9
-
-Orion 10 1 6 2 9
-
-Hurricane 2 5 3 5 0
-
-350r 1 9 2 3 0
-
-Hurricane 2 5 3 5 0
-
-Hawk 1 3 2 4 0
-
-Carrack 6 2 10 4 6
-
-Avenger 2 5 4 3 2
 
 Sabre 2 7 2 5 0
 
 Vanguard 3 4 5 5 2
 
-Carrack 6 2 10 4 6
+350r 1 9 2 3 0
 
 Merchantman 7 3 5 6 8
 
-Constellation 4 5 7 3 4
+Merchantman 7 3 5 6 8
+
+Hornet 2 5 3 4 1
+
+Idris 8 2 7 10 6
+
+Hawk 1 3 2 4 0
+
+Carrack 6 2 10 4 6
+
+Orion 10 1 6 2 9
+
+Idris 8 2 7 10 6
+
+Carrack 6 2 10 4 6
+
+Avenger 2 5 4 3 2
+
+m50 1 10 2 2 0
+
+350r 1 9 2 3 0
+
+Avenger 2 5 4 3 2
+
+Hurricane 2 5 3 5 0
+
+Avenger 2 5 4 3 2
+
+Hawk 1 3 2 4 0
+
+Carrack 6 2 10 4 6
 
 Constellation 4 5 7 3 4
+
+Hawk 1 3 2 4 0
+
+m50 1 10 2 2 0
 
 Vanguard 3 4 5 5 2
 
 Idris 8 2 7 10 6
 
+Merchantman 7 3 5 6 8
+
 Constellation 4 5 7 3 4
 
 350r 1 9 2 3 0
 
-Hawk 1 3 2 4 0
-
-Avenger 2 5 4 3 2
-
-Idris 8 2 7 10 6
-
-Carrack 6 2 10 4 6
+Vanguard 3 4 5 5 2
 
 m50 1 10 2 2 0
 
 Sabre 2 7 2 5 0
 
+Orion 10 1 6 2 9
+
+Hornet 2 5 3 4 1
+
 Sabre 2 7 2 5 0
+
+Hurricane 2 5 3 5 0
+
+Avenger 2 5 4 3 2
+
+Hurricane 2 5 3 5 0
+
+Hornet 2 5 3 4 1
 
 ------------------------------------------------------------------------
 
@@ -176,63 +176,67 @@ You
 
 Description Size Speed Range Firepower Cargo
 
+Merchantman 7 3 5 6 8
+
+Hornet 2 5 3 4 1
+
+Sabre 2 7 2 5 0
+
+Carrack 6 2 10 4 6
+
+Hurricane 2 5 3 5 0
+
+Idris 8 2 7 10 6
+
 Hornet 2 5 3 4 1
 
 Orion 10 1 6 2 9
 
-Hornet 2 5 3 4 1
-
-Merchantman 7 3 5 6 8
-
-Merchantman 7 3 5 6 8
+Hawk 1 3 2 4 0
 
 Avenger 2 5 4 3 2
 
-m50 1 10 2 2 0
+Vanguard 3 4 5 5 2
+
+Orion 10 1 6 2 9
+
+350r 1 9 2 3 0
 
 Idris 8 2 7 10 6
+
+Hawk 1 3 2 4 0
+
+Constellation 4 5 7 3 4
+
+Hurricane 2 5 3 5 0
 
 ----------------------------
 AI Player 1
 
 Description Size Speed Range Firepower Cargo
 
+Avenger 2 5 4 3 2
+
 m50 1 10 2 2 0
 
-Hurricane 2 5 3 5 0
+Constellation 4 5 7 3 4
 
-Hawk 1 3 2 4 0
-
-Hornet 2 5 3 4 1
-
-Vanguard 3 4 5 5 2
+Idris 8 2 7 10 6
 
 350r 1 9 2 3 0
 
-Avenger 2 5 4 3 2
+m50 1 10 2 2 0
 
-Orion 10 1 6 2 9
+Sabre 2 7 2 5 0
 
 ----------------------------
 AI Player 2
 
 Description Size Speed Range Firepower Cargo
 
-Orion 10 1 6 2 9
-
-Hurricane 2 5 3 5 0
-
-350r 1 9 2 3 0
-
-Hurricane 2 5 3 5 0
+Constellation 4 5 7 3 4
 
 Hawk 1 3 2 4 0
-
-Carrack 6 2 10 4 6
-
-Avenger 2 5 4 3 2
-
-Sabre 2 7 2 5 0
 
 ----------------------------
 AI Player 3
@@ -241,38 +245,34 @@ Description Size Speed Range Firepower Cargo
 
 Vanguard 3 4 5 5 2
 
-Carrack 6 2 10 4 6
+m50 1 10 2 2 0
 
 Merchantman 7 3 5 6 8
 
-Constellation 4 5 7 3 4
+Carrack 6 2 10 4 6
 
-Constellation 4 5 7 3 4
+Carrack 6 2 10 4 6
 
-Vanguard 3 4 5 5 2
+350r 1 9 2 3 0
 
-Idris 8 2 7 10 6
-
-Constellation 4 5 7 3 4
+Avenger 2 5 4 3 2
 
 ----------------------------
 AI Player 4
 
 Description Size Speed Range Firepower Cargo
 
-350r 1 9 2 3 0
+Hurricane 2 5 3 5 0
 
-Hawk 1 3 2 4 0
+Hornet 2 5 3 4 1
+
+Vanguard 3 4 5 5 2
+
+Orion 10 1 6 2 9
 
 Avenger 2 5 4 3 2
 
-Idris 8 2 7 10 6
-
-Carrack 6 2 10 4 6
-
-m50 1 10 2 2 0
-
-Sabre 2 7 2 5 0
+Merchantman 7 3 5 6 8
 
 Sabre 2 7 2 5 0
 
@@ -285,21 +285,21 @@ You
 
 Description Size Speed Range Firepower Cargo
 
-Hornet 2 5 3 4 1
+Merchantman 7 3 5 6 8
 
 ----------------------------
 AI Player 1
 
 Description Size Speed Range Firepower Cargo
 
-m50 1 10 2 2 0
+Avenger 2 5 4 3 2
 
 ----------------------------
 AI Player 2
 
 Description Size Speed Range Firepower Cargo
 
-Orion 10 1 6 2 9
+Constellation 4 5 7 3 4
 
 ----------------------------
 AI Player 3
@@ -313,7 +313,7 @@ AI Player 4
 
 Description Size Speed Range Firepower Cargo
 
-350r 1 9 2 3 0
+Hurricane 2 5 3 5 0
 
 ----------------------------
 Communal Pile Contents
