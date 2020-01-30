@@ -2,6 +2,8 @@ package toptrumps;
 
 import java.util.Scanner;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 /**
  * ViewCLI- creates the commandline view for the TopTrumps application
  *  @author Team TRY-CATCH - Anne-Marie Gill 2431989G
@@ -20,12 +22,25 @@ public class ViewCLI {
     
     //display initial options for user
     public int chooseDisplay() {
-        System.out.println("Do you want to see past results or play a game");
-        System.out.println("1:Print Game Statistics");
-        System.out.println("2:Play game");
-        System.out.print("Enter the number for your selection:");
-        Scanner choiceIn = new Scanner(System.in);
-        int startChoice = choiceIn.nextInt();
+    	String getInput=null;
+    	int startChoice=1;
+    	boolean redo=false;
+    	while(!NumberUtils.isParsable(getInput) ||startChoice<1 ||startChoice>2) {
+    		 if(redo) {
+    			 System.out.println("\n Invalid input.Please input 1 or 2");
+    		 }
+    		 System.out.println("Do you want to see past results or play a game");
+    	        System.out.println("1:Print Game Statistics");
+    	        System.out.println("2:Play game");
+    	        System.out.print("Enter the number for your selection:");
+    	        Scanner choiceIn = new Scanner(System.in);
+    	        getInput= choiceIn.nextLine();
+    	        redo=true;
+    	        if(NumberUtils.isParsable(getInput)) {
+    	       	 startChoice=Integer.parseInt(getInput);
+    	        }
+    	}
+       
        
         return startChoice;
     }
@@ -55,16 +70,29 @@ public class ViewCLI {
     
     //display category selection menu
     public int displayCategorySelection() {
-        System.out.println("It is your turn to select a category, the categories are: ");
-        System.out.println("1: " + DataGame.CATEGORYNAMES[0]);
-        System.out.println("2: " + DataGame.CATEGORYNAMES[1]);
-        System.out.println("3: " + DataGame.CATEGORYNAMES[2]);
-        System.out.println("4: " + DataGame.CATEGORYNAMES[3]);;
-        System.out.println("5: " + DataGame.CATEGORYNAMES[4]);
-        System.out.print("Enter the number for your attribute: ");
-        Scanner categoryIn = new Scanner(System.in);
-        int categoryChoice = categoryIn.nextInt();
-        categoryIn.nextLine();
+    	 String getInput = null;
+    	 int categoryChoice =0;
+    	 boolean redo=false;
+    	 while(!NumberUtils.isParsable(getInput) ||categoryChoice<0 || categoryChoice>5) {
+    		 if(redo) {
+    			 System.out.println("\n Invalid input.Please input a number between 1 and 5");
+    		 }
+    		   System.out.println("It is your turn to select a category, the categories are: ");
+    	        System.out.println("1: " + DataGame.CATEGORYNAMES[0]);
+    	        System.out.println("2: " + DataGame.CATEGORYNAMES[1]);
+    	        System.out.println("3: " + DataGame.CATEGORYNAMES[2]);
+    	        System.out.println("4: " + DataGame.CATEGORYNAMES[3]);;
+    	        System.out.println("5: " + DataGame.CATEGORYNAMES[4]);
+    	        System.out.print("Enter the number for your attribute: ");
+    	        Scanner categoryIn = new Scanner(System.in);
+    	         getInput=categoryIn.nextLine();
+    	         redo=true;
+    	         if(NumberUtils.isParsable(getInput)) {
+    	        	 categoryChoice=Integer.parseInt(getInput);
+    	         }
+    	 }
+      
+        
         return categoryChoice;
     }
 

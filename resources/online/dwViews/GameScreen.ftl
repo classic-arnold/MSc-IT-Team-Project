@@ -60,6 +60,16 @@
 	        background-color: #DCE6E5;
         }
         
+        #status-col{
+        padding:0px;
+        
+        }
+        .alert{
+        border-radius:0;
+        border:none;
+        
+        }
+        
 		
 		
 		/*Card Styles*/
@@ -130,7 +140,7 @@
 </div>
 <div class="col-sm-9 section2">
 <div class="row">
-<div class=col-sm-12>
+<div id="status-col" class="col-sm-12">
 <div class="alert alert-info" role="alert">
    STATUS BAR
 </div>
@@ -140,15 +150,15 @@
          <div class="card-deck">
             <div class="card" style="width: 3rem;">
                <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
-               <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+               <img class="card-img-top" src="http://dcs.gla.ac.uk/~richardm/TopTrumps/Avenger.jpg" alt="Card image cap">
                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                  <h5 class="card-title">Avenger</h5>
                   <ul class="list-group list-group-flush">
-                     <li class="list-group-item">Size </li>
-                     <li class="list-group-item">Speed</li>
-                     <li class="list-group-item">Range</li>
-                     <li class="list-group-item">Firepower</li>
-                     <li class="list-group-item">Cargo</li>
+                     <li class="list-group-item">Size<span class="float-right">4</span> </li>
+                     <li class="list-group-item">Speed<span class="float-right">4</span></li>
+                     <li class="list-group-item">Range<span class="float-right">4</span></li>
+                     <li class="list-group-item">Firepower<span class="float-right">4</span></li>
+                     <li class="list-group-item">Cargo<span class="float-right">4</span></li>
                   </ul>
                </div>
             </div>
@@ -156,13 +166,13 @@
                <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
                <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                  <h5 class="card-title">m50</h5>
                   <ul class="list-group list-group-flush">
-                     <li class="list-group-item">Size </li>
-                     <li class="list-group-item">Speed</li>
-                     <li class="list-group-item">Range</li>
-                     <li class="list-group-item">Firepower</li>
-                     <li class="list-group-item">Cargo</li>
+                     <li class="list-group-item">Size<span class="float-right">4</span></li>
+                     <li class="list-group-item">Speed<span class="float-right">4</span></li>
+                     <li class="list-group-item">Range<span class="float-right">4</span></li>
+                     <li class="list-group-item">Firepower<span class="float-right">4</span></li>
+                     <li class="list-group-item">Cargo<span class="float-right">4</span></li>
                   </ul>
                </div>
             </div>
@@ -170,13 +180,13 @@
                <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
                <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                  <h5 class="card-title">Orion</h5>
                   <ul class="list-group list-group-flush">
-                     <li class="list-group-item">Size </li>
-                     <li class="list-group-item">Speed</li>
-                     <li class="list-group-item">Range</li>
-                     <li class="list-group-item">Firepower</li>
-                     <li class="list-group-item">Cargo</li>
+                     <li class="list-group-item">Size<span class="float-right">4</span></li>
+                     <li class="list-group-item">Speed<span class="float-right">4</span></li>
+                     <li class="list-group-item">Range<span class="float-right">4</span></li>
+                     <li class="list-group-item">Firepower<span class="float-right">4</span></li>
+                     <li class="list-group-item">Cargo<span class="float-right">4</span></li>
                   </ul>
                </div>
             </div>
@@ -188,13 +198,13 @@
                <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
                <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                  <h5 class="card-title">Hawk</h5>
                   <ul class="list-group list-group-flush">
-                     <li class="list-group-item">Size </li>
-                     <li class="list-group-item">Speed</li>
-                     <li class="list-group-item">Range</li>
-                     <li class="list-group-item">Firepower</li>
-                     <li class="list-group-item">Cargo</li>
+                     <li class="list-group-item">Size<span class="float-right">4</span></li>
+                     <li class="list-group-item">Speed<span class="float-right">4</span></li>
+                     <li class="list-group-item">Range<span class="float-right">4</span></li>
+                     <li class="list-group-item">Firepower<span class="float-right">4</span></li>
+                     <li class="list-group-item">Cargo<span class="float-right">4</span></li>
                   </ul>
                </div>
             </div>
@@ -202,13 +212,13 @@
                <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
                <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                  <h5 class="card-title">Hurricane</h5>
                   <ul class="list-group list-group-flush">
-                     <li class="list-group-item ">Size </li>
-                     <li class="list-group-item ">Speed</li>
-                     <li class="list-group-item ">Range</li>
-                     <li class="list-group-item">Firepower</li>
-                     <li class="list-group-item">Cargo</li>
+                     <li class="list-group-item ">Size<span class="float-right">4</span></li>
+                     <li class="list-group-item ">Speed<span class="float-right">4</span></li>
+                     <li class="list-group-item ">Range<span class="float-right">4</span></li>
+                     <li class="list-group-item">Firepower<span class="float-right">4</span></li>
+                     <li class="list-group-item">Cargo<span class="float-right">4</span></li>
                   </ul>
                </div>
             </div>
@@ -216,13 +226,13 @@
                <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
                <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                  <h5 class="card-title">Sabre</h5>
                   <ul class="list-group list-group-flush">
-                     <li class="list-group-item">Size </li>
-                     <li class="list-group-item">Speed</li>
-                     <li class="list-group-item">Range</li>
-                     <li class="list-group-item">Firepower</li>
-                     <li class="list-group-item">Cargo</li>
+                     <li class="list-group-item">Size<span class="float-right">4</span></li>
+                     <li class="list-group-item">Speed<span class="float-right">4</span></li>
+                     <li class="list-group-item">Range<span class="float-right">4</span></li>
+                     <li class="list-group-item">Firepower<span class="float-right">4</span></li>
+                     <li class="list-group-item">Cargo<span class="float-right">4</span></li>
                   </ul>
                </div>
             </div>
