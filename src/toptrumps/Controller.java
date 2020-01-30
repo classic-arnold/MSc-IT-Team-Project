@@ -13,14 +13,14 @@ public class Controller {
 	private DataGame dataGame;
 	private ViewCLI viewCli;
 	private boolean writeGameLogsToFile;
-	private TestLog testlog;
+	private TestLog testLog;
 
 	public Controller(DataGame dataGame, ViewCLI viewCli, boolean writeGameLogsToFile) {
 		this.dataGame = dataGame;
 		this.viewCli = viewCli;
 		this.writeGameLogsToFile = writeGameLogsToFile;
-		
-		testlog = new TestLog (dataGame);
+
+		testLog = new TestLog (dataGame); // refactor this
 	}
 
 	public int startGame() {
@@ -51,10 +51,17 @@ public class Controller {
 				// int category = this.viewCli.displayCategorySelection();
 
 				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
+				
+				if(this.writeGameLogsToFile) {
+//					this.testLog.printSomething();
+					this.testLog.writeDeckContents();
+					this.testLog.writeShuffledDeckContents();
+					this.testLog.writePlayerDecks();
+					this.testLog.writeCardsInPlay();
+					this.testLog.writeCommunalPile();
+				}
 
 				this.viewCli.displayRoundResult(DataGame.CATEGORYNAMES[category-1]);
-
-				//				this.testLog.printSomething;
 
 				continueOrEndGameChoice = this.viewCli.nextRoundChoice();
 
@@ -79,7 +86,7 @@ public class Controller {
 		} else {
 			return 1;
 		}
-			
+
 		return 0;
 	}
 
