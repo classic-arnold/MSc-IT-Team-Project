@@ -6,6 +6,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.After;
 import org.junit.Before;
@@ -22,6 +24,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import toptrumps.Controller;
+import toptrumps.DataCard;
+import toptrumps.DataCardCache;
 import toptrumps.DataGame;
 import toptrumps.DataPlayer;
 import toptrumps.ViewCLI;
@@ -106,6 +110,9 @@ public class CLITest {
 
 				if(this.model.getRoundNumber() == 1) {
 					category = this.model.getBestCategoryForCurrentAIPlayers(this.model.getFirstPlayer());
+					if(category == 0) {
+						category = 2;
+					}
 				} else if(this.model.shouldHumanChooseCategory()) {
 					category = 2;
 					// category = 2;
@@ -167,6 +174,28 @@ public class CLITest {
 		//getActivePlayers in datagame, getDeck of the player in dataPlayer, then check the length of the array returned
 		
 		//check that the number of cards remaining for each player after each round is accurate
+		
+		this.model.startGame();
+		
+		DataPlayer[] players = this.model.getActivePlayers();
+		
+		for(DataPlayer player:players) {
+			assert player.getDeck().size() == 8;
+		}
+		
+		this.model.playRound(DataGame.CATEGORYNAMES[0]);
+		
+		ArrayList<DataPlayer> winners = this.model.getRoundWinningPlayers();
+		
+		if(winners.size()==1) {
+			assert winners.get(0).getDeck().size() == 12;
+			assert winners.get(0).getDeck().size() != 8;
+		} else if(winners.size()>1) {
+			//assert this.
+		}
+		
+		
+		
 	}
 	
 	@Test
@@ -189,12 +218,30 @@ public class CLITest {
 	public void testWinningCardAndPlayer() {
 		
 		//to test that the correct category is reflected, we use the getWinningCardandplayer in datagame. to get the lists of
-		//cards in the file, use getallcardsinorder in datacache to return all card objects in the file
+		//cards in the file, use getallcardsinorder in DataCardCache to return all card objects in the file
 		
 		//test that the correct winning card was returned for different rounds
 		//test that the correct winning card was displayed
 		//test that the correct winning category is pointed at
 		//test that the correct player was declared winner
+		
+		this.model.startGame();
+		
+		DataCard[] cards = this.model.getInitialUnshuffledDeck();
+		
+		DataCard[] card5 = new DataCard[5];
+		
+		String category = DataGame.CATEGORYNAMES[0];
+		
+		for (int i=0;i<5;i++) {
+			card5[i] = cards[i];
+		}
+		
+		HashMap<String, Object> map = this.model.getWinningCardsAndPlayers(card5, category);
+		
+		ArrayList<DataCard> winningCards = (ArrayList<DataCard>)map.get("winning cards");
+		
+		assertTrue(winningCards.contains(card5[2]));
 	}
 	
 	@Test

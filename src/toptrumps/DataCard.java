@@ -7,7 +7,7 @@ package toptrumps;
  * @author Team TRY-CATCH - Arnold Umakhihe 2445734U
  * 
  */
-class DataCard implements Cloneable{
+public class DataCard implements Cloneable{
 	
 	/** string representing card description */
 	private String description;
