@@ -52,8 +52,8 @@ public class Controller {
 
 				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
 				
+//				TestLog print
 				if(this.writeGameLogsToFile) {
-//					this.testLog.printSomething();
 					this.testLog.writeDeckContents();
 					this.testLog.writeShuffledDeckContents();
 					this.testLog.writePlayerDecks();
