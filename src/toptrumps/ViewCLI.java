@@ -26,13 +26,14 @@ public class ViewCLI {
     	String getInput=null;
     	int startChoice=1;
     	boolean redo=false;
-    	while(!NumberUtils.isParsable(getInput) ||startChoice<1 ||startChoice>2) {
+    	while(!NumberUtils.isParsable(getInput) ||startChoice<1 ||startChoice>3) {
     		 if(redo) {
-    			 System.out.println("\n Invalid input.Please input 1 or 2");
+    			 System.out.println("\n Invalid input.Please input 1,2 or 3");
     		 }
-    		 System.out.println("Do you want to see past results or play a game");
+    		 System.out.println("Do you want to see past results,play a game or quit the program");
     	        System.out.println("1:Print Game Statistics");
     	        System.out.println("2:Play game");
+    	        System.out.println("3:Quit program");
     	        System.out.print("Enter the number for your selection:");
     	        Scanner choiceIn = new Scanner(System.in);
     	        getInput= choiceIn.nextLine();
