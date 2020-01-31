@@ -231,34 +231,34 @@ class DataCard implements Cloneable{
 		
 		// create strings
 		string += arrow + space + DataGame.CATEGORYNAMES[0] + colon + space + this.category1;
-		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equals(DataGame.CATEGORYNAMES[0].charAt(0)+""+DataGame.CATEGORYNAMES[0].charAt(1))){
+		if(((category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equalsIgnoreCase(DataGame.CATEGORYNAMES[0].charAt(0)+""+DataGame.CATEGORYNAMES[0].charAt(1))){
 			string += " <--";
 		}
 		string += newLine;
 		
 		
 		string += arrow + space + DataGame.CATEGORYNAMES[1] + colon + space + this.category2;
-		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).contentEquals(DataGame.CATEGORYNAMES[1].charAt(0)+""+DataGame.CATEGORYNAMES[1].charAt(1))){
+		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equalsIgnoreCase(DataGame.CATEGORYNAMES[1].charAt(0)+""+DataGame.CATEGORYNAMES[1].charAt(1))){
 			string += " <--";
 		}
 		string += newLine;
 		
 		
 		string += arrow + space + DataGame.CATEGORYNAMES[2] + colon + space + this.category3;
-		if((Character.toLowerCase(category.charAt(0))) == DataGame.CATEGORYNAMES[2].charAt(0)){
+		if((category.charAt(0)) == DataGame.CATEGORYNAMES[2].charAt(0)){
 			string += " <--";
 		}
 		string += newLine;
 		
 		
 		string += arrow + space + DataGame.CATEGORYNAMES[3] + colon + space + this.category4;
-		if((Character.toLowerCase(category.charAt(0))) == DataGame.CATEGORYNAMES[3].charAt(0)){
+		if((category.charAt(0)) == DataGame.CATEGORYNAMES[3].charAt(0)){
 			string += " <--";
 		}
 		string += newLine;
 		
 		string += arrow + space + DataGame.CATEGORYNAMES[4] + colon + space + this.category5;
-		if((Character.toLowerCase(category.charAt(0))) == DataGame.CATEGORYNAMES[4].charAt(0)){
+		if((category.charAt(0)) == DataGame.CATEGORYNAMES[4].charAt(0)){
 			string += " <--";
 		}
 		string += newLine;
