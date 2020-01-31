@@ -33,6 +33,12 @@ public class Controller {
 			String continueOrEndGameChoice = null;
 
 			this.dataGame.startGame();
+			
+//			TestLog print
+			if(this.writeGameLogsToFile) {
+				this.testLog.writeDeckContents();
+				this.testLog.writeShuffledDeckContents();
+			}
 
 			while(this.dataGame.getGameState()==DataGame.GameState.RUNNING) {
 				this.viewCli.updateView();
@@ -57,8 +63,6 @@ public class Controller {
 				
 //				TestLog print
 				if(this.writeGameLogsToFile) {
-					this.testLog.writeDeckContents();
-					this.testLog.writeShuffledDeckContents();
 					this.testLog.writePlayerDecks();
 					this.testLog.writeCardsInPlay();
 					this.testLog.writeCommunalPile();

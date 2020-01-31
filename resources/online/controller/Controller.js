@@ -8,6 +8,9 @@
 var chooseCard = "(Choose Card)";
 
 var numberOfCategories = 5;
+
+// model part
+
 var data_header = ["Description", "Size", "Speed", "Range", "Firepower", "Cargo"];
 
 //var card = {Description:"Avenger", 
