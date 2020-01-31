@@ -58,6 +58,37 @@ public class Controller {
 		}
 
 	}
+	
+	public void startGameForTests() {
+		int startChoice = 2;
+
+		if(startChoice == 1) {
+			this.viewCli.displayStats();
+		} else if(startChoice == 2) {
+
+			this.dataGame.startGame();
+
+			while(this.dataGame.getGameState()==DataGame.GameState.RUNNING) {
+				this.viewCli.updateView();
+				int category = 2;
+
+				// int category = this.viewCli.displayCategorySelection();
+
+				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
+
+				this.viewCli.displayRoundResult(DataGame.CATEGORYNAMES[category-1]);
+				
+//				this.testLog.printSomething;
+
+				this.dataGame.incrementRound();
+
+			}
+
+			this.viewCli.gameEnd();
+
+		}
+
+	}
 
 	public int getRandomCategory() {
 		Random random = new Random();
