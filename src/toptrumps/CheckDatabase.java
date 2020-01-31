@@ -5,6 +5,7 @@ public class CheckDatabase {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ProgramDatabase postgre=new ProgramDatabase();
+		postgre.selectGameStats();
 		
 		//check selection. 
 		//What about changing selectGameStats method returns 5 values in array so that model could call it?

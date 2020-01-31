@@ -62,10 +62,17 @@ public class TopTrumpsRESTAPI {
 	 * @Path("/game") includes every game functions and data.
 	 * every round will be displayed in it without moving to another path: /game
 	 * --include game results. 
+	 * 
+	 * passing details: 
+	 * 1. get round number from the model. 
+	 * 2. get category
 	*/
 	@GET
 	@Path("/game")
-	public 
+//	public int getRoundNumber() throws IOException{
+//		
+//		return roundNumber;
+//	}
 	
 	
 //	@GET

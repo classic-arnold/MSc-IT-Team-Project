@@ -18,7 +18,7 @@ public class ProgramDatabase {
 	//	private static final String password="2431088l";
 
 	//When running database via laptop(Estelle's), release annotation below 3 line
-	private static final String url="jdbc:postgresql://localhost:5432/postgres";
+	private static final String url="jdbc:postgresql://localhost:5432/TopTrump";
 	private static final String userID="postgres";
 //	private static final String password="qmffldqmffld3";
 	private static final String password="postgres";
@@ -150,16 +150,26 @@ public class ProgramDatabase {
 	 * 'counts for draws',
 	 * 'largestRound'
 	 */	
-	public void selectGameStats(Connection conn) {
+	public void selectGameStats() {
 		try{
+			Connection conn=DriverManager.getConnection(url,userID,password);
+
 			Statement stmt=conn.createStatement();
 
-			ResultSet rs=stmt.executeQuery("select" + 
-					"	count(gameid) as gameCount," + 
-					"	count(*) filter(where isHumanWon) as humanWon," + 
-					"	count(*) filter(where not isHumanWon) as AIWon," + 
-					"	round(avg(draws)::numeric,1) as averageDraws," + 
-					"	max(roundNumber) as largestRound" + 
+//			ResultSet rs=stmt.executeQuery("select" + 
+//					"	count(gameid) as gameCount," + 
+//					"	count(*) filter(where isHumanWon) as humanWon," + 
+//					"	count(*) filter(where not isHumanWon) as AIWon," + 
+//					"	round(avg(draws)::numeric,1) as averageDraws," + 
+//					"	max(roundNumber) as largestRound" + 
+//					"from TopTrumps.gameStats;");
+			
+			ResultSet rs=stmt.executeQuery("select \r\n" + 
+					"	count(gameid) as gameCount, \r\n" + 
+					"	count(*) filter(where isHumanWon) as humanWon, \r\n" + 
+					"	count(*) filter(where not isHumanWon) as AIWon,\r\n" + 
+					"	round(avg(draws)::numeric,1) as averageDraws, \r\n" + 
+					"	max(roundNumber) as largestRound\r\n" + 
 					"from TopTrumps.gameStats;");
 
 			while(rs.next()) {
