@@ -1,3 +1,5 @@
+
+
 // This class control the action of the page.
 
 // @author Team:Try-Catch Jialiang Song 2410536s
@@ -8,11 +10,18 @@ var chooseCard = "(Choose Card)";
 var numberOfCategories = 5;
 var data_header = ["Description", "Size", "Speed", "Range", "Firepower", "Cargo"];
 
+//var card = {Description:"Avenger", 
+//              Size:"2", 
+//              Speed:"5", 
+//              Range:"4", 
+//              Firepower:"3",
+//              Cargo:"2"}
+
 var currentRound = 0;
 //var roundWinPage = "";
 //var roundLoseMsg = "";
 //var roundDrawPage = "";
-	
+
 //var finalWinnerPage = "";
 
 
@@ -24,6 +33,8 @@ var nextCategorySelectionButton;
 var showWinnerButton;
 var nextRound;
 
+var infoLine;
+var statusLine;
 
 
 newGameButton = doucument.getElementById("newGame");
@@ -56,7 +67,7 @@ function initiateGame(){
 
 
 
-//<script>
+
 //function newGame()
 //{
 //	 
@@ -65,7 +76,7 @@ function initiateGame(){
 //	
 //	}
 //
-//</script>
+
 //
 //<button type="newGame" onclick="newGame()"> Start a new Top Trumps Game </button>
 //
@@ -78,3 +89,6 @@ function shuffleCards(){
 function createDeck(){
 	
 }
+
+function 
+
