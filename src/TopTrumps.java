@@ -14,8 +14,8 @@ public class TopTrumps {
 		System.out.println("--------------------");
 		
 		// command line switches
-		boolean onlineMode = false;
-		boolean commandLineMode = true;
+		boolean onlineMode = true;
+		boolean commandLineMode = false;
 		boolean printTestLog = false;
 		
 		// check the command line for what switches are active

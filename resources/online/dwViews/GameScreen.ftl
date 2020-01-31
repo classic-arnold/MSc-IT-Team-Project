@@ -53,7 +53,18 @@
 			background-size: 100vh;
 			border-right: 2px solid black;
 		}
-		
+		#actionButton{
+		    font-size: 13px;
+		    padding-top: 30px;
+		    padding-bottom: 30px;
+		    padding-right: 10px;
+		    padding-left: 10px;
+		}
+		.action-div {
+			background-color: none;
+			margin-top: 100px;
+		}
+
 		/*Section 2 Styles*/
 		/*Section 2 Styles*/
 		.section2 {
@@ -82,11 +93,7 @@
 			padding-top: 10px;
 		}
 		
-		.action-div {
-			background-color: rgba(255, 255, 255, 0.5);
-			margin-top: 100px;
-		}
-
+		
 		.card-img-top {
 			height: 40%;
 			width: 100%;
@@ -134,7 +141,8 @@
 <div class="col-sm-3 section1 ">
    <div class="row justify-content-center ">
       <div class="col-sm-6 action-div">
-         <h1>Action panel will go here</h1>
+         
+         <button id="actionButton"type="button" class="btn btn-dark btn-block">ACTION TITLE HERE</button>
       </div>
    </div>
 </div>
@@ -142,51 +150,51 @@
 <div class="row">
 <div id="status-col" class="col-sm-12">
 <div class="alert alert-info" role="alert">
-   STATUS BAR
+   <p1 id="status-message"></p>
 </div>
 </div>
    </div>
       <div class="row justify-content-center">
          <div class="card-deck">
             <div class="card" style="width: 3rem;">
-               <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
+               <div id="playerOneCard" class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
                <img class="card-img-top" src="http://dcs.gla.ac.uk/~richardm/TopTrumps/Avenger.jpg" alt="Card image cap">
                <div class="card-body">
-                  <h5 class="card-title">Avenger</h5>
+                  <h5 id="cardOneTitle" class="card-title">Avenger</h5>
                   <ul class="list-group list-group-flush">
-                     <li class="list-group-item">Size<span class="float-right">4</span> </li>
-                     <li class="list-group-item">Speed<span class="float-right">4</span></li>
-                     <li class="list-group-item">Range<span class="float-right">4</span></li>
-                     <li class="list-group-item">Firepower<span class="float-right">4</span></li>
-                     <li class="list-group-item">Cargo<span class="float-right">4</span></li>
+                     <li id ="cardOneCatOne" class="list-group-item">Size<span class="float-right">4</span> </li>
+                     <li id="cardOneCatTwo" class="list-group-item">Speed<span class="float-right">4</span></li>
+                     <li id="cardOneCatThree" class="list-group-item">Range<span class="float-right">4</span></li>
+                     <li id="cardOneCatFour" class="list-group-item">Firepower<span class="float-right">4</span></li>
+                     <li id="cardOneCatFive" class="list-group-item">Cargo<span class="float-right">4</span></li>
                   </ul>
                </div>
             </div>
             <div class="card">
-               <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
+               <div id="playerTwoCard" class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
                <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
                <div class="card-body">
                   <h5 class="card-title">m50</h5>
                   <ul class="list-group list-group-flush">
-                     <li class="list-group-item">Size<span class="float-right">4</span></li>
-                     <li class="list-group-item">Speed<span class="float-right">4</span></li>
-                     <li class="list-group-item">Range<span class="float-right">4</span></li>
-                     <li class="list-group-item">Firepower<span class="float-right">4</span></li>
-                     <li class="list-group-item">Cargo<span class="float-right">4</span></li>
+                     <li id="cardTwoCatOne" class="list-group-item">Size<span class="float-right">4</span></li>
+                     <li id="cardTwoCatTwo" class="list-group-item">Speed<span class="float-right">4</span></li>
+                     <li id="cardTwoCatThree" class="list-group-item">Range<span class="float-right">4</span></li>
+                     <li id="cardTwoCatFour" class="list-group-item">Firepower<span class="float-right">4</span></li>
+                     <li id="cardTwoCatFive" class="list-group-item">Cargo<span class="float-right">4</span></li>
                   </ul>
                </div>
             </div>
             <div class="card">
-               <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
+               <div id="playerThreeCard" class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
                <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
                <div class="card-body">
-                  <h5 class="card-title">Orion</h5>
+                  <h5 id="cardTwoTitle" class="card-title">Orion</h5>
                   <ul class="list-group list-group-flush">
-                     <li class="list-group-item">Size<span class="float-right">4</span></li>
-                     <li class="list-group-item">Speed<span class="float-right">4</span></li>
-                     <li class="list-group-item">Range<span class="float-right">4</span></li>
-                     <li class="list-group-item">Firepower<span class="float-right">4</span></li>
-                     <li class="list-group-item">Cargo<span class="float-right">4</span></li>
+                     <li id="cardThreeCatOne" class="list-group-item">Size<span class="float-right">4</span></li>
+                     <li id="cardThreeCatTwo" class="list-group-item">Speed<span class="float-right">4</span></li>
+                     <li id="cardThreeCatThree" class="list-group-item">Range<span class="float-right">4</span></li>
+                     <li id="cardThreeCarFour" class="list-group-item">Firepower<span class="float-right">4</span></li>
+                     <li id="cardThreeCatFive" class="list-group-item">Cargo<span class="float-right">4</span></li>
                   </ul>
                </div>
             </div>
@@ -195,16 +203,30 @@
       <div class="row justify-content-center cardrow2">
          <div class="card-deck">
             <div class="card"style="width: 3rem;">
-               <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
+               <div id="playerFourCard" class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
                <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
                <div class="card-body">
-                  <h5 class="card-title">Hawk</h5>
+                  <h5 id="cardThreeTitle" class="card-title">Hawk</h5>
                   <ul class="list-group list-group-flush">
-                     <li class="list-group-item">Size<span class="float-right">4</span></li>
-                     <li class="list-group-item">Speed<span class="float-right">4</span></li>
-                     <li class="list-group-item">Range<span class="float-right">4</span></li>
-                     <li class="list-group-item">Firepower<span class="float-right">4</span></li>
-                     <li class="list-group-item">Cargo<span class="float-right">4</span></li>
+                     <li id="cardFourCatOne" class="list-group-item">Size<span class="float-right">4</span></li>
+                     <li id="cardFourCatTwo" class="list-group-item">Speed<span class="float-right">4</span></li>
+                     <li id="cardFourCatThree" class="list-group-item">Range<span class="float-right">4</span></li>
+                     <li id="cardFourCatFour" class="list-group-item">Firepower<span class="float-right">4</span></li>
+                     <li id="cardFourCatFive" class="list-group-item">Cargo<span class="float-right">4</span></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="card">
+               <div id="playerFiveCard"class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
+               <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+               <div class="card-body">
+                  <h5 id="cardFourTitle" class="card-title">Hurricane</h5>
+                  <ul class="list-group list-group-flush">
+                     <li id="cardFiveCatOne" class="list-group-item ">Size<span class="float-right">4</span></li>
+                     <li id="cardFiveCatTwo" class="list-group-item ">Speed<span class="float-right">4</span></li>
+                     <li id="cardFiveCatThree" class="list-group-item ">Range<span class="float-right">4</span></li>
+                     <li id="cardFiveCatFour" class="list-group-item">Firepower<span class="float-right">4</span></li>
+                     <li id="cardFiveCatFive" class="list-group-item">Cargo<span class="float-right">4</span></li>
                   </ul>
                </div>
             </div>
@@ -212,21 +234,7 @@
                <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
                <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
                <div class="card-body">
-                  <h5 class="card-title">Hurricane</h5>
-                  <ul class="list-group list-group-flush">
-                     <li class="list-group-item ">Size<span class="float-right">4</span></li>
-                     <li class="list-group-item ">Speed<span class="float-right">4</span></li>
-                     <li class="list-group-item ">Range<span class="float-right">4</span></li>
-                     <li class="list-group-item">Firepower<span class="float-right">4</span></li>
-                     <li class="list-group-item">Cargo<span class="float-right">4</span></li>
-                  </ul>
-               </div>
-            </div>
-            <div class="card">
-               <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span></div>
-               <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
-               <div class="card-body">
-                  <h5 class="card-title">Sabre</h5>
+                  <h5 id="cardFiveTitle" class="card-title">Sabre</h5>
                   <ul class="list-group list-group-flush">
                      <li class="list-group-item">Size<span class="float-right">4</span></li>
                      <li class="list-group-item">Speed<span class="float-right">4</span></li>
