@@ -103,11 +103,12 @@ public class ProgramDatabase {
 	 * 'roundNumber:int' 
 	 * into Database table.
 	 * */
-	public void insertGameStats(DataGame model, Connection conn) {
+	public void insertGameStats(DataGame model) {
 		String SQL="INSERT INTO TOPTRUMPS.GAMESTATS "
 				+"VALUES (default, ?,?,?,?,?,?,?,?)";
 
 		try{
+			Connection conn=DriverManager.getConnection(url,userID,password);
 			PreparedStatement pstmt=conn.prepareStatement(SQL);
 
 			//get boolean value for isHumanWon
