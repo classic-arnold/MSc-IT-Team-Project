@@ -42,11 +42,11 @@ public class TestLog {
             	 
             	   String space=" ";
             	   String description =model.getInitialUnshuffledDeck()[i].getDescription();
-            	   String size=String.valueOf(model.getInitialUnshuffledDeck()[i].getSize());
-            	   String speed=String.valueOf(model.getInitialUnshuffledDeck()[i].getSpeed());
-            	   String range=String.valueOf(model.getInitialUnshuffledDeck()[i].getRange());
-            	   String firepower=String.valueOf(model.getInitialUnshuffledDeck()[i].getFirePower());
-            	   String cargo=String.valueOf(model.getInitialUnshuffledDeck()[i].getCargo());
+            	   String size=String.valueOf(model.getInitialUnshuffledDeck()[i].getCategory1());
+            	   String speed=String.valueOf(model.getInitialUnshuffledDeck()[i].getCategory2());
+            	   String range=String.valueOf(model.getInitialUnshuffledDeck()[i].getCategory3());
+            	   String firepower=String.valueOf(model.getInitialUnshuffledDeck()[i].getCategory4());
+            	   String cargo=String.valueOf(model.getInitialUnshuffledDeck()[i].getCategory5());
                    bw.write(description);
                    bw.write(space);
                    bw.write(size);
@@ -100,11 +100,11 @@ public class TestLog {
            	 
            	   String space=" ";
            	   String description =model.getInitialShuffledDeck()[i].getDescription();
-           	   String size=String.valueOf(model.getInitialShuffledDeck()[i].getSize());
-           	   String speed=String.valueOf(model.getInitialShuffledDeck()[i].getSpeed());
-           	   String range=String.valueOf(model.getInitialShuffledDeck()[i].getRange());
-           	   String firepower=String.valueOf(model.getInitialShuffledDeck()[i].getFirePower());
-           	   String cargo=String.valueOf(model.getInitialShuffledDeck()[i].getCargo());
+           	   String size=String.valueOf(model.getInitialShuffledDeck()[i].getCategory1());
+           	   String speed=String.valueOf(model.getInitialShuffledDeck()[i].getCategory2());
+           	   String range=String.valueOf(model.getInitialShuffledDeck()[i].getCategory3());
+           	   String firepower=String.valueOf(model.getInitialShuffledDeck()[i].getCategory4());
+           	   String cargo=String.valueOf(model.getInitialShuffledDeck()[i].getCategory5());
                   bw.write(description);
                   bw.write(space);
                   bw.write(size);
@@ -162,11 +162,11 @@ public class TestLog {
         	 for(int i=0;i<model.getActivePlayers()[j].getDeck().size();i++) {
             	   String space=" ";
             	   String description =model.getActivePlayers()[j].getDeck().get(i).getDescription();
-            	   String size=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getSize());
-            	   String speed=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getSpeed());
-            	   String range=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getRange());
-            	   String firepower=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getFirePower());
-            	   String cargo=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getCargo());
+            	   String size=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getCategory1());
+            	   String speed=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getCategory2());
+            	   String range=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getCategory3());
+            	   String firepower=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getCategory4());
+            	   String cargo=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getCategory5());
                    bw.write(description);
                    bw.write(space);
                    bw.write(size);
@@ -202,12 +202,12 @@ public class TestLog {
             }
         }
     }}
-	//NEED A FUNCTION TO RETURN ARRAY OF CARDS IN COMMUNAL PILE
+
 	public void writeCommunalPile() {
 		  FileWriter fw = null;
           BufferedWriter bw = null;
           try {
-              fw = new FileWriter(outF);
+              fw = new FileWriter(outF,true);
               bw = new BufferedWriter(fw);
               bw.write("Communal Pile Contents");
               bw.newLine();
@@ -217,15 +217,15 @@ public class TestLog {
               bw.newLine();
               bw.newLine();
              
-               for(int i=0;i<model.getInitialUnshuffledDeck().length;i++) {
+               for(int i=0;i<model.getCardsInCommonPile().length;i++) {
             	 
             	   String space=" ";
-            	   String description =model.getInitialUnshuffledDeck()[i].getDescription();
-            	   String size=String.valueOf(model.getInitialUnshuffledDeck()[i].getSize());
-            	   String speed=String.valueOf(model.getInitialUnshuffledDeck()[i].getSpeed());
-            	   String range=String.valueOf(model.getInitialUnshuffledDeck()[i].getRange());
-            	   String firepower=String.valueOf(model.getInitialUnshuffledDeck()[i].getFirePower());
-            	   String cargo=String.valueOf(model.getInitialUnshuffledDeck()[i].getCargo());
+            	   String description =model.getCardsInCommonPile()[i].getDescription();
+            	   String size=String.valueOf(model.getCardsInCommonPile()[i].getCategory1());
+            	   String speed=String.valueOf(model.getCardsInCommonPile()[i].getCategory2());
+            	   String range=String.valueOf(model.getCardsInCommonPile()[i].getCategory3());
+            	   String firepower=String.valueOf(model.getCardsInCommonPile()[i].getCategory4());
+            	   String cargo=String.valueOf(model.getCardsInCommonPile()[i].getCategory5());
                    bw.write(description);
                    bw.write(space);
                    bw.write(size);
@@ -282,11 +282,11 @@ public class TestLog {
 	        
 	            	   String space=" ";
 	            	   String description =model.getActivePlayers()[j].getDeck().get(0).getDescription();
-	            	   String size=String.valueOf(model.getActivePlayers()[j].getDeck().get(0).getSize());
-	            	   String speed=String.valueOf(model.getActivePlayers()[j].getDeck().get(0).getSpeed());
-	            	   String range=String.valueOf(model.getActivePlayers()[j].getDeck().get(0).getRange());
-	            	   String firepower=String.valueOf(model.getActivePlayers()[j].getDeck().get(0).getFirePower());
-	            	   String cargo=String.valueOf(model.getActivePlayers()[j].getDeck().get(0).getCargo());
+	            	   String size=String.valueOf(model.getActivePlayers()[j].getDeck().get(0).getCategory1());
+	            	   String speed=String.valueOf(model.getActivePlayers()[j].getDeck().get(0).getCategory2());
+	            	   String range=String.valueOf(model.getActivePlayers()[j].getDeck().get(0).getCategory3());
+	            	   String firepower=String.valueOf(model.getActivePlayers()[j].getDeck().get(0).getCategory4());
+	            	   String cargo=String.valueOf(model.getActivePlayers()[j].getDeck().get(0).getCategory5());
 	                   bw.write(description);
 	                   bw.write(space);
 	                   bw.write(size);
@@ -368,6 +368,7 @@ public class TestLog {
 		          tester.writeShuffledDeckContents();
 		          tester.writePlayerDecks();
 		          tester.writeCardsInPlay();
+		          tester.writeCommunalPile();
 		          
 
     }
