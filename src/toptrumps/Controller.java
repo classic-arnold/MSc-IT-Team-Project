@@ -66,6 +66,8 @@ public class Controller {
 					this.testLog.writePlayerDecks();
 					this.testLog.writeCardsInPlay();
 					this.testLog.writeCommunalPile();
+					this.testLog.writeCategorySelected();
+					
 				}
 
 				this.viewCli.displayRoundResult(DataGame.CATEGORYNAMES[category-1]);
