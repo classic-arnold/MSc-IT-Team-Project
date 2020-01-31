@@ -66,7 +66,16 @@ public class ViewCLI {
     
     //display number of cards in deck
     private void displayNumDeckCards(){
-    	System.out.println("You have "+model.getHumanPlayer().getNumberOfCardsInDeck()+" cards in your deck.");
+    	
+    	for(int i=0;i<model.getActivePlayers().length;i++) {
+    		if(model.getActivePlayers()[i].getTypeAsString().equals("human")) {
+    			System.out.println(model.getActivePlayers()[i].getName() + " have " +model.getActivePlayers()[i].getNumberOfCardsInDeck()+" cards in your deck.");
+    		}
+    		if(model.getActivePlayers()[i].getTypeAsString().equals("ai")) {
+    			System.out.println(model.getActivePlayers()[i].getName() + " has " +model.getActivePlayers()[i].getNumberOfCardsInDeck()+" cards.");
+    		}
+    		
+    	}
     }
     
     //display category selection menu
