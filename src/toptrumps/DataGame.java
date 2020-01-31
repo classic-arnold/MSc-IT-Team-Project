@@ -618,23 +618,8 @@ public class DataGame{
 	 * Updates database, using methods provided in the database class
 	 */
 	public void saveGameStats() {
-		//			Database.incrementNumberOfGames();
-		if(this.gameWinner!=null) {
-			if(gameWinner.getType()==DataPlayer.PlayerType.HUMAN) {
-				//					Database.incrementNumberOfHumanWins();
-			} else if(gameWinner.getType()==DataPlayer.PlayerType.AI) {
-				//					Database.incrementNumberOfAIWins();
-			}
-		}
-
-		for (DataPlayer player : this.activePlayers) {
-			//				Database.setPlayerScore(player);
-		}
-
-		//			Database.setNumberOfDraws(this.numberOfDraws);
-
-		//			Database.setRoundNumber(this.roundNumber);
-		//		System.out.println("round: "+this.roundNumber);
+		new ProgramDatabase().insertGameStats(this);
+//		ProgramDatabase.insertGameStats(this);
 	}
 
 	// GETTER METHODS START
