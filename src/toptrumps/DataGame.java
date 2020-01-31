@@ -49,7 +49,7 @@ public class DataGame{
 	private ArrayList<DataPlayer> allPlayers = new ArrayList<DataPlayer>();
 
 	/** enum to represent the game state */
-	enum GameState {
+	public enum GameState {
 		RUNNING, ENDED
 	}
 

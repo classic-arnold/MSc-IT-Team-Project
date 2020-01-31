@@ -23,11 +23,12 @@ import org.junit.Test;
 
 import toptrumps.Controller;
 import toptrumps.DataGame;
+import toptrumps.DataPlayer;
 import toptrumps.ViewCLI;
 
 public class CLITest {
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final PrintStream originalOut = System.out;
+//	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+//	private final PrintStream originalOut = System.out;
 	
 	DataGame model;
 	ViewCLI view;
@@ -75,7 +76,7 @@ public class CLITest {
 	}
 	
 	@Test
-	void testViewOption() {
+	public void testViewOption() {
 		//check if a new game starts when user inputs 1
 		//check if game statistics displays if player inputs 2
 		//check if exception is handled if player inputs a wrong digit
@@ -84,13 +85,64 @@ public class CLITest {
 	
 	@Test
 	public void testAccurateRoundNumber() {
+		//getRoundNumber in DataGame
 		//check that the correct round number is displayed after after several rounds are played
 		
-		controller.startGame();
+		int round = 1;
 		
-		assertEquals(1,model.getRoundNumber());
+		int startChoice = 2;
+
+		if(startChoice == 1) {	
+		} else if(startChoice == 2) {
+
+			String continueOrEndGameChoice = null;
+
+			this.model.startGame();
+
+			while(this.model.getGameState()==DataGame.GameState.RUNNING) {
+				this.view.updateView();
+				int category;
+
+
+				if(this.model.getRoundNumber() == 1) {
+					category = this.model.getBestCategoryForCurrentAIPlayers(this.model.getFirstPlayer());
+				} else if(this.model.shouldHumanChooseCategory()) {
+					category = 2;
+					// category = 2;
+				} else {
+					category = this.model.getBestCategoryForCurrentAIPlayers();
+				}
+
+				// int category = this.viewCli.displayCategorySelection();
+
+				this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
+
+				this.view.displayRoundResult(DataGame.CATEGORYNAMES[category-1]);
+
+				continueOrEndGameChoice = "";
+
+//				System.out.print(continueOrEndGameChoice);
+
+				if (continueOrEndGameChoice.contentEquals("q")) {
+					break;
+				}
+
+				this.model.incrementRound();
+				
+				round++;
+
+			}
+
+			if(continueOrEndGameChoice.contentEquals("")) {
+				this.view.gameEnd();
+			} else if (continueOrEndGameChoice.contentEquals("q")) {
+				//	this.viewCli.gameEndByUser();
+			}
+
+		} else {
+		}
 		
-		
+		assertEquals( round, this.model.getRoundNumber());
 	}
 	
 	@Test
@@ -100,6 +152,8 @@ public class CLITest {
 	
 	@Test
 	public void testCorrectTopCard() {
+		//getActivePlayer in dataDame, getDeck in dataplayer to get the player's deck, then get the zeroth element class 
+		//model.getInitialShuffledDeck() does the shuffling
 		//check that the correct top card was returned for several rounds
 	}
 	
@@ -110,6 +164,8 @@ public class CLITest {
 	
 	@Test
 	public void testNumOfCardsRemainingForPlayers() {
+		//getActivePlayers in datagame, getDeck of the player in dataPlayer, then check the length of the array returned
+		
 		//check that the number of cards remaining for each player after each round is accurate
 	}
 	
@@ -120,6 +176,8 @@ public class CLITest {
 	
 	@Test
 	public void testCategoryValues() {
+		
+		
 		//test that the categories are properly matched with corresponding values for each card
 		//check that the categories and values are correctly displayed
 		//test that the category the user selected is correctly reflected
@@ -129,6 +187,10 @@ public class CLITest {
 	
 	@Test
 	public void testWinningCardAndPlayer() {
+		
+		//to test that the correct category is reflected, we use the getWinningCardandplayer in datagame. to get the lists of
+		//cards in the file, use getallcardsinorder in datacache to return all card objects in the file
+		
 		//test that the correct winning card was returned for different rounds
 		//test that the correct winning card was displayed
 		//test that the correct winning category is pointed at
@@ -138,6 +200,7 @@ public class CLITest {
 	@Test
 	public void testGameEnd() {
 		//test that the correct overall winner is returned
+		//create a player, create a deck of just 2 cards, whoever wins that round is supposed to be the winner
 		//test that the winner displayed is correct
 		//test that the correct score for each player is returned
 		//test that the correct score for each player is displayed
@@ -163,14 +226,14 @@ public class CLITest {
 		//test that all the above data are displayed correctly
 	}
 	
-	@After
-	public void restoreStreams() {
-		System.setOut(originalOut);
-	}
+//	@After
+//	public void restoreStreams() {
+//		System.setOut(originalOut);
+//	}
 	
 	@After
 	public void tearDown() {
-		controller = null;
+//		controller = null;
 	}
 	
 	
