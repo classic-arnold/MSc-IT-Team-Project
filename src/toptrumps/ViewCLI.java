@@ -111,9 +111,18 @@ public class ViewCLI {
     //next round options function
     //NOTE IF USER PRESSES ENTER WILL RETURN AN EMPTY STRING
     public String nextRoundChoice() {
-    	System.out.println("Press enter to move to next round or press q to quit");
-    	Scanner nextRoundChoiceIn=new Scanner(System.in);
-    	String nextRoundAction=nextRoundChoiceIn.nextLine();
+    	String nextRoundAction="test";
+    	boolean redo=false;
+    	while(!nextRoundAction.equals("")|| !nextRoundAction.equals("q")) {
+    		if(redo) {
+    			System.out.println("Invalid Input \n");
+    		}
+    		System.out.println("Press enter to move to next round or press q to quit");
+        	Scanner nextRoundChoiceIn=new Scanner(System.in);
+        	nextRoundAction=nextRoundChoiceIn.nextLine();
+        	 redo=true;
+    	}
+    	
     	return nextRoundAction; 
     }
     
@@ -152,11 +161,11 @@ public class ViewCLI {
 	//display game statistics
 	public void displayStats() {
 		System.out.println("\nGame Statistics:");
-		System.out.println("Number of Games"+ model.getNumberOfGames());
+		System.out.println("Number of Games : "+ model.getNumberOfGames());
 		System.out.println("Number of Human Wins:"+model.getNumberOfHumanWins());
-		System.out.println("Number of AI Wins" + model.getNumberOfHumanWins());
-		System.out.println("Average number of Draws" + model.getAvgNumberOfDraws());
-		System.out.println("Longest Game" + model.getLongestGame());
+		System.out.println("Number of AI Wins : " + model.getNumberOfAIWins());
+		System.out.println("Average number of Draws : " + model.getAvgNumberOfDraws());
+		System.out.println("Longest Game : " + model.getLongestGame());
 	}
 
 	public static void main(String[] args) {
