@@ -822,7 +822,9 @@ public class DataGame{
 	 * @return int representing number of human wins
 	 */
 	public static int getNumberOfHumanWins() {
-		return new ProgramDatabase().selectGameStats().getHumanWon();
+		ProgramDatabase postgres = new ProgramDatabase();
+		postgres.selectGameStats();
+		return postgres.getHumanWon();
 	}
 
 	/**
@@ -830,7 +832,9 @@ public class DataGame{
 	 * @return int representing number of ai wins
 	 */
 	public static int getNumberOfAIWins() {
-		return new ProgramDatabase().getAIWon();
+		ProgramDatabase postgres = new ProgramDatabase();
+		postgres.selectGameStats();
+		return postgres.getAIWon();
 	}
 
 	/**
@@ -838,7 +842,9 @@ public class DataGame{
 	 * @return int representing number of games played
 	 */
 	public static int getNumberOfGames() {
-		return new ProgramDatabase().getGameCount();
+		ProgramDatabase postgres = new ProgramDatabase();
+		postgres.selectGameStats();
+		return postgres.getGameCount();
 	}
 
 	/**
@@ -846,7 +852,9 @@ public class DataGame{
 	 * @return double representing the average of all draws
 	 */
 	public static double getAvgNumberOfDraws() {
-		return new ProgramDatabase().getDraws();
+		ProgramDatabase postgres = new ProgramDatabase();
+		postgres.selectGameStats();
+		return postgres.getDraws();
 	}
 
 	/**
@@ -854,7 +862,9 @@ public class DataGame{
 	 * @return int representing number of rounds in the longest game
 	 */
 	public static int getLongestGame() {
-		return new ProgramDatabase().getLargestRound();
+		ProgramDatabase postgres = new ProgramDatabase();
+		postgres.selectGameStats();
+		return postgres.getLargestRound();
 	}
 
 	// REMOVE START
