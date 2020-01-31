@@ -174,7 +174,7 @@ public class CLITest {
 		//getActivePlayers in datagame, getDeck of the player in dataPlayer, then check the length of the array returned
 		
 		//check that the number of cards remaining for each player after each round is accurate
-		
+		//1
 		this.model.startGame();
 		
 		DataPlayer[] players = this.model.getActivePlayers();
@@ -182,7 +182,7 @@ public class CLITest {
 		for(DataPlayer player:players) {
 			assert player.getDeck().size() == 8;
 		}
-		
+		//2
 		this.model.playRound(DataGame.CATEGORYNAMES[0]);
 		
 		ArrayList<DataPlayer> winners = this.model.getRoundWinningPlayers();
@@ -190,11 +190,33 @@ public class CLITest {
 		if(winners.size()==1) {
 			assert winners.get(0).getDeck().size() == 12;
 			assert winners.get(0).getDeck().size() != 8;
+			for(DataPlayer player:players) {
+				if(winners.get(0) != player) {
+					assert player.getDeck().size() == 7;
+				}
+			}
 		} else if(winners.size()>1) {
-			//assert this.
+			assert this.model.getCardsInCommonPile().length == 5;
+			for(DataPlayer player:players) {
+				assert player.getDeck().size() == 7;
+			}
 		}
 		
+		int totalAmountOfCards = 0;
 		
+		for(DataPlayer player : players) {
+			totalAmountOfCards += player.getDeck().size();
+		}
+		
+		assert 40 == totalAmountOfCards + this.model.getNumberOfCardsInCommonPile();
+		
+		//3
+		this.model.incrementRound();
+		
+		// repeat
+		
+		//1
+		this.model.playRound(DataGame.CATEGORYNAMES[0]);
 		
 	}
 	
@@ -205,7 +227,6 @@ public class CLITest {
 	
 	@Test
 	public void testCategoryValues() {
-		
 		
 		//test that the categories are properly matched with corresponding values for each card
 		//check that the categories and values are correctly displayed
@@ -266,6 +287,8 @@ public class CLITest {
 		//test that the correct number of draws is returned
 		//test that the largest number of rounds played in a single game is returned
 		//ensure that these values were calculated using SQL
+		
+		this.model.getLongestGame();
 	}
 	
 	@Test
