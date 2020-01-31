@@ -20,7 +20,8 @@ public class ProgramDatabase {
 	//When running database via laptop(Estelle's), release annotation below 3 line
 	private static final String url="jdbc:postgresql://localhost:5432/postgres";
 	private static final String userID="postgres";
-	private static final String password="qmffldqmffld3";
+//	private static final String password="qmffldqmffld3";
+	private static final String password="postgres";
 
 	private int gameCount;
 	private int humanWon;

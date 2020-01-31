@@ -822,7 +822,7 @@ public class DataGame{
 	 * @return int representing number of human wins
 	 */
 	public static int getNumberOfHumanWins() {
-		return new ProgramDatabase().getHumanWon();
+		return new ProgramDatabase().selectGameStats().getHumanWon();
 	}
 
 	/**
