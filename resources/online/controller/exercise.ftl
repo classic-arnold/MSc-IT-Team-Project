@@ -1,3 +1,6 @@
+<!--    Remember copy out this class into the NOTEBOOK folder   --> 
+
+
 <!DOCTYPE html>
 <html>
 <head> 
@@ -7,18 +10,41 @@
 
 <body>
 	
-<h1>the first JavaScript</h1>
-<p id="demo">
-JavaScript could change the content of HTML。
+
+
+<!--  JavaScript could change the content -->
+
+<h1> the JavaScript exercise one. </h1>
+<p id="demo1">
 </p>
+
 <script>
-function myFunction()
+function myFunction() 
 {
-	x=document.getElementById("demo");  // find the element
+	x=document.getElementById("demo1");  // find the element
 	x.innerHTML="Hello JavaScript!";    // change the content
 }
 </script>
 <button type="button" onclick="myFunction()">click here</button>
 	
+	
+<!--   JavaScript could change the colour -->
+
+<h1> the JavaScript exercise two. </h1>
+
+<p id = "demo2">
+</p>
+
+<script>
+function colourChange(){ 
+	x = document.getElementById("demo2"); 
+	x.style.color = "#FF0000";
+}
+</script>
+
+<button type = "button" onclick = "colourChange()">click here </button> 
+
+
+
 </body>
 </html>

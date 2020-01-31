@@ -12,7 +12,7 @@ import java.util.Scanner;
  * TestLog- creates a log of data created when model updates
  *  @author Team TRY-CATCH - Anne-Marie Gill 2431989G
  */
-//NEED TO CONNECT TO MODEL AND CONTROLLER TO TEST.ALSO CLARIFY WHAT SHOULD BE IN EACH CATEGORY
+
 public class TestLog {
 	 private DataGame model;
 	 private String outF="testlog.txt";
@@ -324,7 +324,37 @@ public class TestLog {
 	    }
 	}
 	//HOW TO GET NON HUMAN CATEGORY SELECTIONS AND WHO SELECTED?
-	public void writeCategorySelected() {}
+	public void writeCategorySelected() {
+		FileWriter fw = null;
+	    BufferedWriter bw = null;
+	    try {
+	        fw = new FileWriter(outF,true);
+	        bw = new BufferedWriter(fw);
+	        String separator="------------------------------------------------------------------------";
+	        bw.write(separator);
+	        bw.newLine();
+	        bw.newLine();
+	        bw.write("Category Selected");
+	        bw.newLine();
+	        bw.newLine();
+	        String catSelected=model.getRoundLastWinner().getName()+" selected "+model.getRoundCategory();
+	        bw.write(catSelected);
+	         bw.close();
+	           
+	      
+	    }catch(IOException e) {
+	        e.printStackTrace();
+	    }finally {
+	       
+	        if(fw!=null) {
+	            try {
+	                fw.close();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
 	
 	public void writeGameWinner() {
 		FileWriter fw = null;
@@ -340,7 +370,7 @@ public class TestLog {
 	        bw.newLine();
 	        bw.newLine();
 	        String gameWinner=model.getGameWinner().getName();
-	        bw.write(separator);
+	        bw.write(gameWinner);
 	         bw.close();
 	           
 	      

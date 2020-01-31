@@ -38,6 +38,7 @@ var nextRound;
 
 var infoLine;
 var statusLine;
+var statusBar;
 
 
 newGameButton = doucument.getElementById("newGame");
@@ -85,6 +86,8 @@ function initiateGame(){
 //
 // function to randomly shuffle arrays maybe..
 
+
+// The later part get from the API 
 function shuffleCards(){
 	
 }
@@ -93,5 +96,23 @@ function createDeck(){
 	
 }
 
-function 
 
+
+// --------------FLASH-----------------
+// For view
+
+<p id = "certainCategory">
+view.categoryChoose // Note: Fri meeting--不知道这里能不能行。 content here.
+
+</p>
+
+<script>
+function caterotyHighlight(){
+	x = document.getElementById("certainCategory"); // need exact method to choose the certain category
+	x.style.color = "FF0000"; //RGB-255,0,0-red
+}
+</script>
+
+<button>
+type = "button" onclick = "categoryHighlight()"  // > Here need the certain button name that press
+</button>
