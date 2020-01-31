@@ -11,8 +11,10 @@
 <p id="demo">
 JavaScript could change the content of HTML。
 </p>
+
+
 <script>
-function myFunction()
+function myFunction()  // change the content
 {
 	x=document.getElementById("demo");  // find the element
 	x.innerHTML="Hello JavaScript!";    // change the content
@@ -20,5 +22,13 @@ function myFunction()
 </script>
 <button type="button" onclick="myFunction()">click here</button>
 	
+	
+
+<script>
+function colourChange(){  // change the colour
+	
+}
+
+</script>
 </body>
 </html>
