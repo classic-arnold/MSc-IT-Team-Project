@@ -13,14 +13,14 @@ public class Controller {
 	private DataGame dataGame;
 	private ViewCLI viewCli;
 	private boolean writeGameLogsToFile;
-	private TestLog testlog;
+	private TestLog testLog;
 
 	public Controller(DataGame dataGame, ViewCLI viewCli, boolean writeGameLogsToFile) {
 		this.dataGame = dataGame;
 		this.viewCli = viewCli;
 		this.writeGameLogsToFile = writeGameLogsToFile;
-		
-		testlog = new TestLog (dataGame);
+
+		testLog = new TestLog (dataGame); // refactor this
 	}
 
 	public int startGame() {
@@ -40,29 +40,37 @@ public class Controller {
 
 
 				if(this.dataGame.getRoundNumber() == 1) {
-					category = this.getRandomCategory();
+					category = this.dataGame.getBestCategoryForCurrentAIPlayers(this.dataGame.getFirstPlayer());
+					if(category == 0) {
+						category = this.viewCli.displayCategorySelection();
+					}
 				} else if(this.dataGame.shouldHumanChooseCategory()) {
 					category = this.viewCli.displayCategorySelection();
-					//            			category = 2;
+					// category = 2;
 				} else {
-					category = this.getRandomCategory();
+					category = this.dataGame.getBestCategoryForCurrentAIPlayers();
 				}
 
 				// int category = this.viewCli.displayCategorySelection();
 
 				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
+				
+//				TestLog print
+				if(this.writeGameLogsToFile) {
+					this.testLog.writeDeckContents();
+					this.testLog.writeShuffledDeckContents();
+					this.testLog.writePlayerDecks();
+					this.testLog.writeCardsInPlay();
+					this.testLog.writeCommunalPile();
+				}
 
 				this.viewCli.displayRoundResult(DataGame.CATEGORYNAMES[category-1]);
 
-				//				this.testLog.printSomething;
-
 				continueOrEndGameChoice = this.viewCli.nextRoundChoice();
 
-				System.out.print(continueOrEndGameChoice);
+//				System.out.print(continueOrEndGameChoice);
 
-				if(continueOrEndGameChoice.contentEquals("")) {
-
-				} else if (continueOrEndGameChoice.contentEquals("q")) {
+				if (continueOrEndGameChoice.contentEquals("q")) {
 					break;
 				}
 
@@ -79,8 +87,39 @@ public class Controller {
 		} else {
 			return 1;
 		}
-			
+
 		return 0;
+	}
+	
+	public void startGameForTests() {
+		int startChoice = 2;
+
+		if(startChoice == 1) {
+			this.viewCli.displayStats();
+		} else if(startChoice == 2) {
+
+			this.dataGame.startGame();
+
+			while(this.dataGame.getGameState()==DataGame.GameState.RUNNING) {
+				this.viewCli.updateView();
+				int category = 2;
+
+				// int category = this.viewCli.displayCategorySelection();
+
+				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
+
+				this.viewCli.displayRoundResult(DataGame.CATEGORYNAMES[category-1]);
+				
+//				this.testLog.printSomething;
+
+				this.dataGame.incrementRound();
+
+			}
+
+			this.viewCli.gameEnd();
+
+		}
+
 	}
 
 	public int getRandomCategory() {
