@@ -10,6 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import online.configuration.TopTrumpsJSONConfiguration;
 
@@ -27,16 +28,17 @@ import com.fasterxml.jackson.databind.ObjectWriter;
  * 
  * Below are provided some sample methods that illustrate how to create
  * REST API methods in Dropwizard. You will need to replace these with
- * methods that allow a TopTrumps game to be controled from a Web page.
+ * methods that allow a TopTrumps game to be controlled from a Web page.
  */
 public class TopTrumpsRESTAPI {
 
 	/** A Jackson Object writer. It allows us to turn Java objects
 	 * into JSON strings easily. */
 	ObjectWriter oWriter = new ObjectMapper().writerWithDefaultPrettyPrinter();
-	
+	private String deckFile;
+	private int numAIPlayers;
 	/**
-	 * Contructor method for the REST API. This is called first. It provides
+	 * Constructor method for the REST API. This is called first. It provides
 	 * a TopTrumpsJSONConfiguration from which you can get the location of
 	 * the deck file and the number of AI players.
 	 * @param conf
@@ -45,43 +47,69 @@ public class TopTrumpsRESTAPI {
 		// ----------------------------------------------------
 		// Add relevant initalization here
 		// ----------------------------------------------------
+		//get the location of the deck file
+		deckFile=conf.getDeckFile();
+		//get the number of AI players.
+		numAIPlayers=conf.getNumAIPlayers();
 	}
 	
 	// ----------------------------------------------------
 	// Add relevant API methods here
 	// ----------------------------------------------------
 	
+
+	/*
+	 * @Path("/game") includes every game functions and data.
+	 * every round will be displayed in it without moving to another path: /game
+	 * --include game results. 
+	*/
 	@GET
-	@Path("/helloJSONList")
-	/**
-	 * Here is an example of a simple REST get request that returns a String.
-	 * We also illustrate here how we can convert Java objects to JSON strings.
-	 * @return - List of words as JSON
-	 * @throws IOException
-	 */
-	public String helloJSONList() throws IOException {
-		
-		List<String> listOfWords = new ArrayList<String>();
-		listOfWords.add("Hello");
-		listOfWords.add("World!");
-		
-		// We can turn arbatory Java objects directly into JSON strings using
-		// Jackson seralization, assuming that the Java objects are not too complex.
-		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
-		
-		return listAsJSONString;
-	}
+	@Path("/game")
+	public 
 	
-	@GET
-	@Path("/helloWord")
-	/**
-	 * Here is an example of how to read parameters provided in an HTML Get request.
-	 * @param Word - A word
-	 * @return - A String
-	 * @throws IOException
-	 */
-	public String helloWord(@QueryParam("Word") String Word) throws IOException {
-		return "Hello "+Word;
-	}
+	
+//	@GET
+//	@Path("/helloJSONList")
+//	/**
+//	 * Here is an example of a simple REST get request that returns a String.
+//	 * We also illustrate here how we can convert Java objects to JSON strings.
+//	 * @return - List of words as JSON
+//	 * @throws IOException
+//	 */
+//	public String helloJSONList() throws IOException {
+//		
+//		List<String> listOfWords = new ArrayList<String>();
+//		listOfWords.add("Hello");
+//		listOfWords.add("World!");
+//		
+//		// We can turn arbatory Java objects directly into JSON strings using
+//		// Jackson seralization, assuming that the Java objects are not too complex.
+//		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
+//		
+//		return listAsJSONString;
+//	}
+//	
+//	@GET
+//	@Path("/helloWord")
+//	/**
+//	 * Here is an example of how to read parameters provided in an HTML Get request.
+//	 * @param Word - A word
+//	 * @return - A String
+//	 * @throws IOException
+//	 */
+//	public String helloWord(@QueryParam("Word") String Word) throws IOException {
+//		return "Hello "+Word;
+//	}
+	
+	@POST
+	@Path("/game")
+	
+	@PUT
+	@Path("/game")
+	
+	@HEAD
+	@Path("/game")
+	
+	
 	
 }
