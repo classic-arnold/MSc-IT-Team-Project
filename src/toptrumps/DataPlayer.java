@@ -186,7 +186,7 @@ public class DataPlayer {
 	 * get players deck
 	 * @return ArrayList<DataCard> representing the list of cards in players deck
 	 */
-	ArrayList<DataCard> getDeck() {
+	public ArrayList<DataCard> getDeck() {
 		return this.cardDeck;
 	}
 
