@@ -375,8 +375,6 @@
                 // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
                 xhr = new XDomainRequest();
                 xhr.open(method, url);
-
-<<<<<<< HEAD
             } else {
 
                 // Otherwise, CORS is not supported by the browser.
@@ -439,7 +437,6 @@
 
 </div>
 </body>
-=======
 		
 		<script type="text/javascript">
 		
@@ -716,5 +713,4 @@
 		</script>
 		
 		</body>
->>>>>>> 268b42d60ca536148fbbc432f1509df314404a80
 </html>
