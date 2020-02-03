@@ -5,6 +5,94 @@
 // @author Team:Try-Catch Jialiang Song 2410536s
 
 
+
+function displayCard(){
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+	
+	if(!xhr){
+		alert ("No cards in the deck");
+	}
+	
+	xhr.onload = function(e){
+		var responseText = xhr.response;
+		var list = JSON.parse(responseText);
+		
+		
+		setRoundNumber();
+		displayNumberOfCard();
+		cardSectionVisible();
+		
+		xhr.send();
+	}
+}
+
+function humanSelectCategory(c){
+	
+	var number = c;
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		var responseText = xhr.response;
+		alert(responseText);
+		
+		document.getElementById('roundWInner').innerHTML = responseText;
+		
+	}
+	
+	
+	xhr.send();
+}
+
+
+function AISelectCategory(){
+	
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		document.getElementById('roundWinner').innerHTML = responseText;
+	}
+	
+	xhr.send();
+}
+
+function activePlayer(){
+
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		document.getElementById('roundWinner').innerHTML = responseText;
+	}
+	
+	xhr.send();
+	
+}
+
+
+
+
+
+
+
+
+
+
+
 var chooseCard = "(Choose Card)";
 
 var numberOfCategories = 5;
