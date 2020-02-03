@@ -40,8 +40,7 @@ public class TopTrumpsRESTAPI {
 	private String deckFile;
 	private int numAIPlayers;
 	
-	private DataGame model;
-//	=DataGame.getInstance(numberOfArtificialIntelligencePlayers);
+	private DataGame model=DataGame.getInstance(numAIPlayers);
 	
 	/**
 	 * Constructor method for the REST API. This is called first. It provides
@@ -74,7 +73,7 @@ public class TopTrumpsRESTAPI {
 	 * 2. 
 	 * 3. pass list of cards=card name, categories
 	*/
-<<<<<<< HEAD
+
 	@GET
 	@Path("/game")
 	public String getDeckFile() {
@@ -101,20 +100,53 @@ public class TopTrumpsRESTAPI {
 	 * @return string type of ArrayList
 	 */	
 	@GET
-	@Path("/game")
-	public ArrayList<String> getHumanCardsName() throws IOException{
-		ArrayList<String> listOfCards=new ArrayList<String>();
-		
+	@Path("/game/humanCards")
+	public String getHumanCards() throws IOException{		
 		//Categories for the human player
-		listOfCards.add(oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0)));	
-		return listOfCards;
+		String humanCards=oWriter.writeValueAsString(model.getRoundHumanPlayerCard());	
+		return humanCards;
 	}
 	
+	/**
+	 * Get human player's card name, card categories only.
+	 * @return string type of ArrayList
+	 */	
 	@GET
-	@Path("/game")
-	public String getAICards() {
-		
+	@Path("/game/AI1Cards")
+	public String getAI1Cards() {	
+		for(int i=0;i<model.getActivePlayers().length;i++) {
+			if(model.getActivePlayers()[i]) {
+				
+			}
+		}
+		model.getActivePlayers()
+		String AICards=oWriter.writeValueAsString(model.getRoundAIPlayerCards());
+		return AICards;
 	}
+	
+	/**
+	 * Get human player's card name, card categories only.
+	 * @return string type of ArrayList
+	 */	
+	@GET
+	@Path("/game/categoryMenu")
+	public String getCategoryForMenu() {	
+		String categories=oWriter.writeValueAsString(model.CATEGORYNAMES);
+		return categories;
+	}
+	
+//	/**
+//	 * Get human player's card name, card categories only.
+//	 * @return string type of ArrayList
+//	 */	
+//	@GET
+//	@Path("/game/categoryMenu")
+//	public String getCategoryForMenu() {	
+//		String categories=oWriter.writeValueAsString(model.CATEGORYNAMES);
+//		return categories;
+//	}
+	
+	
 	
 	@GET
 	@Path("/stats")
@@ -160,51 +192,4 @@ public class TopTrumpsRESTAPI {
 //		
 //		return roundNumber;
 //	}
-	
-	
-	@GET
-	@Path("/helloJSONList")
-	/**
-	 * Here is an example of a simple REST get request that returns a String.
-	 * We also illustrate here how we can convert Java objects to JSON strings.
-	 * @return - List of words as JSON
-	 * @throws IOException
-	 */
-	public String helloJSONList() throws IOException {
-		
-		List<String> listOfWords = new ArrayList<String>();
-		listOfWords.add("Hello");
-		listOfWords.add("World!");
-		
-		// We can turn arbatory Java objects directly into JSON strings using
-		// Jackson seralization, assuming that the Java objects are not too complex.
-		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
-		
-		return listAsJSONString;
-	}
-	
-	@GET
-	@Path("/helloWord")
-	/**
-	 * Here is an example of how to read parameters provided in an HTML Get request.
-	 * @param Word - A word
-	 * @return - A String
-	 * @throws IOException
-	 */
-	public String helloWord(@QueryParam("Word") String Word) throws IOException {
-		return "Hello "+Word;
-	}
-	
-//	@POST
-//	@Path("/game")
-//	
-//	@PUT
-//	@Path("/game")
-//	
-//	@HEAD
-//	@Path("/game")
-	
-	
-	
->>>>>>> 967ce4e1eb37ed99ed1857a43ca783f2136375fc
 }
