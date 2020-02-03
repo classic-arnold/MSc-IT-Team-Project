@@ -4,6 +4,120 @@
 
 // @author Team:Try-Catch Jialiang Song 2410536s
 
+// -------Move to GameScreen later-------
+
+
+// Method that is called on page load
+function initalize() {
+			
+				// --------------------------------------------------------------------------
+				// You can call other methods you want to run when the page first loads here
+				// --------------------------------------------------------------------------
+				
+				// For example, lets call our sample methods
+				//helloJSONList();
+				//helloWord("Student");
+				
+			}
+
+
+function displayCard(){
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+	
+	if(!xhr){
+		alert ("No cards in the deck");
+	}
+	
+	xhr.onload = function(e){
+		var responseText = xhr.response;
+		var list = JSON.parse(responseText);
+		
+		
+		setRoundNumber();
+		displayNumberOfCard();
+		cardSectionVisible();
+		
+		xhr.send();
+	}
+}
+
+function humanSelectCategory(c){
+	
+	var number = c;
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		var responseText = xhr.response;
+		alert(responseText);
+		
+		document.getElementById('roundWInner').innerHTML = responseText;
+		
+	}
+	
+	
+	xhr.send();
+}
+
+
+function AISelectCategory(){
+	
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		document.getElementById('roundWinner').innerHTML = responseText;
+	}
+	
+	xhr.send();
+}
+
+function activePlayer(){
+
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		document.getElementById('roundWinner').innerHTML = responseText;
+	}
+	
+	xhr.send();
+	
+}
+
+
+function roundNumber(){
+var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		document.getElementById('roundWinner').innerHTML = responseText;
+	}
+	
+	xhr.send();
+}
+
+
+
+
 
 var chooseCard = "(Choose Card)";
 
@@ -38,6 +152,7 @@ var nextRound;
 
 var infoLine;
 var statusLine;
+var statusBar;
 
 
 newGameButton = doucument.getElementById("newGame");
@@ -85,6 +200,8 @@ function initiateGame(){
 //
 // function to randomly shuffle arrays maybe..
 
+
+// The later part get from the API 
 function shuffleCards(){
 	
 }
@@ -93,5 +210,23 @@ function createDeck(){
 	
 }
 
-function 
 
+
+// --------------FLASH-----------------
+// For view
+
+<p id = "certainCategory">
+view.categoryChoose // Note: Fri meeting--不知道这里能不能行。 content here.
+
+</p>
+
+<script>
+function caterotyHighlight(){
+	x = document.getElementById("certainCategory"); // need exact method to choose the certain category
+	x.style.color = "FF0000"; //RGB-255,0,0-red
+}
+</script>
+
+<button>
+type = "button" onclick = "categoryHighlight()"  // > Here need the certain button name that press
+</button>

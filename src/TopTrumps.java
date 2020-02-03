@@ -14,7 +14,12 @@ public class TopTrumps {
 		System.out.println("--------------------");
 		
 		// command line switches
+<<<<<<< HEAD
 		boolean onlineMode = false;
+=======
+
+		boolean onlineMode = true;
+>>>>>>> 967ce4e1eb37ed99ed1857a43ca783f2136375fc
 		boolean commandLineMode = false;
 		boolean printTestLog = false;
 		

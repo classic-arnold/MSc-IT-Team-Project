@@ -74,6 +74,7 @@ public class TopTrumpsRESTAPI {
 	 * 2. 
 	 * 3. pass list of cards=card name, categories
 	*/
+<<<<<<< HEAD
 	@GET
 	@Path("/game")
 	public String getDeckFile() {
@@ -152,4 +153,58 @@ public class TopTrumpsRESTAPI {
 //	public String helloWord(@QueryParam("Word") String Word) throws IOException {
 //		return "Hello "+Word;
 //	}	
+=======
+//	@GET
+//	@Path("/game")
+//	public int getRoundNumber() throws IOException{
+//		
+//		return roundNumber;
+//	}
+	
+	
+	@GET
+	@Path("/helloJSONList")
+	/**
+	 * Here is an example of a simple REST get request that returns a String.
+	 * We also illustrate here how we can convert Java objects to JSON strings.
+	 * @return - List of words as JSON
+	 * @throws IOException
+	 */
+	public String helloJSONList() throws IOException {
+		
+		List<String> listOfWords = new ArrayList<String>();
+		listOfWords.add("Hello");
+		listOfWords.add("World!");
+		
+		// We can turn arbatory Java objects directly into JSON strings using
+		// Jackson seralization, assuming that the Java objects are not too complex.
+		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
+		
+		return listAsJSONString;
+	}
+	
+	@GET
+	@Path("/helloWord")
+	/**
+	 * Here is an example of how to read parameters provided in an HTML Get request.
+	 * @param Word - A word
+	 * @return - A String
+	 * @throws IOException
+	 */
+	public String helloWord(@QueryParam("Word") String Word) throws IOException {
+		return "Hello "+Word;
+	}
+	
+//	@POST
+//	@Path("/game")
+//	
+//	@PUT
+//	@Path("/game")
+//	
+//	@HEAD
+//	@Path("/game")
+	
+	
+	
+>>>>>>> 967ce4e1eb37ed99ed1857a43ca783f2136375fc
 }
