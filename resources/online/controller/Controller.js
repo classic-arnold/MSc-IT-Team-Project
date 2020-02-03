@@ -4,6 +4,21 @@
 
 // @author Team:Try-Catch Jialiang Song 2410536s
 
+// -------Move to GameScreen later-------
+
+
+// Method that is called on page load
+function initalize() {
+			
+				// --------------------------------------------------------------------------
+				// You can call other methods you want to run when the page first loads here
+				// --------------------------------------------------------------------------
+				
+				// For example, lets call our sample methods
+				//helloJSONList();
+				//helloWord("Student");
+				
+			}
 
 
 function displayCard(){
@@ -84,10 +99,21 @@ function activePlayer(){
 }
 
 
-
-
-
-
+function roundNumber(){
+var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		document.getElementById('roundWinner').innerHTML = responseText;
+	}
+	
+	xhr.send();
+}
 
 
 
