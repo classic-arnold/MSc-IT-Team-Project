@@ -20,8 +20,8 @@ public class ProgramDatabase {
 	//When running database via laptop(Estelle's), release annotation below 3 line
 	private static final String url="jdbc:postgresql://localhost:5432/TopTrump";
 	private static final String userID="postgres";
-//	private static final String password="qmffldqmffld3";
-	private static final String password="postgres";
+	private static final String password="qmffldqmffld3";
+//	private static final String password="postgres";
 
 	private int gameCount;
 	private int humanWon;
@@ -120,8 +120,20 @@ public class ProgramDatabase {
 			}
 
 			//get int value for humanScore, AI1Score, AI2Score, AI3Score, AI4Score respectively
+			//should modify to GUI. when the number of AI players are less than 4. like:
+			//DataGame model = DataGame.resetAndGetInstance(3); 
 			for(int i=0;i<model.getAllPlayers().length;i++) {
 				pstmt.setInt(2+i, model.getAllPlayers()[i].getScore());
+			}
+			
+			if(model.getAllPlayers().length<=4) {
+				pstmt.setInt(6, 0);
+				if(model.getAllPlayers().length<=3) {
+					pstmt.setInt(5, 0);
+					if(model.getAllPlayers().length<=2) {
+						pstmt.setInt(4, 0);
+					}
+				}
 			}
 
 			//get int value for draws
@@ -129,7 +141,8 @@ public class ProgramDatabase {
 
 			//get int value for total round number
 			pstmt.setInt(8, model.getRoundNumber());
-
+				
+			
 			//execute the preparedstatement insert
 			pstmt.executeUpdate();
 			pstmt.close();

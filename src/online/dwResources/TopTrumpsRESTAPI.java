@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import online.configuration.TopTrumpsJSONConfiguration;
+import toptrumps.DataGame;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -35,8 +36,13 @@ public class TopTrumpsRESTAPI {
 	/** A Jackson Object writer. It allows us to turn Java objects
 	 * into JSON strings easily. */
 	ObjectWriter oWriter = new ObjectMapper().writerWithDefaultPrettyPrinter();
+	
 	private String deckFile;
 	private int numAIPlayers;
+	
+	private DataGame model;
+//	=DataGame.getInstance(numberOfArtificialIntelligencePlayers);
+	
 	/**
 	 * Constructor method for the REST API. This is called first. It provides
 	 * a TopTrumpsJSONConfiguration from which you can get the location of
@@ -65,14 +71,53 @@ public class TopTrumpsRESTAPI {
 	 * 
 	 * passing details: 
 	 * 1. get round number from the model. 
-	 * 2. get category
+	 * 2. 
+	 * 3. pass list of cards=card name, categories
 	*/
 	@GET
 	@Path("/game")
-//	public int getRoundNumber() throws IOException{
-//		
-//		return roundNumber;
-//	}
+	public String getDeckFile() {
+		return deckFile;
+	}
+	
+	
+	/**
+	 * Get current round number
+	 * @returns String type.
+	 */	
+	@GET
+	@Path("/game/roundNumber")
+	public String getRoundNumber() throws IOException{
+		int roundNumber=model.getRoundNumber();
+		//cast to String
+		String roundNumberInString=oWriter.writeValueAsString(roundNumber);
+		return roundNumberInString;
+	}
+	
+	
+	/**
+	 * Get human player's card name, card categories only.
+	 * @return string type of ArrayList
+	 */	
+	@GET
+	@Path("/game")
+	public ArrayList<String> getHumanCardsName() throws IOException{
+		ArrayList<String> listOfCards=new ArrayList<String>();
+		
+		//Categories for the human player
+		listOfCards.add(oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0)));	
+		return listOfCards;
+	}
+	
+	@GET
+	@Path("/game")
+	public String getAICards() {
+		
+	}
+	
+	@GET
+	@Path("/stats")
+	public 
 	
 	
 //	@GET
@@ -106,17 +151,5 @@ public class TopTrumpsRESTAPI {
 //	 */
 //	public String helloWord(@QueryParam("Word") String Word) throws IOException {
 //		return "Hello "+Word;
-//	}
-	
-	@POST
-	@Path("/game")
-	
-	@PUT
-	@Path("/game")
-	
-	@HEAD
-	@Path("/game")
-	
-	
-	
+//	}	
 }
