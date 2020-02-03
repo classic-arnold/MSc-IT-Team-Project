@@ -28,7 +28,7 @@ function myFunction()
 <button type="button" onclick="myFunction()">click here</button>
 	
 	
-<!--   JavaScript could change the colour -->
+<!--   JavaScript could change the content colour -->
 
 <h1> the JavaScript exercise two. </h1>
 

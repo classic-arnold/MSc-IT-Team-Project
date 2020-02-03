@@ -7,10 +7,52 @@
 // -------Move to GameScreen later-------
 
 
+<script type="text/javascript">
+			
 // Method that is called on page load
+			function initalize() {
+				
+			}
+			
+			// -----------------------------------------
+			// Add other Javascript methods Here
+			// -----------------------------------------
+		
+			
+			// This is a reusable method for creating a CORS request. Do not edit this.
+			function createCORSRequest(method, url) {
+  				var xhr = new XMLHttpRequest();
+  				if ("withCredentials" in xhr) {
+
+    				// Check if the XMLHttpRequest object has a "withCredentials" property.
+    				// "withCredentials" only exists on XMLHTTPRequest2 objects.
+    				xhr.open(method, url, true);
+
+  				} else if (typeof XDomainRequest != "undefined") {
+
+    				// Otherwise, check if XDomainRequest.
+    				// XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+    				xhr = new XDomainRequest();
+    				xhr.open(method, url);
+
+ 				 } else {
+
+    				// Otherwise, CORS is not supported by the browser.
+    				xhr = null;
+
+  				 }
+  				 return xhr;
+			}
+		
+		</script>
+
+
+		
+		<script type="text/javascript">
+		
 function initalize() {
 			
-	// You can call other methods you want to run when the page first loads here
+	// call other methods need to run when the page first loads here
 				
 			}
 
@@ -27,9 +69,9 @@ function displayCard(){
 		var list = JSON.parse(responseText);
 		
 		
-		setRoundNumber();
-		displayNumberOfCard();
-		cardSectionVisible();
+//		setRoundNumber();
+//		displayNumberOfCard();
+//		cardSectionVisible();
 		
 		xhr.send();
 	}
@@ -108,6 +150,14 @@ var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONLis
 	
 	xhr.send();
 }
+
+
+
+</script>
+
+
+
+
 
 
 

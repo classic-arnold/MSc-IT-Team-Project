@@ -253,6 +253,141 @@
 		
 		<script type="text/javascript">
 		
+		function initalize() {
+			// call other methods need to run when the page first loads here
+					}
+		
+		// Method that is called on page load
+	
+		// This is a reusable method for creating a CORS request. Do not edit this.
+		function createCORSRequest(method, url) {
+				var xhr = new XMLHttpRequest();
+				if ("withCredentials" in xhr) {
+
+				// Check if the XMLHttpRequest object has a "withCredentials" property.
+				// "withCredentials" only exists on XMLHTTPRequest2 objects.
+				xhr.open(method, url, true);
+
+				} else if (typeof XDomainRequest != "undefined") {
+
+				// Otherwise, check if XDomainRequest.
+				// XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+				xhr = new XDomainRequest();
+				xhr.open(method, url);
+
+				 } else {
+
+				// Otherwise, CORS is not supported by the browser.
+				xhr = null;
+
+				 }
+				 return xhr;
+		}
+        </script>
+		
+
+	    <script type="text/javascript">
+		
+
+
+		function displayCard(){
+			var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+			
+			if(!xhr){
+				alert ("No cards in the deck");
+			}
+			
+			xhr.onload = function(e){
+				var responseText = xhr.response;
+				var list = JSON.parse(responseText);
+				
+				
+//				setRoundNumber();
+//				displayNumberOfCard();
+				
+				xhr.send();
+			}
+		}
+
+		function humanSelectCategory(c){
+			
+			var number = c;
+			var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+			
+			if(!xhr){
+				alert ("CORS NOT SUPPORTED");
+			}
+			
+			xhr.onload = function(e){
+				var responseText = xhr.response;
+				alert(responseText);
+				
+				document.getElementById('roundWInner').innerHTML = responseText;
+				
+			}
+			
+			
+			xhr.send();
+		}
+
+
+		function AISelectCategory(){
+			
+			var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+			
+			if(!xhr){
+				alert ("CORS NOT SUPPORTED");
+			}
+			
+			xhr.onload = function(e){
+				
+				var responseText = xhr.response;
+				document.getElementById('roundWinner').innerHTML = responseText;
+			}
+			
+			xhr.send();
+		}
+
+		function activePlayer(){
+
+			var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+			
+			if(!xhr){
+				alert ("CORS NOT SUPPORTED");
+			}
+			
+			xhr.onload = function(e){
+				
+				var responseText = xhr.response;
+				document.getElementById('roundWinner').innerHTML = responseText;
+			}
+			
+			xhr.send();
+			
+		}
+
+
+		function roundNumber(){
+		var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+			
+			if(!xhr){
+				alert ("CORS NOT SUPPORTED");
+			}
+			
+			xhr.onload = function(e){
+				
+				var responseText = xhr.response;
+				document.getElementById('roundWinner').innerHTML = responseText;
+			}
+			
+			xhr.send();
+		}
+		
+		
+		
+		
+<!--  -------------------   original   ----------------------------            -->
+
 			// Method that is called on page load
 			function initalize() {
 			
