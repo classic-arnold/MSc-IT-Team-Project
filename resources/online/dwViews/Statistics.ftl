@@ -61,51 +61,28 @@
 
         }
         
-        #new-game-col{
-        
-        padding-right:200px;
-        
-        }
-        
-		
-		
-		/*Card Styles*/
-		
-		.card {
-			box-shadow: 0 0 5px black;
-			border: 3px solid;
-			border-image-source: linear-gradient(to right, #659999, #f4791f);
-			border-image-slice: 1;
-			background-color:#fafafa;
-		
-			
-		}
-
-		.card-title {
-			text-align: center;
-			font-family: 'Roboto Mono', monospace;
-			font-weight: bold;
-			font-size:40px;
-		}
-		
-		.card-header{
-		   background:linear-gradient(to right, #659999, #f4791f);
-		   border:0px;
-		}
-		.card-header:first-child {
-           border-radius: 0px;         
+       .header-div{
+           text-align: center;
+		    font-family: 'Roboto Mono', monospace;
+		    font-weight: bold;
+		    font-size: 40px;
+		    margin-bottom:30px;
+		       
+       
        }
-         /*LINK STYLES*/
-         a {
-           color: black;
-            }
-          a:hover{
-          color:black;
-          text-decoration: none;
-          
-          
-          }
-		
+       
+       
+       .table-div{
+
+		    font-family: 'Roboto Mono', monospace;
+		    font-weight: bold;
+		    font-size: 20px;
+		       
+       
+       
+       
+       
+       }
 		</style>
 		
 		
@@ -137,15 +114,40 @@
 <div class="col-sm-3 section1 ">
    
 </div>
-<div class="col-sm-9 section2  d-flex justify-content-center">
-<div class=""row">
-<div class="col-sm-12">
+<div class="col-sm-9 section2 justify-content-center">
+<div class="row">
+<div class="col-sm-12 text-center header-div">
 <h1>Statistics</h1>
 </div>
 </div>
-      
-      
-         
+<div class="row">
+<div class="col-sm-12 table-div">
+<table class="table">
+  <tbody>
+    <tr>
+      <td>Number of Games</td>
+       <td id="numberOfGames">1</td>
+    </tr>
+    <tr>
+         <td>Number of Human Wins</td>
+      <td id="numberOfHumanWins">2</td>
+    </tr>
+    <tr>
+      <td>Number of AI Wins</td>
+       <td id="numberOfAIWins">3</td>
+    </tr>
+    <tr>
+    <td>Average Number of Draws</td>
+    <td id="numberOfDraws">4</td>
+    </tr>
+    <tr>
+       <td>Longest Game</td>
+       <td id="longestGame">5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>   
       </div>
    </div>
 </div>
