@@ -80,6 +80,14 @@ public class TopTrumpsRESTAPI {
 		return deckFile;
 	}
 	
+	@GET
+	@Path("/game/round")
+	public String getRound() throws IOException{
+		int round=model.getRoundNumber();
+		String roundNumber=oWriter.writeValueAsString(round);
+		return roundNumber;
+	}
+	
 	
 	/**
 	 * Get current round number
@@ -113,13 +121,10 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/AI1Cards")
-	public String getAI1Cards() {	
+	public String getAICards() throws IOException{	
 		for(int i=0;i<model.getActivePlayers().length;i++) {
-			if(model.getActivePlayers()[i]) {
-				
-			}
 		}
-		model.getActivePlayers()
+		model.getActivePlayers();
 		String AICards=oWriter.writeValueAsString(model.getRoundAIPlayerCards());
 		return AICards;
 	}
@@ -130,27 +135,25 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/categoryMenu")
-	public String getCategoryForMenu() {	
+	public String getCategoryForMenu() throws IOException{	
 		String categories=oWriter.writeValueAsString(model.CATEGORYNAMES);
 		return categories;
 	}
 	
-//	/**
-//	 * Get human player's card name, card categories only.
-//	 * @return string type of ArrayList
-//	 */	
-//	@GET
-//	@Path("/game/categoryMenu")
-//	public String getCategoryForMenu() {	
-//		String categories=oWriter.writeValueAsString(model.CATEGORYNAMES);
-//		return categories;
-//	}
-	
-	
-	
+	/**
+	 * Get human player's card name, card categories only.
+	 * @return string type of ArrayList
+	 */	
 	@GET
-	@Path("/stats")
-	public 
+	@Path("/game/roundDescription")
+	public String getRoundDescription() throws IOException{	
+		String categories=oWriter.writeValueAsString(model.CATEGORYNAMES);
+		return categories;
+	}
+	
+	
+	
+
 	
 	
 //	@GET
@@ -185,7 +188,7 @@ public class TopTrumpsRESTAPI {
 //	public String helloWord(@QueryParam("Word") String Word) throws IOException {
 //		return "Hello "+Word;
 //	}	
-=======
+
 //	@GET
 //	@Path("/game")
 //	public int getRoundNumber() throws IOException{
