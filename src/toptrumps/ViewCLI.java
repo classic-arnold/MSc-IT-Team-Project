@@ -135,15 +135,16 @@ public class ViewCLI {
 	 * Displays to user the option to move to next round or quit
 	 */
 	public String nextRoundChoice() {
-		String nextRoundAction = "test";
+		String nextRoundAction = "initial";
 		boolean redo = false;
-		while (!nextRoundAction.equals("") || !nextRoundAction.equals("q")) {
+		while (!nextRoundAction.equals("") && !nextRoundAction.equals("q")) {
 			if (redo) {
 				System.out.println("Invalid Input \n");
 			}
 			System.out.println("Press enter to move to next round or press q to quit");
 			Scanner nextRoundChoiceIn = new Scanner(System.in);
 			nextRoundAction = nextRoundChoiceIn.nextLine();
+			System.out.println(nextRoundAction);
 			redo = true;
 		}
 
