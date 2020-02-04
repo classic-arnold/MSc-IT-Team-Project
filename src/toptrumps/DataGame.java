@@ -164,15 +164,21 @@ public class DataGame{
 		return 0;
 	}
 	
-	public int getBestCategoryForCurrentAIPlayers() {
-		
+	public DataPlayer getCategoryChooser() {
 		DataPlayer player;
-		
 		if (this.roundLastWinner != null) {
 			player = this.roundLastWinner;
 		} else {
 			player = this.firstPlayer;
 		}
+		return player;
+	}
+	
+	public int getBestCategoryForCurrentAIPlayers() {
+		
+		DataPlayer player;
+		
+		player = this.getCategoryChooser();
 		
 		if(player.getType()==DataPlayer.PlayerType.AI) {
 //			System.out.println(player.getDeck().get(0).findTopCategory());
