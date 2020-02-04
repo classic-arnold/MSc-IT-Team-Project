@@ -21,6 +21,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
 @Produces(MediaType.APPLICATION_JSON) // This resource returns JSON content
 @Consumes(MediaType.APPLICATION_JSON) // This resource can take JSON content as input
+
+
 /**
  * This is a Dropwizard Resource that specifies what to provide when a user
  * requests a particular URL. In this case, the URLs are associated to the
@@ -65,22 +67,28 @@ public class TopTrumpsRESTAPI {
 	// Add relevant API methods here
 	// ----------------------------------------------------
 	
-
 	/*
 	 * @Path("/game") includes every game functions and data.
 	 * every round will be displayed in it without moving to another path: /game
 	 * --include game results. 
 	 * 
 	 * passing details: 
-	 * 1. get round number from the model. 
-	 * 2. 
-	 * 3. pass list of cards=card name, categories
+	 * 1. getDeckFile(): /game/displayCards
+	 * 2. getCategoryForMenu(): /game/categoryMenu
+	 * 3. getAICategory(): /game/aiCategorySelection
+	 * 4. getActivePlayer(): /game/activePlayer
+	 * 5. getRound(): /game/round
+	 * 6. getHumanCards(): /game/humanCards
+	 * 7. getRoundDescription(): /game/roundDescription 	<<should modify
+	 * 8. getAICards(): /game/AI1Cards 						<<should modify
 	*/
+
 
 	/**
 	 * Get entire deck file when the game starts.
 	 * @Controller.js: function displayCard 
-	 * @returns String type.
+	 * @returns String type
+	 * @throws IOException
 	 */	
 	@GET
 	@Path("/game/displayCards")
@@ -93,6 +101,7 @@ public class TopTrumpsRESTAPI {
 	 * Get human player's card name, card categories only.
 	 * @Controller.js: function humanSelectCategory
 	 * @return string type of ArrayList
+	 * @throws IOException
 	 */	
 	@GET
 	@Path("/game/categoryMenu")
@@ -105,7 +114,8 @@ public class TopTrumpsRESTAPI {
 	/**
 	 * Get round category which AI player had chosen.
 	 * @Controller.js: function AISelectCategory
-	 * @returns String type.
+	 * @returns String type
+	 * @throws IOException
 	 */	
 	@GET
 	@Path("/game/aiCategorySelection")
@@ -119,7 +129,8 @@ public class TopTrumpsRESTAPI {
 	/**
 	 * Get active player (ArrayList) and store in activePlayer (array).
 	 * @Controller.js: function activePlayer
-	 * @returns String[] type.
+	 * @returns String[] type
+	 * @throws IOException
 	 */	
 	@GET
 	@Path("/game/activePlayer")
@@ -137,7 +148,8 @@ public class TopTrumpsRESTAPI {
 	/**
 	 * Get current round number:integer.
 	 * @Controller.js: function roundNumber
-	 * @returns String type.
+	 * @returns String type
+	 * @throws IOException
 	 */	
 	@GET
 	@Path("/game/round")
@@ -150,7 +162,9 @@ public class TopTrumpsRESTAPI {
 	
 	/**
 	 * Get human player's card name, card categories only.
+	 * @Controller.js:
 	 * @return string type of ArrayList
+	 * @throws IOException
 	 */	
 	@GET
 	@Path("/game/humanCards")
@@ -158,11 +172,43 @@ public class TopTrumpsRESTAPI {
 		//Categories for the human player
 		String humanCards=oWriter.writeValueAsString(model.getRoundHumanPlayerCard());	
 		return humanCards;
-	}
+	}	
+
 	
 	/**
-	 * Get human player's card name, card categories only.
+	 * Print current round description. 
+	 * such as: "Round 1: Players had drawn their cards".
+	 * @Controller.js:
+	 * @param roundNumber - round number
 	 * @return string type of ArrayList
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/roundDescription")
+	public String getRoundDescription(@QueryParam("roundNumber") String roundNumber) throws IOException{	
+		String output=String.format("Round %d: Players had drawn their cards", roundNumber);
+		if(model.getRoundCategory()==null) {
+//			if(model.getActivePlayers()[i].getTypeAsString().equals("human"))
+			output=String.format("Round %d: Players had drawn their cards", roundNumber);
+		}
+		else {
+//			do we need to print description when certain player selects category?
+//			if(model.ai)
+			
+			output=String.format("Round %d: Player %s won this round",
+					roundNumber, 
+					model.getRoundWinningPlayers().get(0).toString());
+		}
+		return output;
+	}
+	
+	
+
+	/**
+	 * Get human player's card name, card categories only.
+	 * @Controller.js:
+	 * @return string type of ArrayList
+	 * @throws IOException
 	 */	
 	@GET
 	@Path("/game/AI1Cards")
@@ -173,23 +219,6 @@ public class TopTrumpsRESTAPI {
 		String AICards=oWriter.writeValueAsString(model.getRoundAIPlayerCards());
 		return AICards;
 	}
-	
-
-	
-	/**
-	 * Get human player's card name, card categories only.
-	 * @return string type of ArrayList
-	 */	
-	@GET
-	@Path("/game/roundDescription")
-	public String getRoundDescription() throws IOException{	
-		String categories=oWriter.writeValueAsString(model.CATEGORYNAMES);
-		return categories;
-	}
-	
-	
-	
-
 	
 	
 //	@GET
