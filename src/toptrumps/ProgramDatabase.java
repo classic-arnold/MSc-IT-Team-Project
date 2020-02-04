@@ -1,14 +1,16 @@
 package toptrumps;
 import java.sql.*;
 
-/*
- * Database connecting to Eclipse
- * ProgramDatabase class should be used both for CLI version and GUI version.
+
+/**
+ * ProgramDatabase - creates the connection of postgre database with Eclipse. 
+ * And Two methods: insertGameStats(DataGame model): void, selectGameStats(): void
+ * getters for passing statistical values to DataGame class (model).
  * 
- * Try-Catch Team
- * Bokyung Lee 2431088l
+ * - ProgramDatabase class should be used both for CLI version and GUI version.
  * 
- * postgresql-9.4-1206-jdbc4.jar
+ * @author Team Try-Catch - Bokyung Lee 2431088l
+ * 
  * */
 public class ProgramDatabase {
 
