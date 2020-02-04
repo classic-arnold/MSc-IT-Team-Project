@@ -52,8 +52,11 @@ public class TopTrumpsRESTAPI {
 		// ----------------------------------------------------
 		// Add relevant initalization here
 		// ----------------------------------------------------
+		
+		
 		//get the location of the deck file
 		deckFile=conf.getDeckFile();
+		
 		//get the number of AI players.
 		numAIPlayers=conf.getNumAIPlayers();
 	}
@@ -74,32 +77,74 @@ public class TopTrumpsRESTAPI {
 	 * 3. pass list of cards=card name, categories
 	*/
 
+	/**
+	 * Get entire deck file when the game starts.
+	 * @Controller.js: function displayCard 
+	 * @returns String type.
+	 */	
 	@GET
-	@Path("/game")
+	@Path("/game/displayCards")
 	public String getDeckFile() {
 		return deckFile;
 	}
 	
+
+	/**
+	 * Get human player's card name, card categories only.
+	 * @Controller.js: function humanSelectCategory
+	 * @return string type of ArrayList
+	 */	
+	@GET
+	@Path("/game/categoryMenu")
+	public String getCategoryForMenu() throws IOException{	
+		String categories=oWriter.writeValueAsString(model.CATEGORYNAMES);
+		return categories;
+	}
+	
+	
+	/**
+	 * Get round category which AI player had chosen.
+	 * @Controller.js: function AISelectCategory
+	 * @returns String type.
+	 */	
+	@GET
+	@Path("/game/aiCategorySelection")
+	public String getAICategory() throws IOException{
+		String categorySelection=model.getRoundCategory();
+		String roundCategory=oWriter.writeValueAsString(categorySelection);
+		return roundCategory;
+	}
+	
+	
+	/**
+	 * Get active player (ArrayList) and store in activePlayer (array).
+	 * @Controller.js: function activePlayer
+	 * @returns String[] type.
+	 */	
+	@GET
+	@Path("/game/activePlayer")
+	public String[] getActivePlayer() throws IOException{
+		String[] activePlayer=new String[model.getActivePlayers().length];
+		
+		for(int i=0;i<model.getActivePlayers().length;i++) {
+			activePlayer[i]=oWriter.writeValueAsString(model.getActivePlayers());
+		}
+
+		return activePlayer;
+	}
+	
+
+	/**
+	 * Get current round number:integer.
+	 * @Controller.js: function roundNumber
+	 * @returns String type.
+	 */	
 	@GET
 	@Path("/game/round")
 	public String getRound() throws IOException{
 		int round=model.getRoundNumber();
 		String roundNumber=oWriter.writeValueAsString(round);
 		return roundNumber;
-	}
-	
-	
-	/**
-	 * Get current round number
-	 * @returns String type.
-	 */	
-	@GET
-	@Path("/game/roundNumber")
-	public String getRoundNumber() throws IOException{
-		int roundNumber=model.getRoundNumber();
-		//cast to String
-		String roundNumberInString=oWriter.writeValueAsString(roundNumber);
-		return roundNumberInString;
 	}
 	
 	
@@ -129,16 +174,7 @@ public class TopTrumpsRESTAPI {
 		return AICards;
 	}
 	
-	/**
-	 * Get human player's card name, card categories only.
-	 * @return string type of ArrayList
-	 */	
-	@GET
-	@Path("/game/categoryMenu")
-	public String getCategoryForMenu() throws IOException{	
-		String categories=oWriter.writeValueAsString(model.CATEGORYNAMES);
-		return categories;
-	}
+
 	
 	/**
 	 * Get human player's card name, card categories only.
