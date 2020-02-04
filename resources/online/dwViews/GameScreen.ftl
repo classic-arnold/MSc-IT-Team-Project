@@ -473,7 +473,26 @@
         </script>
 		
 
-	    <script type="text/javascript">
+	    <script type="text/javascript"
+	    
+	    <!--  -------------------   -->
+	         function ganeBeginning(){
+		        var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+		        
+			if(!xhr){
+			       alert(" The initial error");
+			       
+			}
+			
+			xhr.onload = function(e){
+			      var responseText = xhr.response;
+//  temporary                 alert("responseText");
+
+                      // Might show automatic when press the New Game button in the selectionPage.ftl
+		      //       doucumentElementById("new game");
+		      //       add the action/eventListenner 
+		      //       addEventListenner onclick ("New Game")
+			   
 		
 
 
