@@ -476,7 +476,7 @@
 	    <script type="text/javascript"
 	    
 	    <!--  -------------------   -->
-	         function ganeBeginning(){
+	         function gameBeginning(){
 		        var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
 		        
 			if(!xhr){
@@ -635,6 +635,8 @@
   				 }
   				 return xhr;
 			}
+			
+			
 		
 		</script>
 		

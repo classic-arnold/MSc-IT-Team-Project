@@ -11,15 +11,11 @@
 			
 // Method that is called on page load
 			function initalize() {
-				
 			}
-			
 			// -----------------------------------------
 			// Add other Javascript methods Here
 			// -----------------------------------------
-		
-			
-			// This is a reusable method for creating a CORS request. Do not edit this.
+
 			function createCORSRequest(method, url) {
   				var xhr = new XMLHttpRequest();
   				if ("withCredentials" in xhr) {
@@ -50,13 +46,6 @@
 		
 		<script type="text/javascript">
 		
-function initalize() {
-			
-	// call other methods need to run when the page first loads here
-				
-			}
-
-
 function displayCard(){
 	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
 	
@@ -188,7 +177,7 @@ var currentRound = 0;
 
 
 var newGameButton; // start a new Top Trumps Game
-var gameStatisticsButton; //Get statistics from past games
+var viewStatistics; //Get statistics from past games
 
 var nextCategorySelectionButton; 
 var showWinnerButton;
@@ -198,12 +187,25 @@ var infoLine;
 var statusLine;
 var statusBar;
 
+var selectCat1;
+var selectCat2；
+var selectCat3；
+var selectCat4；
+var selectCat5；
 
-newGameButton = doucument.getElementById("newGame");
+
+document.getElementById("selectCat2ButtonName###").addEventListener("click", chooseCategory1);
+document.getElementById("selectCat2ButtonName###").addEventListener("click", chooseCategory2);
+document.getElementById("selectCat3ButtonName###").addEventListener("click", chooseCategory3);
+document.getElementById("selectCat4ButtonName###").addEventListener("click", chooseCategory4);
+document.getElementById("selectCat5ButtonName###").addEventListener("click", chooseCategory5);
+
+
+newGameButton = doucument.getElementById("new-game-col");
 newGameButton.addEventListener("click",initiateNewGame);
 
-gameStatisticsButton = doucument.doucument.getElementById("gameStatistic");
-gameStatisticsButton.addEventListener("click",gameStatistic);
+viewStatistics = doucument.getElementById("gameStatistic");
+viewStatistics.addEventListener("click",gameStatistic);
 
 nextCategorySelectionButton = doucument.getElementById("selectCategory");
 nextCategorySelectionButton.addEventListener("click",xxxfunction);
@@ -212,10 +214,6 @@ nextRound = doucument.getElementById("nextRound");
 nextRound.addEventListener("click",xxxfunction);
 
 
-
-function initiateNewGame(){
-	window.location.reload();
-}
 
 function initiateGame(){
 	shuffleCards();
@@ -226,26 +224,6 @@ function initiateGame(){
 	initiateRound();
 }
 
-
-
-
-
-//function newGame()
-//{
-//	 
-//	// innerHTML=xxx
-//	window.location.reload()
-//	
-//	}
-//
-
-//
-//<button type="newGame" onclick="newGame()"> Start a new Top Trumps Game </button>
-//
-// function to randomly shuffle arrays maybe..
-
-
-// The later part get from the API 
 function shuffleCards(){
 	
 }
@@ -256,15 +234,9 @@ function createDeck(){
 
 
 
+
 // --------------FLASH-----------------
-// For view
 
-<p id = "certainCategory">
-view.categoryChoose // Note: Fri meeting--不知道这里能不能行。 content here.
-
-</p>
-
-<script>
 function caterotyHighlight(){
 	x = document.getElementById("certainCategory"); // need exact method to choose the certain category
 	x.style.color = "FF0000"; //RGB-255,0,0-red
