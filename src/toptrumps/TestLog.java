@@ -356,12 +356,10 @@ public class TestLog {
 	        bw.newLine();
 	        bw.newLine();
 	        String catSelected="";
-	        if(model.getRoundNumber()==1) {
-	        	 catSelected=model.getFirstPlayer().getName()+" selected "+model.getRoundCategory();
-	        }
-	        if(model.getRoundNumber()!=1) {
-	        	 catSelected=model.getRoundLastWinner().getName()+" selected "+model.getRoundCategory();
-	        }
+	      
+	       catSelected=model.getCategoryChooser().getName()+" selected "+model.getRoundCategory();
+	        
+	        
 	        
 	        bw.write(catSelected);
 	         bw.close();
