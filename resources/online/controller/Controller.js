@@ -21,6 +21,7 @@
 			// Add other Javascript methods Here
 			// -----------------------------------------
 
+			
 			function createCORSRequest(method, url) {
   				var xhr = new XMLHttpRequest();
   				if ("withCredentials" in xhr) {
@@ -45,101 +46,231 @@
   				 return xhr;
 			}
 		
-		</script>
+</script>
 
 
+<script type="text/javascript">
+
+// Here, to call the REST API Methods
+
+function getDeckFile(){
+	
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/displauCards");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
 		
-		<script type="text/javascript">
+		var responseText = xhr.response;
+		alert(responseText);
+	}
+	
+	xhr.send();
+	
+}
+
+function getCategoryForMenu(){
+	
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/categoryMenu");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
 		
-//function displayCard(){
+		var responseText = xhr.response;
+		alert(responseText);
+	}
+	
+	xhr.send();
+	
+}
+
+function getAICategory(){
+	
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/aiCategorySelection");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		alert(responseText);
+	}
+	
+	xhr.send();
+	
+}
+
+function getActivePlayer(){
+	
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/activePlayer");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		alert(responseText);
+	}
+	
+	xhr.send();
+	
+}
+
+function getRoundNumber(){
+	
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundNumber");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		alert(responseText);
+	}
+	
+	xhr.send();
+	
+}
+
+function getHumanCards(){
+	
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/humanCards");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		alert(responseText);
+	}
+	
+	xhr.send();
+	
+}
+
+function getAICards(){
+	
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/AI1Cards");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		alert(responseText);
+	}
+	
+	xhr.send();
+	
+}
+
+function getRoundDescription(){
+	
+	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundDescription");
+	
+	if(!xhr){
+		alert ("CORS NOT SUPPORTED");
+	}
+	
+	xhr.onload = function(e){
+		
+		var responseText = xhr.response;
+		alert(responseText);
+	}
+	
+	xhr.send();
+	
+}
+
+
+
+
+//function humanSelectCategory(c){
+//	
+//	var number = c;
 //	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
 //	
 //	if(!xhr){
-//		alert ("No cards in the deck");
+//		alert ("CORS NOT SUPPORTED");
 //	}
 //	
 //	xhr.onload = function(e){
 //		var responseText = xhr.response;
-//		var list = JSON.parse(responseText);
+//		alert(responseText);
 //		
+//		document.getElementById('roundWInner').innerHTML = responseText;
 //		
-
-		
-		xhr.send();
-	}
-}
-
-function humanSelectCategory(c){
-	
-	var number = c;
-	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
-	
-	if(!xhr){
-		alert ("CORS NOT SUPPORTED");
-	}
-	
-	xhr.onload = function(e){
-		var responseText = xhr.response;
-		alert(responseText);
-		
-		document.getElementById('roundWInner').innerHTML = responseText;
-		
-	}
-	
-	
-	xhr.send();
-}
-
-function AISelectCategory(){
-	
-	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
-	
-	if(!xhr){
-		alert ("CORS NOT SUPPORTED");
-	}
-	
-	xhr.onload = function(e){
-		
-		var responseText = xhr.response;
-		document.getElementById('roundWinner').innerHTML = responseText;
-	}
-	
-	xhr.send();
-}
-
-function activePlayer(){
-
-	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
-	
-	if(!xhr){
-		alert ("CORS NOT SUPPORTED");
-	}
-	
-	xhr.onload = function(e){
-		
-		var responseText = xhr.response;
-		document.getElementById('roundWinner').innerHTML = responseText;
-	}
-	
-	xhr.send();
-	
-}
-
-function roundNumber(){
-var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
-	
-	if(!xhr){
-		alert ("CORS NOT SUPPORTED");
-	}
-	
-	xhr.onload = function(e){
-		
-		var responseText = xhr.response;
-		document.getElementById('roundWinner').innerHTML = responseText;
-	}
-	
-	xhr.send();
-}
+//	}
+//	
+//	
+//	xhr.send();
+//}
+//
+//function AISelectCategory(){
+//	
+//	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+//	
+//	if(!xhr){
+//		alert ("CORS NOT SUPPORTED");
+//	}
+//	
+//	xhr.onload = function(e){
+//		
+//		var responseText = xhr.response;
+//		document.getElementById('roundWinner').innerHTML = responseText;
+//	}
+//	
+//	xhr.send();
+//}
+//
+//function activePlayer(){
+//
+//	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+//	
+//	if(!xhr){
+//		alert ("CORS NOT SUPPORTED");
+//	}
+//	
+//	xhr.onload = function(e){
+//		
+//		var responseText = xhr.response;
+//		document.getElementById('roundWinner').innerHTML = responseText;
+//	}
+//	
+//	xhr.send();
+//	
+//}
+//
+//function roundNumber(){
+//var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+//	
+//	if(!xhr){
+//		alert ("CORS NOT SUPPORTED");
+//	}
+//	
+//	xhr.onload = function(e){
+//		
+//		var responseText = xhr.response;
+//		document.getElementById('roundWinner').innerHTML = responseText;
+//	}
+//	
+//	xhr.send();
+//}
 
 
 
