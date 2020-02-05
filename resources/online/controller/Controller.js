@@ -144,30 +144,6 @@ var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONLis
 
 
 
-var chooseCard = "(Choose Card)";
-
-var numberOfCategories = 5;
-
-// model part
-
-var data_header = ["Description", "Size", "Speed", "Range", "Firepower", "Cargo"];
-
-//var card = {Description:"Avenger", 
-//              Size:"2", 
-//              Speed:"5", 
-//              Range:"4", 
-//              Firepower:"3",
-//              Cargo:"2"}
-
-var currentRound = 0;
-//var roundWinPage = "";
-//var roundLoseMsg = "";
-//var roundDrawPage = "";
-
-//var finalWinnerPage = "";
-
-
-
 var newGameButton; // start a new Top Trumps Game
 var viewStatistics; //Get statistics from past games
 

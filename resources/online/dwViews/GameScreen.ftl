@@ -444,6 +444,8 @@
 			// call other methods need to run when the page first loads here
 					}
 		
+		
+		
 		// Method that is called on page load
 	
 		// This is a reusable method for creating a CORS request. Do not edit this.
@@ -473,48 +475,7 @@
         </script>
 		
 
-	    <script type="text/javascript"
-	    
-	    <!--  -------------------   -->
-	         function gameBeginning(){
-		        var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
-		        
-			if(!xhr){
-			       alert(" The initial error");
-			       
-			}
-			
-			xhr.onload = function(e){
-			      var responseText = xhr.response;
-//  temporary                 alert("responseText");
-
-                      // Might show automatic when press the New Game button in the selectionPage.ftl
-		      //       doucumentElementById("new game");
-		      //       add the action/eventListenner 
-		      //       addEventListenner onclick ("New Game")
-			   
-		
-
-
-		function displayCard(){
-			var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
-			
-			if(!xhr){
-				alert ("No cards in the deck");
-			}
-			
-			xhr.onload = function(e){
-				var responseText = xhr.response;
-				var list = JSON.parse(responseText);
-				
-				
-//				setRoundNumber();
-//				displayNumberOfCard();
-				
-				xhr.send();
-			}
-		}
-
+	   
 		function humanSelectCategory(c){
 			
 			var number = c;
