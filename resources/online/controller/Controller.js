@@ -11,6 +11,11 @@
 			
 // Method that is called on page load
 			function initalize() {
+				
+//				setRoundNumber();
+//				displayNumberOfCard();
+//				categorySectionVisible();
+				
 			}
 			// -----------------------------------------
 			// Add other Javascript methods Here
@@ -46,21 +51,19 @@
 		
 		<script type="text/javascript">
 		
-function displayCard(){
-	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
-	
-	if(!xhr){
-		alert ("No cards in the deck");
-	}
-	
-	xhr.onload = function(e){
-		var responseText = xhr.response;
-		var list = JSON.parse(responseText);
-		
-		
-//		setRoundNumber();
-//		displayNumberOfCard();
-//		cardSectionVisible();
+//function displayCard(){
+//	var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
+//	
+//	if(!xhr){
+//		alert ("No cards in the deck");
+//	}
+//	
+//	xhr.onload = function(e){
+//		var responseText = xhr.response;
+//		var list = JSON.parse(responseText);
+//		
+//		
+
 		
 		xhr.send();
 	}
@@ -86,7 +89,6 @@ function humanSelectCategory(c){
 	
 	xhr.send();
 }
-
 
 function AISelectCategory(){
 	
@@ -123,7 +125,6 @@ function activePlayer(){
 	
 }
 
-
 function roundNumber(){
 var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList");
 	
@@ -139,15 +140,6 @@ var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONLis
 	
 	xhr.send();
 }
-
-
-
-</script>
-
-
-
-
-
 
 
 
@@ -187,32 +179,47 @@ var infoLine;
 var statusLine;
 var statusBar;
 
-var selectCat1;
-var selectCat2；
-var selectCat3；
-var selectCat4；
-var selectCat5；
+var selectCat1 = document.getElementById("selectCat2ButtonName###")；
+var selectCat2 = document.getElementById("selectCat2ButtonName###")；
+var selectCat3 = document.getElementById("selectCat3ButtonName###")；
+var selectCat4 = document.getElementById("selectCat4ButtonName###")；
+var selectCat5 = document.getElementById("selectCat5ButtonName###")；
 
 
-document.getElementById("selectCat2ButtonName###").addEventListener("click", chooseCategory1);
-document.getElementById("selectCat2ButtonName###").addEventListener("click", chooseCategory2);
-document.getElementById("selectCat3ButtonName###").addEventListener("click", chooseCategory3);
-document.getElementById("selectCat4ButtonName###").addEventListener("click", chooseCategory4);
-document.getElementById("selectCat5ButtonName###").addEventListener("click", chooseCategory5);
+selectCat1.addEventListener("click", chooseCategory1);
+selectCat2.addEventListener("click", chooseCategory2);
+selectCat3.addEventListener("click", chooseCategory3);
+selectCat4.addEventListener("click", chooseCategory4);
+selectCat5.addEventListener("click", chooseCategory5);
+
+function chooseCategory1(){
+	
+}
+function chooseCategory2(){
+	
+}
+function chooseCategory3(){
+	
+}
+function chooseCategory4(){
+	
+}
+function chooseCategory5(){
+	
+}
 
 
-newGameButton = doucument.getElementById("new-game-col");
-newGameButton.addEventListener("click",initiateNewGame);
-
-viewStatistics = doucument.getElementById("gameStatistic");
-viewStatistics.addEventListener("click",gameStatistic);
-
-nextCategorySelectionButton = doucument.getElementById("selectCategory");
-nextCategorySelectionButton.addEventListener("click",xxxfunction);
-
-nextRound = doucument.getElementById("nextRound");
-nextRound.addEventListener("click",xxxfunction);
-
+//newGameButton = doucument.getElementById("new-game-col");
+//newGameButton.addEventListener("click",initiateNewGame);
+//
+//viewStatistics = doucument.getElementById("gameStatistic");
+//viewStatistics.addEventListener("click",gameStatistic);
+//
+//nextCategorySelectionButton = doucument.getElementById("selectCategory");
+//nextCategorySelectionButton.addEventListener("click",xxxfunction);
+//
+//nextRound = doucument.getElementById("nextRound");
+//nextRound.addEventListener("click",xxxfunction);
 
 
 function initiateGame(){
@@ -223,16 +230,10 @@ function initiateGame(){
 	
 	initiateRound();
 }
-
-function shuffleCards(){
-	
-}
-
 function createDeck(){
-	
 }
-
-
+function shuffleCards(){
+}
 
 
 // --------------FLASH-----------------
