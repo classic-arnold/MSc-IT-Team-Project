@@ -15,7 +15,7 @@ public class TopTrumps {
 		
 		// command line switches
 		boolean onlineMode = false;
-		boolean commandLineMode = true;
+		boolean commandLineMode = false;
 		boolean printTestLog = false;
 		
 		// check the command line for what switches are active
@@ -27,7 +27,7 @@ public class TopTrumps {
 			
 		}
 		
-		// We cannot run online and command line mode simultaniously
+		// We cannot run online and command line mode simultaneously
 		if (onlineMode && commandLineMode) {
 			System.out.println("ERROR: Both online and command line mode selected, select one or the other!");
 			System.exit(0);

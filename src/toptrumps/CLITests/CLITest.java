@@ -40,9 +40,10 @@ public class CLITest {
 	
 	
 	@Before
+	// Initialise instances of the game's model, view and controller objects
 	public void setUp() {
 		model = DataGame.resetAndGetInstance(4);
-		view = new ViewCLI(model); // we need to pass in view here
+		view = new ViewCLI(model);
 		controller = new Controller(model, view, true);
 	}
 	
@@ -288,7 +289,43 @@ public class CLITest {
 		//test that the largest number of rounds played in a single game is returned
 		//ensure that these values were calculated using SQL
 		
-		this.model.getLongestGame();
+		int startChoice = 2;
+
+		if(startChoice == 2) {
+
+			this.model.startGame();
+			
+
+			while(this.model.getGameState()==DataGame.GameState.RUNNING) {
+				this.view.updateView();
+				int category;
+
+
+				if(this.model.getRoundNumber() == 1) {
+					category = this.model.getBestCategoryForCurrentAIPlayers(this.model.getFirstPlayer());
+					if(category == 0) {
+						category = 2;
+					}
+				} else if(this.model.shouldHumanChooseCategory()) {
+					category = 2;
+					// category = 2;
+				} else {
+					category = this.model.getBestCategoryForCurrentAIPlayers();
+				}
+
+				// int category = this.viewCli.displayCategorySelection();
+
+				this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
+
+				this.model.incrementRound();
+
+			}
+
+		} else {
+		}
+
+		
+		assert 2 == DataGame.getNumberOfGames();
 	}
 	
 	@Test
