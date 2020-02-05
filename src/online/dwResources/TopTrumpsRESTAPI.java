@@ -100,7 +100,7 @@ public class TopTrumpsRESTAPI {
 	/**
 	 * Get human player's card name, card categories only.
 	 * @Controller.js: function humanSelectCategory
-	 * @return string type of ArrayList
+	 * @return JSONString type of ArrayList
 	 * @throws IOException
 	 */	
 	@GET
@@ -112,16 +112,15 @@ public class TopTrumpsRESTAPI {
 	
 	
 	/**
-	 * Get round category which AI player had chosen.
+	 * Get round category:String.
 	 * @Controller.js: function AISelectCategory
-	 * @returns String type
+	 * @returns JSONString type
 	 * @throws IOException
 	 */	
 	@GET
 	@Path("/game/aiCategorySelection")
-	public String getAICategory() throws IOException{
-		String categorySelection=model.getRoundCategory();
-		String roundCategory=oWriter.writeValueAsString(categorySelection);
+	public String getRoundCategory() throws IOException{
+		String roundCategory=oWriter.writeValueAsString(model.getRoundCategory());
 		return roundCategory;
 	}
 	
@@ -129,7 +128,7 @@ public class TopTrumpsRESTAPI {
 	/**
 	 * Get active player (ArrayList) and store in activePlayer (array).
 	 * @Controller.js: function activePlayer
-	 * @returns String[] type
+	 * @returns JSONString[] type
 	 * @throws IOException
 	 */	
 	@GET
@@ -148,7 +147,7 @@ public class TopTrumpsRESTAPI {
 	/**
 	 * Get current round number:integer.
 	 * @Controller.js: function roundNumber
-	 * @returns String type
+	 * @returns JSONString type
 	 * @throws IOException
 	 */	
 	@GET
@@ -161,9 +160,48 @@ public class TopTrumpsRESTAPI {
 	
 	
 	/**
+	 * Get category chooser of the round:String.
+	 * @Controller.js: 
+	 * @returns JSONString type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/categoryChooser")
+	public String getCategoryChooser() throws IOException{
+		String categoryChooser=oWriter.writeValueAsString(model.getCategoryChooser());
+		return categoryChooser;
+	}
+	
+	
+	/**
+	 * Get the number of cards in deck of human player:integer.
+	 * @Controller.js: 
+	 * @returns JSONString[] type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/numberOfCardsInDeck")
+	public String[] getNumberOfCardsInDeck() throws IOException{
+		String[] numberOfCardsInDeck=new String[model.getActivePlayers().length];
+		int cardsInDeck;
+		for(int i=0;i<model.getActivePlayers().length;i++) {
+			if(model.getActivePlayers()[i].toString().contains("human")) {
+				cardsInDeck=model.getActivePlayers()[i].getDeck().size();
+				numberOfCardsInDeck[i]=oWriter.writeValueAsString(cardsInDeck);
+			}else {//stores the number of ai players cards in deck
+				cardsInDeck=model.getActivePlayers()[i].getDeck().size();
+				numberOfCardsInDeck[i]=oWriter.writeValueAsString(cardsInDeck);
+			}
+
+		}
+		return numberOfCardsInDeck;
+	}
+	
+	
+	/**
 	 * Get human player's card name, card categories only.
 	 * @Controller.js:
-	 * @return string type of ArrayList
+	 * @return JSONString[] type
 	 * @throws IOException
 	 */	
 	@GET
@@ -180,7 +218,7 @@ public class TopTrumpsRESTAPI {
 	 * and store in AIPlayersCard[activePlayers().length][card name, categories(5)].
 	 * 
 	 * @Controller.js:
-	 * @return string type of ArrayList
+	 * @return JSONString[] type
 	 * @throws IOException
 	 */	
 	@GET
@@ -188,7 +226,7 @@ public class TopTrumpsRESTAPI {
 	public String getAICards() throws IOException{	
 		String[][] AIPlayersCard=new String[model.getActivePlayers().length][6];
 		for(int i=0;i<model.getActivePlayers().length;i++) {
-			AIPlayersCard[i][0]=oWriter.writeValueAsString(model.getRoundAIPlayerCards()[0].getDescription());
+			AIPlayersCard[i][0]=oWriter.writeValueAsString(model.getRoundAIPlayerCards()[0].toString());
 			for(int j=0;j<6;j++) {
 				AIPlayersCard[i][j+1]=oWriter.writeValueAsString(model.CATEGORYNAMES[j]);
 			}
@@ -203,32 +241,151 @@ public class TopTrumpsRESTAPI {
 	 * Print current round description. 
 	 * such as: "Round 1: Players had drawn their cards".
 	 * @Controller.js:
-	 * @param roundNumber - round number
-	 * @return string type of ArrayList
+	 * @param RoundNumber:int, CategoryChooser:String, RoundCategory:String, NumberOfCardsInDeck:int
+	 * @return JSONString type
 	 * @throws IOException
 	 */	
 	@GET
 	@Path("/game/roundDescription")
-	public String getRoundDescription(@QueryParam("roundNumber") int roundNumber) throws IOException{	
-		String output=String.format("Round %d: Players had drawn their cards", roundNumber);
+	public String getRoundDescription(@QueryParam("RoundNumber") int RoundNumber,
+			@QueryParam("CategoryChooser") String CategoryChooser,
+			@QueryParam("RoundCategory") String RoundCategory,
+			@QueryParam("NumberOfCardsInDeck") int NumberOfCardsInDeck) 
+					throws IOException{
+		String description="";
 		if(model.getRoundCategory()==null) {
-//			if(model.getActivePlayers()[i].getTypeAsString().equals("human"))
-			output=String.format("Round %d: Players had drawn their cards", roundNumber);
+			description=String.format("Round %d: Players had drawn their cards", RoundNumber);
+
+			if(model.getCategoryChooser().getName().equals("human")) {
+				description=String.format("Round %d: Players had drawn their cards", RoundNumber);
+			}else if(model.getCategoryChooser().getName().contains("ai")){
+				description=String.format("Round %d: Players had drawn their cards", RoundNumber);
+			}
 		}
-		else {
-//			do we need to print description when certain player selects category?
-//			if(model.ai)
-			
-			output=String.format("Round %d: Player %s won this round",
-					roundNumber, 
-					model.getRoundWinningPlayers().get(0).toString());
-		}
-		String roundDescription=oWriter.writeValueAsString(output);
-		return roundDescription;
+		return oWriter.writeValueAsString(description);
+//		String output=String.format("Round %d: Players had drawn their cards", roundNumber);
+//		
+//		if(model.getRoundCategory()==null) {
+////			if(model.getActivePlayers()[i].getTypeAsString().equals("human"))
+//			output=String.format("Round %d: Players had drawn their cards", roundNumber);
+//		}
+//		else { 
+//			if(model.getRoundLastWinner()==null) {
+//				output=String.format("Round %d: %s selected %s", roundNumber, model.getCategoryChooser(), model.getRoundCategory());
+//			}else {
+//				output=String.format("Round %d: Player %s won this round",
+//						roundNumber, 
+//						model.getRoundWinningPlayers().get(0).toString());
+//			}
+//		}
+//		String roundDescription=oWriter.writeValueAsString(output);
+//		return roundDescription;
 	}
 	
 	
-
+	/**
+	 * Get category chooser:String
+	 * @Controller.js:
+	 * @param CategoryChooser:String
+	 * @return JSONString type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/sideBar/activePlayer")
+	public String getCategoryChooser(@QueryParam("CategoryChooser") String CategoryChooser) throws IOException{		
+		return "The Active Player is "+CategoryChooser;
+	}	
+	
+	
+	/**
+	 * Get description of category of the round:String
+	 * @Controller.js:
+	 * @param RoundCategory:String, CategoryChooser:String
+	 * @return JSONString type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/descriptionOfRoundCategory")
+	public String getDescriptionOfRoundCategory(@QueryParam("RoundCategory") String RoundCategory,
+			@QueryParam("CategoryChooser") String CategoryChooser) throws IOException{		
+		return CategoryChooser+" selected "+RoundCategory;
+	}	
+	
+	
+	
+	/**
+	 * Get game end String
+	 * @Controller.js:
+	 * @return JSONString type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/result/gameEnd")
+	public String getGameEnd() throws IOException{		
+		return "Game End";
+	}	
+	
+	
+	/**
+	 * Print game winner
+	 * @Controller.js:
+	 * @param GameWinner:String
+	 * @return JSONString type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/result/winner")
+	public String getGameEnd(@QueryParam("GameWinner") String GameWinner) throws IOException{		
+		return GameWinner+" won the game";
+	}	
+	
+	
+	
+	/**
+	 * Get game result
+	 * includes:
+	 * "Player scores
+	 * you: score
+	 * ai1: score
+	 * ai2: score
+	 * ai3: score
+	 * ai4: score".
+	 * @Controller.js:
+	 * @return JSONString[] type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/result/scores")
+	public String[] getGameResult() throws IOException{		
+		//Categories for the human player
+		String[] gameResult=new String[model.getAllPlayers().length+1];
+		gameResult[0]=oWriter.writeValueAsString("Player scores");
+		for(int i=0;i<model.getAllPlayers().length;i++) {
+//			gameResult[i+1]=oWriter.writeValueAsString(String.format("%s : %d", model.getAllPlayers()[i].getName(), model.getAllPlayers()[i].getScore()));
+		}
+		return gameResult;
+	}	
+	
+	
+	
+	/**
+	 * Get human player's card name, card categories only.
+	 * @Controller.js:
+	 * @return string type of ArrayList
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/stats/statistics")
+	public String[] getStatistics() throws IOException{		
+		String[] statistics=new String[5];
+		statistics[0]=oWriter.writeValueAsString(model.getNumberOfGames());
+		statistics[1]=oWriter.writeValueAsString(model.getNumberOfHumanWins());
+		statistics[2]=oWriter.writeValueAsString(model.getNumberOfAIWins());
+		statistics[3]=oWriter.writeValueAsString(model.getAvgNumberOfDraws());
+		statistics[4]=oWriter.writeValueAsString(model.getLongestGame());
+		
+		return statistics;
+	}
 	
 	
 //	@GET
@@ -264,10 +421,4 @@ public class TopTrumpsRESTAPI {
 //		return "Hello "+Word;
 //	}	
 
-//	@GET
-//	@Path("/game")
-//	public int getRoundNumber() throws IOException{
-//		
-//		return roundNumber;
-//	}
 }
