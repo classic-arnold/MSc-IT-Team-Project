@@ -102,7 +102,7 @@ public class ViewCLI {
 			if (redo) {
 				System.out.println("\n Invalid input.Please input a number between 1 and 5");
 			}
-			System.out.println("It is your turn to select a category, the categories are: ");
+			System.out.println(" \n It is your turn to select a category, the categories are: ");
 			System.out.println("1: " + DataGame.CATEGORYNAMES[0]);
 			System.out.println("2: " + DataGame.CATEGORYNAMES[1]);
 			System.out.println("3: " + DataGame.CATEGORYNAMES[2]);
