@@ -178,7 +178,7 @@ public class DataPlayer {
 	 * get player's name
 	 * @return String representing the player's name
 	 */
-	String getName() {
+	public String getName() {
 		return this.name;
 	}
 
