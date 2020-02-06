@@ -253,33 +253,35 @@ public class TopTrumpsRESTAPI {
 			@QueryParam("NumberOfCardsInDeck") int NumberOfCardsInDeck) 
 					throws IOException{
 		String description="";
-		if(model.getRoundCategory()==null) {
-			description=String.format("Round %d: Players had drawn their cards", RoundNumber);
-
-			if(model.getCategoryChooser().getName().equals("human")) {
-				description=String.format("Round %d: Players had drawn their cards", RoundNumber);
-			}else if(model.getCategoryChooser().getName().contains("ai")){
-				description=String.format("Round %d: Players had drawn their cards", RoundNumber);
+		if(model.getCategoryChooser().getName()=="You") {
+			if(model.getRoundCategory()==null) {
+				description=String.format("Round %d: Players had drawn their cards. Waiting on %s to select category.", 
+						RoundNumber, CategoryChooser);
+			}else {//when category chooser selected a category
+				description=String.format("Round %d: %s have selected %s", 
+						RoundNumber, CategoryChooser, RoundCategory);
 			}
 		}
-		return oWriter.writeValueAsString(description);
-//		String output=String.format("Round %d: Players had drawn their cards", roundNumber);
-//		
+		if(model.getCategoryChooser().getName().contains("AI")) {
+			if(model.getRoundCategory()==null) {
+				description=String.format("Round %d: Players had drawn their cards.", 
+						RoundNumber);
+			}else {//when category chooser selected a category
+				description=String.format("Round %d: %s has selected %s", 
+						RoundNumber, CategoryChooser, RoundCategory);
+			}
+		}
+		
 //		if(model.getRoundCategory()==null) {
-////			if(model.getActivePlayers()[i].getTypeAsString().equals("human"))
-//			output=String.format("Round %d: Players had drawn their cards", roundNumber);
-//		}
-//		else { 
-//			if(model.getRoundLastWinner()==null) {
-//				output=String.format("Round %d: %s selected %s", roundNumber, model.getCategoryChooser(), model.getRoundCategory());
-//			}else {
-//				output=String.format("Round %d: Player %s won this round",
-//						roundNumber, 
-//						model.getRoundWinningPlayers().get(0).toString());
+//			description=String.format("Round %d: Players had drawn their cards", RoundNumber);
+//
+//			if(model.getCategoryChooser().getName().equals("human")) {
+//				description=String.format("Round %d: Players had drawn their cards", RoundNumber);
+//			}else if(model.getCategoryChooser().getName().contains("ai")){
+//				description=String.format("Round %d: Players had drawn their cards", RoundNumber);
 //			}
 //		}
-//		String roundDescription=oWriter.writeValueAsString(output);
-//		return roundDescription;
+		return oWriter.writeValueAsString(description);
 	}
 	
 	
