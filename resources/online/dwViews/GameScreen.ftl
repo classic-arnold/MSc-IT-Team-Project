@@ -386,15 +386,11 @@
 				
 				await startGame();
 				getRoundNumber();
-				let humanChooseCategory = await shouldHumanSelectCategory();
-				alert(humanChooseCategory);
+				
 // 				getCategories();
 // 				selectCategory();
 				playRound();
-				if(humanChooseCategory == "false"){
-					alert("false");
-				}
-				getStats();
+// 				getStats();
 
 			}
 
@@ -443,6 +439,7 @@
 				// to do when the response arrives
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
+					$("#status-message").html("Round Number: " + responseText);
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
@@ -493,7 +490,19 @@
 				});
 			}
 			
-			async function selectCategory(){
+			async function selectCategoryForHuman(){
+				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				let categoryList = await getCategories();
+				
+				categoryList = changeStringToArray(categoryList);
+				
+				categorySelectedByHuman = categoryList[0];
+				
+				return categorySelectedByHuman;
+				
+			}
+			
+			async function selectCategoryForAI(){
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				let categoryList = await getCategories();
 				
@@ -506,8 +515,17 @@
 			}
 			
 			function playRound(){
-			
-				let categorySelectedByHuman = selectCategory();
+				let humanChooseCategory = await shouldHumanSelectCategory();
+				
+				let categories = await getCategories();
+				
+				let categorySelected;
+				
+				if(humanChooseCategory == "true"){
+					categorySelectedByHuman = selectCategory();
+				} else {
+					
+				}
 				
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundNumber"); // Request type and URL
