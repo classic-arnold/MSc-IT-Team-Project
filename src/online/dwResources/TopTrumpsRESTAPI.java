@@ -521,7 +521,7 @@ public class TopTrumpsRESTAPI {
 		String[] gameResult=new String[model.getAllPlayers().length+1];
 		gameResult[0]=oWriter.writeValueAsString("Player scores");
 		for(int i=0;i<model.getAllPlayers().length;i++) {
-//			gameResult[i+1]=oWriter.writeValueAsString(String.format("%s : %d", model.getAllPlayers()[i].getName(), model.getAllPlayers()[i].getScore()));
+			gameResult[i+1]=oWriter.writeValueAsString(String.format("%s : %d", model.getAllPlayers()[i].getName(), model.getAllPlayers()[i].getScore()));
 		}
 		return gameResult;
 	}	
