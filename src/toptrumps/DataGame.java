@@ -113,6 +113,8 @@ public class DataGame{
 	private DataPlayer firstPlayer;
 	
 	private boolean didHumanPlayFirst;
+	
+	private DataPlayer roundActivePlayer;
 
 	/**
 	 * creates a new DataGame Object
@@ -155,6 +157,10 @@ public class DataGame{
 		return this.firstPlayer;
 	}
 	
+	public DataPlayer getRoundActivePlayer() {
+		return this.roundActivePlayer;
+	}
+	
 	public DataPlayer getCategoryChooser() {
 		DataPlayer player;
 		if (this.roundLastWinner != null) {
@@ -169,6 +175,7 @@ public class DataGame{
 			}
 			this.firstPlayer = player;
 		}
+		this.roundActivePlayer = player;
 		return player;
 	}
 	

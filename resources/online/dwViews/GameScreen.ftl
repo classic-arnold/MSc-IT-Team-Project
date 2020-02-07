@@ -392,7 +392,7 @@
 // 				selectCategory();
 				playRound();
 				if(humanChooseCategory == "false"){
-					
+					alert("false");
 				}
 				getStats();
 
