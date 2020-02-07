@@ -3,6 +3,7 @@ package online.dwResources;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -16,6 +17,7 @@ import javax.ws.rs.core.Response;
 import online.configuration.TopTrumpsJSONConfiguration;
 import toptrumps.DataCard;
 import toptrumps.DataGame;
+import toptrumps.DataPlayer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -137,28 +139,23 @@ public class TopTrumpsRESTAPI {
 	}
 	
 
-	/**
-	 * Get human player's card name, card categories only.
-	 * @Controller.js: function humanSelectCategory
-	 * @return JSONString[] type
-	 * @throws IOException
-	 */	
-	@GET
-	@Path("/game/categoryMenu")
-	public List<String> getCategoryForMenu() throws IOException{	
-		
-		List<String> listOfCategory=new ArrayList<String>();
-		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
-			listOfCategory.add(oWriter.writeValueAsString(model.CATEGORYNAMES[i]));
-		}		
-		
-//		String[] categories=new String[model.CATEGORYNAMES.length];
+//	/**
+//	 * Get human player's card name, card categories only.
+//	 * @Controller.js: function humanSelectCategory
+//	 * @return JSONString[] type
+//	 * @throws IOException
+//	 */	
+//	@GET
+//	@Path("/game/categoryMenu")
+//	public List<String> getCategoryForMenu() throws IOException{	
 //		
+//		List<String> listOfCategory=new ArrayList<String>();
 //		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
-//			categories[i]=oWriter.writeValueAsString(model.CATEGORYNAMES[i]);
-//		}
-		return listOfCategory;
-	}
+//			listOfCategory.add(oWriter.writeValueAsString(model.CATEGORYNAMES[i]));
+//		}		
+//		
+//		return listOfCategory;
+//	}
 	
 	@GET
 	@Path("/game/playRound")
@@ -171,6 +168,15 @@ public class TopTrumpsRESTAPI {
 	public boolean shouldHumanSelectCategory(){
 		return model.shouldHumanChooseCategory();
 	}
+	
+	@GET
+	@Path("/game/completeDeckAsArrayList")
+	public ArrayList<DataCard> getCompleteDeckAsArrayList() {
+		return model.getCompleteDeckAsArrayList();
+	}
+	
+
+	
 	
 	/**
 	 * Get round category:String.
@@ -195,10 +201,64 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/activePlayer")
-	public int getNumberOfActivePlayer() throws IOException{
-		int numberOfActivePlayer=model.getActivePlayers().length;
-		return numberOfActivePlayer;
+	public DataPlayer[] getActivePlayers() throws IOException{
+		return model.getActivePlayers();
 	}
+	
+//	@GET
+//	@Path("/game/allPlayers")
+//	public DataPlayer[] getAllPlayers() {
+//		return model.getAllPlayers();
+//	}
+	
+	
+	@GET
+	@Path("/game/roundWasDraw")
+	public boolean getRoundWasDraw() {
+		return model.getRoundWasDraw();
+	}
+	
+	@GET
+	@Path("/game/numberOfCardsInCommonPile")
+	public int getNumberOfCardsInCommonPile() {
+		return model.getNumberOfCardsInCommonPile();
+	}
+	
+	
+//	@GET
+//	@Path("/game/cardsInCommonPile")
+//	public DataCard[] getCardsInCommonPile() {
+//		return model.getCardsInCommonPile();
+//	}
+	
+	
+//	@GET
+//	@Path("/game/roundLastWinner")
+//	public DataPlayer getRoundLastWinner() {
+//		return model.getRoundLastWinner();
+//	}
+	
+	
+	@GET
+	@Path("/game/roundWinningCards")
+	public DataCard getRoundWinningCard() {
+		return model.getRoundWinningCard();
+	}
+	
+//	@GET
+//	@Path("/game/roundWinningCardToString")
+//	public String getRoundWinningCardToString(@QueryParam("category") String category) {
+//		return model.getRoundWinningCardToString(category);
+//	}
+//	
+//	
+//	@GET
+//	@Path("/game/roundWinningPlayers")
+//	public ArrayList<DataPlayer> getRoundWinningPlayers() {
+//		return model.getRoundWinningPlayers();
+//	}
+	
+	
 
 	/**
 	 * Get current round number:integer.
@@ -302,13 +362,8 @@ public class TopTrumpsRESTAPI {
 //	}
 	@GET
 	@Path("/game/AI1Cards")
-	public DataCard[] getAICards() throws IOException{	
-		DataCard[] aiPlayersCard=new DataCard[numAIPlayers];
-		for(int i=0;i<numAIPlayers;i++) {
-			aiPlayersCard[i]=model.getRoundAIPlayerCards()[i];
-		}
-		
-		return aiPlayersCard;
+	public DataCard[] getRoundAIPlayerCards() throws IOException{
+		return model.getRoundAIPlayerCards();
 	}
 	
 	
@@ -493,37 +548,37 @@ public class TopTrumpsRESTAPI {
 	}
 	
 	
-	@GET
-	@Path("/helloJSONList")
-	/**
-	 * Here is an example of a simple REST get request that returns a String.
-	 * We also illustrate here how we can convert Java objects to JSON strings.
-	 * @return - List of words as JSON
-	 * @throws IOException
-	 */
-	public String helloJSONList() throws IOException {
-		
-		List<String> listOfWords = new ArrayList<String>();
-		listOfWords.add("Hello");
-		listOfWords.add("World!");
-		
-		// We can turn arbatory Java objects directly into JSON strings using
-		// Jackson seralization, assuming that the Java objects are not too complex.
-		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
-		
-		return listAsJSONString;
-	}
-	
-	@GET
-	@Path("/helloWord")
-	/**
-	 * Here is an example of how to read parameters provided in an HTML Get request.
-	 * @param Word - A word
-	 * @return - A String
-	 * @throws IOException
-	 */
-	public String helloWord(@QueryParam("Word") String Word) throws IOException {
-		return "Hello "+Word;
-	}	
+//	@GET
+//	@Path("/helloJSONList")
+//	/**
+//	 * Here is an example of a simple REST get request that returns a String.
+//	 * We also illustrate here how we can convert Java objects to JSON strings.
+//	 * @return - List of words as JSON
+//	 * @throws IOException
+//	 */
+//	public String helloJSONList() throws IOException {
+//		
+//		List<String> listOfWords = new ArrayList<String>();
+//		listOfWords.add("Hello");
+//		listOfWords.add("World!");
+//		
+//		// We can turn arbatory Java objects directly into JSON strings using
+//		// Jackson seralization, assuming that the Java objects are not too complex.
+//		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
+//		
+//		return listAsJSONString;
+//	}
+//	
+//	@GET
+//	@Path("/helloWord")
+//	/**
+//	 * Here is an example of how to read parameters provided in an HTML Get request.
+//	 * @param Word - A word
+//	 * @return - A String
+//	 * @throws IOException
+//	 */
+//	public String helloWord(@QueryParam("Word") String Word) throws IOException {
+//		return "Hello "+Word;
+//	}	
 
 }
