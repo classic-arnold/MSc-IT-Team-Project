@@ -46,7 +46,7 @@ public class Controller {
 
 
 				if(this.dataGame.getRoundNumber() == 1) {
-					category = this.dataGame.getBestCategoryForCurrentAIPlayers(this.dataGame.getCategoryChooser());
+					category = this.dataGame.getBestCategoryForCurrentAIPlayers();
 					if(category == 0) {
 						category = this.viewCli.displayCategorySelection();
 					}
