@@ -145,23 +145,11 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/game/categoryMenu")
 	public String getCategoryForMenu() throws IOException{	
-//		List<String> listOfWords = new ArrayList<String>();
-//		listOfWords.add("Hello");
-//		listOfWords.add("World!");
-//		
-//		// We can turn arbatory Java objects directly into JSON strings using
-//		// Jackson seralization, assuming that the Java objects are not too complex.
-//		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
-//		
-//		return listAsJSONString;
 		
 		List<String> listOfCategory=new ArrayList<String>();
 		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
-			listOfCategory.add(model.CATEGORYNAMES[i]);
-		}
-		
-		String listAsJSONString=oWriter.writeValueAsString(listOfCategory);
-		
+			listOfCategory.add(oWriter.writeValueAsString(model.CATEGORYNAMES[i]));
+		}		
 		
 //		String[] categories=new String[model.CATEGORYNAMES.length];
 //		
@@ -290,7 +278,7 @@ public class TopTrumpsRESTAPI {
 		humanCard[0]=oWriter.writeValueAsString(model.getRoundHumanPlayerCard().toString());
 		
 		for(int i=0;i<humanCard.length;i++) {
-//			humanCard[i+1]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0)[i]);
+			humanCard[i+1]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).);
 		}
 		return humanCard;
 	}	
