@@ -14,6 +14,7 @@ public class TopTrumps {
 		System.out.println("--------------------");
 		
 		// command line switches
+
 		boolean onlineMode = false;
 		boolean commandLineMode = false;
 		boolean printTestLog = false;

@@ -132,7 +132,7 @@ public class DataCard implements Cloneable{
 	 * get description
 	 * @return string representing card description
 	 */
-	String getDescription() {
+	public String getDescription() {
 		return this.description;
 	}
 
@@ -140,7 +140,7 @@ public class DataCard implements Cloneable{
 	 * get size
 	 * @return integer representing card value for category - size
 	 */
-	int getCategory1() {
+	public int getCategory1() {
 		return this.category1;
 	}
 
@@ -148,7 +148,7 @@ public class DataCard implements Cloneable{
 	 * get speed
 	 * @return integer representing card value for category - speed
 	 */
-	int getCategory2() {
+	public int getCategory2() {
 		return this.category2;
 	}
 
@@ -156,7 +156,7 @@ public class DataCard implements Cloneable{
 	 * get category3
 	 * @return integer representing card value for category - category3
 	 */
-	int getCategory3() {
+	public int getCategory3() {
 		return this.category3;
 	}
 
@@ -164,7 +164,7 @@ public class DataCard implements Cloneable{
 	 * get fire power
 	 * @return category4 integer representing card value for category - fire power
 	 */
-	int getCategory4() {
+	public int getCategory4() {
 		return this.category4;
 	}
 
@@ -172,7 +172,7 @@ public class DataCard implements Cloneable{
 	 * get category5
 	 * @return integer representing card value for category - category5
 	 */
-	int getCategory5() {
+	public int getCategory5() {
 		return this.category5;
 	}
 

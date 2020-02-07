@@ -17,12 +17,14 @@ public class TestLog {
 	 private DataGame model;
 	 private String outF="testlog.txt";
 	 
-	 //constructor
+	 //constructor sets model
 	 public TestLog(DataGame model) {
 		 this.model=model;
 	 }
 	 
-
+	 /**
+	 *Writes initial unshuffled deck contents to testlog
+	 */
 	public void writeDeckContents() {
 
           FileWriter fw = null;
@@ -77,6 +79,10 @@ public class TestLog {
               }
           }
 	}
+	
+	 /**
+     *Writes shuffled deck contents to test log
+     */
 	public void writeShuffledDeckContents() {
 		 FileWriter fw = null;
          BufferedWriter bw = null;
@@ -136,6 +142,9 @@ public class TestLog {
          }
 		
 	}
+	 /**
+     *Writes each player deck to test log
+     */
 	public void writePlayerDecks() {
 		FileWriter fw = null;
     BufferedWriter bw = null;
@@ -202,7 +211,9 @@ public class TestLog {
             }
         }
     }}
-
+	 /**
+     *Writes contents of communal pile to test log
+     */
 	public void writeCommunalPile() {
 		  FileWriter fw = null;
           BufferedWriter bw = null;
@@ -256,6 +267,9 @@ public class TestLog {
               }
           }
 	}
+	 /**
+     *writes current cards in play to test log
+     */
 	public void writeCardsInPlay() {
 		FileWriter fw = null;
 	    BufferedWriter bw = null;
@@ -323,7 +337,11 @@ public class TestLog {
 	        }
 	    }
 	}
-	//HOW TO GET NON HUMAN CATEGORY SELECTIONS AND WHO SELECTED?
+	
+	
+	 /**
+     *Writes category selection and who selected to test log 
+     */
 	public void writeCategorySelected() {
 		FileWriter fw = null;
 	    BufferedWriter bw = null;
@@ -337,7 +355,12 @@ public class TestLog {
 	        bw.write("Category Selected");
 	        bw.newLine();
 	        bw.newLine();
-	        String catSelected=model.getRoundLastWinner().getName()+" selected "+model.getRoundCategory();
+	        String catSelected="";
+	      
+	       catSelected=model.getCategoryChooser().getName()+" selected "+model.getRoundCategory();
+	        
+	        
+	        
 	        bw.write(catSelected);
 	         bw.close();
 	           
@@ -355,7 +378,9 @@ public class TestLog {
 	        }
 	    }
 	}
-	
+	 /**
+     *Writes the winner of the game to the test log
+     */
 	public void writeGameWinner() {
 		FileWriter fw = null;
 	    BufferedWriter bw = null;
@@ -399,6 +424,8 @@ public class TestLog {
 		          tester.writePlayerDecks();
 		          tester.writeCardsInPlay();
 		          tester.writeCommunalPile();
+		          //tester.writeGameWinner();
+		         // tester.writeCategorySelected();
 		          
 
     }
