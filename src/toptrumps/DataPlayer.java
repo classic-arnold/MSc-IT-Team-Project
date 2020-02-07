@@ -148,7 +148,7 @@ public class DataPlayer {
 	 * get player score
 	 * @return int representing the player's score for the game
 	 */
-	int getScore() {
+	public int getScore() {
 		return this.score;
 	}
 
