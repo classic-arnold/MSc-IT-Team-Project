@@ -251,20 +251,10 @@ public class DataGame{
 	 * check if human should input category
 	 */
 	public boolean shouldHumanChooseCategory() {
-		if(this.roundWinningPlayers.size()==1) {
-			if(this.roundWinningPlayers.get(0).getType()==DataPlayer.PlayerType.HUMAN) {
-				return true;
-			} else {
-				return false;
-			}
+		if(this.getCategoryChooser().getType()==DataPlayer.PlayerType.HUMAN) {
+			return true;
 		} else {
-			if(this.didHumanWinLast) {
-				return true;
-			} else if (this.didHumanPlayFirst){
-				return true;
-			} else {
-				return false;
-			}
+			return false;
 		}
 	}
 
