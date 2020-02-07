@@ -1,6 +1,7 @@
 package online.dwResources;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,11 +39,12 @@ public class TopTrumpsRESTAPI {
 	/** A Jackson Object writer. It allows us to turn Java objects
 	 * into JSON strings easily. */
 	ObjectWriter oWriter = new ObjectMapper().writerWithDefaultPrettyPrinter();
+	TopTrumpsJSONConfiguration conf = new TopTrumpsJSONConfiguration(); // added by Arnold
 	
 	private String deckFile;
 	private int numAIPlayers;
 	
-	private DataGame model=DataGame.getInstance(numAIPlayers);
+	private DataGame model;
 	
 	/**
 	 * Constructor method for the REST API. This is called first. It provides
@@ -54,7 +56,7 @@ public class TopTrumpsRESTAPI {
 		// ----------------------------------------------------
 		// Add relevant initalization here
 		// ----------------------------------------------------
-		
+		this.conf = conf; // added by Arnold
 		
 		//get the location of the deck file
 		deckFile=conf.getDeckFile();
@@ -82,6 +84,24 @@ public class TopTrumpsRESTAPI {
 	 * 7. getRoundDescription(): /game/roundDescription 	<<should modify
 	 * 8. getAICards(): /game/AI1Cards 						<<should modify
 	*/
+	
+	/**
+	 * Starts the game
+	 * @returns 1 if failed, 0 if successful
+	 */	
+	@GET
+	@Path("/game/startGame")
+	public int startGame(@QueryParam("numberOfAIPlayers") int numberOfAIPlayers) {
+		try {
+			this.numAIPlayers = numberOfAIPlayers;
+			this.conf.setNumAIPlayers(numberOfAIPlayers);
+			this.model = DataGame.getInstance(numberOfAIPlayers);
+			this.model.startGame();
+		} catch(Exception e) {
+			return 1;
+		}
+		return 0;
+	}
 
 
 	/**
@@ -105,11 +125,34 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/categoryMenu")
-	public String getCategoryForMenu() throws IOException{	
-		String categories=oWriter.writeValueAsString(model.CATEGORYNAMES);
-		return categories;
+	public String getCategoryForMenu() throws IOException{
+		
+		String[] categories=DataGame.CATEGORYNAMES;
+		
+		List<String> listOfCategories = new ArrayList<String>();
+		
+		for(String category : categories) {
+			listOfCategories.add(category);
+		}
+		
+		// We can turn arbatory Java objects directly into JSON strings using
+		// Jackson seralization, assuming that the Java objects are not too complex.
+		String listAsJSONString = oWriter.writeValueAsString(listOfCategories);
+		
+		return listAsJSONString;
 	}
 	
+	@GET
+	@Path("/game/playRound")
+	public void playRound(@QueryParam("category") String category){
+		model.playRound(category);
+	}
+	
+	@GET
+	@Path("/game/shouldHumanSelectCategory")
+	public boolean shouldHumanSelectCategory(){
+		return model.shouldHumanChooseCategory();
+	}
 	
 	/**
 	 * Get round category:String.
@@ -123,6 +166,8 @@ public class TopTrumpsRESTAPI {
 		String roundCategory=oWriter.writeValueAsString(model.getRoundCategory());
 		return roundCategory;
 	}
+	
+	
 	
 	
 	/**
@@ -142,7 +187,6 @@ public class TopTrumpsRESTAPI {
 
 		return activePlayer;
 	}
-	
 
 	/**
 	 * Get current round number:integer.
@@ -152,10 +196,8 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/roundNumber")
-	public String getRoundNumber() throws IOException{
-		int round=model.getRoundNumber();
-		String roundNumber=oWriter.writeValueAsString(round);
-		return roundNumber;
+	public int getRoundNumber(){
+		return model.getRoundNumber();
 	}
 	
 	

@@ -339,17 +339,40 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+		
+//			Needed methods
+
+// 			getRoundNumber();
+// 			shouldHumanSelectCategory();
+// 			getPlayerToChooseRound();
+// 			getDeck();
+// 			getRoundCategory();
+// 			getRoundCards();
+// 			getRoundWinner();
+// 			getNumberOfCardInCommonPile();
+// 			wasRoundDraw();
+// 			getGamePlayers();
+// 			getGameScores();
+// 			getGameStatistics();
+// 			getGameWinner();
+// 			getPlayerDeck(playerName);
+// 			getNumberOfRoundsInGame();
 
 			// Method that is called on page load
-			function initalize() {
+			async function initalize() {
 
 				// --------------------------------------------------------------------------
 				// You can call other methods you want to run when the page first loads here
 				// --------------------------------------------------------------------------
-
-				// For example, lets call our sample methods
-				//helloJSONList();
-				//helloWord("Student");
+				await startGame();
+				getRoundNumber();
+				shouldHumanSelectCategory();
+// 				getCategories();
+// 				selectCategory();
+				playRound();
+// 				if(humanChooseCategory == "true"){
+// 					selectCategory();
+// 				}
 
 			}
 
@@ -380,89 +403,47 @@
 				}
 				return xhr;
 			}
-	
-			// This calls the helloJSONList REST method from TopTrumpsRESTAPI
-			function helloJSONList() {
-
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList"); // Request type and URL
-
-				// Message is not sent yet, but we can check that the browser supports CORS
-				if (!xhr) {
-					alert("CORS not supported");
+			
+			function getNumberOfAIPlayersFromUser(){
+				let numberOfAIPlayersFromUser = prompt("How many AI players do you want?");
+				while(isNaN(numberOfAIPlayersFromUser) || numberOfAIPlayersFromUser == null || numberOfAIPlayersFromUser>4 || numberOfAIPlayersFromUser<1){
+					numberOfAIPlayersFromUser = prompt("Invalid Input. Please pick a number between 0 and 4 (inclusive).\nHow many AI players do you want?");
 				}
-
-				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives 
-				xhr.onload = function (e) {
-					var responseText = xhr.response; // the text of the response
-					alert(responseText); // lets produce an alert
-				};
-
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();
+				return numberOfAIPlayersFromUser;
 			}
+	
+			// This starts the game
+			function startGame() {
+				return new Promise(resolve=>{
+					let numberOfAIPlayersFromUser = getNumberOfAIPlayersFromUser();
+				
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/startGame?numberOfAIPlayers=" + numberOfAIPlayersFromUser); // Request type and URL
+		
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
 
-			// This calls the helloJSONList REST method from TopTrumpsRESTAPI
-			function helloWord(word) {
-
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response
+// 						alert(responseText); // lets produce an alert
+						if(responseText == "0"){
+							resolve();
+						}
+					};
+		
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();
+				});
+			}
+			
+			function getRoundNumber(){
+				
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloWord?Word=" + word); // Request type and URL+parameters
-
-				// Message is not sent yet, but we can check that the browser supports CORS
-				if (!xhr) {
-					alert("CORS not supported");
-				}
-
-				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives 
-				xhr.onload = function (e) {
-					var responseText = xhr.response; // the text of the response
-					alert(responseText); // lets produce an alert
-				};
-
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();
-			}
-	
-			function initalize() {
-				// call other methods need to run when the page first loads here
-			}
-	
-	
-	
-			// Method that is called on page load
-
-			// This is a reusable method for creating a CORS request. Do not edit this.
-			function createCORSRequest(method, url) {
-					var xhr = new XMLHttpRequest();
-					if ("withCredentials" in xhr) {
-
-					// Check if the XMLHttpRequest object has a "withCredentials" property.
-					// "withCredentials" only exists on XMLHTTPRequest2 objects.
-					xhr.open(method, url, true);
-
-					} else if (typeof XDomainRequest != "undefined") {
-
-					// Otherwise, check if XDomainRequest.
-					// XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-					xhr = new XDomainRequest();
-					xhr.open(method, url);
-
-					 } else {
-
-					// Otherwise, CORS is not supported by the browser.
-					xhr = null;
-
-					 }
-					 return xhr;
-			}
-	
-			// This calls the helloJSONList REST method from TopTrumpsRESTAPI
-			function helloJSONList() {
-	
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList"); // Request type and URL
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundNumber"); // Request type and URL
 		
 				// Message is not sent yet, but we can check that the browser supports CORS
 				if (!xhr) {
@@ -470,21 +451,19 @@
 				}
 
 				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives 
+				// to do when the response arrives
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
 					alert(responseText); // lets produce an alert
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();		
+				xhr.send();	
 			}
-	
-			// This calls the game REST method from TopTrumpsRESTAPI
-			function game() {
-	
+			
+			function shouldHumanSelectCategory(){
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game"); // Request type and URL
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/shouldHumanSelectCategory"); // Request type and URL
 		
 				// Message is not sent yet, but we can check that the browser supports CORS
 				if (!xhr) {
@@ -492,14 +471,85 @@
 				}
 
 				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives 
+				// to do when the response arrives
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					//alert(responseText); // lets produce an alert
+					alert(responseText); // lets produce an alert
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();		
+				xhr.send();	
+			}
+			
+			function getCategories(){
+				return new Promise(resolve=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/categoryMenu"); // Request type and URL
+		
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response
+						alert(responseText); // lets produce an alert
+						resolve(responseText);
+					};
+		
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			async function selectCategory(){
+				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				let categoryList = await getCategories();
+				
+				categoryList = categoryList.split(",");
+				
+				categoryList.forEach((category, i)=>{
+					categoryList[i] = category.replace(/[^A-Za-z]/g, "");
+				});
+				
+				let categoryString = "Please enter a number to select a category from:\n";
+				
+				categoryList.forEach((category, i)=>{
+					categoryString += (i+1) + " - " + category + "\n";
+				});
+				
+				let categorySelectedByHuman = prompt(categoryString);
+				while(isNaN(categorySelectedByHuman) || categorySelectedByHuman == null || categorySelectedByHuman>5 || categorySelectedByHuman<1){
+					categorySelectedByHuman = prompt("Invalid Input. " + categoryString);
+				}
+				
+				return categorySelectedByHuman;
+				
+			}
+			
+			function playRound(){
+			
+				let categorySelectedByHuman = selectCategory();
+				
+				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundNumber"); // Request type and URL
+		
+				// Message is not sent yet, but we can check that the browser supports CORS
+				if (!xhr) {
+					alert("CORS not supported");
+				}
+
+				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+				// to do when the response arrives
+				xhr.onload = function(e) {
+					var responseText = xhr.response; // the text of the response
+					alert(responseText); // lets produce an alert
+				};
+		
+				// We have done everything we need to prepare the CORS request, so send it
+				xhr.send();	
 			}
 	
 			// This calls the game REST method from TopTrumpsRESTAPI
@@ -519,28 +569,6 @@
 					var responseText = xhr.response; // the text of the response
 					//alert(responseText); // lets produce an alert
 				};
-		
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();		
-			}
-	
-			// This calls the helloJSONList REST method from TopTrumpsRESTAPI
-			function helloWord(word) {
-	
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloWord?Word="+word); // Request type and URL+parameters
-		
-				// Message is not sent yet, but we can check that the browser supports CORS
-				if (!xhr) {
-					alert("CORS not supported");
-				}
-
-				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives 
-				xhr.onload = function(e) {
-					var responseText = xhr.response; // the text of the response
-					alert(responseText); // lets produce an alert
-				}
 		
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();		
