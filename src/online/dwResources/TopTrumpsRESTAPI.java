@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import online.configuration.TopTrumpsJSONConfiguration;
+import toptrumps.DataCard;
 import toptrumps.DataGame;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -285,19 +286,29 @@ public class TopTrumpsRESTAPI {
 	 * @return JSONString[] type
 	 * @throws IOException
 	 */	
+//	@GET
+//	@Path("/game/AI1Cards")
+//	public String getAICards() throws IOException{	
+//		String[][] AIPlayersCard=new String[model.getActivePlayers().length][6];
+//		for(int i=0;i<model.getActivePlayers().length;i++) {
+//			AIPlayersCard[i][0]=oWriter.writeValueAsString(model.getRoundAIPlayerCards()[0].toString());
+//			for(int j=0;j<6;j++) {
+//				AIPlayersCard[i][j+1]=oWriter.writeValueAsString(model.getRoundAIPlayerCards());
+//			}
+//		}
+//		model.getActivePlayers();
+//		String AICards=oWriter.writeValueAsString(model.getRoundAIPlayerCards());
+//		return AICards;
+//	}
 	@GET
 	@Path("/game/AI1Cards")
-	public String getAICards() throws IOException{	
-		String[][] AIPlayersCard=new String[model.getActivePlayers().length][6];
-		for(int i=0;i<model.getActivePlayers().length;i++) {
-			AIPlayersCard[i][0]=oWriter.writeValueAsString(model.getRoundAIPlayerCards()[0].toString());
-			for(int j=0;j<6;j++) {
-				AIPlayersCard[i][j+1]=oWriter.writeValueAsString(model.getRoundAIPlayerCards());
-			}
+	public DataCard[] getAICards() throws IOException{	
+		DataCard[] aiPlayersCard=new DataCard[numAIPlayers];
+		for(int i=0;i<numAIPlayers;i++) {
+			aiPlayersCard[i]=model.getRoundAIPlayerCards()[i];
 		}
-		model.getActivePlayers();
-		String AICards=oWriter.writeValueAsString(model.getRoundAIPlayerCards());
-		return AICards;
+		
+		return aiPlayersCard;
 	}
 	
 	
