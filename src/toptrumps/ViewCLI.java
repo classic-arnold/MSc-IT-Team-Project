@@ -60,13 +60,17 @@ public class ViewCLI {
 		}
 		System.out.println("Round " + model.getRoundNumber()+"\n");
 	}
+	
+	private void displayRoundMessageAndActivePlayer() {
+		System.out.println("\nRound " + model.getRoundNumber() + " : Players have drawn their cards");
+        System.out.println("The active player is "+ model.getCategoryChooser().getName() + "\n");
+	}
 
 	/**
 	 * Displays human player card
 	 */
 	private void displayPlayerCard() {
-		System.out.println("\nRound " + model.getRoundNumber() + " : Players have drawn their cards \n");
-
+	
 		if (model.getHumanPlayer().getDeck().size() > 0) {
 			System.out.println("You drew " + model.getHumanPlayer().getDeck().get(0).getDescription() + " :");
 			System.out.println(model.getHumanPlayer().getDeck().get(0));
@@ -127,7 +131,9 @@ public class ViewCLI {
 	public void updateView() {
 		displayRound();
 		displayNumDeckCards();
+		displayRoundMessageAndActivePlayer();
 		displayPlayerCard();
+		
 
 	}
 
