@@ -207,7 +207,7 @@
                                                                                       class="badge badge-primary float-right">4</span>
                         </div>
                          <div class="row justify-content-center ">
-                        <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+                        <img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">m50</h5>
@@ -235,7 +235,7 @@
                                                                                         class="badge badge-primary float-right">4</span>
                         </div>
                          <div class="row justify-content-center ">
-                        <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+                        <img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
                         </div>
                         <div class="card-body">
                             <h5 id="cardTwoTitle" class="card-title">Orion</h5>
@@ -267,7 +267,7 @@
                                                                                        class="badge badge-primary float-right">4</span>
                         </div>
                          <div class="row justify-content-center ">
-                        <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+                        <img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
                         </div>
                         <div class="card-body">
                             <h5 id="cardThreeTitle" class="card-title">Hawk</h5>
@@ -295,7 +295,7 @@
                                                                                        class="badge badge-primary float-right">4</span>
                         </div>
                          <div class="row justify-content-center ">
-                        <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+                        <img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
                         </div>
                         <div class="card-body">
                             <h5 id="cardFourTitle" class="card-title">Hurricane</h5>
@@ -322,7 +322,7 @@
                         <div class="card-header">Player Name <span class="badge badge-primary float-right">4</span>
                         </div>
                          <div class="row justify-content-center ">
-                        <img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+                        <img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
                         </div>
                         <div class="card-body">
                             <h5 id="cardFiveTitle" class="card-title">Sabre</h5>
