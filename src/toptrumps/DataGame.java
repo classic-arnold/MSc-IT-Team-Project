@@ -145,13 +145,13 @@ public class DataGame{
 	}
 	
 	public DataPlayer getFirstPlayer() {
-		Random r = new Random();
-		this.firstPlayer = this.activePlayers.get(r.nextInt(this.activePlayers.size()));
-		if(this.firstPlayer.getType()==DataPlayer.PlayerType.HUMAN) {
-			this.didHumanPlayFirst = true;
-		} else {
-			this.didHumanPlayFirst = false;
-		}
+//		Random r = new Random();
+//		this.firstPlayer = this.activePlayers.get(r.nextInt(this.activePlayers.size()));
+//		if(this.firstPlayer.getType()==DataPlayer.PlayerType.HUMAN) {
+//			this.didHumanPlayFirst = true;
+//		} else {
+//			this.didHumanPlayFirst = false;
+//		}
 		return this.firstPlayer;
 	}
 	
@@ -169,7 +169,14 @@ public class DataGame{
 		if (this.roundLastWinner != null) {
 			player = this.roundLastWinner;
 		} else {
-			player = this.firstPlayer;
+			Random r = new Random();
+			player = this.activePlayers.get(r.nextInt(this.activePlayers.size()));
+			if(player.getType()==DataPlayer.PlayerType.HUMAN) {
+				this.didHumanPlayFirst = true;
+			} else {
+				this.didHumanPlayFirst = false;
+			}
+			this.firstPlayer = player;
 		}
 		return player;
 	}
