@@ -373,6 +373,7 @@
 // 				if(humanChooseCategory == "true"){
 // 					selectCategory();
 // 				}
+				getStats();
 
 			}
 
@@ -460,7 +461,6 @@
 					// to do when the response arrives
 					xhr.onload = function(e) {
 						var responseText = xhr.response; // the text of the response
-						alert(typeof(responseText)); // lets produce an alert
 						resolve(responseText);
 					};
 		
@@ -473,22 +473,9 @@
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				let categoryList = await getCategories();
 				
-				categoryList = categoryList.split(",");
+				categoryList = changeStringToArray(categoryList);
 				
-				categoryList.forEach((category, i)=>{
-					categoryList[i] = category.replace(/[^A-Za-z]/g, "");
-				});
-				
-				let categoryString = "Please enter a number to select a category from:\n";
-				
-				categoryList.forEach((category, i)=>{
-					categoryString += (i+1) + " - " + category + "\n";
-				});
-				
-				let categorySelectedByHuman = prompt(categoryString);
-				while(isNaN(categorySelectedByHuman) || categorySelectedByHuman == null || categorySelectedByHuman>5 || categorySelectedByHuman<1){
-					categorySelectedByHuman = prompt("Invalid Input. " + categoryString);
-				}
+				categorySelectedByHuman = categoryList[0];
 				
 				return categorySelectedByHuman;
 				
@@ -510,7 +497,6 @@
 				// to do when the response arrives
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					alert(responseText); // lets produce an alert
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
@@ -518,10 +504,10 @@
 			}
 	
 			// This calls the game REST method from TopTrumpsRESTAPI
-			function stats() {
+			function getStats() {
 	
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/stats"); // Request type and URL
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/stats/statistics"); // Request type and URL
 		
 				// Message is not sent yet, but we can check that the browser supports CORS
 				if (!xhr) {
@@ -532,11 +518,21 @@
 				// to do when the response arrives 
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					//alert(responseText); // lets produce an alert
+					responseText = changeStringToArray(responseText);
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();		
+			}
+			
+			function changeStringToArray(string){
+				arr = string.split(",");
+				
+				arr.forEach((arrElem, i)=>{
+					arr[i] = arrElem.replace(/[^A-Za-z0-9]/g, "");
+				});
+				
+				return arr;
 			}
 			
 			// ------------------------------------------------------------ //
