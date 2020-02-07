@@ -126,6 +126,15 @@
 			.card-body {
 				padding: 0.5rem;
 			}
+			#selection-choice-menu{
+			
+			color:white;
+			font-size:15px;
+			font-family: 'Roboto Mono', monospace;
+			font-weight: bold;
+			
+			
+			}
 						
 		</style>
 
@@ -156,8 +165,18 @@
 				<div class="col-sm-3 section1 ">
 					<div class="row justify-content-center ">
 						<div class="col-sm-6 action-div">
-
 							<button id="actionButton" type="button" class="btn btn-dark btn-block">ACTION TITLE HERE</button>
+							
+						</div>
+						<div class="col-sm-6 action-div">
+						<h3 id="selection-choice-menu">Please select the number of AI Players</h3>
+						<select class="custom-select">
+ 						<option selected>Select</option>
+  						<option value="1">One</option>
+  						<option value="2">Two</option>
+  						<option value="3">Three</option>
+  					    <option value="4">Four</option>
+                        </select>
 						</div>
 					</div>
 				</div>
