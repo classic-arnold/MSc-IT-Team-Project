@@ -117,7 +117,7 @@ public class TopTrumpsRESTAPI {
 		try {
 			this.numAIPlayers = numberOfAIPlayers;
 			this.conf.setNumAIPlayers(numberOfAIPlayers);
-			this.model = DataGame.getInstance(numberOfAIPlayers);
+			this.model = DataGame.resetAndGetInstance(numberOfAIPlayers);
 			this.model.startGame();
 		} catch(Exception e) {
 			return 1;
