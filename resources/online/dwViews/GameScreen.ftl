@@ -126,6 +126,15 @@
 			.card-body {
 				padding: 0.5rem;
 			}
+			#selection-choice-menu{
+			
+			color:white;
+			font-size:15px;
+			font-family: 'Roboto Mono', monospace;
+			font-weight: bold;
+			
+			
+			}
 						
 		</style>
 
@@ -156,8 +165,18 @@
 				<div class="col-sm-3 section1 ">
 					<div class="row justify-content-center ">
 						<div class="col-sm-6 action-div">
-
 							<button id="actionButton" type="button" class="btn btn-dark btn-block">ACTION TITLE HERE</button>
+							
+						</div>
+						<div class="col-sm-6 action-div">
+						<h3 id="selection-choice-menu">Please select the number of AI Players</h3>
+						<select class="custom-select">
+ 						<option selected>Select</option>
+  						<option value="1">One</option>
+  						<option value="2">Two</option>
+  						<option value="3">Three</option>
+  					    <option value="4">Four</option>
+                        </select>
 						</div>
 					</div>
 				</div>
@@ -373,49 +392,18 @@
 // 				if(humanChooseCategory == "true"){
 // 					selectCategory();
 // 				}
+				getStats();
 
 			}
 
 			// -----------------------------------------
 			// Add your other Javascript methods Here
 			// -----------------------------------------
-
-			// This is a reusable method for creating a CORS request. Do not edit this.
-			function createCORSRequest(method, url) {
-				var xhr = new XMLHttpRequest();
-				if ("withCredentials" in xhr) {
-
-					// Check if the XMLHttpRequest object has a "withCredentials" property.
-					// "withCredentials" only exists on XMLHTTPRequest2 objects.
-					xhr.open(method, url, true);
-
-				} else if (typeof XDomainRequest != "undefined") {
-
-					// Otherwise, check if XDomainRequest.
-					// XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-					xhr = new XDomainRequest();
-					xhr.open(method, url);
-				} else {
-
-					// Otherwise, CORS is not supported by the browser.
-					xhr = null;
-
-				}
-				return xhr;
-			}
-			
-			function getNumberOfAIPlayersFromUser(){
-				let numberOfAIPlayersFromUser = prompt("How many AI players do you want?");
-				while(isNaN(numberOfAIPlayersFromUser) || numberOfAIPlayersFromUser == null || numberOfAIPlayersFromUser>4 || numberOfAIPlayersFromUser<1){
-					numberOfAIPlayersFromUser = prompt("Invalid Input. Please pick a number between 0 and 4 (inclusive).\nHow many AI players do you want?");
-				}
-				return numberOfAIPlayersFromUser;
-			}
 	
 			// This starts the game
 			function startGame() {
 				return new Promise(resolve=>{
-					let numberOfAIPlayersFromUser = getNumberOfAIPlayersFromUser();
+					let numberOfAIPlayersFromUser = 4; //change this to get from button
 				
 					// First create a CORS request, this is the message we are going to send (a get request in this case)
 					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/startGame?numberOfAIPlayers=" + numberOfAIPlayersFromUser); // Request type and URL
@@ -429,7 +417,6 @@
 					// to do when the response arrives
 					xhr.onload = function(e) {
 						var responseText = xhr.response; // the text of the response
-// 						alert(responseText); // lets produce an alert
 						if(responseText == "0"){
 							resolve();
 						}
@@ -454,7 +441,6 @@
 				// to do when the response arrives
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					alert(responseText); // lets produce an alert
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
@@ -474,7 +460,6 @@
 				// to do when the response arrives
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					alert(responseText); // lets produce an alert
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
@@ -495,7 +480,6 @@
 					// to do when the response arrives
 					xhr.onload = function(e) {
 						var responseText = xhr.response; // the text of the response
-						alert(responseText); // lets produce an alert
 						resolve(responseText);
 					};
 		
@@ -508,22 +492,9 @@
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				let categoryList = await getCategories();
 				
-				categoryList = categoryList.split(",");
+				categoryList = changeStringToArray(categoryList);
 				
-				categoryList.forEach((category, i)=>{
-					categoryList[i] = category.replace(/[^A-Za-z]/g, "");
-				});
-				
-				let categoryString = "Please enter a number to select a category from:\n";
-				
-				categoryList.forEach((category, i)=>{
-					categoryString += (i+1) + " - " + category + "\n";
-				});
-				
-				let categorySelectedByHuman = prompt(categoryString);
-				while(isNaN(categorySelectedByHuman) || categorySelectedByHuman == null || categorySelectedByHuman>5 || categorySelectedByHuman<1){
-					categorySelectedByHuman = prompt("Invalid Input. " + categoryString);
-				}
+				categorySelectedByHuman = categoryList[0];
 				
 				return categorySelectedByHuman;
 				
@@ -545,7 +516,6 @@
 				// to do when the response arrives
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					alert(responseText); // lets produce an alert
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
@@ -553,10 +523,10 @@
 			}
 	
 			// This calls the game REST method from TopTrumpsRESTAPI
-			function stats() {
+			function getStats() {
 	
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/stats"); // Request type and URL
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/stats/statistics"); // Request type and URL
 		
 				// Message is not sent yet, but we can check that the browser supports CORS
 				if (!xhr) {
@@ -567,11 +537,49 @@
 				// to do when the response arrives 
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					//alert(responseText); // lets produce an alert
+					responseText = changeStringToArray(responseText);
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();		
+			}
+			
+			function changeStringToArray(string){
+				arr = string.split(",");
+				
+				arr.forEach((arrElem, i)=>{
+					arr[i] = arrElem.replace(/[^A-Za-z0-9]/g, "");
+				});
+				
+				return arr;
+			}
+			
+			// ------------------------------------------------------------ //
+			// ------------------------------------------------------------ //
+			// ------------------------------------------------------------ //
+			
+			// This is a reusable method for creating a CORS request. Do not edit this.
+			function createCORSRequest(method, url) {
+				var xhr = new XMLHttpRequest();
+				if ("withCredentials" in xhr) {
+
+					// Check if the XMLHttpRequest object has a "withCredentials" property.
+					// "withCredentials" only exists on XMLHTTPRequest2 objects.
+					xhr.open(method, url, true);
+
+				} else if (typeof XDomainRequest != "undefined") {
+
+					// Otherwise, check if XDomainRequest.
+					// XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+					xhr = new XDomainRequest();
+					xhr.open(method, url);
+				} else {
+
+					// Otherwise, CORS is not supported by the browser.
+					xhr = null;
+
+				}
+				return xhr;
 			}
 		</script>
 	</body>

@@ -56,17 +56,17 @@ public class ViewCLI {
 	 */
 	private void displayRound() {
 		if (model.getRoundNumber() == 1) {
-			System.out.println("Game Start");
+			System.out.println("\n/*****GAME START*****/ \n");
 		}
-		System.out.println("Round " + model.getRoundNumber());
-		System.out.println("Round " + model.getRoundNumber() + " : Players have drawn their cards");
-
+		System.out.println("Round " + model.getRoundNumber()+"\n");
 	}
 
 	/**
 	 * Displays human player card
 	 */
 	private void displayPlayerCard() {
+		System.out.println("\nRound " + model.getRoundNumber() + " : Players have drawn their cards \n");
+
 		if (model.getHumanPlayer().getDeck().size() > 0) {
 			System.out.println("You drew " + model.getHumanPlayer().getDeck().get(0).getDescription() + " :");
 			System.out.println(model.getHumanPlayer().getDeck().get(0));
@@ -126,8 +126,8 @@ public class ViewCLI {
 	 */
 	public void updateView() {
 		displayRound();
-		displayPlayerCard();
 		displayNumDeckCards();
+		displayPlayerCard();
 
 	}
 
@@ -173,11 +173,12 @@ public class ViewCLI {
 	 */
 	public void gameEnd() {
 		System.out.println("Game End");
-		System.out.println(model.getGameWinner().getName() + " won the game");
-		System.out.println("Player scores \n");
+		System.out.println(model.getGameWinner().getName() + "won the game \n");
+		System.out.println("Player scores");
 		for (int i = 0; i < model.getAllPlayers().length; i++) {
 			System.out.println(model.getAllPlayers()[i].getName() + " :" + model.getAllPlayers()[i].getScore());
 		}
+		System.out.println(" ");
 
 	}
 
