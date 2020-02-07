@@ -75,15 +75,34 @@ public class TopTrumpsRESTAPI {
 	 * passing details: 
 	 * 1. getDeckFile(): /game/displayCards
 	 * 2. getCategoryForMenu(): /game/categoryMenu
-	 * 3. getAICategory(): /game/aiCategorySelection
-	 * 4. getActivePlayer(): /game/activePlayer
-	 * 5. getRound(): /game/round
-	 * 6. getHumanCards(): /game/humanCards
-	 * 7. getRoundDescription(): /game/roundDescription 	<<should modify
-	 * 8. getAICards(): /game/AI1Cards 						<<should modify
+	 * 3. getRoundCategory(): /game/roundCategory			<<modified
+	 * 4. getActivePlayersName(): /game/activePlayersName		<<modified
+	 * 5. getRound(): /game/roundNumber				<<modified
+	 * 6. getCategoryChooser(): /game/categoryChooser		<<modified
+	 * 7. getNumberOfCardsInDeck(): /game/numberOfCardsInDeck		<<modified
+	 * 8. getHumanCards(): /game/humanCards					<<should modify
+	 * 9. getAICards(): /game/AI1Cards 						<<should modify
+	 * 10. getRoundDescription1(): /game/roundDescription1 
+	 * 11. getRoundDescription2(): /game/roundDescription2
+	 * 12. getRoundDescription3(): /game/roundDescription3
+	 * 
+	 * @Path("/game/sideBar")
+	 * 13. getCategoryChooser(): /game/sideBar/categoryChooser	<<modified
+	 * 14. getDescriptionOfRoundCategory(): /game/sideBar/descriptionOfRoundCategory	<<modified
+	 * 
+	 * @Path("/game/result")
+	 * 15. getGameEnd(): /game/result/gameEnd			<<modified
+	 * 16. getWinnerOfTheGame(): /game/result/winner		<<modified
+	 * 17. getGameResult(): /game/result/scores			<<should modify
+	 * 
+	 * 
+	 * 
+	 * @Path("/stats") includes game statistics in array
+	 * 1. getStatistics(): /stats/statistics
+	 * 
 	*/
 
-
+	
 	/**
 	 * Get entire deck file when the game starts.
 	 * @Controller.js: function displayCard 
@@ -100,13 +119,17 @@ public class TopTrumpsRESTAPI {
 	/**
 	 * Get human player's card name, card categories only.
 	 * @Controller.js: function humanSelectCategory
-	 * @return JSONString type of ArrayList
+	 * @return JSONString[] type
 	 * @throws IOException
 	 */	
 	@GET
 	@Path("/game/categoryMenu")
-	public String getCategoryForMenu() throws IOException{	
-		String categories=oWriter.writeValueAsString(model.CATEGORYNAMES);
+	public String[] getCategoryForMenu() throws IOException{	
+		String[] categories=new String[model.CATEGORYNAMES.length];
+		
+		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
+			categories[i]=oWriter.writeValueAsString(model.CATEGORYNAMES[i]);
+		}
 		return categories;
 	}
 	
@@ -118,7 +141,7 @@ public class TopTrumpsRESTAPI {
 	 * @throws IOException
 	 */	
 	@GET
-	@Path("/game/aiCategorySelection")
+	@Path("/game/roundCategory")
 	public String getRoundCategory() throws IOException{
 		String roundCategory=oWriter.writeValueAsString(model.getRoundCategory());
 		return roundCategory;
@@ -132,8 +155,8 @@ public class TopTrumpsRESTAPI {
 	 * @throws IOException
 	 */	
 	@GET
-	@Path("/game/activePlayer")
-	public String[] getActivePlayer() throws IOException{
+	@Path("/game/activePlayersName")
+	public String[] getActivePlayersName() throws IOException{
 		String[] activePlayer=new String[model.getActivePlayers().length];
 		
 		for(int i=0;i<model.getActivePlayers().length;i++) {
@@ -174,7 +197,12 @@ public class TopTrumpsRESTAPI {
 	
 	
 	/**
-	 * Get the number of cards in deck of human player:integer.
+	 * Get the number of cards in deck:integer.
+	 * numberOfCardsInDeck[0]=human
+	 * numberOfCardsInDeck[1]=ai1
+	 * numberOfCardsInDeck[2]=ai2
+	 * numberOfCardsInDeck[3]=ai3
+	 * numberOfCardsInDeck[4]=ai4
 	 * @Controller.js: 
 	 * @returns JSONString[] type
 	 * @throws IOException
@@ -205,11 +233,17 @@ public class TopTrumpsRESTAPI {
 	 * @throws IOException
 	 */	
 	@GET
-	@Path("/game/humanCards")
-	public String getHumanCards() throws IOException{		
-		//Categories for the human player
-		String humanCards=oWriter.writeValueAsString(model.getRoundHumanPlayerCard());	
-		return humanCards;
+	@Path("/game/roundHumanPlayerCard")
+	public String[] getRoundHumanPlayerCard() throws IOException{	
+		String[] humanCard=new String[6];
+		
+		//store card title in humanCard[0]
+		humanCard[0]=oWriter.writeValueAsString(model.getRoundHumanPlayerCard().toString());
+		
+		for(int i=0;i<humanCard.length;i++) {
+//			humanCard[i+1]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0)[i]);
+		}
+		return humanCard;
 	}	
 
 
@@ -228,7 +262,7 @@ public class TopTrumpsRESTAPI {
 		for(int i=0;i<model.getActivePlayers().length;i++) {
 			AIPlayersCard[i][0]=oWriter.writeValueAsString(model.getRoundAIPlayerCards()[0].toString());
 			for(int j=0;j<6;j++) {
-				AIPlayersCard[i][j+1]=oWriter.writeValueAsString(model.CATEGORYNAMES[j]);
+				AIPlayersCard[i][j+1]=oWriter.writeValueAsString(model.getRoundAIPlayerCards());
 			}
 		}
 		model.getActivePlayers();
@@ -318,7 +352,7 @@ public class TopTrumpsRESTAPI {
 	 * @throws IOException
 	 */	
 	@GET
-	@Path("/game/sideBar/activePlayer")
+	@Path("/game/sideBar/categoryChooser")
 	public String getCategoryChooser(@QueryParam("CategoryChooser") String CategoryChooser) throws IOException{		
 		return "The Active Player is "+CategoryChooser;
 	}	
@@ -332,7 +366,7 @@ public class TopTrumpsRESTAPI {
 	 * @throws IOException
 	 */	
 	@GET
-	@Path("/game/descriptionOfRoundCategory")
+	@Path("/game/sideBar/descriptionOfRoundCategory")
 	public String getDescriptionOfRoundCategory(@QueryParam("RoundCategory") String RoundCategory,
 			@QueryParam("CategoryChooser") String CategoryChooser) throws IOException{		
 		return CategoryChooser+" selected "+RoundCategory;
@@ -362,7 +396,7 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/result/winner")
-	public String getGameEnd(@QueryParam("GameWinner") String GameWinner) throws IOException{		
+	public String getWinnerOfTheGame(@QueryParam("GameWinner") String GameWinner) throws IOException{		
 		return GameWinner+" won the game";
 	}	
 	
