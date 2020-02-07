@@ -240,25 +240,10 @@ function chooseCategory5(){
 	
 }
 
-
-//newGameButton = doucument.getElementById("new-game-col");
-//newGameButton.addEventListener("click",initiateNewGame);
-//
-//viewStatistics = doucument.getElementById("gameStatistic");
-//viewStatistics.addEventListener("click",gameStatistic);
-//
-//nextCategorySelectionButton = doucument.getElementById("selectCategory");
-//nextCategorySelectionButton.addEventListener("click",xxxfunction);
-//
-//nextRound = doucument.getElementById("nextRound");
-//nextRound.addEventListener("click",xxxfunction);
-
-
 function initiateGame(){
 	shuffleCards();
 	createDeck();
-	
-	//differentButton;
+
 	
 	initiateRound();
 }
