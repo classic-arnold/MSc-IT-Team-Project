@@ -29,6 +29,7 @@
 				font-weight: bold;
 			}
 
+<<<<<<< HEAD
 
 <head>
     <!-- Web page title -->
@@ -459,6 +460,8 @@
                 alert(responseText); // lets produce an alert
             };
 =======
+=======
+>>>>>>> 147a860a791f0a43d8c2dd6577d8113daa412a39
 			.navbar {
 				border-bottom: 5px solid;
 				border-image-source: linear-gradient(to right, #659999, #f4791f);
@@ -468,7 +471,6 @@
 			.navbar .nav-link {
 				font-size: 15px;
 			}
->>>>>>> 0d9b348d6aa79651747e51b7e38a43a7b0cbeb5d
 
 			/*Section 1 Styles*/
 
