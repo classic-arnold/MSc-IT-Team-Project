@@ -29,7 +29,7 @@
 				font-weight: bold;
 			}
 
-<<<<<<< HEAD
+
 <head>
     <!-- Web page title -->
     <title>Top Trumps</title>
