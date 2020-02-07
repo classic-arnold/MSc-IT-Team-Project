@@ -15,7 +15,7 @@ public class TopTrumps {
 		
 		// command line switches
 
-		boolean onlineMode = true;
+		boolean onlineMode = false;
 		boolean commandLineMode = false;
 		boolean printTestLog = false;
 		
