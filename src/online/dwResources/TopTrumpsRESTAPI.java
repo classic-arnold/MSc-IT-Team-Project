@@ -144,7 +144,7 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/categoryMenu")
-	public String getCategoryForMenu() throws IOException{	
+	public List<String> getCategoryForMenu() throws IOException{	
 		
 		List<String> listOfCategory=new ArrayList<String>();
 		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
@@ -156,7 +156,7 @@ public class TopTrumpsRESTAPI {
 //		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
 //			categories[i]=oWriter.writeValueAsString(model.CATEGORYNAMES[i]);
 //		}
-		return listAsJSONString;
+		return listOfCategory;
 	}
 	
 	@GET
@@ -185,25 +185,18 @@ public class TopTrumpsRESTAPI {
 	}
 	
 	
-	
-	
+
 	/**
-	 * Get active player (ArrayList) and store in activePlayer (array).
+	 * Number of active players
 	 * @Controller.js: function activePlayer
-	 * @returns JSONString[] type
+	 * @returns integer
 	 * @throws IOException
 	 */	
 	@GET
-	@Path("/game/activePlayersName")
-	public String[] getActivePlayersName() throws IOException{
-		String[] activePlayer=new String[model.getActivePlayers().length];
-		
-		for(int i=0;i<model.getActivePlayers().length;i++) {
-			activePlayer[i]=oWriter.writeValueAsString(model.getActivePlayers());
-		}
-
-		return activePlayer;
-		// "[ {\r\n  \"name\" : \"You\",\r\n  \"deck\" : [ ]\r\n} ]"
+	@Path("/game/activePlayer")
+	public int getNumberOfActivePlayer() throws IOException{
+		int numberOfActivePlayer=model.getActivePlayers().length;
+		return numberOfActivePlayer;
 	}
 
 	/**
@@ -257,7 +250,6 @@ public class TopTrumpsRESTAPI {
 				cardsInDeck=model.getActivePlayers()[i].getDeck().size();
 				numberOfCardsInDeck[i]=oWriter.writeValueAsString(cardsInDeck);
 			}
-
 		}
 		return numberOfCardsInDeck;
 	}
@@ -276,10 +268,11 @@ public class TopTrumpsRESTAPI {
 		
 		//store card title in humanCard[0]
 		humanCard[0]=oWriter.writeValueAsString(model.getRoundHumanPlayerCard().toString());
-		
-		for(int i=0;i<humanCard.length;i++) {
-			humanCard[i+1]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).);
-		}
+		humanCard[1]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory1());
+		humanCard[2]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory2());
+		humanCard[3]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory3());
+		humanCard[4]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory4());
+		humanCard[5]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory5());
 		return humanCard;
 	}	
 
