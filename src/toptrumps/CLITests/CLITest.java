@@ -40,9 +40,10 @@ public class CLITest {
 	
 	
 	@Before
+	// Initialise instances of the game's model, view and controller objects before running each test
 	public void setUp() {
 		model = DataGame.resetAndGetInstance(4);
-		view = new ViewCLI(model); // we need to pass in view here
+		view = new ViewCLI(model);
 		controller = new Controller(model, view, true);
 	}
 	
@@ -89,14 +90,16 @@ public class CLITest {
 	
 	@Test
 	public void testAccurateRoundNumber() {
-		//getRoundNumber in DataGame
+
 		//check that the correct round number is displayed after after several rounds are played
 		
-		int round = 1;
+		int round = 1; //variable created by me to manually compare it with what the game outputs
 		
 		int startChoice = 2;
 
-		if(startChoice == 1) {	
+		if(startChoice == 1) {
+			/* the content of "if" is omitted because it handles game statistics functionality which is 
+			not what is currently being tested */
 		} else if(startChoice == 2) {
 
 			String continueOrEndGameChoice = null;
@@ -115,12 +118,9 @@ public class CLITest {
 					}
 				} else if(this.model.shouldHumanChooseCategory()) {
 					category = 2;
-					// category = 2;
 				} else {
 					category = this.model.getBestCategoryForCurrentAIPlayers();
 				}
-
-				// int category = this.viewCli.displayCategorySelection();
 
 				this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
 
@@ -128,7 +128,6 @@ public class CLITest {
 
 				continueOrEndGameChoice = "";
 
-//				System.out.print(continueOrEndGameChoice);
 
 				if (continueOrEndGameChoice.contentEquals("q")) {
 					break;
@@ -136,20 +135,20 @@ public class CLITest {
 
 				this.model.incrementRound();
 				
-				round++;
+				round++; //the round is manually incremented so that it can be compared with game round
 
 			}
 
 			if(continueOrEndGameChoice.contentEquals("")) {
 				this.view.gameEnd();
 			} else if (continueOrEndGameChoice.contentEquals("q")) {
-				//	this.viewCli.gameEndByUser();
+				
 			}
 
 		} else {
 		}
 		
-		assertEquals( round, this.model.getRoundNumber());
+		assertEquals(round, this.model.getRoundNumber());
 	}
 	
 	@Test
@@ -157,7 +156,7 @@ public class CLITest {
 		//test that the correct round number is displayed after several rounds are played
 	}
 	
-	@Test
+	@Test /*****************************************************************************/
 	public void testCorrectTopCard() {
 		//getActivePlayer in dataDame, getDeck in dataplayer to get the player's deck, then get the zeroth element class 
 		//model.getInitialShuffledDeck() does the shuffling
@@ -174,7 +173,7 @@ public class CLITest {
 		//getActivePlayers in datagame, getDeck of the player in dataPlayer, then check the length of the array returned
 		
 		//check that the number of cards remaining for each player after each round is accurate
-		//1
+		
 		this.model.startGame();
 		
 		DataPlayer[] players = this.model.getActivePlayers();
@@ -182,7 +181,7 @@ public class CLITest {
 		for(DataPlayer player:players) {
 			assert player.getDeck().size() == 8;
 		}
-		//2
+		
 		this.model.playRound(DataGame.CATEGORYNAMES[0]);
 		
 		ArrayList<DataPlayer> winners = this.model.getRoundWinningPlayers();
@@ -203,19 +202,16 @@ public class CLITest {
 		}
 		
 		int totalAmountOfCards = 0;
-		
+		// this loop sums up all players cards in their decks
 		for(DataPlayer player : players) {
 			totalAmountOfCards += player.getDeck().size();
 		}
 		
 		assert 40 == totalAmountOfCards + this.model.getNumberOfCardsInCommonPile();
 		
-		//3
 		this.model.incrementRound();
 		
-		// repeat
 		
-		//1
 		this.model.playRound(DataGame.CATEGORYNAMES[0]);
 		
 	}
@@ -238,8 +234,6 @@ public class CLITest {
 	@Test
 	public void testWinningCardAndPlayer() {
 		
-		//to test that the correct category is reflected, we use the getWinningCardandplayer in datagame. to get the lists of
-		//cards in the file, use getallcardsinorder in DataCardCache to return all card objects in the file
 		
 		//test that the correct winning card was returned for different rounds
 		//test that the correct winning card was displayed
@@ -288,7 +282,43 @@ public class CLITest {
 		//test that the largest number of rounds played in a single game is returned
 		//ensure that these values were calculated using SQL
 		
-		this.model.getLongestGame();
+		int startChoice = 2;
+
+		if(startChoice == 2) {
+
+			this.model.startGame();
+			
+
+			while(this.model.getGameState()==DataGame.GameState.RUNNING) {
+				this.view.updateView();
+				int category;
+
+
+				if(this.model.getRoundNumber() == 1) {
+					category = this.model.getBestCategoryForCurrentAIPlayers(this.model.getFirstPlayer());
+					if(category == 0) {
+						category = 2;
+					}
+				} else if(this.model.shouldHumanChooseCategory()) {
+					category = 2;
+					// category = 2;
+				} else {
+					category = this.model.getBestCategoryForCurrentAIPlayers();
+				}
+
+				// int category = this.viewCli.displayCategorySelection();
+
+				this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
+
+				this.model.incrementRound();
+
+			}
+
+		} else {
+		}
+
+		
+		assert 2 == DataGame.getNumberOfGames();
 	}
 	
 	@Test
