@@ -124,13 +124,31 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/categoryMenu")
-	public String[] getCategoryForMenu() throws IOException{	
-		String[] categories=new String[model.CATEGORYNAMES.length];
+	public String getCategoryForMenu() throws IOException{	
+//		List<String> listOfWords = new ArrayList<String>();
+//		listOfWords.add("Hello");
+//		listOfWords.add("World!");
+//		
+//		// We can turn arbatory Java objects directly into JSON strings using
+//		// Jackson seralization, assuming that the Java objects are not too complex.
+//		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
+//		
+//		return listAsJSONString;
 		
+		List<String> listOfCategory=new ArrayList<String>();
 		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
-			categories[i]=oWriter.writeValueAsString(model.CATEGORYNAMES[i]);
+			listOfCategory.add(model.CATEGORYNAMES[i]);
 		}
-		return categories;
+		
+		String listAsJSONString=oWriter.writeValueAsString(listOfCategory);
+		
+		
+//		String[] categories=new String[model.CATEGORYNAMES.length];
+//		
+//		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
+//			categories[i]=oWriter.writeValueAsString(model.CATEGORYNAMES[i]);
+//		}
+		return listAsJSONString;
 	}
 	
 	
@@ -164,6 +182,7 @@ public class TopTrumpsRESTAPI {
 		}
 
 		return activePlayer;
+		// "[ {\r\n  \"name\" : \"You\",\r\n  \"deck\" : [ ]\r\n} ]"
 	}
 	
 
