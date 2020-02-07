@@ -139,23 +139,23 @@ public class TopTrumpsRESTAPI {
 	}
 	
 
-//	/**
-//	 * Get human player's card name, card categories only.
-//	 * @Controller.js: function humanSelectCategory
-//	 * @return JSONString[] type
-//	 * @throws IOException
-//	 */	
-//	@GET
-//	@Path("/game/categoryMenu")
-//	public List<String> getCategoryForMenu() throws IOException{	
-//		
-//		List<String> listOfCategory=new ArrayList<String>();
-//		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
-//			listOfCategory.add(oWriter.writeValueAsString(model.CATEGORYNAMES[i]));
-//		}		
-//		
-//		return listOfCategory;
-//	}
+	/**
+	 * Get human player's card name, card categories only.
+	 * @Controller.js: function humanSelectCategory
+	 * @return JSONString[] type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/categoryMenu")
+	public List<String> getCategoryForMenu() throws IOException{	
+		
+		List<String> listOfCategory=new ArrayList<String>();
+		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
+			listOfCategory.add(oWriter.writeValueAsString(model.CATEGORYNAMES[i]));
+		}		
+		
+		return listOfCategory;
+	}
 	
 	@GET
 	@Path("/game/playRound")
