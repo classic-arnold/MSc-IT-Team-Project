@@ -439,7 +439,10 @@
 				// to do when the response arrives
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					$("#status-message").html("Round Number: " + responseText);
+					$(document).ready(function() {
+						// all custom jQuery will go here
+						$("#status-message").html("Round Number: " + responseText);
+					});
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
@@ -514,7 +517,7 @@
 				
 			}
 			
-			function playRound(){
+			async function playRound(){
 				let humanChooseCategory = await shouldHumanSelectCategory();
 				
 				let categories = await getCategories();
