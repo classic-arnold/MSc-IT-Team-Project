@@ -9,19 +9,10 @@
 
 <script type="text/javascript">
 			
-// Method that is called on page load
 			function initalize() {
-				
-//				setRoundNumber();
-//				displayNumberOfCard();
-//				categorySectionVisible();
-				
-			}
-			// -----------------------------------------
-			// Add other Javascript methods Here
-			// -----------------------------------------
 
-			
+			}
+
 			function createCORSRequest(method, url) {
   				var xhr = new XMLHttpRequest();
   				if ("withCredentials" in xhr) {
