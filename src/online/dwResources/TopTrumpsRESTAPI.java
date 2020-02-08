@@ -19,6 +19,7 @@ import toptrumps.DataCard;
 import toptrumps.DataGame;
 import toptrumps.DataPlayer;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -165,8 +166,14 @@ public class TopTrumpsRESTAPI {
 	
 	@GET
 	@Path("/game/shouldHumanSelectCategory")
-	public boolean shouldHumanSelectCategory(){
-		return model.shouldHumanChooseCategory();
+	public String shouldHumanSelectCategory(){
+		String result = "";
+		try {
+			result = oWriter.writeValueAsString(model.shouldHumanChooseCategory());
+		} catch(JsonProcessingException e) {
+			
+		}
+		return result;
 	}
 	
 	@GET
@@ -362,8 +369,20 @@ public class TopTrumpsRESTAPI {
 //	}
 	@GET
 	@Path("/game/AI1Cards")
-	public DataCard[] getRoundAIPlayerCards() throws IOException{
-		return model.getRoundAIPlayerCards();
+	public String getRoundAIPlayerCards() throws IOException{
+		return oWriter.writeValueAsString(model.getRoundAIPlayerCards());
+	}
+	
+	@GET
+	@Path("/game/roundCards")
+	public String getRoundCards(){
+		String result = "";
+		try {
+			result = oWriter.writeValueAsString(model.getRoundCards());
+		} catch (JsonProcessingException e){
+			
+		}
+		return result;
 	}
 	
 	

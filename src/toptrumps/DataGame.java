@@ -115,6 +115,8 @@ public class DataGame{
 	private boolean didHumanPlayFirst;
 	
 	private DataPlayer roundActivePlayer;
+	
+	private ArrayList<DataCard> roundCards = new ArrayList<DataCard>();
 
 	/**
 	 * creates a new DataGame Object
@@ -304,6 +306,8 @@ public class DataGame{
 		//		this.roundHasPlayersDrawnCards = true;
 
 
+		this.roundCards = roundCards;
+		
 		// holds the winning cards and winning players
 		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(roundCards.toArray(new DataCard[roundCards.size()]), category);
 
@@ -647,6 +651,10 @@ public class DataGame{
 	 */
 	public DataCard[] getInitialShuffledDeck() {
 		return this.initialShuffledDeck.toArray(new DataCard[this.initialShuffledDeck.size()]);
+	}
+	
+	public DataCard[] getRoundCards() {
+		return (DataCard[])this.roundCards.toArray();
 	}
 
 	/**
