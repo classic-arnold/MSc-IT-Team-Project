@@ -4,52 +4,45 @@ package toptrumps;
  * 
  * This class represents a card
  * 
- * 
- * 
  */
-public class DataCard implements Cloneable {
-	public static final String[] CATEGORYNAMES = {"size", "speed", "range", "firePower", "cargo"};
+public class DataCard implements Cloneable{
 	
 	/** string representing card description */
 	private String description;
 
-	/** integer representing card size */
-	private int size;
+	/** integer representing card category1 */
+	private int category1;
 
-	/** integer representing card speed */
-	private int speed;
+	/** integer representing card category2 */
+	private int category2;
 
-	/** integer representing card range */
-	private int range;
+	/** integer representing card category3 */
+	private int category3;
 
-	/** integer representing card firePower */
-	private int firePower;
+	/** integer representing card category4 */
+	private int category4;
 
-	/** integer representing card cargo */
-	private int cargo;
-
-	private String[] propertiesName = CATEGORYNAMES;
-	private int[] propertiesVal;
+	/** integer representing card category5 */
+	private int category5;
 
 	/**
 	 * 
-	 * DataCard class constructor
+	 * creates a new card
 	 * 
-	 * @param description string representing card name
-	 * @param size integer representing card size
-	 * @param speed integer representing card speed
-	 * @param range integer representing card range
-	 * @param firePower integer representing card firePower
-	 * @param cargo integer representing card cargo
+	 * @param name string representing card name
+	 * @param category1 integer representing card category1
+	 * @param category2 integer representing card category2
+	 * @param category3 integer representing card category3
+	 * @param category4 integer representing card category4
+	 * @param category5 integer representing card category5
 	 */
-	DataCard(String description, int size, int speed, int range, int firePower, int cargo){
+	DataCard(String description, int category1, int category2, int category3, int category4, int category5){
 		this.description = description;
-		this.size = size;
-		this.speed = speed;
-		this.range = range;
-		this.firePower = firePower;
-		this.cargo = cargo;
-		propertiesVal = new int[]{size,speed,range,firePower,cargo};
+		this.category1 = category1;
+		this.category2 = category2;
+		this.category3 = category3;
+		this.category4 = category4;
+		this.category5 = category5;
 	}
 
 	/**
@@ -61,143 +54,212 @@ public class DataCard implements Cloneable {
 	 * @param category String representing the category
 	 * @return true if this card category value is greater than the other card's "otherCard". Returns false otherwise.
 	 */
-	public int compare(DataCard otherCard, String category){
+	int compare(DataCard otherCard, String category){
 		/* 
 		 * uses switch to set the result to true or false, depending on the category chosen.
 		 * since the first letter of all categories are different, we check for this (and its uppercase) only
 		 * to avoid formatting error.
 		 * 
 		 */
-		switch (Character.toLowerCase(category.charAt(0))+""+ Character.toLowerCase(category.charAt(1))) {
-		case "si":
-			int result = 0;
-			result = this.size > otherCard.size ? 1 : result;
-			result = this.size == otherCard.size ? 2 : result;
+		String category1FirstTwoLetters =DataGame.CATEGORYNAMES[0].charAt(0)+""+DataGame.CATEGORYNAMES[0].charAt(1);
+		String category2FirstTwoLetters =DataGame.CATEGORYNAMES[1].charAt(0)+""+DataGame.CATEGORYNAMES[1].charAt(1);
+		String category3FirstTwoLetters =DataGame.CATEGORYNAMES[2].charAt(0)+""+DataGame.CATEGORYNAMES[2].charAt(1);
+		String category4FirstTwoLetters =DataGame.CATEGORYNAMES[3].charAt(0)+""+DataGame.CATEGORYNAMES[3].charAt(1);
+		String category5FirstTwoLetters =DataGame.CATEGORYNAMES[4].charAt(0)+""+DataGame.CATEGORYNAMES[4].charAt(1);
+		String chosenCategoryFirstTwoLetters =Character.toLowerCase(category.charAt(0))+""+Character.toLowerCase(category.charAt(1));
+		
+		int result = 0;
+		
+		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category1FirstTwoLetters)) {
+			result = this.category1 > otherCard.category1 ? 1 : result;
+			result = this.category1 == otherCard.category1 ? 2 : result;
 			return result;
-		case "sp":
-			result = 0;
-			result = this.speed > otherCard.speed ? 1 : result;
-			result = this.speed == otherCard.speed ? 2 : result;
-			return result;
-
-		case "ra":
-			result = 0;
-			result = this.range > otherCard.range ? 1 : result;
-			result = this.range == otherCard.range ? 2 : result;
-			return result;
-
-		case "fi":
-			result = 0;
-			result = this.firePower > otherCard.firePower ? 1 : result;
-			result = this.firePower == otherCard.firePower ? 2 : result;
-			return result;
-
-		case "ca":
-			result = 0;
-			result = this.cargo > otherCard.cargo ? 1 : result;
-			result = this.cargo == otherCard.cargo ? 2 : result;
-			return result;
-
-		default:
-//			throw new exceptions.CategoryNotFoundException();
-			throw new RuntimeException("Category Not Found");
 		}
+		
+		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category2FirstTwoLetters)) {
+			result = this.category2 > otherCard.category2 ? 1 : result;
+			result = this.category2 == otherCard.category2 ? 2 : result;
+			return result;
+		}
+		
+		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category3FirstTwoLetters)) {
+			result = this.category3 > otherCard.category3 ? 1 : result;
+			result = this.category3 == otherCard.category3 ? 2 : result;
+			return result;
+		}
+		
+		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category4FirstTwoLetters)) {
+			result = this.category4 > otherCard.category4 ? 1 : result;
+			result = this.category4 == otherCard.category4 ? 2 : result;
+			return result;
+		}
+		
+		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category5FirstTwoLetters)) {
+			result = this.category5 > otherCard.category5 ? 1 : result;
+			result = this.category5 == otherCard.category5 ? 2 : result;
+			return result;
+		}
+		
+		System.out.println(chosenCategoryFirstTwoLetters);
+		
+		throw new exceptions.CategoryNotFoundException(); // if category does not exist
+	}
+	
+	public int findTopCategory() {
+		if(this.category1>=this.category2 && this.category1>=this.category3 && this.category1>=this.category4 && this.category1>=this.category5) {
+			return 1;
+		}
+		if(this.category2>=this.category1 && this.category2>=this.category3 && this.category2>=this.category4 && this.category2>=this.category5) {
+			return 2;
+		}
+		if(this.category3>=this.category1 && this.category3>=this.category2 && this.category3>=this.category4 && this.category3>=this.category5) {
+			return 3;
+		}
+		if(this.category4>=this.category1 && this.category4>=this.category2 && this.category4>=this.category3 && this.category4>=this.category5) {
+			return 4;
+		}
+		if(this.category5>=this.category1 && this.category5>=this.category2 && this.category5>=this.category3 && this.category5>=this.category4) {
+			return 5;
+		}
+		return 0;
 	}
 
 	// GETTER METHODS START
 
 	/**
-	 * Getter method
-	 * @return name string representing card name
+	 * get description
+	 * @return string representing card description
 	 */
 	public String getDescription() {
 		return this.description;
 	}
 
 	/**
-	 * Getter method
-	 * @return size integer representing card size
+	 * get size
+	 * @return integer representing card value for category - size
 	 */
-	public int getSize() {
-		return this.size;
+	public int getCategory1() {
+		return this.category1;
 	}
 
 	/**
-	 * Getter method
-	 * @return speed integer representing card speed
+	 * get speed
+	 * @return integer representing card value for category - speed
 	 */
-	public int getSpeed() {
-		return this.speed;
+	public int getCategory2() {
+		return this.category2;
 	}
 
 	/**
-	 * Getter method
-	 * @return range integer representing card range
+	 * get category3
+	 * @return integer representing card value for category - category3
 	 */
-	public int getRange() {
-		return this.range;
+	public int getCategory3() {
+		return this.category3;
 	}
 
 	/**
-	 * Getter method
-	 * @return firePower integer representing card fire power
+	 * get fire power
+	 * @return category4 integer representing card value for category - fire power
 	 */
-	public int getFirePower() {
-		return this.firePower;
+	public int getCategory4() {
+		return this.category4;
 	}
 
 	/**
-	 * Getter method
-	 * @return cargo integer representing card cargo
+	 * get category5
+	 * @return integer representing card value for category - category5
 	 */
-	public int getCargo() {
-		return this.cargo;
+	public int getCategory5() {
+		return this.category5;
 	}
 
 	// GETTER METHODS END
 
 	/**
 	 * used to clone the card objects of this card class
-	 * @return object representing new clone of this class
+	 * @return object representing new clone of this class instance
 	 */
 	public Object clone() {
-		Object cloneCard = null;
+		Object cloneCard = null; // holds the clone
 
 		try {
-			cloneCard = super.clone();
-
+			cloneCard = super.clone(); // try to clone
 		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
+			e.printStackTrace(); // if clone not supported, print stack trace
 		}
 
 		return cloneCard;
 	}
-
-	public String[] getPropertiesName() {
-		return propertiesName;
-	}
-
-	public int[] getPropertiesVal() {
-		return propertiesVal;
-	}
-
+	
 	/**
 	 * used to render this class to string
-	 * @return string representing class
+	 * @return string representing class details
 	 */
 	@Override
 	public String toString() {
+		// store constants
 		String string = "";
 		String space = " ";
 		String arrow = ">";
 		String colon = ":";
 		String newLine = "\n";
 		
-		string += arrow + space + "size" + colon + space + this.size + newLine;
-		string += arrow + space + "speed" + colon + space + this.speed + newLine;
-		string += arrow + space + "range" + colon + space + this.range + newLine;
-		string += arrow + space + "fire power" + colon + space + this.firePower + newLine;
-		string += arrow + space + "cargo" + colon + space + this.cargo + newLine;
+		// create strings
+		string += arrow + space + DataGame.CATEGORYNAMES[0] + colon + space + this.category1 + newLine;
+		string += arrow + space + DataGame.CATEGORYNAMES[1] + colon + space + this.category2 + newLine;
+		string += arrow + space + DataGame.CATEGORYNAMES[2] + colon + space + this.category3 + newLine;
+		string += arrow + space + DataGame.CATEGORYNAMES[3] + colon + space + this.category4 + newLine;
+		string += arrow + space + DataGame.CATEGORYNAMES[4] + colon + space + this.category5 + newLine;
+		
+		return string;
+	}
+	
+	/**
+	 * used to render this class to string with winning category
+	 * @return string representing class details
+	 */
+	public String toString(String category) {
+		// store constants
+		String string = "";
+		String space = " ";
+		String arrow = ">";
+		String colon = ":";
+		String newLine = "\n";
+		
+		// create strings
+		string += arrow + space + DataGame.CATEGORYNAMES[0] + colon + space + this.category1;
+		if(((category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equalsIgnoreCase(DataGame.CATEGORYNAMES[0].charAt(0)+""+DataGame.CATEGORYNAMES[0].charAt(1))){
+			string += " <--";
+		}
+		string += newLine;
+		
+		
+		string += arrow + space + DataGame.CATEGORYNAMES[1] + colon + space + this.category2;
+		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equalsIgnoreCase(DataGame.CATEGORYNAMES[1].charAt(0)+""+DataGame.CATEGORYNAMES[1].charAt(1))){
+			string += " <--";
+		}
+		string += newLine;
+		
+		
+		string += arrow + space + DataGame.CATEGORYNAMES[2] + colon + space + this.category3;
+		if((category.charAt(0)) == DataGame.CATEGORYNAMES[2].charAt(0)){
+			string += " <--";
+		}
+		string += newLine;
+		
+		
+		string += arrow + space + DataGame.CATEGORYNAMES[3] + colon + space + this.category4;
+		if((category.charAt(0)) == DataGame.CATEGORYNAMES[3].charAt(0)){
+			string += " <--";
+		}
+		string += newLine;
+		
+		string += arrow + space + DataGame.CATEGORYNAMES[4] + colon + space + this.category5;
+		if((category.charAt(0)) == DataGame.CATEGORYNAMES[4].charAt(0)){
+			string += " <--";
+		}
+		string += newLine;
 		
 		return string;
 	}
