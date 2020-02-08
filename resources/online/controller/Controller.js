@@ -9,9 +9,19 @@
 
 <script type="text/javascript">
 			
-			function initalize() {
+function initalize() {
 
-			}
+	// --------------------------------------------------------------------------
+	// You can call other methods you want to run when the page first loads here
+	// --------------------------------------------------------------------------
+	
+	await startGame();
+	getRoundNumber();
+	
+//		getCategories();
+//		selectCategory();
+	playRound();
+//		getStats();
 
 			function createCORSRequest(method, url) {
   				var xhr = new XMLHttpRequest();
