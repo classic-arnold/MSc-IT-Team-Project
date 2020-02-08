@@ -3,6 +3,7 @@
 	<head>
 	
 		<!-- Web page title -->
+		
     	<title>Top Trumps</title>
     	
     	<!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) -->
