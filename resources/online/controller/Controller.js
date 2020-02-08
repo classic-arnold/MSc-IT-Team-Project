@@ -4,7 +4,7 @@
 
 // @author Team:Try-Catch Jialiang Song 2410536s
 
-// -------Move to GameScreen later-------
+// -------Move to GameScreen later------- 
 
 
 <script type="text/javascript">
@@ -223,34 +223,6 @@ selectCat2.addEventListener("click", chooseCategory2);
 selectCat3.addEventListener("click", chooseCategory3);
 selectCat4.addEventListener("click", chooseCategory4);
 selectCat5.addEventListener("click", chooseCategory5);
-
-function chooseCategory1(){
-	
-}
-function chooseCategory2(){
-	
-}
-function chooseCategory3(){
-	
-}
-function chooseCategory4(){
-	
-}
-function chooseCategory5(){
-	
-}
-
-function initiateGame(){
-	shuffleCards();
-	createDeck();
-
-	
-	initiateRound();
-}
-function createDeck(){
-}
-function shuffleCards(){
-}
 
 
 // --------------FLASH-----------------
