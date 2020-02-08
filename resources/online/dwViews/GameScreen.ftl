@@ -205,18 +205,17 @@
 			<div class="row h-100">
 				<div class="col-sm-3 section1 ">
 					<div class="row justify-content-center ">
-						<div id="actionButtonDiv" class="col-sm-6 action-div">
-							<button id="actionButton" type="button" class="btn btn-dark btn-block">ACTION TITLE HERE</button>
-							
+						<div id="actionButtonDiv" class="action-div">
+							<button id="actionButton" type="button" class="btn btn-dark btn-block">ACTION TITLE HERE</button>	
 						</div>
 						<div id="selectPlayersMenu"class="col-sm-6 action-div">
 						<h3 id="selection-choice-menu">Please select the number of AI Players</h3>
-						<select class="custom-select">
- 						<option selected>Select</option>
-  						<option value="1">One</option>
-  						<option value="2">Two</option>
-  						<option value="3">Three</option>
-  					    <option value="4">Four</option>
+						<select class="custom-select" id="num-player-select">
+							<option selected>Select</option>
+							<option value="1">One</option>
+							<option value="2">Two</option>
+							<option value="3">Three</option>
+							<option value="4">Four</option>
                         </select>
 						</div>
 					</div>
@@ -425,12 +424,24 @@
 				// You can call other methods you want to run when the page first loads here
 				// --------------------------------------------------------------------------
 				
-				await startGame();
-				getRoundNumber();
+				$(document).ready(function() {
+					// all custom jQuery will go here
+					$(".card-deck").toggle();
+					$("#num-player-select").change(()=>{
+						startGame($(this).val()).then(()=>{
+							getRoundNumber();
+// 							playRound();
+							$("#selectPlayersMenu").fadeToggle("slow", "swing", ()=>{
+								$("#actionButton").html("Select Category");
+								$("#actionButtonDiv").fadeToggle("slow", "swing");
+							});
+							$(".card-deck").fadeToggle("slow", "swing");
+						});
+					});
+				});
 				
 // 				getCategories();
 // 				selectCategory();
-				playRound();
 // 				getStats();
 
 			}
@@ -440,9 +451,9 @@
 			// -----------------------------------------
 	
 			// This starts the game
-			function startGame() {
+			function startGame(numberOfAIPlayersFromUser) {
 				return new Promise(resolve=>{
-					let numberOfAIPlayersFromUser = 4; //change this to get from button
+// 					let numberOfAIPlayersFromUser = 4; //change this to get from button
 				
 					// First create a CORS request, this is the message we are going to send (a get request in this case)
 					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/startGame?numberOfAIPlayers=" + numberOfAIPlayersFromUser); // Request type and URL
@@ -458,6 +469,8 @@
 						var responseText = xhr.response; // the text of the response
 						if(responseText == "0"){
 							resolve();
+						} else{
+							reject();
 						}
 					};
 		
@@ -566,7 +579,7 @@
 				let categorySelected;
 				
 				if(humanChooseCategory == "true"){
-					categorySelectedByHuman = selectCategory();
+					categorySelectedByHuman = selectCategoryForHuman();
 				} else {
 					
 				}
