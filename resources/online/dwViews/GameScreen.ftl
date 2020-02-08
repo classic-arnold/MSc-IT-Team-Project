@@ -135,6 +135,10 @@
 			
 			
 			}
+			#cardSix{
+			visibility:hidden;
+			
+			}
 						
 		</style>
 
@@ -227,7 +231,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 class="card-title">m50</h5>
+									<h5 id="cardTwoTitle"class="card-title">m50</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardTwoCatOne" class="list-group-item">Size<span id="cardTwoValOne"
 																								 class="float-right">4</span>
@@ -255,7 +259,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardTwoTitle" class="card-title">Orion</h5>
+									<h5 id="cardThreeTitle" class="card-title">Orion</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardThreeCatOne" class="list-group-item">Size<span id="cardThreeValOne"
 																								   class="float-right">4</span>
@@ -287,7 +291,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardThreeTitle" class="card-title">Hawk</h5>
+									<h5 id="cardFourTitle" class="card-title">Hawk</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardFourCatOne" class="list-group-item">Size<span id="cardFourValOne"
 																								  class="float-right">4</span>
@@ -315,7 +319,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardFourTitle" class="card-title">Hurricane</h5>
+									<h5 id="cardFiveTitle" class="card-title">Hurricane</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardFiveCatOne" class="list-group-item ">Size<span id="cardFiveValOne"
 																								   class="float-right">4</span>
@@ -335,14 +339,14 @@
 									</ul>
 								</div>
 							</div>
-							<div class="card">
+							<div id="cardSix" class="card">
 								<div class="card-header">Player Name <span class="badge badge-primary float-right">4</span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardFiveTitle" class="card-title">Sabre</h5>
+									<h5 class="card-title">Sabre</h5>
 									<ul class="list-group list-group-flush">
 										<li class="list-group-item">Size<span class="float-right">4</span></li>
 										<li class="list-group-item">Speed<span class="float-right">4</span></li>
