@@ -328,7 +328,7 @@ public class TopTrumpsRESTAPI {
 		String[] humanCard=new String[6];
 		
 		//store card title in humanCard[0]
-		humanCard[0]=oWriter.writeValueAsString(model.getRoundHumanPlayerCard().toString());
+		humanCard[0]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getDescription());
 		humanCard[1]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory1());
 		humanCard[2]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory2());
 		humanCard[3]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory3());

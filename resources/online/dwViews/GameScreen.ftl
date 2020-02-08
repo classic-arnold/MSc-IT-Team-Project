@@ -61,11 +61,26 @@
 				padding-right: 10px;
 				padding-left: 10px;
 			}
+			#actionButtonDiv{
+			display:none;
+			
+			}
+			#actionButtonDiv{
+			display:none;
+			
+			}
+			
+			
+			#selectPlayersMenu{
+			
+			display:inline;
+			}
 
 			.action-div {
 		   
 				margin-top: 100px;
 			}
+			
 
 			/*Section 2 Styles*/
 			/*Section 2 Styles*/
@@ -135,6 +150,32 @@
 			
 			
 			}
+			#cardOne{
+			visibility:visible;
+			
+			}
+			#cardTwo{
+			visibility:visible;
+			
+			}
+			#cardThree{
+			visibility:visible;
+			
+			}
+			#cardFour{
+			visibility:visible;
+			
+			}
+			#cardFive{
+			visibility:visible;
+			
+			}
+			
+			#cardSix{
+			visibility:hidden;
+			
+			}
+			
 						
 		</style>
 
@@ -164,11 +205,11 @@
 			<div class="row h-100">
 				<div class="col-sm-3 section1 ">
 					<div class="row justify-content-center ">
-						<div class="col-sm-6 action-div">
+						<div id="actionButtonDiv" class="col-sm-6 action-div">
 							<button id="actionButton" type="button" class="btn btn-dark btn-block">ACTION TITLE HERE</button>
 							
 						</div>
-						<div class="col-sm-6 action-div">
+						<div id="selectPlayersMenu"class="col-sm-6 action-div">
 						<h3 id="selection-choice-menu">Please select the number of AI Players</h3>
 						<select class="custom-select">
  						<option selected>Select</option>
@@ -190,7 +231,7 @@
 					</div>
 					<div class="row justify-content-center">
 						<div class="card-deck">
-							<div class="card" style="width: 3rem;">
+							<div id="cardOne" class="card" style="width: 3rem;">
 								<div id="playerOneCard" class="card-header">Player Name <span id="deckOne"
 																							  class="badge badge-primary float-right">4</span>
 								</div>
@@ -219,7 +260,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="card">
+							<div id="cardTwo" class="card">
 								<div id="playerTwoCard" class="card-header">Player Name <span id="deckTwo"
 																							  class="badge badge-primary float-right">4</span>
 								</div>
@@ -227,7 +268,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 class="card-title">m50</h5>
+									<h5 id="cardTwoTitle"class="card-title">m50</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardTwoCatOne" class="list-group-item">Size<span id="cardTwoValOne"
 																								 class="float-right">4</span>
@@ -247,7 +288,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="card">
+							<div id="cardThree" class="card">
 								<div id="playerThreeCard" class="card-header">Player Name <span id="DeckThree"
 																								class="badge badge-primary float-right">4</span>
 								</div>
@@ -255,7 +296,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardTwoTitle" class="card-title">Orion</h5>
+									<h5 id="cardThreeTitle" class="card-title">Orion</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardThreeCatOne" class="list-group-item">Size<span id="cardThreeValOne"
 																								   class="float-right">4</span>
@@ -279,7 +320,7 @@
 					</div>
 					<div class="row justify-content-center cardrow2">
 						<div class="card-deck">
-							<div class="card" style="width: 3rem;">
+							<div id="cardFour" class="card" style="width: 3rem;">
 								<div id="playerFourCard" class="card-header">Player Name <span id="deckFour"
 																							   class="badge badge-primary float-right">4</span>
 								</div>
@@ -287,7 +328,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardThreeTitle" class="card-title">Hawk</h5>
+									<h5 id="cardFourTitle" class="card-title">Hawk</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardFourCatOne" class="list-group-item">Size<span id="cardFourValOne"
 																								  class="float-right">4</span>
@@ -307,7 +348,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="card">
+							<div id="cardFive" class="card">
 								<div id="playerFiveCard" class="card-header">Player Name <span id="DeckFive"
 																							   class="badge badge-primary float-right">4</span>
 								</div>
@@ -315,7 +356,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardFourTitle" class="card-title">Hurricane</h5>
+									<h5 id="cardFiveTitle" class="card-title">Hurricane</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardFiveCatOne" class="list-group-item ">Size<span id="cardFiveValOne"
 																								   class="float-right">4</span>
@@ -335,14 +376,14 @@
 									</ul>
 								</div>
 							</div>
-							<div class="card">
+							<div id="cardSix" class="card">
 								<div class="card-header">Player Name <span class="badge badge-primary float-right">4</span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardFiveTitle" class="card-title">Sabre</h5>
+									<h5 class="card-title">Sabre</h5>
 									<ul class="list-group list-group-flush">
 										<li class="list-group-item">Size<span class="float-right">4</span></li>
 										<li class="list-group-item">Speed<span class="float-right">4</span></li>
