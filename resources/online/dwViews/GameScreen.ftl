@@ -134,7 +134,7 @@
 			.card-body {
 				padding: 0.5rem;
 			}
-			#selection-choice-menu{
+			h3{
 				color:white;
 				font-size:15px;
 				font-family: 'Roboto Mono', monospace;
@@ -191,7 +191,7 @@
 		<div class="container-fluid h-100">
 			<div class="row h-100">
 				<div class="col-sm-3 section1 ">
-					<div class="row justify-content-center ">
+					<div class="row justify-content-center p-5">
 						<div id="actionButtonDiv" class="action-div">
 							<button id="actionButton" type="button" class="btn btn-dark btn-block">NO ACTION</button>	
 						</div>
@@ -428,7 +428,6 @@
 					
 					$("#num-player-select").change(()=>{
 						startGame($("#num-player-select").val()).then(()=>{
-							getRoundNumber();
 							$("#selectPlayersMenu").fadeOut("fast", "swing", ()=>{
 								$("#actionButton").html("NO ACTION");
 								$("#actionButtonDiv").fadeIn("fast", "swing", ()=>{
@@ -519,8 +518,9 @@
 					var responseText = xhr.response; // the text of the response
 					$(document).ready(function() {
 						// all custom jQuery will go here
-						$("#status-message").html("Round Number: " + responseText);
+						$("#status-message").html("Round Number " + responseText + ".");
 					});
+					return responseText;
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
@@ -579,22 +579,25 @@
 				
 					categoryList = changeStringToArray(categoryList);
 					
+					
 	// 				categorySelectedByHuman = categoryList[0];
 
 					$(document).ready(function() {
 						// all custom jQuery will go here
-						$("#status-message").html("It is your turn to select a category");
+// 						$("#status-message").append(" It is your turn to select a category.");
 						$("#actionButtonDiv").fadeOut("fast", "swing", ()=>{
+							$("#category-select").val("Select");
 							$(".categories").fadeIn("fast", "swing", ()=>{
 								$("#category-select>option").slice(1).each((i, elem)=>{
 									$(elem).val(categoryList[i]);
 									$(elem).html(categoryList[i]);
 								});
 								$("#category-select").change(()=>{
+									$("#category-select").off("change");
 									$(".categories").fadeOut("fast", "swing", ()=>{
 										$("#actionButtonDiv").fadeIn("fast", "swing");
 									});
-									$("#status-message").html("You selected " + $("#category-select").val());
+									$("#status-message").append(" You selected " + $("#category-select").val() + ".");
 									resolve($("#category-select").val());
 								});
 							});
@@ -606,9 +609,9 @@
 			async function selectCategoryForAI(){
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				
-				$(document).ready(()=>{
-					$("#status-message").html("AI selecting category...");
-				})
+// 				$(document).ready(()=>{
+// 					$("#status-message").append("AI selecting category...");
+// 				})
 				
 				let categoryList = await getCategories();
 				
@@ -631,7 +634,9 @@
 						var responseText = xhr.response; // the text of the response// 
 						categorySelected = responseText;
 						$(document).ready(()=>{
-							$("#status-message").html("AI selected " + categorySelected);
+							if(categorySelected!=="human"){
+								$("#status-message").append(" AI selected " + categorySelected);
+							}
 						})
 						resolve(categorySelected);
 					};
@@ -647,11 +652,15 @@
 				let humanSelectCategory = await shouldHumanSelectCategory();
 
 				let categorySelected;
-			
+				
+				getRoundNumber();
 				if(humanSelectCategory === "true"){
 					categorySelected = await selectCategoryForHuman();
 				} else {
 					categorySelected = await selectCategoryForAI();
+					if(categorySelected==="human"){
+						categorySelected = await selectCategoryForHuman();
+					}
 				}
 				
 				return new Promise((resolve,reject)=>{
@@ -672,13 +681,12 @@
 						$(document).ready(function() {
 							// all custom jQuery will go here
 							
+							$("#actionButton").html("NEXT ROUND");
+							
 							$("#actionButton").click(()=>{
 								$('#actionButton').off('click');
-								getRoundNumber();
 								playRound();
 							});
-							
-							$("#actionButton").html("NEXT ROUND");
 							
 						});
 					};

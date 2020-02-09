@@ -171,7 +171,10 @@ public class TopTrumpsRESTAPI {
 		String result = "";
 		
 		int category = model.getBestCategoryForCurrentAIPlayers();
-		
+		// sometimes the first player is human and this is not accounted for here
+		if(category==0) {
+			return "human";
+		}
 		result = DataGame.CATEGORYNAMES[category-1];
 		
 		return result;
