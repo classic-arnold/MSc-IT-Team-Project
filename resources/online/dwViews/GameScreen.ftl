@@ -635,7 +635,7 @@
 						categorySelected = responseText;
 						$(document).ready(()=>{
 							if(categorySelected!=="human"){
-								$("#status-message").append(" AI selected " + categorySelected);
+								$("#status-message").append(" AI selected " + categorySelected + ".");
 							}
 						})
 						resolve(categorySelected);
@@ -677,6 +677,19 @@
 					// to do when the response arrives
 					xhr.onload = function(e) {
 						var responseText = xhr.response; // the text of the response
+						
+						if(responseText != "running"){
+							$(document).ready(function() {
+								// all custom jQuery will go here
+							
+								$("#actionButton").fadeOut("fast", "swing");
+								
+								$("#status-message").html("Game won by " + responseText + ".");
+							
+								resolve();
+							
+							});
+						}
 						
 						$(document).ready(function() {
 							// all custom jQuery will go here

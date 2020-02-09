@@ -160,9 +160,13 @@ public class TopTrumpsRESTAPI {
 	
 	@GET
 	@Path("/game/playRound")
-	public void playRound(@QueryParam("category") String category){
+	public String playRound(@QueryParam("category") String category){
 		model.playRound(category);
+		if(model.getGameState()!=DataGame.GameState.RUNNING) {
+			return model.getGameWinner().getName();
+		}
 		model.incrementRound();
+		return "running";
 	}
 	
 	@GET
