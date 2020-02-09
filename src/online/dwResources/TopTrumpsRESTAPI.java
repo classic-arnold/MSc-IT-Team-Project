@@ -162,6 +162,19 @@ public class TopTrumpsRESTAPI {
 	@Path("/game/playRound")
 	public void playRound(@QueryParam("category") String category){
 		model.playRound(category);
+		model.incrementRound();
+	}
+	
+	@GET
+	@Path("/game/getAIPlayerCategory")
+	public String getAIPlayerCategory(){
+		String result = "";
+		
+		int category = model.getBestCategoryForCurrentAIPlayers();
+		
+		result = DataGame.CATEGORYNAMES[category-1];
+		
+		return result;
 	}
 	
 	@GET
@@ -275,8 +288,9 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/roundNumber")
-	public int getRoundNumber(){
-		return model.getRoundNumber();
+	public String getRoundNumber() throws IOException{
+		String roundNumber=oWriter.writeValueAsString(model.getRoundNumber());
+		return roundNumber;
 	}
 	
 	

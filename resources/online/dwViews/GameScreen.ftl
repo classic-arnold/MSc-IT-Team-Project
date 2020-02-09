@@ -62,27 +62,23 @@
 				padding-left: 10px;
 			}
 			#actionButtonDiv{
-			display:none;
+				display:none;
 			
 			}
 			#actionButtonDiv{
-			display:none;
-			
+				display:none;
 			}
 			
 			
 			#selectPlayersMenu{
-			
-			display:inline;
+				display:inline;
 			}
 
 			.action-div {
-		   
-				margin-top: 100px;
+		   		margin-top: 100px;
 			}
 			
 
-			/*Section 2 Styles*/
 			/*Section 2 Styles*/
 			.section2 {
 				background-color: #DCE6E5;
@@ -90,13 +86,11 @@
 
 			#status-col {
 				padding: 0px;
-
 			}
 
 			.alert {
 				border-radius: 0;
 				border: none;
-
 			}
 
 
@@ -136,44 +130,37 @@
 				border-radius: 0px;
 				padding-left: 10px;
 				padding-right: 10px;
-		  
 			}
 			.card-body {
 				padding: 0.5rem;
 			}
 			#selection-choice-menu{
-			
-			color:white;
-			font-size:15px;
-			font-family: 'Roboto Mono', monospace;
-			font-weight: bold;
-			
-			
+				color:white;
+				font-size:15px;
+				font-family: 'Roboto Mono', monospace;
+				font-weight: bold;
 			}
 			#cardOne{
-			visibility:visible;
-			
+				visibility:visible;
 			}
 			#cardTwo{
-			visibility:visible;
-			
+				visibility:visible;
 			}
 			#cardThree{
-			visibility:visible;
-			
+				visibility:visible;
 			}
 			#cardFour{
-			visibility:visible;
-			
+				visibility:visible;
 			}
 			#cardFive{
-			visibility:visible;
-			
+				visibility:visible;
+			}
+			#cardSix{
+				visibility:hidden;
 			}
 			
-			#cardSix{
-			visibility:hidden;
-			
+			.categories{
+				display: none;
 			}
 			
 						
@@ -206,7 +193,7 @@
 				<div class="col-sm-3 section1 ">
 					<div class="row justify-content-center ">
 						<div id="actionButtonDiv" class="action-div">
-							<button id="actionButton" type="button" class="btn btn-dark btn-block">ACTION TITLE HERE</button>	
+							<button id="actionButton" type="button" class="btn btn-dark btn-block">NO ACTION</button>	
 						</div>
 						<div id="selectPlayersMenu" class="action-div">
 							<h3 id="selection-choice-menu">Please select the number of AI Players</h3>
@@ -436,19 +423,22 @@
 				// --------------------------------------------------------------------------
 				$(document).ready(function() {
 					// all custom jQuery will go here
+					
 					$(".card-deck").toggle();
-					$(".categories").toggle();
+					
 					$("#num-player-select").change(()=>{
 						startGame($("#num-player-select").val()).then(()=>{
 							getRoundNumber();
-							$("#selectPlayersMenu").fadeToggle("slow", "swing", ()=>{
-								$("#actionButton").html("Select Category");
-								$("#actionButtonDiv").fadeToggle("slow", "swing");
-							});
-							$(".card-deck").fadeToggle("slow", "swing");
-							playRound().then(()=>{
+							$("#selectPlayersMenu").fadeOut("fast", "swing", ()=>{
+								$("#actionButton").html("NO ACTION");
+								$("#actionButtonDiv").fadeIn("fast", "swing", ()=>{
+									playRound().then(()=>{
 								
+									});
+								});
 							});
+							
+							$(".card-deck").fadeIn("fast", "swing");
 // 							loadCards();
 						});
 					});
@@ -593,15 +583,18 @@
 
 					$(document).ready(function() {
 						// all custom jQuery will go here
-						$("#actionButton").addClass("select-category");
-						$(".select-category").fadeToggle("slow", "swing", ()=>{
-							$("#actionButton").removeClass("select-category");
-							$(".categories").fadeToggle("slow", "swing", ()=>{
+						$("#status-message").html("It is your turn to select a category");
+						$("#actionButtonDiv").fadeOut("fast", "swing", ()=>{
+							$(".categories").fadeIn("fast", "swing", ()=>{
 								$("#category-select>option").slice(1).each((i, elem)=>{
 									$(elem).val(categoryList[i]);
 									$(elem).html(categoryList[i]);
 								});
 								$("#category-select").change(()=>{
+									$(".categories").fadeOut("fast", "swing", ()=>{
+										$("#actionButtonDiv").fadeIn("fast", "swing");
+									});
+									$("#status-message").html("You selected " + $("#category-select").val());
 									resolve($("#category-select").val());
 								});
 							});
@@ -612,6 +605,11 @@
 			
 			async function selectCategoryForAI(){
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				
+				$(document).ready(()=>{
+					$("#status-message").html("AI selecting category...");
+				})
+				
 				let categoryList = await getCategories();
 				
 				return new Promise((resolve,reject)=>{
@@ -619,8 +617,7 @@
 					categoryList = changeStringToArray(categoryList);
 					
 					// First create a CORS request, this is the message we are going to send (a get request in this case)
-// 					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/getAIPlayerCategory"); // Request type and URL
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/stats/statistics");
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/getAIPlayerCategory"); // Request type and URL
 					
 		
 					// Message is not sent yet, but we can check that the browser supports CORS
@@ -632,9 +629,10 @@
 					// to do when the response arrives
 					xhr.onload = function(e) {
 						var responseText = xhr.response; // the text of the response// 
-// 						categorySelected = categoryList[parseInt(responseText)];
-// 						resolve(categorySelected);
-						categorySelected = categoryList[1];
+						categorySelected = responseText;
+						$(document).ready(()=>{
+							$("#status-message").html("AI selected " + categorySelected);
+						})
 						resolve(categorySelected);
 					};
 		
@@ -647,6 +645,7 @@
 			
 			async function playRound(){
 				let humanSelectCategory = await shouldHumanSelectCategory();
+
 				let categorySelected;
 			
 				if(humanSelectCategory === "true"){
@@ -669,11 +668,21 @@
 					// to do when the response arrives
 					xhr.onload = function(e) {
 						var responseText = xhr.response; // the text of the response
+						
 						$(document).ready(function() {
 							// all custom jQuery will go here
-							$("#actionButton").html("Next Round");
+							
+							$("#actionButton").click(()=>{
+								$('#actionButton').off('click');
+								getRoundNumber();
+								playRound();
+							});
+							
+							$("#actionButton").html("NEXT ROUND");
+							
 						});
 					};
+					
 		
 					// We have done everything we need to prepare the CORS request, so send it
 					xhr.send();	
