@@ -95,7 +95,7 @@ public class ProgramDatabase {
 	 * 'roundNumber:int' 
 	 * into Database table.
 	 * */
-	public void insertGameStats(DataGame model){
+	void insertGameStats(DataGame model){
 		String SQL="INSERT INTO TOPTRUMPS.GAMESTATS "
 				+"VALUES (default, ?,?,?,?,?,?,?,?)";
 		try{
@@ -153,7 +153,7 @@ public class ProgramDatabase {
 	 * 'counts for draws',
 	 * 'largestRound'
 	 */	
-	public void selectGameStats(){
+	void selectGameStats(){
 		try{
 			conn=DriverManager.getConnection(url,userID,password);
 
@@ -185,9 +185,6 @@ public class ProgramDatabase {
 
 
 	}
-
-
-
 
 	public static void main(String[] args) {
 		//load the JDBC driver
