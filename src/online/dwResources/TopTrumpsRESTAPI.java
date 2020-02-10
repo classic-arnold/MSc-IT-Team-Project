@@ -2,6 +2,7 @@ package online.dwResources;
 
 import java.io.IOException;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +39,13 @@ import com.fasterxml.jackson.databind.ObjectWriter;
  * REST API methods in Dropwizard. You will need to replace these with
  * methods that allow a TopTrumps game to be controlled from a Web page.
  */
+
+
+/**
+ * TopTrumpsRESTAPI - 
+ * @author Team Try-Catch - Bokyung Lee 2431088l
+ * 
+ * */
 public class TopTrumpsRESTAPI {
 
 	/** A Jackson Object writer. It allows us to turn Java objects
@@ -371,63 +379,22 @@ public class TopTrumpsRESTAPI {
 	/**
 	 * Get human player's card name, card categories only.
 	 * @Controller.js:
-	 * @return JSONString[] type
+	 * @param HumanCard:DataCard
+	 * @return JSONString type
+	 * @throws JsonProcessingException 
 	 * @throws IOException
 	 */	
-	@GET
-	@Path("/game/roundHumanPlayerCard")
-	public String[] getRoundHumanPlayerCard() throws IOException{	
-		String[] humanCard=new String[6];
-		
-		//store card title in humanCard[0]
-		humanCard[0]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getDescription());
-		humanCard[1]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory1());
-		humanCard[2]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory2());
-		humanCard[3]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory3());
-		humanCard[4]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory4());
-		humanCard[5]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory5());
-		return humanCard;
-	}	
-
-
-	/**
-	 * Get AI player's card name, card categories 
-	 * and store in AIPlayersCard[activePlayers().length][card name, categories(5)].
-	 * 
-	 * @Controller.js:
-	 * @return JSONString[] type
-	 * @throws IOException
-	 */	
-//	@GET
-//	@Path("/game/AI1Cards")
-//	public String getAICards() throws IOException{	
-//		String[][] AIPlayersCard=new String[model.getActivePlayers().length][6];
-//		for(int i=0;i<model.getActivePlayers().length;i++) {
-//			AIPlayersCard[i][0]=oWriter.writeValueAsString(model.getRoundAIPlayerCards()[0].toString());
-//			for(int j=0;j<6;j++) {
-//				AIPlayersCard[i][j+1]=oWriter.writeValueAsString(model.getRoundAIPlayerCards());
-//			}
-//		}
-//		model.getActivePlayers();
-//		String AICards=oWriter.writeValueAsString(model.getRoundAIPlayerCards());
-//		return AICards;
-//	}
-	@GET
-	@Path("/game/AI1Cards")
-	public String getRoundAIPlayerCards() throws IOException{
-		return oWriter.writeValueAsString(model.getRoundAIPlayerCards());
-	}
-	
 	@GET
 	@Path("/game/roundCards")
-	public String getRoundCards(){
-		String result = "";
-		try {
-			result = oWriter.writeValueAsString(model.getRoundCards());
-		} catch (JsonProcessingException e){
-			
+	public String getRoundCards() throws IOException{	
+		List<DataCard> listOfCards=new ArrayList<DataCard>();
+		listOfCards.add(model.getRoundHumanPlayerCard());
+		for(int i=0;i<model.getRoundAIPlayerCards().length;i++) {
+			listOfCards.add(model.getRoundAIPlayerCards()[i]);
 		}
-		return result;
+		
+		String everyPlayersCard=oWriter.writeValueAsString(listOfCards);
+		return everyPlayersCard;		
 	}
 	
 	
@@ -521,19 +488,19 @@ public class TopTrumpsRESTAPI {
 	}	
 	
 	
-	/**
-	 * Get description of category of the round:String
-	 * @Controller.js:
-	 * @param RoundCategory:String, CategoryChooser:String
-	 * @return JSONString type
-	 * @throws IOException
-	 */	
-	@GET
-	@Path("/game/sideBar/descriptionOfRoundCategory")
-	public String getDescriptionOfRoundCategory(@QueryParam("RoundCategory") String RoundCategory,
-			@QueryParam("CategoryChooser") String CategoryChooser) throws IOException{		
-		return CategoryChooser+" selected "+RoundCategory;
-	}	
+//	/**
+//	 * Get description of category of the round:String
+//	 * @Controller.js:
+//	 * @param RoundCategory:String, CategoryChooser:String
+//	 * @return JSONString type
+//	 * @throws IOException
+//	 */	
+//	@GET
+//	@Path("/game/sideBar/descriptionOfRoundCategory")
+//	public String getDescriptionOfRoundCategory(@QueryParam("RoundCategory") String RoundCategory,
+//			@QueryParam("CategoryChooser") String CategoryChooser) throws IOException{		
+//		return CategoryChooser+" selected "+RoundCategory;
+//	}	
 	
 	
 	
