@@ -78,33 +78,6 @@ public class ProgramDatabase {
 	}
 
 
-<<<<<<< HEAD
-
-	/**
-	 *  Connection method 
-	 *  @returns connection (DriverManager.getConnection)
-	 *  */
-	public static Connection connection() throws SQLException{
-		return DriverManager.getConnection(url,userID,password);
-	}
-	
-	public static void clearDB(DataGame model) {
-		String SQL="delete from toptrumps.gamestats where true;";
-
-		try{
-			Connection conn=DriverManager.getConnection(url,userID,password);
-			PreparedStatement pstmt=conn.prepareStatement(SQL);
-			pstmt.executeUpdate();
-			pstmt.close();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-
-
-=======
->>>>>>> ff1f531c6a355155c4e4f253b74cdfe9d04ba408
 	/** 
 	 * insertion method
 	 * 
