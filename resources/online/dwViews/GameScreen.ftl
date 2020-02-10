@@ -606,6 +606,32 @@
 				});
 			}
 			
+			function getRoundWinner(){
+				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/getRoundWinner"); // Request type and URL
+				
+	
+				// Message is not sent yet, but we can check that the browser supports CORS
+				if (!xhr) {
+					alert("CORS not supported");
+				}
+
+				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+				// to do when the response arrives
+				xhr.onload = function(e) {
+					var responseText = xhr.response; // the text of the response// 
+					if(responseText === "draw"){
+						$("#status-message").append(" Round was a draw.");
+					} else {
+						$("#status-message").append(" " + responseText + " won this round.")
+					}
+				};
+				
+				// We have done everything we need to prepare the CORS request, so send it
+				xhr.send();
+				
+			}
+			
 			async function selectCategoryForAI(){
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				
@@ -704,29 +730,24 @@
 					xhr.onload = function(e) {
 						var responseText = xhr.response; // the text of the response
 						
+						getRoundWinner();
+						
 						if(responseText != "running"){
 							$(document).ready(function() {
 								// all custom jQuery will go here
-							
 								$("#actionButton").fadeOut("fast", "swing");
-								
 								$("#status-message").html("Game won by " + responseText + ".");
-							
 								resolve();
-							
 							});
 						}
 						
 						$(document).ready(function() {
 							// all custom jQuery will go here
-							
 							$("#actionButton").html("NEXT ROUND");
-							
 							$("#actionButton").click(()=>{
 								$('#actionButton').off('click');
 								playRound();
 							});
-							
 						});
 					};
 					

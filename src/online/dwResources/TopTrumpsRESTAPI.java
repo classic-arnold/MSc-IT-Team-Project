@@ -208,8 +208,6 @@ public class TopTrumpsRESTAPI {
 		return model.getCompleteDeckAsArrayList();
 	}
 	
-
-	
 	
 	/**
 	 * Get round category:String.
@@ -318,6 +316,26 @@ public class TopTrumpsRESTAPI {
 	public String getCategoryChooser() throws IOException{
 		String categoryChooser=oWriter.writeValueAsString(model.getCategoryChooser());
 		return categoryChooser;
+	}
+	
+	
+	/**
+	 * Get category chooser of the round:String.
+	 * @Controller.js: 
+	 * @returns JSONString type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/getRoundWinner")
+	public String getRoundWinner() {
+		String result = null;
+		ArrayList<DataPlayer> roundWinningPlayers = model.getRoundWinningPlayers();
+		if(roundWinningPlayers.size() == 1) {
+			result = roundWinningPlayers.get(0).getName();
+		} else {
+			result = "draw";
+		}
+		return result;
 	}
 	
 	
