@@ -61,13 +61,24 @@
 				padding-right: 10px;
 				padding-left: 10px;
 			}
-
-			.action-div {
-		   
-				margin-top: 100px;
+			#actionButtonDiv{
+				display:none;
+			
+			}
+			#actionButtonDiv{
+				display:none;
+			}
+			
+			
+			#selectPlayersMenu{
+				display:inline;
 			}
 
-			/*Section 2 Styles*/
+			.action-div {
+		   		margin-top: 100px;
+			}
+			
+
 			/*Section 2 Styles*/
 			.section2 {
 				background-color: #DCE6E5;
@@ -75,13 +86,11 @@
 
 			#status-col {
 				padding: 0px;
-
 			}
 
 			.alert {
 				border-radius: 0;
 				border: none;
-
 			}
 
 
@@ -121,20 +130,39 @@
 				border-radius: 0px;
 				padding-left: 10px;
 				padding-right: 10px;
-		  
 			}
 			.card-body {
 				padding: 0.5rem;
 			}
-			#selection-choice-menu{
-			
-			color:white;
-			font-size:15px;
-			font-family: 'Roboto Mono', monospace;
-			font-weight: bold;
-			
-			
+			h3{
+				color:white;
+				font-size:15px;
+				font-family: 'Roboto Mono', monospace;
+				font-weight: bold;
 			}
+			#cardOne{
+				visibility:visible;
+			}
+			#cardTwo{
+				visibility:visible;
+			}
+			#cardThree{
+				visibility:visible;
+			}
+			#cardFour{
+				visibility:visible;
+			}
+			#cardFive{
+				visibility:visible;
+			}
+			#cardSix{
+				visibility:hidden;
+			}
+			
+			.categories{
+				display: none;
+			}
+			
 						
 		</style>
 
@@ -163,20 +191,30 @@
 		<div class="container-fluid h-100">
 			<div class="row h-100">
 				<div class="col-sm-3 section1 ">
-					<div class="row justify-content-center ">
-						<div class="col-sm-6 action-div">
-							<button id="actionButton" type="button" class="btn btn-dark btn-block">ACTION TITLE HERE</button>
-							
+					<div class="row justify-content-center p-5">
+						<div id="actionButtonDiv" class="action-div">
+							<button id="actionButton" type="button" class="btn btn-dark btn-block">NO ACTION</button>	
 						</div>
-						<div class="col-sm-6 action-div">
-						<h3 id="selection-choice-menu">Please select the number of AI Players</h3>
-						<select class="custom-select">
- 						<option selected>Select</option>
-  						<option value="1">One</option>
-  						<option value="2">Two</option>
-  						<option value="3">Three</option>
-  					    <option value="4">Four</option>
-                        </select>
+						<div id="selectPlayersMenu" class="action-div">
+							<h3 id="selection-choice-menu">Please select the number of AI Players</h3>
+							<select class="custom-select" id="num-player-select">
+								<option>Select</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+								<option value="4">Four</option>
+							</select>
+						</div>
+						<div id="selectCategoryMenu" class="action-div categories">
+							<h3 id="selection-category-menu">Please select your category</h3>
+							<select class="custom-select" id="category-select">
+								<option>Select</option>
+								<option value=""></option>
+								<option value=""></option>
+								<option value=""></option>
+								<option value=""></option>
+								<option value=""></option>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -190,7 +228,7 @@
 					</div>
 					<div class="row justify-content-center">
 						<div class="card-deck">
-							<div class="card" style="width: 3rem;">
+							<div id="cardOne" class="card" style="width: 3rem;">
 								<div id="playerOneCard" class="card-header">Player Name <span id="deckOne"
 																							  class="badge badge-primary float-right">4</span>
 								</div>
@@ -219,7 +257,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="card">
+							<div id="cardTwo" class="card">
 								<div id="playerTwoCard" class="card-header">Player Name <span id="deckTwo"
 																							  class="badge badge-primary float-right">4</span>
 								</div>
@@ -227,7 +265,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 class="card-title">m50</h5>
+									<h5 id="cardTwoTitle"class="card-title">m50</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardTwoCatOne" class="list-group-item">Size<span id="cardTwoValOne"
 																								 class="float-right">4</span>
@@ -247,7 +285,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="card">
+							<div id="cardThree" class="card">
 								<div id="playerThreeCard" class="card-header">Player Name <span id="DeckThree"
 																								class="badge badge-primary float-right">4</span>
 								</div>
@@ -255,7 +293,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardTwoTitle" class="card-title">Orion</h5>
+									<h5 id="cardThreeTitle" class="card-title">Orion</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardThreeCatOne" class="list-group-item">Size<span id="cardThreeValOne"
 																								   class="float-right">4</span>
@@ -279,7 +317,7 @@
 					</div>
 					<div class="row justify-content-center cardrow2">
 						<div class="card-deck">
-							<div class="card" style="width: 3rem;">
+							<div id="cardFour" class="card" style="width: 3rem;">
 								<div id="playerFourCard" class="card-header">Player Name <span id="deckFour"
 																							   class="badge badge-primary float-right">4</span>
 								</div>
@@ -287,7 +325,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardThreeTitle" class="card-title">Hawk</h5>
+									<h5 id="cardFourTitle" class="card-title">Hawk</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardFourCatOne" class="list-group-item">Size<span id="cardFourValOne"
 																								  class="float-right">4</span>
@@ -307,7 +345,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="card">
+							<div id="cardFive" class="card">
 								<div id="playerFiveCard" class="card-header">Player Name <span id="DeckFive"
 																							   class="badge badge-primary float-right">4</span>
 								</div>
@@ -315,7 +353,7 @@
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardFourTitle" class="card-title">Hurricane</h5>
+									<h5 id="cardFiveTitle" class="card-title">Hurricane</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardFiveCatOne" class="list-group-item ">Size<span id="cardFiveValOne"
 																								   class="float-right">4</span>
@@ -335,14 +373,14 @@
 									</ul>
 								</div>
 							</div>
-							<div class="card">
+							<div id="cardSix" class="card">
 								<div class="card-header">Player Name <span class="badge badge-primary float-right">4</span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
 								</div>
 								<div class="card-body">
-									<h5 id="cardFiveTitle" class="card-title">Sabre</h5>
+									<h5 class="card-title">Sabre</h5>
 									<ul class="list-group list-group-flush">
 										<li class="list-group-item">Size<span class="float-right">4</span></li>
 										<li class="list-group-item">Speed<span class="float-right">4</span></li>
@@ -378,18 +416,35 @@
 // 			getNumberOfRoundsInGame();
 
 			// Method that is called on page load
-			async function initalize() {
+			function initalize() {
 
 				// --------------------------------------------------------------------------
 				// You can call other methods you want to run when the page first loads here
 				// --------------------------------------------------------------------------
-				
-				await startGame();
-				getRoundNumber();
+				$(document).ready(function() {
+					// all custom jQuery will go here
+					
+					$(".card-deck").toggle();
+					
+					$("#num-player-select").change(()=>{
+						startGame($("#num-player-select").val()).then(()=>{
+							$("#selectPlayersMenu").fadeOut("fast", "swing", ()=>{
+								$("#actionButton").html("NO ACTION");
+								$("#actionButtonDiv").fadeIn("fast", "swing", ()=>{
+									playRound().then(()=>{
+								
+									});
+								});
+							});
+							
+							$(".card-deck").fadeIn("fast", "swing");
+// 							loadCards();
+						});
+					});
+				});
 				
 // 				getCategories();
 // 				selectCategory();
-				playRound();
 // 				getStats();
 
 			}
@@ -397,11 +452,31 @@
 			// -----------------------------------------
 			// Add your other Javascript methods Here
 			// -----------------------------------------
+			
+			function loadCards(){
+				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundCards"); // Request type and URL
+		
+				// Message is not sent yet, but we can check that the browser supports CORS
+				if (!xhr) {
+					alert("CORS not supported");
+				}
+
+				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+				// to do when the response arrives
+				xhr.onload = function(e) {
+					var responseText = xhr.response; // the text of the response
+					alert(responseText);
+				};
+		
+				// We have done everything we need to prepare the CORS request, so send it
+				xhr.send();	
+			}
 	
 			// This starts the game
-			function startGame() {
-				return new Promise(resolve=>{
-					let numberOfAIPlayersFromUser = 4; //change this to get from button
+			function startGame(numberOfAIPlayersFromUser) {
+				return new Promise((resolve,reject)=>{
+// 					let numberOfAIPlayersFromUser = 4; //change this to get from button
 				
 					// First create a CORS request, this is the message we are going to send (a get request in this case)
 					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/startGame?numberOfAIPlayers=" + numberOfAIPlayersFromUser); // Request type and URL
@@ -417,6 +492,8 @@
 						var responseText = xhr.response; // the text of the response
 						if(responseText == "0"){
 							resolve();
+						} else{
+							reject();
 						}
 					};
 		
@@ -439,7 +516,11 @@
 				// to do when the response arrives
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					$("#status-message").html("Round Number: " + responseText);
+					$(document).ready(function() {
+						// all custom jQuery will go here
+						$("#status-message").html("Round Number " + responseText + ".");
+					});
+					return responseText;
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
@@ -494,42 +575,42 @@
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				let categoryList = await getCategories();
 				
-				categoryList = changeStringToArray(categoryList);
+				return new Promise((resolve,reject)=>{
 				
-				categorySelectedByHuman = categoryList[0];
-				
-				return categorySelectedByHuman;
-				
-			}
-			
-			async function selectCategoryForAI(){
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				let categoryList = await getCategories();
-				
-				categoryList = changeStringToArray(categoryList);
-				
-				categorySelectedByHuman = categoryList[0];
-				
-				return categorySelectedByHuman;
-				
-			}
-			
-			function playRound(){
-				let humanChooseCategory = await shouldHumanSelectCategory();
-				
-				let categories = await getCategories();
-				
-				let categorySelected;
-				
-				if(humanChooseCategory == "true"){
-					categorySelectedByHuman = selectCategory();
-				} else {
+					categoryList = changeStringToArray(categoryList);
 					
-				}
-				
+					
+	// 				categorySelectedByHuman = categoryList[0];
+
+					$(document).ready(function() {
+						// all custom jQuery will go here
+// 						$("#status-message").append(" It is your turn to select a category.");
+						$("#actionButtonDiv").fadeOut("fast", "swing", ()=>{
+							$("#category-select").val("Select");
+							$(".categories").fadeIn("fast", "swing", ()=>{
+								$("#category-select>option").slice(1).each((i, elem)=>{
+									$(elem).val(categoryList[i]);
+									$(elem).html(categoryList[i]);
+								});
+								$("#category-select").change(()=>{
+									$("#category-select").off("change");
+									$(".categories").fadeOut("fast", "swing", ()=>{
+										$("#actionButtonDiv").fadeIn("fast", "swing");
+									});
+									$("#status-message").append(" You selected " + $("#category-select").val() + ".");
+									resolve($("#category-select").val());
+								});
+							});
+						});
+					});
+				});
+			}
+			
+			function getRoundWinner(){
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundNumber"); // Request type and URL
-		
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/getRoundWinner"); // Request type and URL
+				
+	
 				// Message is not sent yet, but we can check that the browser supports CORS
 				if (!xhr) {
 					alert("CORS not supported");
@@ -538,11 +619,142 @@
 				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
 				// to do when the response arrives
 				xhr.onload = function(e) {
-					var responseText = xhr.response; // the text of the response
+					var responseText = xhr.response; // the text of the response// 
+					if(responseText === "draw"){
+						$("#status-message").append(" Round was a draw.");
+					} else {
+						$("#status-message").append(" " + responseText + " won this round.")
+					}
 				};
-		
+				
 				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();	
+				xhr.send();
+				
+			}
+			
+			async function selectCategoryForAI(){
+				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				
+// 				$(document).ready(()=>{
+// 					$("#status-message").append("AI selecting category...");
+// 				})
+				
+				let categoryList = await getCategories();
+				
+				return new Promise((resolve,reject)=>{
+				
+					categoryList = changeStringToArray(categoryList);
+					
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/getAIPlayerCategory"); // Request type and URL
+					
+		
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response// 
+						categorySelected = responseText;
+						$(document).ready(()=>{
+							if(categorySelected!=="human"){
+								getRoundActivePlayer().then((res)=>{
+									$("#status-message").append(" " + res + " selected " + categorySelected + ".");
+								});
+							}
+						})
+						resolve(categorySelected);
+					};
+					
+		
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				
+				});
+				
+			}
+			
+			function getRoundActivePlayer(){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/getRoundActivePlayer"); // Request type and URL
+				
+	
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response// 
+						resolve(responseText);
+					};
+	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			async function playRound(){
+				let humanSelectCategory = await shouldHumanSelectCategory();
+
+				let categorySelected;
+				
+				getRoundNumber();
+				if(humanSelectCategory === "true"){
+					categorySelected = await selectCategoryForHuman();
+				} else {
+					categorySelected = await selectCategoryForAI();
+					if(categorySelected==="human"){
+						categorySelected = await selectCategoryForHuman();
+					}
+				}
+				
+				return new Promise((resolve,reject)=>{
+				
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/playRound?category=" + categorySelected); // Request type and URL
+		
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response
+						
+						getRoundWinner();
+						
+						if(responseText != "running"){
+							$(document).ready(function() {
+								// all custom jQuery will go here
+								$("#actionButton").fadeOut("fast", "swing");
+								$("#status-message").html("Game won by " + responseText + ".");
+								resolve();
+							});
+						}
+						
+						$(document).ready(function() {
+							// all custom jQuery will go here
+							$("#actionButton").html("NEXT ROUND");
+							$("#actionButton").click(()=>{
+								$('#actionButton').off('click');
+								playRound();
+							});
+						});
+					};
+					
+		
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
 			}
 	
 			// This calls the game REST method from TopTrumpsRESTAPI
