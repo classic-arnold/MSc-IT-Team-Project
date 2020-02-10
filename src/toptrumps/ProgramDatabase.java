@@ -145,7 +145,7 @@ public class ProgramDatabase {
            String SQL="delete from toptrumps.gamestats where true;";
 
            try{
-                   Connection conn=DriverManager.getConnection(url,userID,password);
+                   conn=DriverManager.getConnection(url,userID,password);
                    PreparedStatement pstmt=conn.prepareStatement(SQL);
                    pstmt.executeUpdate();
                    pstmt.close();
