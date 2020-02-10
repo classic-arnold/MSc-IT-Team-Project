@@ -326,7 +326,7 @@ public class CLITest {
 		
 		}
 		
-		assertEquals(DataGame.getAvgNumberOfDraws(), this.model.getNumberOfDraws());
+		assertEquals(DataGame.getAvgNumberOfDraws(), this.model.getNumberOfDraws(), 0.01);
 		
 		if(this.model.getGameWinner().getType() == DataPlayer.PlayerType.HUMAN) {
 			assertEquals(1, DataGame.getNumberOfHumanWins());
