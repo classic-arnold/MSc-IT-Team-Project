@@ -14,7 +14,7 @@ public class DataPlayer {
 	 * enum to represents the different types of player
 	 * @author salistechltd
 	 */
-	enum PlayerType {
+	public enum PlayerType {
 		AI, HUMAN
 	}
 
@@ -156,7 +156,7 @@ public class DataPlayer {
 	 * get player type
 	 * @return PlayerType enum representing the player's type
 	 */
-	PlayerType getType() {
+	public PlayerType getType() {
 		return this.type;
 	}
 
