@@ -86,6 +86,19 @@ public class ProgramDatabase {
 	public static Connection connection() throws SQLException{
 		return DriverManager.getConnection(url,userID,password);
 	}
+	
+	public static void clearDB(DataGame model) {
+		String SQL="delete from toptrumps.gamestats where true;";
+
+		try{
+			Connection conn=DriverManager.getConnection(url,userID,password);
+			PreparedStatement pstmt=conn.prepareStatement(SQL);
+			pstmt.executeUpdate();
+			pstmt.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 
