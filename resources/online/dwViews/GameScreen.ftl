@@ -92,6 +92,10 @@
 				border-radius: 0;
 				border: none;
 			}
+			.alert-info{
+			background-color:#F0A202;
+			
+			}
 
 
 			/*Card Styles*/
@@ -136,7 +140,7 @@
 			}
 			h3{
 				color:white;
-				font-size:15px;
+				font-size:20px;
 				font-family: 'Roboto Mono', monospace;
 				font-weight: bold;
 			}
@@ -162,7 +166,13 @@
 			.categories{
 				display: none;
 			}
+			#status-message{
+			color:white;
+				font-size:20px;
+					font-family: 'Roboto Mono', monospace;
+				font-weight: bold;
 			
+			}
 						
 		</style>
 

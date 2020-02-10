@@ -167,6 +167,8 @@ public class DataGame{
 		DataPlayer player;
 		if (this.roundLastWinner != null) {
 			player = this.roundLastWinner;
+		} else if (this.roundActivePlayer != null){
+			return player = this.roundActivePlayer;
 		} else {
 			Random r = new Random();
 			player = this.activePlayers.get(r.nextInt(this.activePlayers.size()));
@@ -181,18 +183,14 @@ public class DataGame{
 		return player;
 	}
 	
-	public int getBestCategoryForCurrentAIPlayers() {
-		
-		DataPlayer player;
-		
-		player = this.getCategoryChooser();
+	public int getBestCategoryForPlayer(DataPlayer player) {
 		
 		if(player.getType()==DataPlayer.PlayerType.AI) {
 //			System.out.println(player.getDeck().get(0).findTopCategory());
 			return player.getDeck().get(0).findTopCategory();
+		} else {
+			throw new RuntimeException();
 		}
-		
-		return 0;
 	}
 
 	/**
