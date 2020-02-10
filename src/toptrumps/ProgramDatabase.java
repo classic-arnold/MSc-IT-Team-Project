@@ -23,7 +23,7 @@ public class ProgramDatabase {
 	private static final String url="jdbc:postgresql://localhost:5432/TopTrump";
 	private static final String userID="postgres";
 	private static final String password="qmffldqmffld3";
-//	private static final String password="postgres";
+	private static Connection conn;
 
 	private int gameCount;
 	private int humanWon;
@@ -78,6 +78,7 @@ public class ProgramDatabase {
 	}
 
 
+<<<<<<< HEAD
 
 	/**
 	 *  Connection method 
@@ -102,6 +103,8 @@ public class ProgramDatabase {
 
 
 
+=======
+>>>>>>> ff1f531c6a355155c4e4f253b74cdfe9d04ba408
 	/** 
 	 * insertion method
 	 * 
@@ -119,12 +122,11 @@ public class ProgramDatabase {
 	 * 'roundNumber:int' 
 	 * into Database table.
 	 * */
-	public void insertGameStats(DataGame model) {
+	public void insertGameStats(DataGame model){
 		String SQL="INSERT INTO TOPTRUMPS.GAMESTATS "
 				+"VALUES (default, ?,?,?,?,?,?,?,?)";
-
 		try{
-			Connection conn=DriverManager.getConnection(url,userID,password);
+			conn=DriverManager.getConnection(url,userID,password);
 			PreparedStatement pstmt=conn.prepareStatement(SQL);
 
 			//get boolean value for isHumanWon
@@ -178,19 +180,11 @@ public class ProgramDatabase {
 	 * 'counts for draws',
 	 * 'largestRound'
 	 */	
-	public void selectGameStats() {
+	public void selectGameStats(){
 		try{
-			Connection conn=DriverManager.getConnection(url,userID,password);
+			conn=DriverManager.getConnection(url,userID,password);
 
 			Statement stmt=conn.createStatement();
-
-//			ResultSet rs=stmt.executeQuery("select" + 
-//					"	count(gameid) as gameCount," + 
-//					"	count(*) filter(where isHumanWon) as humanWon," + 
-//					"	count(*) filter(where not isHumanWon) as AIWon," + 
-//					"	round(avg(draws)::numeric,1) as averageDraws," + 
-//					"	max(roundNumber) as largestRound" + 
-//					"from TopTrumps.gameStats;");
 			
 			ResultSet rs=stmt.executeQuery("select \r\n" + 
 					"	count(gameid) as gameCount, \r\n" + 
@@ -235,9 +229,8 @@ public class ProgramDatabase {
 		//the driver is loaded
 		System.out.println("PostgreSQL JDBC Driver found!");
 
-		//connect to the yacata.dcs.gla.ac.uk server, on port=5432
 		try {
-			connection();
+			conn=DriverManager.getConnection(url,userID,password);
 			System.out.println("Opened database successfully");
 		}catch(SQLException e) {
 			System.out.println("Connection Failed!");

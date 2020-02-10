@@ -19,6 +19,7 @@ import toptrumps.DataCard;
 import toptrumps.DataGame;
 import toptrumps.DataPlayer;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -117,7 +118,7 @@ public class TopTrumpsRESTAPI {
 		try {
 			this.numAIPlayers = numberOfAIPlayers;
 			this.conf.setNumAIPlayers(numberOfAIPlayers);
-			this.model = DataGame.getInstance(numberOfAIPlayers);
+			this.model = DataGame.resetAndGetInstance(numberOfAIPlayers);
 			this.model.startGame();
 		} catch(Exception e) {
 			return 1;
@@ -139,34 +140,66 @@ public class TopTrumpsRESTAPI {
 	}
 	
 
-//	/**
-//	 * Get human player's card name, card categories only.
-//	 * @Controller.js: function humanSelectCategory
-//	 * @return JSONString[] type
-//	 * @throws IOException
-//	 */	
-//	@GET
-//	@Path("/game/categoryMenu")
-//	public List<String> getCategoryForMenu() throws IOException{	
-//		
-//		List<String> listOfCategory=new ArrayList<String>();
-//		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
-//			listOfCategory.add(oWriter.writeValueAsString(model.CATEGORYNAMES[i]));
-//		}		
-//		
-//		return listOfCategory;
-//	}
+	/**
+	 * Get human player's card name, card categories only.
+	 * @Controller.js: function humanSelectCategory
+	 * @return JSONString[] type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/categoryMenu")
+	public List<String> getCategoryForMenu() throws IOException{	
+		
+		List<String> listOfCategory=new ArrayList<String>();
+		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
+			listOfCategory.add(oWriter.writeValueAsString(model.CATEGORYNAMES[i]));
+		}		
+		
+		return listOfCategory;
+	}
 	
 	@GET
 	@Path("/game/playRound")
-	public void playRound(@QueryParam("category") String category){
+	public String playRound(@QueryParam("category") String category){
 		model.playRound(category);
+		if(model.getGameState()!=DataGame.GameState.RUNNING) {
+			return "" + model.getGameWinner().getName() + " at round " + model.getRoundNumber();
+		}
+		model.incrementRound();
+		return "running";
+	}
+	
+	@GET
+	@Path("/game/getRoundActivePlayer")
+	public String getRoundActivePlayer(){
+		return model.getRoundActivePlayer().getName();
+	}
+	
+	@GET
+	@Path("/game/getAIPlayerCategory")
+	public String getAIPlayerCategory(){
+		String result = "";
+		
+		int category = model.getBestCategoryForCurrentAIPlayers();
+		// sometimes the first player is human and this is not accounted for here
+		if(category==0) {
+			return "human";
+		}
+		result = DataGame.CATEGORYNAMES[category-1];
+		
+		return result;
 	}
 	
 	@GET
 	@Path("/game/shouldHumanSelectCategory")
-	public boolean shouldHumanSelectCategory(){
-		return model.shouldHumanChooseCategory();
+	public String shouldHumanSelectCategory(){
+		String result = "";
+		try {
+			result = oWriter.writeValueAsString(model.shouldHumanChooseCategory());
+		} catch(JsonProcessingException e) {
+			
+		}
+		return result;
 	}
 	
 	@GET
@@ -174,8 +207,6 @@ public class TopTrumpsRESTAPI {
 	public ArrayList<DataCard> getCompleteDeckAsArrayList() {
 		return model.getCompleteDeckAsArrayList();
 	}
-	
-
 	
 	
 	/**
@@ -268,8 +299,9 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/roundNumber")
-	public int getRoundNumber(){
-		return model.getRoundNumber();
+	public String getRoundNumber() throws IOException{
+		String roundNumber=oWriter.writeValueAsString(model.getRoundNumber());
+		return roundNumber;
 	}
 	
 	
@@ -284,6 +316,26 @@ public class TopTrumpsRESTAPI {
 	public String getCategoryChooser() throws IOException{
 		String categoryChooser=oWriter.writeValueAsString(model.getCategoryChooser());
 		return categoryChooser;
+	}
+	
+	
+	/**
+	 * Get category chooser of the round:String.
+	 * @Controller.js: 
+	 * @returns JSONString type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/getRoundWinner")
+	public String getRoundWinner() {
+		String result = null;
+		ArrayList<DataPlayer> roundWinningPlayers = model.getRoundWinningPlayers();
+		if(roundWinningPlayers.size() == 1) {
+			result = roundWinningPlayers.get(0).getName();
+		} else {
+			result = "draw";
+		}
+		return result;
 	}
 	
 	
@@ -328,7 +380,7 @@ public class TopTrumpsRESTAPI {
 		String[] humanCard=new String[6];
 		
 		//store card title in humanCard[0]
-		humanCard[0]=oWriter.writeValueAsString(model.getRoundHumanPlayerCard().toString());
+		humanCard[0]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getDescription());
 		humanCard[1]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory1());
 		humanCard[2]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory2());
 		humanCard[3]=oWriter.writeValueAsString(model.getHumanPlayer().getDeck().get(0).getCategory3());
@@ -362,8 +414,20 @@ public class TopTrumpsRESTAPI {
 //	}
 	@GET
 	@Path("/game/AI1Cards")
-	public DataCard[] getRoundAIPlayerCards() throws IOException{
-		return model.getRoundAIPlayerCards();
+	public String getRoundAIPlayerCards() throws IOException{
+		return oWriter.writeValueAsString(model.getRoundAIPlayerCards());
+	}
+	
+	@GET
+	@Path("/game/roundCards")
+	public String getRoundCards(){
+		String result = "";
+		try {
+			result = oWriter.writeValueAsString(model.getRoundCards());
+		} catch (JsonProcessingException e){
+			
+		}
+		return result;
 	}
 	
 	

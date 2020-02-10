@@ -113,6 +113,10 @@ public class DataGame{
 	private DataPlayer firstPlayer;
 	
 	private boolean didHumanPlayFirst;
+	
+	private DataPlayer roundActivePlayer;
+	
+	private ArrayList<DataCard> roundCards = new ArrayList<DataCard>();
 
 	/**
 	 * creates a new DataGame Object
@@ -155,13 +159,8 @@ public class DataGame{
 		return this.firstPlayer;
 	}
 	
-	public int getBestCategoryForCurrentAIPlayers(DataPlayer player) {
-		if(player.getType()==DataPlayer.PlayerType.AI) {
-//			System.out.println(player.getDeck().get(0).findTopCategory());
-			return player.getDeck().get(0).findTopCategory();
-		}
-		
-		return 0;
+	public DataPlayer getRoundActivePlayer() {
+		return this.roundActivePlayer;
 	}
 	
 	public DataPlayer getCategoryChooser() {
@@ -178,6 +177,7 @@ public class DataGame{
 			}
 			this.firstPlayer = player;
 		}
+		this.roundActivePlayer = player;
 		return player;
 	}
 	
@@ -306,6 +306,8 @@ public class DataGame{
 		//		this.roundHasPlayersDrawnCards = true;
 
 
+		this.roundCards = roundCards;
+		
 		// holds the winning cards and winning players
 		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(roundCards.toArray(new DataCard[roundCards.size()]), category);
 
@@ -649,6 +651,10 @@ public class DataGame{
 	 */
 	public DataCard[] getInitialShuffledDeck() {
 		return this.initialShuffledDeck.toArray(new DataCard[this.initialShuffledDeck.size()]);
+	}
+	
+	public DataCard[] getRoundCards() {
+		return (DataCard[])this.roundCards.toArray();
 	}
 
 	/**

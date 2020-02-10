@@ -113,7 +113,7 @@ public class CLITest {
 
 
 				if(this.model.getRoundNumber() == 1) {
-					category = this.model.getBestCategoryForCurrentAIPlayers(this.model.getCategoryChooser());
+					category = this.model.getBestCategoryForCurrentAIPlayers();
 					if(category == 0) {
 						category = 2;
 					}
@@ -303,7 +303,7 @@ public class CLITest {
 
 
 				if(this.model.getRoundNumber() == 1) {
-					category = this.model.getBestCategoryForCurrentAIPlayers(this.model.getCategoryChooser());
+					category = this.model.getBestCategoryForCurrentAIPlayers();
 					if(category == 0) {
 						category = 2;
 					}
