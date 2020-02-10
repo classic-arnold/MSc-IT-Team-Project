@@ -180,7 +180,9 @@ public class TopTrumpsRESTAPI {
 	public String getAIPlayerCategory(){
 		String result = "";
 		
-		int category = model.getBestCategoryForCurrentAIPlayers();
+		DataPlayer activePlayer = this.model.getCategoryChooser();
+		int category = this.model.getBestCategoryForPlayer(activePlayer);
+		
 		// sometimes the first player is human and this is not accounted for here
 		if(category==0) {
 			return "human";
