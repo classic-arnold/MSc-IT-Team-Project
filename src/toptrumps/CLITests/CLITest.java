@@ -28,6 +28,7 @@ import toptrumps.DataCard;
 import toptrumps.DataCardCache;
 import toptrumps.DataGame;
 import toptrumps.DataPlayer;
+import toptrumps.ProgramDatabase;
 import toptrumps.ViewCLI;
 
 public class CLITest {
@@ -161,6 +162,11 @@ public class CLITest {
 		//getActivePlayer in dataDame, getDeck in dataplayer to get the player's deck, then get the zeroth element class 
 		//model.getInitialShuffledDeck() does the shuffling
 		//check that the correct top card was returned for several rounds
+		
+		this.model.startGame();
+		
+		
+		
 	}
 	
 	@Test
@@ -282,6 +288,8 @@ public class CLITest {
 		//test that the largest number of rounds played in a single game is returned
 		//ensure that these values were calculated using SQL
 		
+		ProgramDatabase.clearDB(this.model);
+		
 		int startChoice = 2;
 
 		if(startChoice == 2) {
@@ -315,10 +323,10 @@ public class CLITest {
 			}
 
 		} else {
-		}
-
 		
-		assert 2 == DataGame.getNumberOfGames();
+		}
+		
+		assertEquals(2, DataGame.getNumberOfGames());
 	}
 	
 	@Test
