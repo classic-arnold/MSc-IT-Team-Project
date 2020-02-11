@@ -7,44 +7,44 @@ package toptrumps;
  * @author Team TRY-CATCH - Arnold Umakhihe 2445734U
  * 
  */
-class DataCard implements Cloneable{
+public class DataCard implements Cloneable{
 	
 	/** string representing card description */
 	private String description;
 
-	/** integer representing card size */
-	private int size;
+	/** integer representing card category1 */
+	private int category1;
 
-	/** integer representing card speed */
-	private int speed;
+	/** integer representing card category2 */
+	private int category2;
 
-	/** integer representing card range */
-	private int range;
+	/** integer representing card category3 */
+	private int category3;
 
-	/** integer representing card firePower */
-	private int firePower;
+	/** integer representing card category4 */
+	private int category4;
 
-	/** integer representing card cargo */
-	private int cargo;
+	/** integer representing card category5 */
+	private int category5;
 
 	/**
 	 * 
 	 * creates a new card
 	 * 
 	 * @param name string representing card name
-	 * @param size integer representing card size
-	 * @param speed integer representing card speed
-	 * @param range integer representing card range
-	 * @param firePower integer representing card firePower
-	 * @param cargo integer representing card cargo
+	 * @param category1 integer representing card category1
+	 * @param category2 integer representing card category2
+	 * @param category3 integer representing card category3
+	 * @param category4 integer representing card category4
+	 * @param category5 integer representing card category5
 	 */
-	DataCard(String description, int size, int speed, int range, int firePower, int cargo){
+	DataCard(String description, int category1, int category2, int category3, int category4, int category5){
 		this.description = description;
-		this.size = size;
-		this.speed = speed;
-		this.range = range;
-		this.firePower = firePower;
-		this.cargo = cargo;
+		this.category1 = category1;
+		this.category2 = category2;
+		this.category3 = category3;
+		this.category4 = category4;
+		this.category5 = category5;
 	}
 
 	/**
@@ -63,39 +63,67 @@ class DataCard implements Cloneable{
 		 * to avoid formatting error.
 		 * 
 		 */
-		switch (Character.toLowerCase(category.charAt(0))+""+Character.toLowerCase(category.charAt(1))) {
-		case "si":
-			int result = 0;
-			result = this.size > otherCard.size ? 1 : result;
-			result = this.size == otherCard.size ? 2 : result;
+		String category1FirstTwoLetters =DataGame.CATEGORYNAMES[0].charAt(0)+""+DataGame.CATEGORYNAMES[0].charAt(1);
+		String category2FirstTwoLetters =DataGame.CATEGORYNAMES[1].charAt(0)+""+DataGame.CATEGORYNAMES[1].charAt(1);
+		String category3FirstTwoLetters =DataGame.CATEGORYNAMES[2].charAt(0)+""+DataGame.CATEGORYNAMES[2].charAt(1);
+		String category4FirstTwoLetters =DataGame.CATEGORYNAMES[3].charAt(0)+""+DataGame.CATEGORYNAMES[3].charAt(1);
+		String category5FirstTwoLetters =DataGame.CATEGORYNAMES[4].charAt(0)+""+DataGame.CATEGORYNAMES[4].charAt(1);
+		String chosenCategoryFirstTwoLetters =Character.toLowerCase(category.charAt(0))+""+Character.toLowerCase(category.charAt(1));
+		
+		int result = 0;
+		
+		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category1FirstTwoLetters)) {
+			result = this.category1 > otherCard.category1 ? 1 : result;
+			result = this.category1 == otherCard.category1 ? 2 : result;
 			return result;
-		case "sp":
-			result = 0;
-			result = this.speed > otherCard.speed ? 1 : result;
-			result = this.speed == otherCard.speed ? 2 : result;
-			return result;
-
-		case "ra":
-			result = 0;
-			result = this.range > otherCard.range ? 1 : result;
-			result = this.range == otherCard.range ? 2 : result;
-			return result;
-
-		case "fi":
-			result = 0;
-			result = this.firePower > otherCard.firePower ? 1 : result;
-			result = this.firePower == otherCard.firePower ? 2 : result;
-			return result;
-
-		case "ca":
-			result = 0;
-			result = this.cargo > otherCard.cargo ? 1 : result;
-			result = this.cargo == otherCard.cargo ? 2 : result;
-			return result;
-
-		default:
-			throw new exceptions.CategoryNotFoundException(); // if category does not exist
 		}
+		
+		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category2FirstTwoLetters)) {
+			result = this.category2 > otherCard.category2 ? 1 : result;
+			result = this.category2 == otherCard.category2 ? 2 : result;
+			return result;
+		}
+		
+		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category3FirstTwoLetters)) {
+			result = this.category3 > otherCard.category3 ? 1 : result;
+			result = this.category3 == otherCard.category3 ? 2 : result;
+			return result;
+		}
+		
+		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category4FirstTwoLetters)) {
+			result = this.category4 > otherCard.category4 ? 1 : result;
+			result = this.category4 == otherCard.category4 ? 2 : result;
+			return result;
+		}
+		
+		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category5FirstTwoLetters)) {
+			result = this.category5 > otherCard.category5 ? 1 : result;
+			result = this.category5 == otherCard.category5 ? 2 : result;
+			return result;
+		}
+		
+		System.out.println(chosenCategoryFirstTwoLetters);
+		
+		throw new exceptions.CategoryNotFoundException(); // if category does not exist
+	}
+	
+	public int findTopCategory() {
+		if(this.category1>=this.category2 && this.category1>=this.category3 && this.category1>=this.category4 && this.category1>=this.category5) {
+			return 1;
+		}
+		if(this.category2>=this.category1 && this.category2>=this.category3 && this.category2>=this.category4 && this.category2>=this.category5) {
+			return 2;
+		}
+		if(this.category3>=this.category1 && this.category3>=this.category2 && this.category3>=this.category4 && this.category3>=this.category5) {
+			return 3;
+		}
+		if(this.category4>=this.category1 && this.category4>=this.category2 && this.category4>=this.category3 && this.category4>=this.category5) {
+			return 4;
+		}
+		if(this.category5>=this.category1 && this.category5>=this.category2 && this.category5>=this.category3 && this.category5>=this.category4) {
+			return 5;
+		}
+		return 0;
 	}
 
 	// GETTER METHODS START
@@ -104,7 +132,7 @@ class DataCard implements Cloneable{
 	 * get description
 	 * @return string representing card description
 	 */
-	String getDescription() {
+	public String getDescription() {
 		return this.description;
 	}
 
@@ -112,40 +140,40 @@ class DataCard implements Cloneable{
 	 * get size
 	 * @return integer representing card value for category - size
 	 */
-	int getSize() {
-		return this.size;
+	public int getCategory1() {
+		return this.category1;
 	}
 
 	/**
 	 * get speed
 	 * @return integer representing card value for category - speed
 	 */
-	int getSpeed() {
-		return this.speed;
+	public int getCategory2() {
+		return this.category2;
 	}
 
 	/**
-	 * get range
-	 * @return integer representing card value for category - range
+	 * get category3
+	 * @return integer representing card value for category - category3
 	 */
-	int getRange() {
-		return this.range;
+	public int getCategory3() {
+		return this.category3;
 	}
 
 	/**
 	 * get fire power
-	 * @return firePower integer representing card value for category - fire power
+	 * @return category4 integer representing card value for category - fire power
 	 */
-	int getFirePower() {
-		return this.firePower;
+	public int getCategory4() {
+		return this.category4;
 	}
 
 	/**
-	 * get cargo
-	 * @return integer representing card value for category - cargo
+	 * get category5
+	 * @return integer representing card value for category - category5
 	 */
-	int getCargo() {
-		return this.cargo;
+	public int getCategory5() {
+		return this.category5;
 	}
 
 	// GETTER METHODS END
@@ -180,11 +208,11 @@ class DataCard implements Cloneable{
 		String newLine = "\n";
 		
 		// create strings
-		string += arrow + space + "size" + colon + space + this.size + newLine;
-		string += arrow + space + "speed" + colon + space + this.speed + newLine;
-		string += arrow + space + "range" + colon + space + this.range + newLine;
-		string += arrow + space + "fire power" + colon + space + this.firePower + newLine;
-		string += arrow + space + "cargo" + colon + space + this.cargo + newLine;
+		string += arrow + space + DataGame.CATEGORYNAMES[0] + colon + space + this.category1 + newLine;
+		string += arrow + space + DataGame.CATEGORYNAMES[1] + colon + space + this.category2 + newLine;
+		string += arrow + space + DataGame.CATEGORYNAMES[2] + colon + space + this.category3 + newLine;
+		string += arrow + space + DataGame.CATEGORYNAMES[3] + colon + space + this.category4 + newLine;
+		string += arrow + space + DataGame.CATEGORYNAMES[4] + colon + space + this.category5 + newLine;
 		
 		return string;
 	}
@@ -202,35 +230,35 @@ class DataCard implements Cloneable{
 		String newLine = "\n";
 		
 		// create strings
-		string += arrow + space + "size" + colon + space + this.size;
-		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equals("si")){
+		string += arrow + space + DataGame.CATEGORYNAMES[0] + colon + space + this.category1;
+		if(((category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equalsIgnoreCase(DataGame.CATEGORYNAMES[0].charAt(0)+""+DataGame.CATEGORYNAMES[0].charAt(1))){
 			string += " <--";
 		}
 		string += newLine;
 		
 		
-		string += arrow + space + "speed" + colon + space + this.speed;
-		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equals("sp")){
+		string += arrow + space + DataGame.CATEGORYNAMES[1] + colon + space + this.category2;
+		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equalsIgnoreCase(DataGame.CATEGORYNAMES[1].charAt(0)+""+DataGame.CATEGORYNAMES[1].charAt(1))){
 			string += " <--";
 		}
 		string += newLine;
 		
 		
-		string += arrow + space + "range" + colon + space + this.range;
-		if((Character.toLowerCase(category.charAt(0))) == 'r'){
+		string += arrow + space + DataGame.CATEGORYNAMES[2] + colon + space + this.category3;
+		if((category.charAt(0)) == DataGame.CATEGORYNAMES[2].charAt(0)){
 			string += " <--";
 		}
 		string += newLine;
 		
 		
-		string += arrow + space + "fire power" + colon + space + this.firePower;
-		if((Character.toLowerCase(category.charAt(0))) == 'f'){
+		string += arrow + space + DataGame.CATEGORYNAMES[3] + colon + space + this.category4;
+		if((category.charAt(0)) == DataGame.CATEGORYNAMES[3].charAt(0)){
 			string += " <--";
 		}
 		string += newLine;
 		
-		string += arrow + space + "cargo" + colon + space + this.cargo;
-		if((Character.toLowerCase(category.charAt(0))) == 'c'){
+		string += arrow + space + DataGame.CATEGORYNAMES[4] + colon + space + this.category5;
+		if((category.charAt(0)) == DataGame.CATEGORYNAMES[4].charAt(0)){
 			string += " <--";
 		}
 		string += newLine;

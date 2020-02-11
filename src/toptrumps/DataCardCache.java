@@ -5,6 +5,7 @@ package toptrumps;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -52,7 +53,23 @@ public class DataCardCache {
 			
 			try {
 				// skip first line
-				s.nextLine();
+				String categoriesLine = s.nextLine();
+				
+				Scanner s2 = new Scanner(categoriesLine);
+				
+				ArrayList<String> categories = new ArrayList<String>();
+				
+				s2.next();
+				
+				while(s2.hasNext()) {
+					categories.add(s2.next());
+				}
+				
+//				for(int i=0; i<categories.size(); i++) {
+//					System.out.println(categories.get(i));
+//				}
+				
+				DataGame.CATEGORYNAMES = categories.toArray(new String[5]);
 				
 				int i = 0;
 				

@@ -14,7 +14,7 @@ public class DataPlayer {
 	 * enum to represents the different types of player
 	 * @author salistechltd
 	 */
-	enum PlayerType {
+	public enum PlayerType {
 		AI, HUMAN
 	}
 
@@ -148,7 +148,7 @@ public class DataPlayer {
 	 * get player score
 	 * @return int representing the player's score for the game
 	 */
-	int getScore() {
+	public int getScore() {
 		return this.score;
 	}
 
@@ -156,7 +156,7 @@ public class DataPlayer {
 	 * get player type
 	 * @return PlayerType enum representing the player's type
 	 */
-	PlayerType getType() {
+	public PlayerType getType() {
 		return this.type;
 	}
 
@@ -178,7 +178,7 @@ public class DataPlayer {
 	 * get player's name
 	 * @return String representing the player's name
 	 */
-	String getName() {
+	public String getName() {
 		return this.name;
 	}
 
@@ -186,7 +186,7 @@ public class DataPlayer {
 	 * get players deck
 	 * @return ArrayList<DataCard> representing the list of cards in players deck
 	 */
-	ArrayList<DataCard> getDeck() {
+	public ArrayList<DataCard> getDeck() {
 		return this.cardDeck;
 	}
 
