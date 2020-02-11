@@ -156,14 +156,14 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/categoryMenu")
-	public List<String> getCategoryForMenu() throws IOException{	
+	public String getCategoryForMenu() throws IOException{	
 		
 		List<String> listOfCategory=new ArrayList<String>();
 		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
-			listOfCategory.add(oWriter.writeValueAsString(model.CATEGORYNAMES[i]));
+			listOfCategory.add(model.CATEGORYNAMES[i]);
 		}		
-		
-		return listOfCategory;
+		String categoriesInString=oWriter.writeValueAsString(listOfCategory);
+		return categoriesInString;
 	}
 	
 	@GET
@@ -202,13 +202,10 @@ public class TopTrumpsRESTAPI {
 	
 	@GET
 	@Path("/game/shouldHumanSelectCategory")
-	public String shouldHumanSelectCategory(){
+	public String shouldHumanSelectCategory() throws IOException{
 		String result = "";
-		try {
-			result = oWriter.writeValueAsString(model.shouldHumanChooseCategory());
-		} catch(JsonProcessingException e) {
-			
-		}
+		result = oWriter.writeValueAsString(model.shouldHumanChooseCategory());
+
 		return result;
 	}
 	
