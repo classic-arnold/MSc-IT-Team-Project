@@ -150,7 +150,16 @@ public class TopTrumpsRESTAPI {
 		return originalDeckAsString;
 	}
 	
-	
+	@GET
+ 	@Path("/game/categoryMenu")
+ 	public String getCategoryForMenu() throws IOException{
+		List<String> listOfCategory=new ArrayList<String>();
+ 		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
+ 			listOfCategory.add(model.CATEGORYNAMES[i]);
+ 		}		
+ 		String categoriesInString=oWriter.writeValueAsString(listOfCategory);
+ 		return categoriesInString;
+	}
 	
 	/**
 	 * Get current round number:integer.
@@ -177,12 +186,13 @@ public class TopTrumpsRESTAPI {
 	public String getRoundCards() throws IOException{	
 		List<DataCard> listOfCards=new ArrayList<DataCard>();
 		listOfCards.add(model.getRoundHumanPlayerCard());
-		for(int i=0;i<model.getRoundAIPlayerCards().length;i++) {
-			listOfCards.add(model.getRoundAIPlayerCards()[i]);
+		DataCard[] cards = model.getRoundAIPlayerCards();
+		for(int i=0;i<cards.length;i++) {
+			listOfCards.add(cards[i]);
 		}
 		
 		String everyPlayersCard=oWriter.writeValueAsString(listOfCards);
-		return everyPlayersCard;		
+		return everyPlayersCard;
 	}
 	
 	
