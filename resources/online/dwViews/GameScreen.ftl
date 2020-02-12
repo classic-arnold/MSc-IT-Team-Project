@@ -249,20 +249,20 @@
 								<div class="card-body">
 									<h5 id="cardOneTitle" class="card-title">Avenger</h5>
 									<ul class="list-group list-group-flush">
-										<li id="cardOneCatOne" class="list-group-item">Size<span id="cardOneValOne"
-																								 class="float-right">4</span>
+										<li id="cardOneCatOne" class="list-group-item card-cat1">Size<span id="cardOneValOne"
+																								 class="float-right card-val1">4</span>
 										</li>
-										<li id="cardOneCatTwo" class="list-group-item">Speed<span id="cardOneValTwo"
-																								  class="float-right">4</span>
+										<li id="cardOneCatTwo" class="list-group-item card-cat2">Speed<span id="cardOneValTwo"
+																								  class="float-right card-val2">4</span>
 										</li>
-										<li id="cardOneCatThree" class="list-group-item">Range<span id="cardOneValThree"
-																									class="float-right">4</span>
+										<li id="cardOneCatThree" class="list-group-item card-cat3">Range<span id="cardOneValThree"
+																									class="float-right card-val3">4</span>
 										</li>
-										<li id="cardOneCatFour" class="list-group-item">Firepower<span id="cardOneValFour"
-																									   class="float-right">4</span>
+										<li id="cardOneCatFour" class="list-group-item card-cat4">Firepower<span id="cardOneValFour"
+																									   class="float-right card-val4">4</span>
 										</li>
-										<li id="cardOneCatFive" class="list-group-item">Cargo<span id="cardOneValFive"
-																								   class="float-right">4</span>
+										<li id="cardOneCatFive" class="list-group-item card-cat5">Cargo<span id="cardOneValFive"
+																								   class="float-right card-val5">4</span>
 										</li>
 									</ul>
 								</div>
@@ -277,20 +277,20 @@
 								<div class="card-body">
 									<h5 id="cardTwoTitle"class="card-title">m50</h5>
 									<ul class="list-group list-group-flush">
-										<li id="cardTwoCatOne" class="list-group-item">Size<span id="cardTwoValOne"
-																								 class="float-right">4</span>
+										<li id="cardTwoCatOne" class="list-group-item card-cat1">Size<span id="cardTwoValOne"
+																								 class="float-right card-val1">4</span>
 										</li>
-										<li id="cardTwoCatTwo" class="list-group-item">Speed<span id="cardTwoValTwo"
-																								  class="float-right">4</span>
+										<li id="cardTwoCatTwo" class="list-group-item card-cat2">Speed<span id="cardTwoValTwo"
+																								  class="float-right card-val2">4</span>
 										</li>
-										<li id="cardTwoCatThree" class="list-group-item">Range<span id="cardTwoValThree"
-																									class="float-right">4</span>
+										<li id="cardTwoCatThree" class="list-group-item card-cat3">Range<span id="cardTwoValThree"
+																									class="float-right card-val3">4</span>
 										</li>
-										<li id="cardTwoCatFour" class="list-group-item">Firepower<span id="cardTwoValFour"
-																									   class="float-right">4</span>
+										<li id="cardTwoCatFour" class="list-group-item card-cat4">Firepower<span id="cardTwoValFour"
+																									   class="float-right card-val4">4</span>
 										</li>
-										<li id="cardTwoCatFive" class="list-group-item">Cargo<span id="cardTwoValFive"
-																								   class="float-right">4</span>
+										<li id="cardTwoCatFive" class="list-group-item card-cat5">Cargo<span id="cardTwoValFive"
+																								   class="float-right card-val5">4</span>
 										</li>
 									</ul>
 								</div>
@@ -305,20 +305,20 @@
 								<div class="card-body">
 									<h5 id="cardThreeTitle" class="card-title">Orion</h5>
 									<ul class="list-group list-group-flush">
-										<li id="cardThreeCatOne" class="list-group-item">Size<span id="cardThreeValOne"
-																								   class="float-right">4</span>
+										<li id="cardThreeCatOne" class="list-group-item card-cat1">Size<span id="cardThreeValOne"
+																								   class="float-right card-val1">4</span>
 										</li>
-										<li id="cardThreeCatTwo" class="list-group-item">Speed<span id="cardThreeValTwo"
-																									class="float-right">4</span>
+										<li id="cardThreeCatTwo" class="list-group-item card-cat2">Speed<span id="cardThreeValTwo"
+																									class="float-right card-val2">4</span>
 										</li>
-										<li id="cardThreeCatThree" class="list-group-item">Range<span id="cardThreeValThree"
-																									  class="float-right">4</span>
+										<li id="cardThreeCatThree" class="list-group-item card-cat3">Range<span id="cardThreeValThree"
+																									  class="float-right card-val3">4</span>
 										</li>
-										<li id="cardThreeCarFour" class="list-group-item">Firepower<span id="cardThreeValFour"
-																										 class="float-right">4</span>
+										<li id="cardThreeCarFour" class="list-group-item card-cat4">Firepower<span id="cardThreeValFour"
+																										 class="float-right card-val4">4</span>
 										</li>
-										<li id="cardThreeCatFive" class="list-group-item">Cargo<span id="cardThreeValFive"
-																									 class="float-right">4</span>
+										<li id="cardThreeCatFive" class="list-group-item card-cat5">Cargo<span id="cardThreeValFive"
+																									 class="float-right card-val5">4</span>
 										</li>
 									</ul>
 								</div>
@@ -337,20 +337,20 @@
 								<div class="card-body">
 									<h5 id="cardFourTitle" class="card-title">Hawk</h5>
 									<ul class="list-group list-group-flush">
-										<li id="cardFourCatOne" class="list-group-item">Size<span id="cardFourValOne"
-																								  class="float-right">4</span>
+										<li id="cardFourCatOne" class="list-group-item card-cat1">Size<span id="cardFourValOne"
+																								  class="float-right card-val1">4</span>
 										</li>
-										<li id="cardFourCatTwo" class="list-group-item">Speed<span id="cardFourValTwo"
-																								   class="float-right">4</span>
+										<li id="cardFourCatTwo" class="list-group-item card-cat2">Speed<span id="cardFourValTwo"
+																								   class="float-right card-val2">4</span>
 										</li>
-										<li id="cardFourCatThree" class="list-group-item">Range<span id="cardFourValThree"
-																									 class="float-right">4</span>
+										<li id="cardFourCatThree" class="list-group-item card-cat3">Range<span id="cardFourValThree"
+																									 class="float-right card-val3">4</span>
 										</li>
-										<li id="cardFourCatFour" class="list-group-item">Firepower<span id="cardFourValFour"
-																										class="float-right">4</span>
+										<li id="cardFourCatFour" class="list-group-item card-cat4">Firepower<span id="cardFourValFour"
+																										class="float-right card-val4">4</span>
 										</li>
-										<li id="cardFourCatFive" class="list-group-item">Cargo<span id="cardFourValFive"
-																									class="float-right">4</span>
+										<li id="cardFourCatFive" class="list-group-item card-cat5">Cargo<span id="cardFourValFive"
+																									class="float-right card-val5">4</span>
 										</li>
 									</ul>
 								</div>
@@ -365,20 +365,20 @@
 								<div class="card-body">
 									<h5 id="cardFiveTitle" class="card-title">Hurricane</h5>
 									<ul class="list-group list-group-flush">
-										<li id="cardFiveCatOne" class="list-group-item ">Size<span id="cardFiveValOne"
-																								   class="float-right">4</span>
+										<li id="cardFiveCatOne" class="list-group-item card-cat1">Size<span id="cardFiveValOne"
+																								   class="float-right card-val1">4</span>
 										</li>
-										<li id="cardFiveCatTwo" class="list-group-item ">Speed<span id="cardFiveValTwo"
-																									class="float-right">4</span>
+										<li id="cardFiveCatTwo" class="list-group-item card-cat2">Speed<span id="cardFiveValTwo"
+																									class="float-right card-val2">4</span>
 										</li>
-										<li id="cardFiveCatThree" class="list-group-item ">Range<span id="cardFiveValThree"
-																									  class="float-right">4</span>
+										<li id="cardFiveCatThree" class="list-group-item card-cat3">Range<span id="cardFiveValThree"
+																									  class="float-right card-val3">4</span>
 										</li>
-										<li id="cardFiveCatFour" class="list-group-item">Firepower<span id="cardFiveValFour"
-																										class="float-right">4</span>
+										<li id="cardFiveCatFour" class="list-group-item card-cat4">Firepower<span id="cardFiveValFour"
+																										class="float-right card-val4">4</span>
 										</li>
-										<li id="cardFiveCatFive" class="list-group-item">Cargo<span id="cardFiveValFive"
-																									class="float-right">4</span>
+										<li id="cardFiveCatFive" class="list-group-item card-cat5">Cargo<span id="cardFiveValFive"
+																									class="float-right card-val5">4</span>
 										</li>
 									</ul>
 								</div>
@@ -392,11 +392,11 @@
 								<div class="card-body">
 									<h5 class="card-title">Sabre</h5>
 									<ul class="list-group list-group-flush">
-										<li class="list-group-item">Size<span class="float-right">4</span></li>
-										<li class="list-group-item">Speed<span class="float-right">4</span></li>
-										<li class="list-group-item">Range<span class="float-right">4</span></li>
-										<li class="list-group-item">Firepower<span class="float-right">4</span></li>
-										<li class="list-group-item">Cargo<span class="float-right">4</span></li>
+										<li class="list-group-item card-cat1">Size<span class="float-right card-val1">4</span></li>
+										<li class="list-group-item card-cat2">Speed<span class="float-right card-val2">4</span></li>
+										<li class="list-group-item card-cat3">Range<span class="float-right card-val3">4</span></li>
+										<li class="list-group-item card-cat4">Firepower<span class="float-right card-val4">4</span></li>
+										<li class="list-group-item card-cat5">Cargo<span class="float-right card-val5">4</span></li>
 									</ul>
 								</div>
 							</div>
@@ -587,7 +587,7 @@
 				
 				return new Promise((resolve,reject)=>{
 				
-					categoryList = changeStringToArray(categoryList);
+					categoryList = JSON.parse(categoryList);
 					
 					
 	// 				categorySelectedByHuman = categoryList[0];
@@ -653,7 +653,7 @@
 				
 				return new Promise((resolve,reject)=>{
 				
-					categoryList = changeStringToArray(categoryList);
+					categoryList = JSON.parse(categoryList);
 					
 					// First create a CORS request, this is the message we are going to send (a get request in this case)
 					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/getAIPlayerCategory"); // Request type and URL
@@ -734,13 +734,24 @@
 			}
 			
 			function updateCards(cards){
-// 				cards = changeStringToArray(cards);
-				console.log(cards);
+				cards = JSON.parse(cards);
 				$(document).ready(function() {
-					cards.map((card)=>{
-						$(".card").map(()=>{
-							$(this).find(".card-title").html(card.description)
-						});
+					$(".card").map((i, card)=>{
+						if(i>cards.length-1){
+							$(card).fadeOut("fast", "swing");
+						} else{
+							$(card).find(".card-title").html(cards[i].description);
+// 							$(card).find(".card-cat1").html(cards[i].description);
+// 							$(card).find(".card-cat2").html(cards[i].description);
+// 							$(card).find(".card-cat3").html(cards[i].description);
+// 							$(card).find(".card-cat4").html(cards[i].description);
+// 							$(card).find(".card-cat5").html(cards[i].description);
+							$(card).find(".card-val1").html(cards[i].category1);
+							$(card).find(".card-val2").html(cards[i].category2);
+							$(card).find(".card-val3").html(cards[i].category3);
+							$(card).find(".card-val4").html(cards[i].category4);
+							$(card).find(".card-val5").html(cards[i].category5);
+						}
 					});
 				});
 			}
@@ -831,21 +842,11 @@
 				// to do when the response arrives 
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					responseText = changeStringToArray(responseText);
+					responseText = JSON.parse(responseText);
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();		
-			}
-			
-			function changeStringToArray(string){
-				arr = string.split(",");
-				
-				arr.forEach((arrElem, i)=>{
-					arr[i] = arrElem.replace(/[^A-Za-z0-9]/g, "");
-				});
-				
-				return arr;
 			}
 			
 			// ------------------------------------------------------------ //
