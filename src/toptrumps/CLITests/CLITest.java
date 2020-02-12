@@ -28,6 +28,7 @@ import toptrumps.DataCard;
 import toptrumps.DataCardCache;
 import toptrumps.DataGame;
 import toptrumps.DataPlayer;
+import toptrumps.ProgramDatabase;
 import toptrumps.ViewCLI;
 
 public class CLITest {
@@ -107,19 +108,14 @@ public class CLITest {
 			this.model.startGame();
 
 			while(this.model.getGameState()==DataGame.GameState.RUNNING) {
-				this.view.updateView();
 				int category;
 
-
-				if(this.model.getRoundNumber() == 1) {
-					category = this.model.getBestCategoryForCurrentAIPlayers();
-					if(category == 0) {
-						category = 2;
-					}
-				} else if(this.model.shouldHumanChooseCategory()) {
-					category = 2;
+				DataPlayer activePlayer = this.model.getCategoryChooser();
+				this.view.updateView();
+				if(this.model.getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+					category = this.model.getBestCategoryForPlayer(activePlayer);
 				} else {
-					category = this.model.getBestCategoryForCurrentAIPlayers();
+					category = 2;
 				}
 
 				this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
@@ -161,6 +157,11 @@ public class CLITest {
 		//getActivePlayer in dataDame, getDeck in dataplayer to get the player's deck, then get the zeroth element class 
 		//model.getInitialShuffledDeck() does the shuffling
 		//check that the correct top card was returned for several rounds
+		
+		this.model.startGame();
+		
+		
+		
 	}
 	
 	@Test
@@ -282,43 +283,77 @@ public class CLITest {
 		//test that the largest number of rounds played in a single game is returned
 		//ensure that these values were calculated using SQL
 		
-		int startChoice = 2;
+		ProgramDatabase.clearDB(this.model);
+		
+		int game1RoundNumber = 0;
+		
 
-		if(startChoice == 2) {
+		this.model.startGame();
+		
 
-			this.model.startGame();
+		while(this.model.getGameState()==DataGame.GameState.RUNNING) {
+			int category;
+
+
+			DataPlayer activePlayer = this.model.getCategoryChooser();
+			this.view.updateView();
+			if(this.model.getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+				category = this.model.getBestCategoryForPlayer(activePlayer);
+			} else {
+				category = 2;
+			}
+			// int category = this.viewCli.displayCategorySelection();
+
+			this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
 			
+			game1RoundNumber = this.model.getRoundNumber();
 
-			while(this.model.getGameState()==DataGame.GameState.RUNNING) {
-				this.view.updateView();
-				int category;
+			this.model.incrementRound();
+
+		}
+		
+		assertEquals(DataGame.getAvgNumberOfDraws(), this.model.getNumberOfDraws(), 0.001);
+		
+		if(this.model.getGameWinner().getType() == DataPlayer.PlayerType.HUMAN) {
+			assertEquals(1, DataGame.getNumberOfHumanWins());
+		} else {
+			assertEquals(1, DataGame.getNumberOfAIWins());
+		}
+		
+		assertEquals(1, DataGame.getNumberOfGames());
+		
+		int game2RoundNumber = 0;
+
+		this.model.startGame();
+		
+
+		while(this.model.getGameState()==DataGame.GameState.RUNNING) {
+			int category;
 
 
-				if(this.model.getRoundNumber() == 1) {
-					category = this.model.getBestCategoryForCurrentAIPlayers();
-					if(category == 0) {
-						category = 2;
-					}
-				} else if(this.model.shouldHumanChooseCategory()) {
-					category = 2;
-					// category = 2;
-				} else {
-					category = this.model.getBestCategoryForCurrentAIPlayers();
-				}
-
-				// int category = this.viewCli.displayCategorySelection();
-
-				this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
-
-				this.model.incrementRound();
-
+			DataPlayer activePlayer = this.model.getCategoryChooser();
+			this.view.updateView();
+			if(this.model.getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+				category = this.model.getBestCategoryForPlayer(activePlayer);
+			} else {
+				category = this.view.displayCategorySelection();
 			}
 
-		} else {
-		}
+			// int category = this.viewCli.displayCategorySelection();
 
+			this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
+			
+			game2RoundNumber = this.model.getRoundNumber();
+
+			this.model.incrementRound();
+
+		}
 		
-		assert 2 == DataGame.getNumberOfGames();
+		int higherRoundNumber = game2RoundNumber>game1RoundNumber ? game2RoundNumber : game1RoundNumber;
+		
+		assertEquals(higherRoundNumber, DataGame.getLongestGame());
+		
+		
 	}
 	
 	@Test

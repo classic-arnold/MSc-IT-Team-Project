@@ -41,20 +41,28 @@ public class Controller {
 			}
 
 			while(this.dataGame.getGameState()==DataGame.GameState.RUNNING) {
-				this.viewCli.updateView();
+				
 				int category;
 
 
-				if(this.dataGame.getRoundNumber() == 1) {
-					category = this.dataGame.getBestCategoryForCurrentAIPlayers();
-					if(category == 0) {
-						category = this.viewCli.displayCategorySelection();
-					}
-				} else if(this.dataGame.shouldHumanChooseCategory()) {
-					category = this.viewCli.displayCategorySelection();
-					// category = 2;
+//				if(this.dataGame.getRoundNumber() == 1) {
+//					category = this.dataGame.getBestCategoryForCurrentAIPlayers();
+//					if(category == 0) {
+//						category = this.viewCli.displayCategorySelection();
+//					}
+//				} else if(this.dataGame.shouldHumanChooseCategory()) {
+//					category = this.viewCli.displayCategorySelection();
+//					// category = 2;
+//				} else {
+//					category = this.dataGame.getBestCategoryForCurrentAIPlayers();
+//				}
+				
+				DataPlayer activePlayer = this.dataGame.getCategoryChooser();
+				this.viewCli.updateView();
+				if(this.dataGame.getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+					category = this.dataGame.getBestCategoryForPlayer(activePlayer);
 				} else {
-					category = this.dataGame.getBestCategoryForCurrentAIPlayers();
+					category = this.viewCli.displayCategorySelection();
 				}
 
 				// int category = this.viewCli.displayCategorySelection();

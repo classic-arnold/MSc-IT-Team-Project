@@ -14,16 +14,16 @@ import java.sql.*;
  * */
 public class ProgramDatabase {
 
-	//When running database via lab desktop, release annotation below 3 line
-	//	private static final String url="jdbc:postgresql://yacata.dcs.gla.ac.uk:5432/m_19_2431088l";
+	//When running database via laptop(Estelle's), release annotation below 3 line
+	//	private static final String url="jdbc:postgresql://localhost:5432/m_19_2431088l";
 	//	private static final String userID="m_19_2431088l";
 	//	private static final String password="2431088l";
 
-	//When running database via laptop(Estelle's), release annotation below 3 line
-	private static final String url="jdbc:postgresql://localhost:5432/TopTrump";
-	private static final String userID="postgres";
-	private static final String password="qmffldqmffld3";
-//	private static final String password="postgres";
+	//When running database via remote IP address, release annotation below 3 line
+	private static final String url="jdbc:postgresql://52.24.215.108:5432/TryCatch";
+	private static final String userID="TryCatch";
+	private static final String password="TryCatch";
+	private static Connection conn;
 
 	private int gameCount;
 	private int humanWon;
@@ -78,17 +78,6 @@ public class ProgramDatabase {
 	}
 
 
-
-	/**
-	 *  Connection method 
-	 *  @returns connection (DriverManager.getConnection)
-	 *  */
-	public static Connection connection() throws SQLException{
-		return DriverManager.getConnection(url,userID,password);
-	}
-
-
-
 	/** 
 	 * insertion method
 	 * 
@@ -106,12 +95,11 @@ public class ProgramDatabase {
 	 * 'roundNumber:int' 
 	 * into Database table.
 	 * */
-	public void insertGameStats(DataGame model) {
+	void insertGameStats(DataGame model){
 		String SQL="INSERT INTO TOPTRUMPS.GAMESTATS "
 				+"VALUES (default, ?,?,?,?,?,?,?,?)";
-
 		try{
-			Connection conn=DriverManager.getConnection(url,userID,password);
+			conn=DriverManager.getConnection(url,userID,password);
 			PreparedStatement pstmt=conn.prepareStatement(SQL);
 
 			//get boolean value for isHumanWon
@@ -152,6 +140,19 @@ public class ProgramDatabase {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void clearDB(DataGame model) {
+           String SQL="delete from toptrumps.gamestats where true;";
+
+           try{
+                   conn=DriverManager.getConnection(url,userID,password);
+                   PreparedStatement pstmt=conn.prepareStatement(SQL);
+                   pstmt.executeUpdate();
+                   pstmt.close();
+           }catch(SQLException e) {
+                   e.printStackTrace();
+           }
+   }
 
 
 
@@ -165,19 +166,11 @@ public class ProgramDatabase {
 	 * 'counts for draws',
 	 * 'largestRound'
 	 */	
-	public void selectGameStats() {
+	void selectGameStats(){
 		try{
-			Connection conn=DriverManager.getConnection(url,userID,password);
+			conn=DriverManager.getConnection(url,userID,password);
 
 			Statement stmt=conn.createStatement();
-
-//			ResultSet rs=stmt.executeQuery("select" + 
-//					"	count(gameid) as gameCount," + 
-//					"	count(*) filter(where isHumanWon) as humanWon," + 
-//					"	count(*) filter(where not isHumanWon) as AIWon," + 
-//					"	round(avg(draws)::numeric,1) as averageDraws," + 
-//					"	max(roundNumber) as largestRound" + 
-//					"from TopTrumps.gameStats;");
 			
 			ResultSet rs=stmt.executeQuery("select \r\n" + 
 					"	count(gameid) as gameCount, \r\n" + 
@@ -206,9 +199,6 @@ public class ProgramDatabase {
 
 	}
 
-
-
-
 	public static void main(String[] args) {
 		//load the JDBC driver
 		try {
@@ -222,9 +212,8 @@ public class ProgramDatabase {
 		//the driver is loaded
 		System.out.println("PostgreSQL JDBC Driver found!");
 
-		//connect to the yacata.dcs.gla.ac.uk server, on port=5432
 		try {
-			connection();
+			conn=DriverManager.getConnection(url,userID,password);
 			System.out.println("Opened database successfully");
 		}catch(SQLException e) {
 			System.out.println("Connection Failed!");
