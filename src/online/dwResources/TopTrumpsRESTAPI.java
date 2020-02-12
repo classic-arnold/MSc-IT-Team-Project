@@ -185,7 +185,10 @@ public class TopTrumpsRESTAPI {
 	@Path("/game/roundCards")
 	public String getRoundCardsBeforePlayRound() throws IOException{	
 		List<DataCard> listOfCards=new ArrayList<DataCard>();
-		listOfCards.add(model.getRoundHumanPlayerCardBeforePlayRound());
+		DataCard humanCard = model.getRoundHumanPlayerCardBeforePlayRound();
+		if(humanCard!=null) {
+			listOfCards.add(model.getRoundHumanPlayerCardBeforePlayRound());
+		}
 		DataCard[] cards = model.getRoundAIPlayerCardsBeforePlayRound();
 		for(int i=0;i<cards.length;i++) {
 			listOfCards.add(cards[i]);
@@ -220,12 +223,7 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/game/activePlayers")
 	public String getActivePlayers() throws IOException{
-		List<DataPlayer> activePlayersInList=new ArrayList<DataPlayer>();
-		for(int i=0;i<model.getActivePlayers().length;i++) {
-			activePlayersInList.add(model.getActivePlayers()[i]);
-		}
-		
-		String activePlayersAsString=oWriter.writeValueAsString(activePlayersInList);
+		String activePlayersAsString=oWriter.writeValueAsString(model.getActivePlayers());
 		return activePlayersAsString;
 	}
 	

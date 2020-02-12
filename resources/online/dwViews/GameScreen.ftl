@@ -447,7 +447,7 @@
 								});
 							});
 							
-							$(".card-deck").fadeIn("fast", "swing");
+// 							$(".card-deck").fadeIn("fast", "swing");
 // 							loadCards();
 						});
 					});
@@ -767,6 +767,7 @@
 				});
 			}
 			
+			
 			function getNoOfCardsLeft(playersName){
 				return new Promise((resolve)=>{
 					// First create a CORS request, this is the message we are going to send (a get request in this case)
@@ -807,18 +808,31 @@
 				cards = JSON.parse(cards);
 				$(document).ready(function() {
 					$(".card").map((i, card)=>{
-						if(i>cards.length-1){
-							$(card).fadeOut("fast", "swing");
-						} else{
+					
+						// if(i>cards.length-1){
+// 							$(card).fadeOut("fast", "swing");
+// 						} else{
+// 							$(card).find(".card-title").html(cards[i].description);
+// 							$(card).find(".card-val1").html(cards[i].category1);
+// 							$(card).find(".card-val2").html(cards[i].category2);
+// 							$(card).find(".card-val3").html(cards[i].category3);
+// 							$(card).find(".card-val4").html(cards[i].category4);
+// 							$(card).find(".card-val5").html(cards[i].category5);
+// 						}
+						try{
 							$(card).find(".card-title").html(cards[i].description);
 							$(card).find(".card-val1").html(cards[i].category1);
 							$(card).find(".card-val2").html(cards[i].category2);
 							$(card).find(".card-val3").html(cards[i].category3);
 							$(card).find(".card-val4").html(cards[i].category4);
 							$(card).find(".card-val5").html(cards[i].category5);
+						} catch(e){
+							$(card).fadeOut("fast", "swing");
 						}
 					});
 				});
+				$(".card-deck").fadeIn("fast", "swing");
+				
 			}
 			
 			async function playRound(){
@@ -874,10 +888,11 @@
 // 								$("#status-message").html("Game won by " + responseText + ".");
 // 								resolve();
 
-								$("#actionButton").fadeOut("fast", "swing");
+
+								$("#actionButton").toggle();
+								$(".card-deck").toggle();
 								$("#status-message").html("Game won by " + responseText + ".");
 								resolve();
-								
 							});
 						}
 						
@@ -948,6 +963,13 @@
 				}
 				return xhr;
 			}
+			
+			$(document).ready(function() {
+				// all custom jQuery will go here
+				$(window).bind('beforeunload', function(){
+				  return 'Are you sure you want to leave? All game progress will be lost!';
+				});
+			});
 		</script>
 	</body>
 </html>

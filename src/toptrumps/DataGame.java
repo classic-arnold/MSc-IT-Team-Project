@@ -797,7 +797,11 @@ public class DataGame{
 	 * @return DataCard representing card drawn by human player for this round
 	 */
 	public DataCard getRoundHumanPlayerCardBeforePlayRound() {
-		return this.getHumanPlayer().getDeck().get(0);
+		try {
+			return this.getHumanPlayer().getDeck().get(0);
+		} catch(IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 	/**
