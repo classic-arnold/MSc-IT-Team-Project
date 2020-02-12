@@ -676,7 +676,7 @@ public class DataGame{
 	 * @return DataPlayer array containing active players still in the game
 	 */
 	public DataPlayer[] getActivePlayers() {
-		return this.activePlayers.toArray(new DataPlayer[this.activePlayers.size()]);
+		return DataGame.arrayListToArrayPlayer(this.activePlayers);
 	}
 
 	/**
@@ -814,7 +814,7 @@ public class DataGame{
 	 */
 	public DataCard[] getRoundAIPlayerCardsBeforePlayRound() {
 		ArrayList<DataCard> cards = new ArrayList<DataCard>();
-		DataPlayer[] players = this.getAllPlayers();
+		DataPlayer[] players = this.getActivePlayers();
 		for(DataPlayer player : players) {
 			if(player.getType() == DataPlayer.PlayerType.AI)
 			cards.add(player.getDeck().get(0));

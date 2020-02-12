@@ -332,17 +332,19 @@ public class TopTrumpsRESTAPI {
 	 * get playerName's deck number
 	 * @return JSONString
 	 * @throws IOException*/
-	public String getPlayerDeck(@QueryParam("playerName") String playerName) throws IOException{
+	@GET
+	@Path("/game/cardsLeft")
+	public int getPlayerDeck(@QueryParam("playerName") String playerName) throws IOException{
 		int numberOfDeck=0;
-		while(playerName!=null) {
-			for(int i=0;i<model.getActivePlayers().length;i++) {
-				if(model.getActivePlayers()[i].getName().equals(playerName)) {
-					numberOfDeck=model.getActivePlayers()[i].getDeck().size();
+		DataPlayer[] players = model.getActivePlayers();
+		if(playerName!=null) {
+			for(int i=0;i<players.length;i++) {
+				if(players[i].getName().equals(playerName)) {
+					numberOfDeck=players[i].getDeck().size();
 				}
 			}
 		}
-		String numberOfPlayerDeckAsString=oWriter.writeValueAsString(numberOfDeck);
-		return numberOfPlayerDeckAsString;
+		return numberOfDeck;
 	}
 	
 	

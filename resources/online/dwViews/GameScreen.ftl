@@ -239,8 +239,8 @@
 					<div class="row justify-content-center">
 						<div class="card-deck">
 							<div id="cardOne" class="card" style="width: 3rem;">
-								<div id="playerOneCard" class="card-header">Player Name <span id="deckOne"
-																							  class="badge badge-primary float-right"></span>
+								<div id="playerOneCard" class="card-header"><span class="player-name"></span><span id="deckOne"
+																							  class="badge badge-primary float-right cards-left"></span>
 								</div>
 								<div class="row justify-content-center">
 								<img class="card-img-top" src="http://dcs.gla.ac.uk/~richardm/TopTrumps/Avenger.jpg" width="100" height="100"
@@ -268,8 +268,8 @@
 								</div>
 							</div>
 							<div id="cardTwo" class="card">
-								<div id="playerTwoCard" class="card-header">Player Name <span id="deckTwo"
-																							  class="badge badge-primary float-right"></span>
+								<div id="playerTwoCard" class="card-header"><span class="player-name"></span><span id="deckTwo"
+																							  class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -296,8 +296,8 @@
 								</div>
 							</div>
 							<div id="cardThree" class="card">
-								<div id="playerThreeCard" class="card-header">Player Name <span id="DeckThree"
-																								class="badge badge-primary float-right"></span>
+								<div id="playerThreeCard" class="card-header"><span class="player-name"></span><span id="DeckThree"
+																								class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -328,8 +328,8 @@
 					<div class="row justify-content-center cardrow2">
 						<div class="card-deck">
 							<div id="cardFour" class="card" style="width: 3rem;">
-								<div id="playerFourCard" class="card-header">Player Name <span id="deckFour"
-																							   class="badge badge-primary float-right"></span>
+								<div id="playerFourCard" class="card-header"><span class="player-name"></span><span id="deckFour"
+																							   class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -356,8 +356,8 @@
 								</div>
 							</div>
 							<div id="cardFive" class="card">
-								<div id="playerFiveCard" class="card-header">Player Name <span id="DeckFive"
-																							   class="badge badge-primary float-right"></span>
+								<div id="playerFiveCard" class="card-header"><span class="player-name"></span><span id="DeckFive"
+																							   class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -384,7 +384,7 @@
 								</div>
 							</div>
 							<div id="cardSix" class="card">
-								<div class="card-header">Player Name <span class="badge badge-primary float-right"></span>
+								<div class="card-header"><span class="player-name"></span><span class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -743,6 +743,67 @@
 				});
 			}
 			
+			function getRoundActivePlayers(){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/activePlayers"); // Request type and URL
+				
+	
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response// 
+						updatePlayers(responseText);
+						resolve();
+					};
+	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			function getNoOfCardsLeft(playersName){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/cardsLeft?playerName="+playersName); // Request type and URL
+				
+	
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response//
+						resolve(responseText);
+					};
+	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			function updatePlayers(players){
+				players = JSON.parse(players);
+				
+				$(document).ready(function() {
+					$(".card").map(async(i, card)=>{
+						if(i<=players.length-1){
+							console.log(players[i]);
+							$(card).find(".player-name").html(players[i].name);
+							$(card).find(".cards-left").html(await getNoOfCardsLeft(players[i].name));
+						}
+					});
+				});
+			}
+			
 			function updateCards(cards){
 				cards = JSON.parse(cards);
 				$(document).ready(function() {
@@ -751,11 +812,6 @@
 							$(card).fadeOut("fast", "swing");
 						} else{
 							$(card).find(".card-title").html(cards[i].description);
-// 							$(card).find(".card-cat1").html(cards[i].description);
-// 							$(card).find(".card-cat2").html(cards[i].description);
-// 							$(card).find(".card-cat3").html(cards[i].description);
-// 							$(card).find(".card-cat4").html(cards[i].description);
-// 							$(card).find(".card-cat5").html(cards[i].description);
 							$(card).find(".card-val1").html(cards[i].category1);
 							$(card).find(".card-val2").html(cards[i].category2);
 							$(card).find(".card-val3").html(cards[i].category3);
@@ -773,9 +829,9 @@
 				
 						
 				let roundNumber = await getRoundNumber();
-				console.log(roundNumber)
 				if(roundNumber==="1"){
 					await getRoundActiveCards();
+					await getRoundActivePlayers();
 				}
 				
 				if(humanSelectCategory === "true"){
@@ -830,8 +886,10 @@
 							// all custom jQuery will go here
 							$("#actionButton").html("NEXT ROUND");
 							$("#actionButton").click(async ()=>{
-								$('#actionButton').off('click');
+								$('#actionButton').off('click');								
 								await getRoundActiveCards();
+								await getRoundActivePlayers();
+								
 								playRound();
 							});
 						});
