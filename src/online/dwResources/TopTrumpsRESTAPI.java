@@ -183,10 +183,10 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/roundCards")
-	public String getRoundCards() throws IOException{	
+	public String getRoundCardsBeforePlayRound() throws IOException{	
 		List<DataCard> listOfCards=new ArrayList<DataCard>();
-		listOfCards.add(model.getRoundHumanPlayerCard());
-		DataCard[] cards = model.getRoundAIPlayerCards();
+		listOfCards.add(model.getRoundHumanPlayerCardBeforePlayRound());
+		DataCard[] cards = model.getRoundAIPlayerCardsBeforePlayRound();
 		for(int i=0;i<cards.length;i++) {
 			listOfCards.add(cards[i]);
 		}

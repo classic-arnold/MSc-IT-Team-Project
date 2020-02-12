@@ -789,11 +789,15 @@ public class DataGame{
 	 * @return DataCard representing card drawn by human player for this round
 	 */
 	public DataCard getRoundHumanPlayerCard() {
-		if(this.roundHumanPlayerCard!=null) {
-			return this.roundHumanPlayerCard;
-		} else {
-			return this.getHumanPlayer().getDeck().get(0);
-		}
+		return this.roundHumanPlayerCard;
+	}
+	
+	/**
+	 * get the card drawn by human player for this round
+	 * @return DataCard representing card drawn by human player for this round
+	 */
+	public DataCard getRoundHumanPlayerCardBeforePlayRound() {
+		return this.getHumanPlayer().getDeck().get(0);
 	}
 
 	/**
@@ -801,17 +805,21 @@ public class DataGame{
 	 * @return DataCard array representing the cards drawn by AI player
 	 */
 	public DataCard[] getRoundAIPlayerCards() {
-		if(!this.roundAIPlayerCards.isEmpty()) {
-			return DataGame.arrayListToArrayCard(this.roundAIPlayerCards);
-		} else {
-			ArrayList<DataCard> cards = new ArrayList<DataCard>();
-			DataPlayer[] players = this.getAllPlayers();
-			for(DataPlayer player : players) {
-				if(player.getType() == DataPlayer.PlayerType.AI)
-				cards.add(player.getDeck().get(0));
-			}
-			return DataGame.arrayListToArrayCard(cards);
+		return DataGame.arrayListToArrayCard(this.roundAIPlayerCards);
+	}
+	
+	/**
+	 * get all cards drawn by AI player. Card owners cannot be identified.
+	 * @return DataCard array representing the cards drawn by AI player
+	 */
+	public DataCard[] getRoundAIPlayerCardsBeforePlayRound() {
+		ArrayList<DataCard> cards = new ArrayList<DataCard>();
+		DataPlayer[] players = this.getAllPlayers();
+		for(DataPlayer player : players) {
+			if(player.getType() == DataPlayer.PlayerType.AI)
+			cards.add(player.getDeck().get(0));
 		}
+		return DataGame.arrayListToArrayCard(cards);
 	}
 
 	/**

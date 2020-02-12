@@ -240,7 +240,7 @@
 						<div class="card-deck">
 							<div id="cardOne" class="card" style="width: 3rem;">
 								<div id="playerOneCard" class="card-header">Player Name <span id="deckOne"
-																							  class="badge badge-primary float-right">4</span>
+																							  class="badge badge-primary float-right"></span>
 								</div>
 								<div class="row justify-content-center">
 								<img class="card-img-top" src="http://dcs.gla.ac.uk/~richardm/TopTrumps/Avenger.jpg" width="100" height="100"
@@ -250,26 +250,26 @@
 									<h5 id="cardOneTitle" class="card-title">Avenger</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardOneCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardOneValOne"
-																								 class="float-right card-val1">4</span>
+																								 class="float-right card-val1"></span>
 										</li>
 										<li id="cardOneCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardOneValTwo"
-																								  class="float-right card-val2">4</span>
+																								  class="float-right card-val2"></span>
 										</li>
 										<li id="cardOneCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardOneValThree"
-																									class="float-right card-val3">4</span>
+																									class="float-right card-val3"></span>
 										</li>
 										<li id="cardOneCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardOneValFour"
-																									   class="float-right card-val4">4</span>
+																									   class="float-right card-val4"></span>
 										</li>
 										<li id="cardOneCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardOneValFive"
-																								   class="float-right card-val5">4</span>
+																								   class="float-right card-val5"></span>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div id="cardTwo" class="card">
 								<div id="playerTwoCard" class="card-header">Player Name <span id="deckTwo"
-																							  class="badge badge-primary float-right">4</span>
+																							  class="badge badge-primary float-right"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -278,26 +278,26 @@
 									<h5 id="cardTwoTitle"class="card-title">m50</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardTwoCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardTwoValOne"
-																								 class="float-right card-val1">4</span>
+																								 class="float-right card-val1"></span>
 										</li>
 										<li id="cardTwoCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardTwoValTwo"
-																								  class="float-right card-val2">4</span>
+																								  class="float-right card-val2"></span>
 										</li>
 										<li id="cardTwoCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardTwoValThree"
-																									class="float-right card-val3">4</span>
+																									class="float-right card-val3"></span>
 										</li>
 										<li id="cardTwoCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardTwoValFour"
-																									   class="float-right card-val4">4</span>
+																									   class="float-right card-val4"></span>
 										</li>
 										<li id="cardTwoCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardTwoValFive"
-																								   class="float-right card-val5">4</span>
+																								   class="float-right card-val5"></span>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div id="cardThree" class="card">
 								<div id="playerThreeCard" class="card-header">Player Name <span id="DeckThree"
-																								class="badge badge-primary float-right">4</span>
+																								class="badge badge-primary float-right"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -306,19 +306,19 @@
 									<h5 id="cardThreeTitle" class="card-title">Orion</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardThreeCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardThreeValOne"
-																								   class="float-right card-val1">4</span>
+																								   class="float-right card-val1"></span>
 										</li>
 										<li id="cardThreeCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardThreeValTwo"
-																									class="float-right card-val2">4</span>
+																									class="float-right card-val2"></span>
 										</li>
 										<li id="cardThreeCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardThreeValThree"
-																									  class="float-right card-val3">4</span>
+																									  class="float-right card-val3"></span>
 										</li>
 										<li id="cardThreeCarFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardThreeValFour"
-																										 class="float-right card-val4">4</span>
+																										 class="float-right card-val4"></span>
 										</li>
 										<li id="cardThreeCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardThreeValFive"
-																									 class="float-right card-val5">4</span>
+																									 class="float-right card-val5"></span>
 										</li>
 									</ul>
 								</div>
@@ -329,7 +329,7 @@
 						<div class="card-deck">
 							<div id="cardFour" class="card" style="width: 3rem;">
 								<div id="playerFourCard" class="card-header">Player Name <span id="deckFour"
-																							   class="badge badge-primary float-right">4</span>
+																							   class="badge badge-primary float-right"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -338,26 +338,26 @@
 									<h5 id="cardFourTitle" class="card-title">Hawk</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardFourCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardFourValOne"
-																								  class="float-right card-val1">4</span>
+																								  class="float-right card-val1"></span>
 										</li>
 										<li id="cardFourCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardFourValTwo"
-																								   class="float-right card-val2">4</span>
+																								   class="float-right card-val2"></span>
 										</li>
 										<li id="cardFourCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardFourValThree"
-																									 class="float-right card-val3">4</span>
+																									 class="float-right card-val3"></span>
 										</li>
 										<li id="cardFourCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardFourValFour"
-																										class="float-right card-val4">4</span>
+																										class="float-right card-val4"></span>
 										</li>
 										<li id="cardFourCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardFourValFive"
-																									class="float-right card-val5">4</span>
+																									class="float-right card-val5"></span>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div id="cardFive" class="card">
 								<div id="playerFiveCard" class="card-header">Player Name <span id="DeckFive"
-																							   class="badge badge-primary float-right">4</span>
+																							   class="badge badge-primary float-right"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -366,25 +366,25 @@
 									<h5 id="cardFiveTitle" class="card-title">Hurricane</h5>
 									<ul class="list-group list-group-flush">
 										<li id="cardFiveCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardFiveValOne"
-																								   class="float-right card-val1">4</span>
+																								   class="float-right card-val1"></span>
 										</li>
 										<li id="cardFiveCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardFiveValTwo"
-																									class="float-right card-val2">4</span>
+																									class="float-right card-val2"></span>
 										</li>
 										<li id="cardFiveCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardFiveValThree"
-																									  class="float-right card-val3">4</span>
+																									  class="float-right card-val3"></span>
 										</li>
 										<li id="cardFiveCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardFiveValFour"
-																										class="float-right card-val4">4</span>
+																										class="float-right card-val4"></span>
 										</li>
 										<li id="cardFiveCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardFiveValFive"
-																									class="float-right card-val5">4</span>
+																									class="float-right card-val5"></span>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div id="cardSix" class="card">
-								<div class="card-header">Player Name <span class="badge badge-primary float-right">4</span>
+								<div class="card-header">Player Name <span class="badge badge-primary float-right"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -392,11 +392,11 @@
 								<div class="card-body">
 									<h5 class="card-title">Sabre</h5>
 									<ul class="list-group list-group-flush">
-										<li class="list-group-item card-cat1"><span class="cat-1"></span><span class="float-right card-val1">4</span></li>
-										<li class="list-group-item card-cat2"><span class="cat-2"></span><span class="float-right card-val2">4</span></li>
-										<li class="list-group-item card-cat3"><span class="cat-3"></span><span class="float-right card-val3">4</span></li>
-										<li class="list-group-item card-cat4"><span class="cat-4"></span><span class="float-right card-val4">4</span></li>
-										<li class="list-group-item card-cat5"><span class="cat-5"></span><span class="float-right card-val5">4</span></li>
+										<li class="list-group-item card-cat1"><span class="cat-1"></span><span class="float-right card-val1"></span></li>
+										<li class="list-group-item card-cat2"><span class="cat-2"></span><span class="float-right card-val2"></span></li>
+										<li class="list-group-item card-cat3"><span class="cat-3"></span><span class="float-right card-val3"></span></li>
+										<li class="list-group-item card-cat4"><span class="cat-4"></span><span class="float-right card-val4"></span></li>
+										<li class="list-group-item card-cat5"><span class="cat-5"></span><span class="float-right card-val5"></span></li>
 									</ul>
 								</div>
 							</div>
@@ -513,28 +513,29 @@
 			}
 			
 			function getRoundNumber(){
-				
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundNumber"); // Request type and URL
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundNumber"); // Request type and URL
 		
-				// Message is not sent yet, but we can check that the browser supports CORS
-				if (!xhr) {
-					alert("CORS not supported");
-				}
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
 
-				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives
-				xhr.onload = function(e) {
-					var responseText = xhr.response; // the text of the response
-					$(document).ready(function() {
-						// all custom jQuery will go here
-						$("#status-message").html("Round Number " + responseText + ".");
-					});
-					return responseText;
-				};
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response
+						$(document).ready(function() {
+							// all custom jQuery will go here
+							$("#status-message").html("Round Number " + responseText + ".");
+						});
+						resolve(responseText);
+					};
 		
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();
+				});
 			}
 			
 			function shouldHumanSelectCategory(){
@@ -643,6 +644,7 @@
 					}
 				};
 				
+				
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();
 				
@@ -733,6 +735,7 @@
 					xhr.onload = function(e) {
 						var responseText = xhr.response; // the text of the response// 
 						updateCards(responseText);
+						resolve();
 					};
 	
 					// We have done everything we need to prepare the CORS request, so send it
@@ -768,8 +771,12 @@
 
 				let categorySelected;
 				
-				getRoundNumber();
-				getRoundActiveCards();
+						
+				let roundNumber = await getRoundNumber();
+				console.log(roundNumber)
+				if(roundNumber==="1"){
+					await getRoundActiveCards();
+				}
 				
 				if(humanSelectCategory === "true"){
 					categorySelected = await selectCategoryForHuman();
@@ -792,7 +799,8 @@
 
 					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
 					// to do when the response arrives
-					xhr.onload = function(e) {
+					xhr.onload = async function(e) {
+						
 						var responseText = xhr.response; // the text of the response
 						
 						getRoundWinner();
@@ -821,13 +829,13 @@
 						$(document).ready(function() {
 							// all custom jQuery will go here
 							$("#actionButton").html("NEXT ROUND");
-							$("#actionButton").click(()=>{
+							$("#actionButton").click(async ()=>{
 								$('#actionButton').off('click');
+								await getRoundActiveCards();
 								playRound();
 							});
 						});
 					};
-					
 		
 					// We have done everything we need to prepare the CORS request, so send it
 					xhr.send();	
