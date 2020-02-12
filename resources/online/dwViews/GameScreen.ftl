@@ -735,9 +735,21 @@
 						if(responseText != "running"){
 							$(document).ready(function() {
 								// all custom jQuery will go here
+								// $("#actionButton").html("Start New Game");
+// 								$("#actionButton").click(()=>{
+// 									$('#actionButton').off('click');
+// 									$("#actionButtonDiv").fadeOut("fast", "swing", ()=>{
+// 										$("#selectPlayersMenu").fadeIn("fast", "swing");
+// 									});
+// 									initalize();
+// 								});
+// 								$("#status-message").html("Game won by " + responseText + ".");
+// 								resolve();
+
 								$("#actionButton").fadeOut("fast", "swing");
 								$("#status-message").html("Game won by " + responseText + ".");
 								resolve();
+								
 							});
 						}
 						
