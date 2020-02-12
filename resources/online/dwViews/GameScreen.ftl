@@ -875,7 +875,7 @@
 						getRoundWinner();
 						
 						if(responseText != "running"){
-							$(document).ready(function() {
+							$(document).ready(async function() {
 								// all custom jQuery will go here
 								// $("#actionButton").html("Start New Game");
 // 								$("#actionButton").click(()=>{
@@ -889,8 +889,9 @@
 // 								resolve();
 
 
-								$("#actionButton").toggle();
-								$(".card-deck").toggle();
+								$("#actionButton").toggle();								
+								await getRoundActiveCards();
+								await getRoundActivePlayers();
 								$("#status-message").html("Game won by " + responseText + ".");
 								resolve();
 							});
