@@ -796,7 +796,6 @@
 				$(document).ready(function() {
 					$(".card").map(async(i, card)=>{
 						if(i<=players.length-1){
-							console.log(players[i]);
 							$(card).find(".player-name").html(players[i].name);
 							$(card).find(".cards-left").html(await getNoOfCardsLeft(players[i].name));
 						}

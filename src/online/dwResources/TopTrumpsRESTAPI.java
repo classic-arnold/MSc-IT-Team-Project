@@ -570,15 +570,15 @@ public class TopTrumpsRESTAPI {
 	 * @throws IOException
 	 */	
 	@GET
-	@Path("/stats/statistics")
+	@Path("/stats/statistics") // implement this as HashMap
 	public String getStatistics() throws IOException{		
-		List<String> statistics=new ArrayList<String>();
+		HashMap<String, String> statistics=new HashMap<String, String>();
 		
-		statistics.add(model.getNumberOfGames()+"");
-		statistics.add(model.getNumberOfHumanWins()+"");
-		statistics.add(model.getNumberOfAIWins()+"");
-		statistics.add(model.getAvgNumberOfDraws()+"");
-		statistics.add(model.getLongestGame()+"");
+		statistics.put("numberOfGames", DataGame.getNumberOfGames()+"");
+		statistics.put("numberOfHumanWins", DataGame.getNumberOfHumanWins()+"");
+		statistics.put("numberOfAIWins", DataGame.getNumberOfAIWins()+"");
+		statistics.put("avgNumberOfDraws", DataGame.getAvgNumberOfDraws()+"");
+		statistics.put("roundNumberOfLongestGame", DataGame.getLongestGame()+"");
 
 		String statisticsAsString=oWriter.writeValueAsString(statistics);
 		
