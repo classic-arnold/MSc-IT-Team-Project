@@ -239,8 +239,8 @@
 					<div class="row justify-content-center">
 						<div class="card-deck">
 							<div id="cardOne" class="card" style="width: 3rem;">
-								<div id="playerOneCard" class="card-header">Player Name <span id="deckOne"
-																							  class="badge badge-primary float-right">4</span>
+								<div id="playerOneCard" class="card-header"><span class="player-name"></span><span id="deckOne"
+																							  class="badge badge-primary float-right cards-left"></span>
 								</div>
 								<div class="row justify-content-center">
 								<img class="card-img-top" src="http://dcs.gla.ac.uk/~richardm/TopTrumps/Avenger.jpg" width="100" height="100"
@@ -249,27 +249,27 @@
 								<div class="card-body">
 									<h5 id="cardOneTitle" class="card-title">Avenger</h5>
 									<ul class="list-group list-group-flush">
-										<li id="cardOneCatOne" class="list-group-item">Size<span id="cardOneValOne"
-																								 class="float-right">4</span>
+										<li id="cardOneCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardOneValOne"
+																								 class="float-right card-val1"></span>
 										</li>
-										<li id="cardOneCatTwo" class="list-group-item">Speed<span id="cardOneValTwo"
-																								  class="float-right">4</span>
+										<li id="cardOneCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardOneValTwo"
+																								  class="float-right card-val2"></span>
 										</li>
-										<li id="cardOneCatThree" class="list-group-item">Range<span id="cardOneValThree"
-																									class="float-right">4</span>
+										<li id="cardOneCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardOneValThree"
+																									class="float-right card-val3"></span>
 										</li>
-										<li id="cardOneCatFour" class="list-group-item">Firepower<span id="cardOneValFour"
-																									   class="float-right">4</span>
+										<li id="cardOneCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardOneValFour"
+																									   class="float-right card-val4"></span>
 										</li>
-										<li id="cardOneCatFive" class="list-group-item">Cargo<span id="cardOneValFive"
-																								   class="float-right">4</span>
+										<li id="cardOneCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardOneValFive"
+																								   class="float-right card-val5"></span>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div id="cardTwo" class="card">
-								<div id="playerTwoCard" class="card-header">Player Name <span id="deckTwo"
-																							  class="badge badge-primary float-right">4</span>
+								<div id="playerTwoCard" class="card-header"><span class="player-name"></span><span id="deckTwo"
+																							  class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -277,27 +277,27 @@
 								<div class="card-body">
 									<h5 id="cardTwoTitle"class="card-title">m50</h5>
 									<ul class="list-group list-group-flush">
-										<li id="cardTwoCatOne" class="list-group-item">Size<span id="cardTwoValOne"
-																								 class="float-right">4</span>
+										<li id="cardTwoCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardTwoValOne"
+																								 class="float-right card-val1"></span>
 										</li>
-										<li id="cardTwoCatTwo" class="list-group-item">Speed<span id="cardTwoValTwo"
-																								  class="float-right">4</span>
+										<li id="cardTwoCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardTwoValTwo"
+																								  class="float-right card-val2"></span>
 										</li>
-										<li id="cardTwoCatThree" class="list-group-item">Range<span id="cardTwoValThree"
-																									class="float-right">4</span>
+										<li id="cardTwoCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardTwoValThree"
+																									class="float-right card-val3"></span>
 										</li>
-										<li id="cardTwoCatFour" class="list-group-item">Firepower<span id="cardTwoValFour"
-																									   class="float-right">4</span>
+										<li id="cardTwoCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardTwoValFour"
+																									   class="float-right card-val4"></span>
 										</li>
-										<li id="cardTwoCatFive" class="list-group-item">Cargo<span id="cardTwoValFive"
-																								   class="float-right">4</span>
+										<li id="cardTwoCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardTwoValFive"
+																								   class="float-right card-val5"></span>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div id="cardThree" class="card">
-								<div id="playerThreeCard" class="card-header">Player Name <span id="DeckThree"
-																								class="badge badge-primary float-right">4</span>
+								<div id="playerThreeCard" class="card-header"><span class="player-name"></span><span id="DeckThree"
+																								class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -305,20 +305,20 @@
 								<div class="card-body">
 									<h5 id="cardThreeTitle" class="card-title">Orion</h5>
 									<ul class="list-group list-group-flush">
-										<li id="cardThreeCatOne" class="list-group-item">Size<span id="cardThreeValOne"
-																								   class="float-right">4</span>
+										<li id="cardThreeCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardThreeValOne"
+																								   class="float-right card-val1"></span>
 										</li>
-										<li id="cardThreeCatTwo" class="list-group-item">Speed<span id="cardThreeValTwo"
-																									class="float-right">4</span>
+										<li id="cardThreeCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardThreeValTwo"
+																									class="float-right card-val2"></span>
 										</li>
-										<li id="cardThreeCatThree" class="list-group-item">Range<span id="cardThreeValThree"
-																									  class="float-right">4</span>
+										<li id="cardThreeCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardThreeValThree"
+																									  class="float-right card-val3"></span>
 										</li>
-										<li id="cardThreeCarFour" class="list-group-item">Firepower<span id="cardThreeValFour"
-																										 class="float-right">4</span>
+										<li id="cardThreeCarFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardThreeValFour"
+																										 class="float-right card-val4"></span>
 										</li>
-										<li id="cardThreeCatFive" class="list-group-item">Cargo<span id="cardThreeValFive"
-																									 class="float-right">4</span>
+										<li id="cardThreeCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardThreeValFive"
+																									 class="float-right card-val5"></span>
 										</li>
 									</ul>
 								</div>
@@ -328,8 +328,8 @@
 					<div class="row justify-content-center cardrow2">
 						<div class="card-deck">
 							<div id="cardFour" class="card" style="width: 3rem;">
-								<div id="playerFourCard" class="card-header">Player Name <span id="deckFour"
-																							   class="badge badge-primary float-right">4</span>
+								<div id="playerFourCard" class="card-header"><span class="player-name"></span><span id="deckFour"
+																							   class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -337,27 +337,27 @@
 								<div class="card-body">
 									<h5 id="cardFourTitle" class="card-title">Hawk</h5>
 									<ul class="list-group list-group-flush">
-										<li id="cardFourCatOne" class="list-group-item">Size<span id="cardFourValOne"
-																								  class="float-right">4</span>
+										<li id="cardFourCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardFourValOne"
+																								  class="float-right card-val1"></span>
 										</li>
-										<li id="cardFourCatTwo" class="list-group-item">Speed<span id="cardFourValTwo"
-																								   class="float-right">4</span>
+										<li id="cardFourCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardFourValTwo"
+																								   class="float-right card-val2"></span>
 										</li>
-										<li id="cardFourCatThree" class="list-group-item">Range<span id="cardFourValThree"
-																									 class="float-right">4</span>
+										<li id="cardFourCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardFourValThree"
+																									 class="float-right card-val3"></span>
 										</li>
-										<li id="cardFourCatFour" class="list-group-item">Firepower<span id="cardFourValFour"
-																										class="float-right">4</span>
+										<li id="cardFourCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardFourValFour"
+																										class="float-right card-val4"></span>
 										</li>
-										<li id="cardFourCatFive" class="list-group-item">Cargo<span id="cardFourValFive"
-																									class="float-right">4</span>
+										<li id="cardFourCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardFourValFive"
+																									class="float-right card-val5"></span>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div id="cardFive" class="card">
-								<div id="playerFiveCard" class="card-header">Player Name <span id="DeckFive"
-																							   class="badge badge-primary float-right">4</span>
+								<div id="playerFiveCard" class="card-header"><span class="player-name"></span><span id="DeckFive"
+																							   class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -365,26 +365,26 @@
 								<div class="card-body">
 									<h5 id="cardFiveTitle" class="card-title">Hurricane</h5>
 									<ul class="list-group list-group-flush">
-										<li id="cardFiveCatOne" class="list-group-item ">Size<span id="cardFiveValOne"
-																								   class="float-right">4</span>
+										<li id="cardFiveCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardFiveValOne"
+																								   class="float-right card-val1"></span>
 										</li>
-										<li id="cardFiveCatTwo" class="list-group-item ">Speed<span id="cardFiveValTwo"
-																									class="float-right">4</span>
+										<li id="cardFiveCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardFiveValTwo"
+																									class="float-right card-val2"></span>
 										</li>
-										<li id="cardFiveCatThree" class="list-group-item ">Range<span id="cardFiveValThree"
-																									  class="float-right">4</span>
+										<li id="cardFiveCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardFiveValThree"
+																									  class="float-right card-val3"></span>
 										</li>
-										<li id="cardFiveCatFour" class="list-group-item">Firepower<span id="cardFiveValFour"
-																										class="float-right">4</span>
+										<li id="cardFiveCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardFiveValFour"
+																										class="float-right card-val4"></span>
 										</li>
-										<li id="cardFiveCatFive" class="list-group-item">Cargo<span id="cardFiveValFive"
-																									class="float-right">4</span>
+										<li id="cardFiveCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardFiveValFive"
+																									class="float-right card-val5"></span>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div id="cardSix" class="card">
-								<div class="card-header">Player Name <span class="badge badge-primary float-right">4</span>
+								<div class="card-header"><span class="player-name"></span><span class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
 								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
@@ -392,11 +392,11 @@
 								<div class="card-body">
 									<h5 class="card-title">Sabre</h5>
 									<ul class="list-group list-group-flush">
-										<li class="list-group-item">Size<span class="float-right">4</span></li>
-										<li class="list-group-item">Speed<span class="float-right">4</span></li>
-										<li class="list-group-item">Range<span class="float-right">4</span></li>
-										<li class="list-group-item">Firepower<span class="float-right">4</span></li>
-										<li class="list-group-item">Cargo<span class="float-right">4</span></li>
+										<li class="list-group-item card-cat1"><span class="cat-1"></span><span class="float-right card-val1"></span></li>
+										<li class="list-group-item card-cat2"><span class="cat-2"></span><span class="float-right card-val2"></span></li>
+										<li class="list-group-item card-cat3"><span class="cat-3"></span><span class="float-right card-val3"></span></li>
+										<li class="list-group-item card-cat4"><span class="cat-4"></span><span class="float-right card-val4"></span></li>
+										<li class="list-group-item card-cat5"><span class="cat-5"></span><span class="float-right card-val5"></span></li>
 									</ul>
 								</div>
 							</div>
@@ -447,7 +447,7 @@
 								});
 							});
 							
-							$(".card-deck").fadeIn("fast", "swing");
+// 							$(".card-deck").fadeIn("fast", "swing");
 // 							loadCards();
 						});
 					});
@@ -513,28 +513,29 @@
 			}
 			
 			function getRoundNumber(){
-				
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundNumber"); // Request type and URL
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundNumber"); // Request type and URL
 		
-				// Message is not sent yet, but we can check that the browser supports CORS
-				if (!xhr) {
-					alert("CORS not supported");
-				}
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
 
-				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives
-				xhr.onload = function(e) {
-					var responseText = xhr.response; // the text of the response
-					$(document).ready(function() {
-						// all custom jQuery will go here
-						$("#status-message").html("Round Number " + responseText + ".");
-					});
-					return responseText;
-				};
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response
+						$(document).ready(function() {
+							// all custom jQuery will go here
+							$("#status-message").html("Round Number " + responseText + ".");
+						});
+						resolve(responseText);
+					};
 		
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();
+				});
 			}
 			
 			function shouldHumanSelectCategory(){
@@ -573,6 +574,12 @@
 					// to do when the response arrives
 					xhr.onload = function(e) {
 						var responseText = xhr.response; // the text of the response
+						responseText = JSON.parse(responseText);
+						
+						responseText.map((cat, i)=>{
+							$(".cat-" + (i+1)).html(cat);
+						})
+						
 						resolve(responseText);
 					};
 		
@@ -587,7 +594,7 @@
 				
 				return new Promise((resolve,reject)=>{
 				
-					categoryList = changeStringToArray(categoryList);
+					categoryList = categoryList;
 					
 					
 	// 				categorySelectedByHuman = categoryList[0];
@@ -637,6 +644,7 @@
 					}
 				};
 				
+				
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();
 				
@@ -653,7 +661,8 @@
 				
 				return new Promise((resolve,reject)=>{
 				
-					categoryList = changeStringToArray(categoryList);
+					categoryList = categoryList;
+					
 					
 					// First create a CORS request, this is the message we are going to send (a get request in this case)
 					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/getAIPlayerCategory"); // Request type and URL
@@ -710,12 +719,139 @@
 				});
 			}
 			
+			function getRoundActiveCards(){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundCards"); // Request type and URL
+				
+	
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response// 
+						updateCards(responseText);
+						resolve();
+					};
+	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			function getRoundActivePlayers(){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/activePlayers"); // Request type and URL
+				
+	
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response// 
+						updatePlayers(responseText);
+						resolve();
+					};
+	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			
+			function getNoOfCardsLeft(playersName){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/cardsLeft?playerName="+playersName); // Request type and URL
+				
+	
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response//
+						resolve(responseText);
+					};
+	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			function updatePlayers(players){
+				players = JSON.parse(players);
+				
+				$(document).ready(function() {
+					$(".card").map(async(i, card)=>{
+						if(i<=players.length-1){
+							$(card).find(".player-name").html(players[i].name);
+							$(card).find(".cards-left").html(await getNoOfCardsLeft(players[i].name));
+						}
+					});
+				});
+			}
+			
+			function updateCards(cards){
+				cards = JSON.parse(cards);
+				$(document).ready(function() {
+					$(".card").map((i, card)=>{
+					
+						// if(i>cards.length-1){
+// 							$(card).fadeOut("fast", "swing");
+// 						} else{
+// 							$(card).find(".card-title").html(cards[i].description);
+// 							$(card).find(".card-val1").html(cards[i].category1);
+// 							$(card).find(".card-val2").html(cards[i].category2);
+// 							$(card).find(".card-val3").html(cards[i].category3);
+// 							$(card).find(".card-val4").html(cards[i].category4);
+// 							$(card).find(".card-val5").html(cards[i].category5);
+// 						}
+						try{
+							$(card).find(".card-title").html(cards[i].description);
+							
+							$(card).find(".card-img-top").attr("src", "http://dcs.gla.ac.uk/~richardm/TopTrumps/" + cards[i].description + ".jpg");
+							
+							$(card).find(".card-val1").html(cards[i].category1);
+							$(card).find(".card-val2").html(cards[i].category2);
+							$(card).find(".card-val3").html(cards[i].category3);
+							$(card).find(".card-val4").html(cards[i].category4);
+							$(card).find(".card-val5").html(cards[i].category5);
+						} catch(e){
+							if (e instanceof TypeError){
+								$(card).css("visibility", "hidden");
+							}
+						}
+					});
+				});
+				$(".card-deck").fadeIn("fast", "swing");
+				
+			}
+			
 			async function playRound(){
 				let humanSelectCategory = await shouldHumanSelectCategory();
 
 				let categorySelected;
 				
-				getRoundNumber();
+						
+				let roundNumber = await getRoundNumber();
+				if(roundNumber==="1"){
+					await getRoundActiveCards();
+					await getRoundActivePlayers();
+				}
+				
 				if(humanSelectCategory === "true"){
 					categorySelected = await selectCategoryForHuman();
 				} else {
@@ -737,7 +873,8 @@
 
 					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
 					// to do when the response arrives
-					xhr.onload = function(e) {
+					xhr.onload = async function(e) {
+						
 						var responseText = xhr.response; // the text of the response
 						
 						getRoundWinner();
@@ -745,7 +882,20 @@
 						if(responseText != "running"){
 							$(document).ready(function() {
 								// all custom jQuery will go here
-								$("#actionButton").fadeOut("fast", "swing");
+								// $("#actionButton").html("Start New Game");
+// 								$("#actionButton").click(()=>{
+// 									$('#actionButton').off('click');
+// 									$("#actionButtonDiv").fadeOut("fast", "swing", ()=>{
+// 										$("#selectPlayersMenu").fadeIn("fast", "swing");
+// 									});
+// 									initalize();
+// 								});
+// 								$("#status-message").html("Game won by " + responseText + ".");
+// 								resolve();
+
+
+								$("#actionButton").toggle();
+								$(".cardDeck").toggle();
 								$("#status-message").html("Game won by " + responseText + ".");
 								resolve();
 							});
@@ -754,13 +904,15 @@
 						$(document).ready(function() {
 							// all custom jQuery will go here
 							$("#actionButton").html("NEXT ROUND");
-							$("#actionButton").click(()=>{
-								$('#actionButton').off('click');
+							$("#actionButton").click(async ()=>{
+								$('#actionButton').off('click');								
+								await getRoundActiveCards();
+								await getRoundActivePlayers();
+								
 								playRound();
 							});
 						});
 					};
-					
 		
 					// We have done everything we need to prepare the CORS request, so send it
 					xhr.send();	
@@ -782,21 +934,11 @@
 				// to do when the response arrives 
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					responseText = changeStringToArray(responseText);
+					responseText = JSON.parse(responseText);
 				};
 		
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();		
-			}
-			
-			function changeStringToArray(string){
-				arr = string.split(",");
-				
-				arr.forEach((arrElem, i)=>{
-					arr[i] = arrElem.replace(/[^A-Za-z0-9]/g, "");
-				});
-				
-				return arr;
 			}
 			
 			// ------------------------------------------------------------ //
@@ -826,6 +968,13 @@
 				}
 				return xhr;
 			}
+			
+			$(document).ready(function() {
+				// all custom jQuery will go here
+				$(window).bind('beforeunload', function(){
+				  return 'Are you sure you want to leave? All game progress will be lost!';
+				});
+			});
 		</script>
 	</body>
 </html>

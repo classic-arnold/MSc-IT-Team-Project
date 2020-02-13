@@ -572,50 +572,50 @@ public class DataGame{
 		return shuffledDeck;
 	}
 
-//	/**
-//	 * Static method used to convert an array of objects of generic types to an ArrayList
-//	 * @param <t> generic type
-//	 * @param array original array
-//	 * @return an ArrayList shallow copy of array
-//	 */
-//	public static <t> ArrayList<t> arrayToArrayList(t[] array){
-//		ArrayList<t> arrayList = new ArrayList<t>();
-//		// copy all elements in order
-//		for(int i = 0; i<array.length;i++) {
-//			arrayList.add(array[i]);
-//		}
-//		return arrayList;
-//	}
+	/**
+	 * Static method used to convert an array of objects of generic types to an ArrayList
+	 * @param <t> generic type
+	 * @param array original array
+	 * @return an ArrayList shallow copy of array
+	 */
+	public static <t> ArrayList<t> arrayToArrayList(t[] array){
+		ArrayList<t> arrayList = new ArrayList<t>();
+		// copy all elements in order
+		for(int i = 0; i<array.length;i++) {
+			arrayList.add(array[i]);
+		}
+		return arrayList;
+	}
 
-//	/**
-//	 * Static method used to convert an ArrayList of Generic to an array
-//	 * @param arrayList original array list
-//	 * @return an array shallow copy of ArrayList
-//	 */
-//	public static <E> E[] arrayListToArray(ArrayList<E> arrayList){
-//		int length = arrayList.size();
-//		E[] array = (E[]) new Object[length];
-//		// copy all elements in order
-//		for(int i = 0; i<length;i++) {
-//			array[i] = arrayList.get(i);
-//		}
-//		return array;
-//	}
+	/**
+	 * Static method used to convert an ArrayList of Generic to an array
+	 * @param arrayList original array list
+	 * @return an array shallow copy of ArrayList
+	 */
+	public static DataCard[] arrayListToArrayCard(ArrayList<DataCard> arrayList){
+		int length = arrayList.size();
+		DataCard[] array = new DataCard[length];
+		// copy all elements in order
+		for(int i = 0; i<length;i++) {
+			array[i] = arrayList.get(i);
+		}
+		return array;
+	}
 
-//	/**
-//	 * Static method used to convert an ArrayList of DataPlayer to an array
-//	 * @param arrayList original array list
-//	 * @return an array shallow copy of ArrayList
-//	 */
-//	public static DataPlayer[] arrayListToArrayPlayer(ArrayList<DataPlayer> arrayList){
-//		int length = arrayList.size();
-//		DataPlayer[] array = new DataPlayer[length];
-//		// copy all elements in order
-//		for(int i = 0; i<length;i++) {
-//			array[i] = arrayList.get(i);
-//		}
-//		return array;
-//	}
+	/**
+	 * Static method used to convert an ArrayList of DataPlayer to an array
+	 * @param arrayList original array list
+	 * @return an array shallow copy of ArrayList
+	 */
+	public static DataPlayer[] arrayListToArrayPlayer(ArrayList<DataPlayer> arrayList){
+		int length = arrayList.size();
+		DataPlayer[] array = new DataPlayer[length];
+		// copy all elements in order
+		for(int i = 0; i<length;i++) {
+			array[i] = arrayList.get(i);
+		}
+		return array;
+	}
 
 	/**
 	 * Updates database, using methods provided in the database class
@@ -652,7 +652,7 @@ public class DataGame{
 	}
 	
 	public DataCard[] getRoundCards() {
-		return (DataCard[])this.roundCards.toArray();
+		return DataGame.arrayListToArrayCard(this.roundCards);
 	}
 
 	/**
@@ -676,7 +676,7 @@ public class DataGame{
 	 * @return DataPlayer array containing active players still in the game
 	 */
 	public DataPlayer[] getActivePlayers() {
-		return this.activePlayers.toArray(new DataPlayer[this.activePlayers.size()]);
+		return DataGame.arrayListToArrayPlayer(this.activePlayers);
 	}
 
 	/**
@@ -791,13 +791,39 @@ public class DataGame{
 	public DataCard getRoundHumanPlayerCard() {
 		return this.roundHumanPlayerCard;
 	}
+	
+	/**
+	 * get the card drawn by human player for this round
+	 * @return DataCard representing card drawn by human player for this round
+	 */
+	public DataCard getRoundHumanPlayerCardBeforePlayRound() {
+		try {
+			return this.getHumanPlayer().getDeck().get(0);
+		} catch(IndexOutOfBoundsException e) {
+			return null;
+		}
+	}
 
 	/**
 	 * get all cards drawn by AI player. Card owners cannot be identified.
 	 * @return DataCard array representing the cards drawn by AI player
 	 */
 	public DataCard[] getRoundAIPlayerCards() {
-		return this.roundAIPlayerCards.toArray(new DataCard[this.roundAIPlayerCards.size()]);
+		return DataGame.arrayListToArrayCard(this.roundAIPlayerCards);
+	}
+	
+	/**
+	 * get all cards drawn by AI player. Card owners cannot be identified.
+	 * @return DataCard array representing the cards drawn by AI player
+	 */
+	public DataCard[] getRoundAIPlayerCardsBeforePlayRound() {
+		ArrayList<DataCard> cards = new ArrayList<DataCard>();
+		DataPlayer[] players = this.getActivePlayers();
+		for(DataPlayer player : players) {
+			if(player.getType() == DataPlayer.PlayerType.AI)
+			cards.add(player.getDeck().get(0));
+		}
+		return DataGame.arrayListToArrayCard(cards);
 	}
 
 	/**
