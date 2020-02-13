@@ -87,7 +87,6 @@ public class TopTrumpsRESTAPI {
 	 * 
 	 * getRoundNumber();					>>getRoundNumber()
 	 * shouldHumanSelectCategory();			>>shouldHumanSelectCategory()
-	 * getPlayerToChooseRound(); 			???????????
 	 * getDeck(); 							>>getDeckFile(), getOriginalDeckAsString() 
 	 * getRoundCategory();					>>getRoundCategory()
 	 * getRoundCards();						>>getRoundCards() 
@@ -99,8 +98,32 @@ public class TopTrumpsRESTAPI {
 	 * getGameStatistics();					>>getStatistics()
 	 * getGameWinner(); 					>>getGameWinner()
 	 * getPlayerDeck(playerName); 			>>getPlayerDeck(playerName), getNumberOfCardsInDeck():for all players
-	 * getNumberOfRoundsInGame();			?????????? Should be same with getRoundNumber()
+	 * 
+	 */ 
+	
+	/*
+	 * ****CURRENT FUNCTIONS THAT ARE USED
+	 * 
+	 * /game/startGame					-- startGame()
+	 * /game/displayCards				-- getDeckFile()
+	 * /game/categoryMenu				-- getCategoryForMenu()
+	 * /game/roundNumber				-- getRoundNumber()
+	 * /game/roundCards					-- getRoundCardsBeforePlayRound()
+	 * /game/playRound					-- playRound()
+	 * /game/numberOfCardsInCommonPile	-- getNumberOfCardsInCommonPile()
+	 * /game/getRoundActivePlayer		-- getRoundActivePlayer()
+	 * /game/getAIPlayerCategory		-- getAIPlayerCategory() 
+	 * /game/shouldHumanSelectCategory	-- shouldHumanSelectCategory() 
+	 * /game/roundCategory				-- getRoundCategory()
+	 * /game/cardsLeft					-- getPlayerDeck() 
+	 * /game/numberOfCardsInDeck		-- getNumberOfCardsInDeck() 
+	 * /game/getRoundWinner				-- getRoundWinner()
+	 * /game/gameWinner					-- getGameWinner() 
+	 * /game/result/scores				-- getGameResult()
+	 * /stats/statistics				-- getStatistics()
 	 */
+
+	 
 
 	
 	/**
