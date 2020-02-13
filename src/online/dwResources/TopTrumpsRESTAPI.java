@@ -304,8 +304,17 @@ public class TopTrumpsRESTAPI {
 	@Path("/game/shouldHumanSelectCategory")
 	public String shouldHumanSelectCategory() {
 		String result = "";
+		
+		boolean shouldHumanChooseCategory;
+		
+		if (this.model.getRoundActivePlayer().getType()==DataPlayer.PlayerType.HUMAN) {
+			shouldHumanChooseCategory = true;
+		} else {
+			shouldHumanChooseCategory = false;
+		}
+		
 		try {
-			result = oWriter.writeValueAsString(model.shouldHumanChooseCategory());
+			result = oWriter.writeValueAsString(shouldHumanChooseCategory);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -698,14 +707,6 @@ public class TopTrumpsRESTAPI {
 	@Path("/game/allPlayers")
 	public DataPlayer[] getAllPlayers() {
 		return model.getAllPlayers();
-	}
-	
-	
-	
-	@GET
-	@Path("/game/roundLastWinner")
-	public DataPlayer getRoundLastWinner() {
-		return model.getRoundLastWinner();
 	}
 	
 	

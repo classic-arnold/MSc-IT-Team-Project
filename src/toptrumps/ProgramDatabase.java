@@ -100,7 +100,7 @@ public class ProgramDatabase {
 	 * 'roundNumber:int' 
 	 * into Database table.
 	 * */
-	void insertGameStats(DataGame model){
+	static void insertGameStats(DataGame model){
 		String SQL="INSERT INTO TOPTRUMPS.GAMESTATS "
 				+"VALUES (default, ?,?,?,?,?,?,?,?)";
 		try{
