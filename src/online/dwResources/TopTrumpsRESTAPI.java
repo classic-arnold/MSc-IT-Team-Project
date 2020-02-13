@@ -183,10 +183,13 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/roundCards")
-	public String getRoundCards() throws IOException{	
+	public String getRoundCardsBeforePlayRound() throws IOException{	
 		List<DataCard> listOfCards=new ArrayList<DataCard>();
-		listOfCards.add(model.getRoundHumanPlayerCard());
-		DataCard[] cards = model.getRoundAIPlayerCards();
+		DataCard humanCard = model.getRoundHumanPlayerCardBeforePlayRound();
+		if(humanCard!=null) {
+			listOfCards.add(model.getRoundHumanPlayerCardBeforePlayRound());
+		}
+		DataCard[] cards = model.getRoundAIPlayerCardsBeforePlayRound();
 		for(int i=0;i<cards.length;i++) {
 			listOfCards.add(cards[i]);
 		}
@@ -220,12 +223,7 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/game/activePlayers")
 	public String getActivePlayers() throws IOException{
-		List<DataPlayer> activePlayersInList=new ArrayList<DataPlayer>();
-		for(int i=0;i<model.getActivePlayers().length;i++) {
-			activePlayersInList.add(model.getActivePlayers()[i]);
-		}
-		
-		String activePlayersAsString=oWriter.writeValueAsString(activePlayersInList);
+		String activePlayersAsString=oWriter.writeValueAsString(model.getActivePlayers());
 		return activePlayersAsString;
 	}
 	
@@ -332,17 +330,19 @@ public class TopTrumpsRESTAPI {
 	 * get playerName's deck number
 	 * @return JSONString
 	 * @throws IOException*/
-	public String getPlayerDeck(@QueryParam("playerName") String playerName) throws IOException{
+	@GET
+	@Path("/game/cardsLeft")
+	public int getPlayerDeck(@QueryParam("playerName") String playerName) throws IOException{
 		int numberOfDeck=0;
-		while(playerName!=null) {
-			for(int i=0;i<model.getActivePlayers().length;i++) {
-				if(model.getActivePlayers()[i].getName().equals(playerName)) {
-					numberOfDeck=model.getActivePlayers()[i].getDeck().size();
+		DataPlayer[] players = model.getActivePlayers();
+		if(playerName!=null) {
+			for(int i=0;i<players.length;i++) {
+				if(players[i].getName().equals(playerName)) {
+					numberOfDeck=players[i].getDeck().size();
 				}
 			}
 		}
-		String numberOfPlayerDeckAsString=oWriter.writeValueAsString(numberOfDeck);
-		return numberOfPlayerDeckAsString;
+		return numberOfDeck;
 	}
 	
 	
@@ -568,15 +568,15 @@ public class TopTrumpsRESTAPI {
 	 * @throws IOException
 	 */	
 	@GET
-	@Path("/stats/statistics")
+	@Path("/stats/statistics") // implement this as HashMap
 	public String getStatistics() throws IOException{		
-		List<String> statistics=new ArrayList<String>();
+		HashMap<String, String> statistics=new HashMap<String, String>();
 		
-		statistics.add(model.getNumberOfGames()+"");
-		statistics.add(model.getNumberOfHumanWins()+"");
-		statistics.add(model.getNumberOfAIWins()+"");
-		statistics.add(model.getAvgNumberOfDraws()+"");
-		statistics.add(model.getLongestGame()+"");
+		statistics.put("numberOfGames", DataGame.getNumberOfGames()+"");
+		statistics.put("numberOfHumanWins", DataGame.getNumberOfHumanWins()+"");
+		statistics.put("numberOfAIWins", DataGame.getNumberOfAIWins()+"");
+		statistics.put("avgNumberOfDraws", DataGame.getAvgNumberOfDraws()+"");
+		statistics.put("roundNumberOfLongestGame", DataGame.getLongestGame()+"");
 
 		String statisticsAsString=oWriter.writeValueAsString(statistics);
 		
