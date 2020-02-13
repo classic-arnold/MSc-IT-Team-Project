@@ -709,6 +709,8 @@ public class TopTrumpsRESTAPI {
 //	}
 	
 	
+<<<<<<< HEAD
+=======
 	
 //	@GET
 //	@Path("/game/roundLastWinner")
@@ -717,6 +719,7 @@ public class TopTrumpsRESTAPI {
 //	}
 	
 	
+>>>>>>> b45b830a4f817e2931211de7a1a8679d04063bbe
 
 	
 //	@GET

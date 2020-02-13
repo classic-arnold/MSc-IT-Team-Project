@@ -91,6 +91,8 @@
 			.alert {
 				border-radius: 0;
 				border: none;
+				padding-top:0px;
+				padding-bottom:0px;
 			}
 			.alert-info{
 			background-color:#F0A202;
@@ -121,7 +123,9 @@
 			}
 
 			.card {
-				box-shadow: 0 0 10px black;
+			    box-shadow: 0 0 10px black;
+			    /*color for on highlight*/
+				/*box-shadow: 0 0 10px #FF8300;*/
 				font-family: 'Roboto Mono', monospace;
 				font-weight: bold;
 			}
@@ -174,6 +178,20 @@
 				font-size:20px;
 					font-family: 'Roboto Mono', monospace;
 				font-weight: bold;
+			
+			}
+			
+			.table{
+			color:white;
+			
+			
+			}
+			.table th, .table td {
+   				border-top:none;
+                       }
+			.card-header{
+			
+			background-color:#659999;
 			
 			}
 			@supports (-ms-ime-align:auto) {
@@ -232,6 +250,39 @@
 								<option value="3">Three</option>
 								<option value="4">Four</option>
 							</select>
+						</div>
+						<div id="displayEndScores" class="action-div">
+						<table class="table">
+						 <thead>
+    					<tr>
+     					<th>Player</th>
+            			<th>Score</th>
+          				</tr>
+            			</thead>
+            			
+						<tbody>
+			             	<tr>
+     					<th id="playerOneName">Player1</th>
+            			<th id="playerOneScore">1</th>
+          				</tr>
+          				<tr>
+     					<th id="playerTwoName">Player2</th>
+            			<th id="playerTwoScore">2</th>
+          				</tr>
+          				<tr>
+     					<th id="playerThreeName">Player3</th>
+            			<th id="playerThreeScore">3</th>
+          				</tr>
+          				<tr>
+     					<th id="playerFourName">Player4</th>
+            			<th id="playerFourScore">4</th>
+          				</tr>
+          				<tr>
+     					<th id="playerFiveName">Player5</th>
+            			<th id="playerFiveScore">5</th>
+          				</tr>
+						</tbody>
+						</table>
 						</div>
 						<div id="selectCategoryMenu" class="action-div categories">
 							<h3 id="selection-category-menu">Please select your category</h3>
