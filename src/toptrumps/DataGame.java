@@ -633,7 +633,7 @@ public class DataGame{
 	 */
 	public DataPlayer getCategoryChooser() {
 		DataPlayer player; // represents the player to choose category for the round
-		
+
 		// no player won last round, this means no player has won any round
 		if (this.roundLastWinner != null) {
 			player = this.roundLastWinner;
@@ -671,9 +671,7 @@ public class DataGame{
 	 * @return int representing number of human wins
 	 */
 	public static int getNumberOfHumanWins() {
-		ProgramDatabase postgres = new ProgramDatabase();
-		postgres.selectGameStats();
-		return postgres.getHumanWon();
+		return ProgramDatabase.getHumanWon();
 	}
 
 	/**
@@ -681,9 +679,7 @@ public class DataGame{
 	 * @return int representing number of AI wins
 	 */
 	public static int getNumberOfAIWins() {
-		ProgramDatabase postgres = new ProgramDatabase();
-		postgres.selectGameStats();
-		return postgres.getAIWon();
+		return ProgramDatabase.getAIWon();
 	}
 
 	/**
@@ -691,9 +687,7 @@ public class DataGame{
 	 * @return int representing number of games played
 	 */
 	public static int getNumberOfGames() {
-		ProgramDatabase postgres = new ProgramDatabase();
-		postgres.selectGameStats();
-		return postgres.getGameCount();
+		return ProgramDatabase.getGameCount();
 	}
 
 	/**
@@ -701,9 +695,7 @@ public class DataGame{
 	 * @return double representing the average of all draws
 	 */
 	public static double getAvgNumberOfDraws() {
-		ProgramDatabase postgres = new ProgramDatabase();
-		postgres.selectGameStats();
-		return postgres.getDraws();
+		return ProgramDatabase.getDraws();
 	}
 
 	/**
@@ -711,9 +703,7 @@ public class DataGame{
 	 * @return int representing number of rounds in the longest game
 	 */
 	public static int getLongestGame() {
-		ProgramDatabase postgres = new ProgramDatabase();
-		postgres.selectGameStats();
-		return postgres.getLargestRound();
+		return ProgramDatabase.getLargestRound();
 	}
 
 	// GETTER METHODS END
