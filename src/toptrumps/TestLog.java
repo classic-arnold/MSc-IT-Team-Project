@@ -93,7 +93,7 @@ public class TestLog {
              bw.write(separator);
              bw.newLine();
              bw.newLine();
-             bw.write("Initial Shuffled Deck");
+             bw.write("Shuffled Deck");
              bw.newLine();
              bw.newLine();
              String header="Description Size Speed Range Firepower Cargo";
@@ -142,9 +142,41 @@ public class TestLog {
          }
 		
 	}
+	
+	public void writeRoundNumber() {
+		FileWriter fw = null;
+	    BufferedWriter bw = null;
+	    try {
+	        fw = new FileWriter(outF,true);
+	        bw = new BufferedWriter(fw);
+	        String separator="------------------------------------------------------------------------";
+	        bw.write(separator);
+	        bw.newLine();
+	        bw.newLine();
+	        bw.newLine();
+	        bw.newLine();
+	        String roundNumber=String.valueOf(model.getRoundNumber());
+	        bw.write("Round: " + roundNumber);
+	        bw.close();
+	           
+	      
+	    }catch(IOException e) {
+	        e.printStackTrace();
+	    }finally {
+	       
+	        if(fw!=null) {
+	            try {
+	                fw.close();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
 	 /**
      *Writes each player deck to test log
      */
+
 	public void writePlayerDecks() {
 		FileWriter fw = null;
     BufferedWriter bw = null;
@@ -155,7 +187,13 @@ public class TestLog {
         bw.write(separator);
         bw.newLine();
         bw.newLine();
-        bw.write("Player Decks");
+        if(model.getRoundNumber()==0) {
+        	  bw.write("Initial Player Decks");
+        }
+        if(model.getRoundNumber()!=0) {
+      	  bw.write("Player Decks");
+      }
+    
         bw.newLine();
         bw.newLine();
       
@@ -190,7 +228,9 @@ public class TestLog {
                    bw.newLine();
                    bw.newLine();
                }
-        	 bw.write("----------------------------");
+        	 if(j!=model.getActivePlayers().length-1) {
+        		 bw.write("----------------------------");
+        	 }
         	 bw.newLine();
         	 
         	 
@@ -280,7 +320,7 @@ public class TestLog {
 	        bw.write(separator);
 	        bw.newLine();
 	        bw.newLine();
-	        bw.write("Player Decks");
+	        bw.write("Player's Top Cards");
 	        bw.newLine();
 	        bw.newLine();
 	      
@@ -321,6 +361,43 @@ public class TestLog {
 	        	 
 	        }
 	        
+	         bw.close();
+	           
+	      
+	    }catch(IOException e) {
+	        e.printStackTrace();
+	    }finally {
+	       
+	        if(fw!=null) {
+	            try {
+	                fw.close();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
+	
+	public void displayRoundWinner() {
+		FileWriter fw = null;
+	    BufferedWriter bw = null;
+	    try {
+	        fw = new FileWriter(outF,true);
+	        bw = new BufferedWriter(fw);
+	        String separator="------------------------------------------------------------------------";
+	        bw.write(separator);
+	        bw.newLine();
+	        bw.newLine();
+	        bw.write("Round Winner");
+	        bw.newLine();
+	        bw.newLine();
+	        String roundWinner="The winner of the round was ";
+	      
+	      roundWinner+=model.getRoundWinningPlayers().get(0).getName()+" .";
+	        
+	        
+	        
+	        bw.write(roundWinner);
 	         bw.close();
 	           
 	      

@@ -102,7 +102,7 @@ public class ViewCLI {
 		String getInput = null;
 		int categoryChoice = 0;
 		boolean redo = false;
-		while (!NumberUtils.isParsable(getInput) || categoryChoice < 0 || categoryChoice > 5) {
+		while (!NumberUtils.isParsable(getInput) || categoryChoice <= 0 || categoryChoice > 5) {
 			if (redo) {
 				System.out.println("\n Invalid input.Please input a number between 1 and 5");
 			}
