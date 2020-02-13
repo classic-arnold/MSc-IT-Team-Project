@@ -146,6 +146,10 @@ public class ProgramDatabase {
 		}
 	}
 	
+	
+	/**
+	 * use clearDB when testing
+	 * */
 	public static void clearDB(DataGame model) {
            String SQL="delete from toptrumps.gamestats where true;";
 
@@ -204,6 +208,9 @@ public class ProgramDatabase {
 
 	}
 
+	/**
+	 * main static method to test database connection when testing
+	 * */
 	public static void main(String[] args) {
 		//load the JDBC driver
 		try {
