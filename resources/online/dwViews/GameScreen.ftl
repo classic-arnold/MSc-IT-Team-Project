@@ -821,13 +821,18 @@
 // 						}
 						try{
 							$(card).find(".card-title").html(cards[i].description);
+							
+							$(card).find(".card-img-top").attr("src", "http://dcs.gla.ac.uk/~richardm/TopTrumps/" + cards[i].description + ".jpg");
+							
 							$(card).find(".card-val1").html(cards[i].category1);
 							$(card).find(".card-val2").html(cards[i].category2);
 							$(card).find(".card-val3").html(cards[i].category3);
 							$(card).find(".card-val4").html(cards[i].category4);
 							$(card).find(".card-val5").html(cards[i].category5);
 						} catch(e){
-							$(card).css("visibility", "hidden");
+							if (e instanceof TypeError){
+								$(card).css("visibility", "hidden");
+							}
 						}
 					});
 				});
