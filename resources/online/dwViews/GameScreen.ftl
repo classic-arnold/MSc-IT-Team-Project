@@ -123,7 +123,9 @@
 			}
 
 			.card {
-			box-shadow: 0 0 10px black;
+			    box-shadow: 0 0 10px black;
+			    /*color for on highlight*/
+				/*box-shadow: 0 0 10px #FF8300;*/
 				font-family: 'Roboto Mono', monospace;
 				font-weight: bold;
 			}
