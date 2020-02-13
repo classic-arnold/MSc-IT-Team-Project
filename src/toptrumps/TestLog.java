@@ -261,36 +261,42 @@ public class TestLog {
               fw = new FileWriter(outF,true);
               bw = new BufferedWriter(fw);
               bw.write("Communal Pile Contents");
-              bw.newLine();
-              bw.newLine();
-              String header="Description Size Speed Range Firepower Cargo";
-              bw.write(header);
-              bw.newLine();
-              bw.newLine();
-             
-               for(int i=0;i<model.getCardsInCommonPile().length;i++) {
-            	 
-            	   String space=" ";
-            	   String description =model.getCardsInCommonPile()[i].getDescription();
-            	   String size=String.valueOf(model.getCardsInCommonPile()[i].getCategory1());
-            	   String speed=String.valueOf(model.getCardsInCommonPile()[i].getCategory2());
-            	   String range=String.valueOf(model.getCardsInCommonPile()[i].getCategory3());
-            	   String firepower=String.valueOf(model.getCardsInCommonPile()[i].getCategory4());
-            	   String cargo=String.valueOf(model.getCardsInCommonPile()[i].getCategory5());
-                   bw.write(description);
-                   bw.write(space);
-                   bw.write(size);
-                   bw.write(space);
-                   bw.write(speed);
-                   bw.write(space);
-                   bw.write(range);
-                   bw.write(space);
-                   bw.write(firepower);
-                   bw.write(space);
-                   bw.write(cargo);
-                   bw.newLine();
-                   bw.newLine();
-               }
+              if(model.getCardsInCommonPile().length==0) {
+            	  bw.write("The communal pile is empty");
+              }
+              if(model.getCardsInCommonPile().length>0) {
+            	  bw.newLine();
+                  bw.newLine();
+                  String header="Description Size Speed Range Firepower Cargo";
+                  bw.write(header);
+                  bw.newLine();
+                  bw.newLine();
+                 
+                   for(int i=0;i<model.getCardsInCommonPile().length;i++) {
+                	 
+                	   String space=" ";
+                	   String description =model.getCardsInCommonPile()[i].getDescription();
+                	   String size=String.valueOf(model.getCardsInCommonPile()[i].getCategory1());
+                	   String speed=String.valueOf(model.getCardsInCommonPile()[i].getCategory2());
+                	   String range=String.valueOf(model.getCardsInCommonPile()[i].getCategory3());
+                	   String firepower=String.valueOf(model.getCardsInCommonPile()[i].getCategory4());
+                	   String cargo=String.valueOf(model.getCardsInCommonPile()[i].getCategory5());
+                       bw.write(description);
+                       bw.write(space);
+                       bw.write(size);
+                       bw.write(space);
+                       bw.write(speed);
+                       bw.write(space);
+                       bw.write(range);
+                       bw.write(space);
+                       bw.write(firepower);
+                       bw.write(space);
+                       bw.write(cargo);
+                       bw.newLine();
+                       bw.newLine();
+                   }
+              }
+        
                bw.close();
                  
             
@@ -434,7 +440,7 @@ public class TestLog {
 	        bw.newLine();
 	        String catSelected="";
 	      
-	       catSelected=model.getCategoryChooser().getName()+" selected "+model.getRoundCategory();
+	       catSelected=model.getCategoryChooser().getName()+" selected "+model.getRoundCategory()+"\n";
 	        
 	        
 	        
@@ -473,6 +479,57 @@ public class TestLog {
 	        bw.newLine();
 	        String gameWinner=model.getGameWinner().getName();
 	        bw.write(gameWinner);
+	         bw.close();
+	           
+	      
+	    }catch(IOException e) {
+	        e.printStackTrace();
+	    }finally {
+	       
+	        if(fw!=null) {
+	            try {
+	                fw.close();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
+	
+	public void writeRoundWinningCard() {
+		FileWriter fw = null;
+	    BufferedWriter bw = null;
+	    try {
+	        fw = new FileWriter(outF,true);
+	        bw = new BufferedWriter(fw);
+	        String separator="------------------------------------------------------------------------";
+	        bw.write(separator);
+	        bw.newLine();
+	        bw.newLine();
+	        bw.write("Round Winning Card");
+	        bw.newLine();
+	        bw.newLine();
+	        if(model.getRoundWasDraw()) {
+	        	bw.write("There was no winning card this round");
+	        }
+	        if(!model.getRoundWasDraw()) {
+	        	  String space=" ";
+	        	  String header="Description Size Speed Range Firepower Cargo";
+		          bw.write(header);
+		          bw.newLine();
+		          bw.newLine();
+	        	bw.write(model.getRoundWinningCard().getCategory1());
+	        	 bw.write(space);
+	          	bw.write(model.getRoundWinningCard().getCategory2());
+	          	 bw.write(space);
+	          	bw.write(model.getRoundWinningCard().getCategory3());
+	          	 bw.write(space);
+	          	bw.write(model.getRoundWinningCard().getCategory4());
+	          	 bw.write(space);
+	          	bw.write(model.getRoundWinningCard().getCategory5());
+	        }
+	
+	        
 	         bw.close();
 	           
 	      
