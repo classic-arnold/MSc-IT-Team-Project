@@ -91,6 +91,8 @@
 			.alert {
 				border-radius: 0;
 				border: none;
+				padding-top:0px;
+				padding-bottom:0px;
 			}
 			.alert-info{
 			background-color:#F0A202;
@@ -121,7 +123,7 @@
 			}
 
 			.card {
-				box-shadow: 0 0 10px black;
+			box-shadow: 0 0 10px black;
 				font-family: 'Roboto Mono', monospace;
 				font-weight: bold;
 			}
@@ -174,6 +176,11 @@
 				font-size:20px;
 					font-family: 'Roboto Mono', monospace;
 				font-weight: bold;
+			
+			}
+			.card-header{
+			
+			background-color:#659999;
 			
 			}
 			@supports (-ms-ime-align:auto) {
