@@ -520,134 +520,134 @@ public class TopTrumpsRESTAPI {
 	
 	
 	
-//	/**
-//	 * Call every active players from a list and return in JSONString
-//	 * @Controller.js: function activePlayer
-//	 * @returns JSONString
-//	 */	
-//	@GET
-//	@Path("/game/activePlayers")
-//	public String getActivePlayers() {
-//		String activePlayersAsString="";
-//		try {
-//			activePlayersAsString = oWriter.writeValueAsString(model.getActivePlayers());
-//		} catch (JsonProcessingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return activePlayersAsString;
-//	}
+	/**
+	 * Call every active players from a list and return in JSONString
+	 * @Controller.js: function activePlayer
+	 * @returns JSONString
+	 */	
+	@GET
+	@Path("/game/activePlayers")
+	public String getActivePlayers() {
+		String activePlayersAsString="";
+		try {
+			activePlayersAsString = oWriter.writeValueAsString(model.getActivePlayers());
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return activePlayersAsString;
+	}
 	
 	
 	
 
-//	@GET
-//	@Path("/game/categoryChooser")
-//	public String getCategoryChooser() {
-//		String categoryChooser="";
-//		try {
-//			categoryChooser = oWriter.writeValueAsString(model.getCategoryChooser());
-//		} catch (JsonProcessingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return categoryChooser;
-//	}
+	@GET
+	@Path("/game/categoryChooser")
+	public String getCategoryChooser() {
+		String categoryChooser="";
+		try {
+			categoryChooser = oWriter.writeValueAsString(model.getCategoryChooser());
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return categoryChooser;
+	}
 	
 	
 	
-//	/**
-//	 * get boolean value whether the round was draw
-//	 * @return boolean
-//	 * true: was draw
-//	 * false: not draw (has a winner)
-//	 */
-//	@GET
-//	@Path("/game/roundWasDraw")
-//	public boolean getRoundWasDraw() {
-//		return model.getRoundWasDraw();
-//	}
+	/**
+	 * get boolean value whether the round was draw
+	 * @return boolean
+	 * true: was draw
+	 * false: not draw (has a winner)
+	 */
+	@GET
+	@Path("/game/roundWasDraw")
+	public boolean getRoundWasDraw() {
+		return model.getRoundWasDraw();
+	}
 	
 	
-//	@GET
-//	@Path("/game/roundWinningCards")
-//	public String getRoundWinningCard() {
-//		String roundWinningCard=model.getRoundWinningCard().getDescription();
-//		return roundWinningCard;
-//	}
+	@GET
+	@Path("/game/roundWinningCards")
+	public String getRoundWinningCard() {
+		String roundWinningCard=model.getRoundWinningCard().getDescription();
+		return roundWinningCard;
+	}
 	
 	
-//	/**
-//	 * Get game end String
-//	 * @Controller.js:
-//	 * @return String type
-//	 */	
-//	@GET
-//	@Path("/game/result/gameEnd")
-//	public String getGameEnd(){		
-//		return "Game End";
-//	}	
-//	
-//	
-//	/**
-//	 * Print game winner
-//	 * @Controller.js:
-//	 * @param GameWinner:String
-//	 * @return String type
-//	 */	
-//	@GET
-//	@Path("/game/result/winner")
-//	public String getWinnerOfTheGame(@QueryParam("GameWinner") String GameWinner){		
-//		return GameWinner+" won the game";
-//	}	
+	/**
+	 * Get game end String
+	 * @Controller.js:
+	 * @return String type
+	 */	
+	@GET
+	@Path("/game/result/gameEnd")
+	public String getGameEnd(){		
+		return "Game End";
+	}	
+	
+	
+	/**
+	 * Print game winner
+	 * @Controller.js:
+	 * @param GameWinner:String
+	 * @return String type
+	 */	
+	@GET
+	@Path("/game/result/winner")
+	public String getWinnerOfTheGame(@QueryParam("GameWinner") String GameWinner){		
+		return GameWinner+" won the game";
+	}	
 	
 	
 	
-//	/**
-//	 * Print description of starting stage of the round. 
-//	 * such as: "Round 1: Players had drawn their cards".
-//	 * @Controller.js:
-//	 * @param RoundNumber:int, CategoryChooser:String
-//	 * @return JSONString type
-//	 * @throws IOException
-//	 */	
-//	@GET
-//	@Path("/game/roundDescription1")
-//	public String getRoundDescription1(@QueryParam("RoundNumber") int RoundNumber,
-//			@QueryParam("CategoryChooser") String CategoryChooser) 
-//					throws IOException{
-//		String description;
-//		
-//		description=String.format("Round %d: Players had drawn their cards.", RoundNumber);
-//		if(CategoryChooser.equals("You")) {
-//		//		if(model.getCategoryChooser().equals("human")) {
-//			description+=" Waiting on "+CategoryChooser+" to select category.";
-//		}else {
-//			description+=" The Active Player is "+CategoryChooser;
-//		}
-//		
-//		return oWriter.writeValueAsString(description);
-//	}
+	/**
+	 * Print description of starting stage of the round. 
+	 * such as: "Round 1: Players had drawn their cards".
+	 * @Controller.js:
+	 * @param RoundNumber:int, CategoryChooser:String
+	 * @return JSONString type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/roundDescription1")
+	public String getRoundDescription1(@QueryParam("RoundNumber") int RoundNumber,
+			@QueryParam("CategoryChooser") String CategoryChooser) 
+					throws IOException{
+		String description;
+		
+		description=String.format("Round %d: Players had drawn their cards.", RoundNumber);
+		if(CategoryChooser.equals("You")) {
+		//		if(model.getCategoryChooser().equals("human")) {
+			description+=" Waiting on "+CategoryChooser+" to select category.";
+		}else {
+			description+=" The Active Player is "+CategoryChooser;
+		}
+		
+		return oWriter.writeValueAsString(description);
+	}
 	
-//	/**
-//	 * Print selected category of the round. 
-//	 * such as: "Round 1: You selected speed".
-//	 * @Controller.js:
-//	 * @param RoundNumber:int, CategoryChooser:String, RoundCategory:String
-//	 * @return JSONString type
-//	 * @throws IOException
-//	 */	
-//	@GET
-//	@Path("/game/roundDescription2")
-//	public String getRoundDescription2(@QueryParam("RoundNumber") int RoundNumber,
-//			@QueryParam("CategoryChooser") String CategoryChooser,
-//			@QueryParam("RoundCategory") String RoundCategory) 
-//					throws IOException{
-//		String description;
-//		
-//		description=String.format("Round %d: %s selected %s.", RoundNumber, CategoryChooser, RoundCategory);
-//		return oWriter.writeValueAsString(description);
-//	}
+	/**
+	 * Print selected category of the round. 
+	 * such as: "Round 1: You selected speed".
+	 * @Controller.js:
+	 * @param RoundNumber:int, CategoryChooser:String, RoundCategory:String
+	 * @return JSONString type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/roundDescription2")
+	public String getRoundDescription2(@QueryParam("RoundNumber") int RoundNumber,
+			@QueryParam("CategoryChooser") String CategoryChooser,
+			@QueryParam("RoundCategory") String RoundCategory) 
+					throws IOException{
+		String description;
+		
+		description=String.format("Round %d: %s selected %s.", RoundNumber, CategoryChooser, RoundCategory);
+		return oWriter.writeValueAsString(description);
+	}
 	
 	
 //	/**
@@ -658,55 +658,55 @@ public class TopTrumpsRESTAPI {
 //	 * @return JSONString type
 //	 * @throws IOException
 //	 */	
-//	@GET
-//	@Path("/game/roundDescription3")
-//	public String getRoundDescription3(@QueryParam("RoundNumber") int RoundNumber,
-//			@QueryParam("RoundWinner") String RoundWinner,
-//			@QueryParam("NumberOfActivePlayer") int NumberOfActivePlayer,
-//			@QueryParam("IsDraw") boolean IsDraw)
-//					throws IOException{
-//		String description;
-//
-//		description=String.format("Round %d: Player %s won this round.", RoundNumber, RoundWinner);
-//		
-//		//if the round was draw
-//		if(IsDraw) {
-//		//if(model.getRoundWasDraw()) {
-//			description=String.format("Round %d: This round was a Draw.", RoundNumber, NumberOfActivePlayer);
-//		}
-//		
-//		description+=" Common pile now has "+NumberOfActivePlayer+" cards.";
-//		
-//		return oWriter.writeValueAsString(description);
-//	}
+	@GET
+	@Path("/game/roundDescription3")
+	public String getRoundDescription3(@QueryParam("RoundNumber") int RoundNumber,
+			@QueryParam("RoundWinner") String RoundWinner,
+			@QueryParam("NumberOfActivePlayer") int NumberOfActivePlayer,
+			@QueryParam("IsDraw") boolean IsDraw)
+					throws IOException{
+		String description;
+
+		description=String.format("Round %d: Player %s won this round.", RoundNumber, RoundWinner);
+		
+		//if the round was draw
+		if(IsDraw) {
+		//if(model.getRoundWasDraw()) {
+			description=String.format("Round %d: This round was a Draw.", RoundNumber, NumberOfActivePlayer);
+		}
+		
+		description+=" Common pile now has "+NumberOfActivePlayer+" cards.";
+		
+		return oWriter.writeValueAsString(description);
+	}
 	
 	
 
 	
 	
-//	@GET
-//	@Path("/game/cardsInCommonPile")
-//	public DataCard[] getCardsInCommonPile() {
-//		return model.getCardsInCommonPile();
-//	}
+	@GET
+	@Path("/game/cardsInCommonPile")
+	public DataCard[] getCardsInCommonPile() {
+		return model.getCardsInCommonPile();
+	}
 	
 	
 
 
 	
-//	@GET
-//	@Path("/game/allPlayers")
-//	public DataPlayer[] getAllPlayers() {
-//		return model.getAllPlayers();
-//	}
+	@GET
+	@Path("/game/allPlayers")
+	public DataPlayer[] getAllPlayers() {
+		return model.getAllPlayers();
+	}
 	
 	
 	
-//	@GET
-//	@Path("/game/roundLastWinner")
-//	public DataPlayer getRoundLastWinner() {
-//		return model.getRoundLastWinner();
-//	}
+	@GET
+	@Path("/game/roundLastWinner")
+	public DataPlayer getRoundLastWinner() {
+		return model.getRoundLastWinner();
+	}
 	
 	
 
