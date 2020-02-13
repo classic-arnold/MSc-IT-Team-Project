@@ -827,7 +827,7 @@
 							$(card).find(".card-val4").html(cards[i].category4);
 							$(card).find(".card-val5").html(cards[i].category5);
 						} catch(e){
-							$(card).fadeOut("fast", "swing");
+							$(card).css("visibility", "hidden");
 						}
 					});
 				});
