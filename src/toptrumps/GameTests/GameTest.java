@@ -1,19 +1,3 @@
-package toptrumps.GameTests;
-
-import static org.junit.Assert.*;
-
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-
-import org.junit.After;
-import org.junit.Before;
-
 /**
  * This class contains the various test cases for the CLI version of the game
  * 
@@ -23,19 +7,22 @@ import org.junit.Before;
  * 
  * */
 
-import org.junit.Test;
+package toptrumps.GameTests;
 
+import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import toptrumps.Controller;
 import toptrumps.DataCard;
-import toptrumps.DataCardCache;
 import toptrumps.DataGame;
 import toptrumps.DataPlayer;
 import toptrumps.ProgramDatabase;
 import toptrumps.ViewCLI;
 
 public class GameTest{
-//	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-//	private final PrintStream originalOut = System.out;
 	
 	DataGame model;
 	ViewCLI view;
@@ -50,11 +37,6 @@ public class GameTest{
 		controller = new Controller(model, view, true);
 	}
 	
-	@Before
-//	public void setUpStreams() {
-//		System.setOut(new PrintStream(outContent));
-//	}
-
 	@Test
 	public void testCLIStartGame() {
 		//check if the game actually starts in the CLI version if the user selects -c flag
@@ -245,6 +227,8 @@ public class GameTest{
 		//test that the category the user selected is correctly reflected
 		//test that exception handling is performed for wrong user input for digits
 		//check what happens if the user inputs a char or string instead
+		
+		
 	}
 	
 	@Test
