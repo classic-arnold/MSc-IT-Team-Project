@@ -94,6 +94,10 @@ public class DataGame{
 		this.allPlayers = (ArrayList<DataPlayer>)this.activePlayers.clone();
 	}
 
+	// ------------------------------------------- //
+	// ------------------------------------------- //
+	// ------------------------------------------- //
+
 	/**
 	 * gets the instance of the single DataGame
 	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players in the game
@@ -242,6 +246,10 @@ public class DataGame{
 		}
 
 	}
+
+	// ------------------------------------------- //
+	// ------------------------------------------- //
+	// ------------------------------------------- //
 
 	/**
 	 * used to get a fresh new deck
@@ -418,6 +426,10 @@ public class DataGame{
 	private void saveGameStats() {
 		ProgramDatabase.insertGameStats(this);
 	}
+
+	// ------------------------------------------- //
+	// ------------------------------------------- //
+	// ------------------------------------------- //
 
 	// GETTER METHODS START
 
@@ -626,6 +638,10 @@ public class DataGame{
 	}
 
 	// GETTER METHODS END
+
+	// ------------------------------------------- //
+	// ------------------------------------------- //
+	// ------------------------------------------- //
 
 	/**
 	 * 
