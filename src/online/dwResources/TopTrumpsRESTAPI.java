@@ -306,7 +306,7 @@ public class TopTrumpsRESTAPI {
 		
 		boolean shouldHumanChooseCategory;
 		
-		if (this.model.getRound().getRoundActivePlayer().getType()==DataPlayer.PlayerType.HUMAN) {
+		if (this.model.getCategoryChooser().getType()==DataPlayer.PlayerType.HUMAN) {
 			shouldHumanChooseCategory = true;
 		} else {
 			shouldHumanChooseCategory = false;
