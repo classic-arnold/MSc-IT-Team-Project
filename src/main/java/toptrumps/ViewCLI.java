@@ -179,7 +179,7 @@ public class ViewCLI {
 	 */
 	public void gameEnd() {
 		System.out.println("Game End");
-		System.out.println(model.getGameWinner().getName() + "won the game \n");
+		System.out.println(model.getGameWinner().getName() + " won the game \n");
 		System.out.println("Player scores");
 		for (int i = 0; i < model.getAllPlayers().length; i++) {
 			System.out.println(model.getAllPlayers()[i].getName() + " :" + model.getAllPlayers()[i].getScore());
