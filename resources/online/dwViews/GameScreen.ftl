@@ -209,6 +209,23 @@
 			
 	
 }
+
+@media not all and (min-resolution:.001dpcm) { 
+    @media {
+        .safari10 { 
+          		.card-img-top {
+				width: 100px;
+				height:100px;
+				border-radius: 20px;
+				clip: rect(0px, 60px, 200px, 0px);
+				margin-right:60px;
+				margin-left:60px;
+				margin-top:20px;
+			
+			}
+        }
+    }
+}
 						
 		</style>
 
