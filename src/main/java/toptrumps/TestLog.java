@@ -530,14 +530,11 @@ public class TestLog {
 	        String separator="------------------------------------------------------------------------";
 	        bw.write(separator);
 	        bw.newLine();
-		      bw.write("Game Stats");
+		      bw.write("Player scores");
 		      bw.newLine();
-			bw.write("Number of Games : " + model.getNumberOfGames()+"\n");
-				bw.write("Number of Human Wins:" + model.getNumberOfHumanWins()+"\n");
-				bw.write("Number of AI Wins : " + model.getNumberOfAIWins()+"\n");
-				bw.write("Average number of Draws : " + model.getAvgNumberOfDraws()+"\n");
-				bw.write("Longest Game : " + model.getLongestGame()+"\n");
-		
+				for (int i = 0; i < model.getAllPlayers().length; i++) {
+					bw.write(model.getAllPlayers()[i].getName() + " :" + model.getAllPlayers()[i].getScore()+"\n");
+				}
 		  	
 	         bw.close();
 	           
@@ -660,7 +657,7 @@ public class TestLog {
 	        bw.newLine();
 	        bw.newLine();
 	        String gameWinner=model.getGameWinner().getName();
-	        bw.write(gameWinner);
+	        bw.write(gameWinner+"\n");
 	         bw.close();
 	           
 	      
