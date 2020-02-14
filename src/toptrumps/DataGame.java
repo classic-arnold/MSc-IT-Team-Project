@@ -181,6 +181,8 @@ public class DataGame{
 			}
 		}
 
+		this.round.roundCards = roundCards; // store round cards
+
 		// represents the winning cards and winning players for the round
 		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(DataGame.arrayListToArrayCard(roundCards), category);
 
@@ -675,6 +677,9 @@ public class DataGame{
 		/** represents the player that chose category in round */
 		private DataPlayer roundActivePlayer;
 
+		/** represents the round cards. Used to store data of the round */
+		private ArrayList<DataCard> roundCards = new ArrayList<DataCard>();
+
 		/**
 		 * get the player to choose category for the round
 		 * @return DataPlayer representing the player to choose category for the round
@@ -728,6 +733,14 @@ public class DataGame{
 		 */
 		public void incrementRound() {
 			this.roundNumber+=1;
+		}
+
+		/**
+		 * get the cards in the round
+		 * @return DataCard[] representing the cards in the round
+		 */
+		public DataCard[] getRoundCards() {
+			return DataGame.arrayListToArrayCard(this.roundCards);
 		}
 	}
 
