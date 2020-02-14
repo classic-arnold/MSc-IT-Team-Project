@@ -610,87 +610,6 @@ public class TopTrumpsRESTAPI {
 	
 	
 	
-//	/**
-//	 * Print description of starting stage of the round. 
-//	 * such as: "Round 1: Players had drawn their cards".
-//	 * @Controller.js:
-//	 * @param RoundNumber:int, CategoryChooser:String
-//	 * @return JSONString type
-//	 * @throws IOException
-//	 */	
-//	@GET
-//	@Path("/game/roundDescription1")
-//	public String getRoundDescription1(@QueryParam("RoundNumber") int RoundNumber,
-//			@QueryParam("CategoryChooser") String CategoryChooser) 
-//					throws IOException{
-//		String description;
-//		
-//		description=String.format("Round %d: Players had drawn their cards.", RoundNumber);
-//		if(CategoryChooser.equals("You")) {
-//		//		if(model.getCategoryChooser().equals("human")) {
-//			description+=" Waiting on "+CategoryChooser+" to select category.";
-//		}else {
-//			description+=" The Active Player is "+CategoryChooser;
-//		}
-//		
-//		return oWriter.writeValueAsString(description);
-//	}
-	
-//	/**
-//	 * Print selected category of the round. 
-//	 * such as: "Round 1: You selected speed".
-//	 * @Controller.js:
-//	 * @param RoundNumber:int, CategoryChooser:String, RoundCategory:String
-//	 * @return JSONString type
-//	 * @throws IOException
-//	 */	
-//	@GET
-//	@Path("/game/roundDescription2")
-//	public String getRoundDescription2(@QueryParam("RoundNumber") int RoundNumber,
-//			@QueryParam("CategoryChooser") String CategoryChooser,
-//			@QueryParam("RoundCategory") String RoundCategory) 
-//					throws IOException{
-//		String description;
-//		
-//		description=String.format("Round %d: %s selected %s.", RoundNumber, CategoryChooser, RoundCategory);
-//		return oWriter.writeValueAsString(description);
-//	}
-	
-	
-////	/**
-////	 * Print winner of the round. 
-////	 * such as: "Round 1: Player You won this round. Common pile now has 5 cards".
-////	 * @Controller.js:
-////	 * @param RoundNumber:int, RoundWinner:String, NumberOfActivePlayer:int, IsDraw:boolean
-////	 * @return JSONString type
-////	 * @throws IOException
-////	 */	
-//	@GET
-//	@Path("/game/roundDescription3")
-//	public String getRoundDescription3(@QueryParam("RoundNumber") int RoundNumber,
-//			@QueryParam("RoundWinner") String RoundWinner,
-//			@QueryParam("NumberOfActivePlayer") int NumberOfActivePlayer,
-//			@QueryParam("IsDraw") boolean IsDraw)
-//					throws IOException{
-//		String description;
-//
-//		description=String.format("Round %d: Player %s won this round.", RoundNumber, RoundWinner);
-//		
-//		//if the round was draw
-//		if(IsDraw) {
-//		//if(model.getRoundWasDraw()) {
-//			description=String.format("Round %d: This round was a Draw.", RoundNumber, NumberOfActivePlayer);
-//		}
-//		
-//		description+=" Common pile now has "+NumberOfActivePlayer+" cards.";
-//		
-//		return oWriter.writeValueAsString(description);
-//	}
-	
-	
-
-	
-	
 //	@GET
 //	@Path("/game/cardsInCommonPile")
 //	public DataCard[] getCardsInCommonPile() {
@@ -731,37 +650,5 @@ public class TopTrumpsRESTAPI {
 //		return model.getRoundWinningPlayers();
 //	}
 	
-//	@GET
-//	@Path("/helloJSONList")
-//	/**
-//	 * Here is an example of a simple REST get request that returns a String.
-//	 * We also illustrate here how we can convert Java objects to JSON strings.
-//	 * @return - List of words as JSON
-//	 * @throws IOException
-//	 */
-//	public String helloJSONList() throws IOException {
-//		
-//		List<String> listOfWords = new ArrayList<String>();
-//		listOfWords.add("Hello");
-//		listOfWords.add("World!");
-//		
-//		// We can turn arbatory Java objects directly into JSON strings using
-//		// Jackson seralization, assuming that the Java objects are not too complex.
-//		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
-//		
-//		return listAsJSONString;
-//	}
-//	
-//	@GET
-//	@Path("/helloWord")
-//	/**
-//	 * Here is an example of how to read parameters provided in an HTML Get request.
-//	 * @param Word - A word
-//	 * @return - A String
-//	 * @throws IOException
-//	 */
-//	public String helloWord(@QueryParam("Word") String Word) throws IOException {
-//		return "Hello "+Word;
-//	}	
 
 }
