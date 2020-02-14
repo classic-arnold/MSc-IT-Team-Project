@@ -1,4 +1,4 @@
-package toptrumps.GameTests;
+package test.java;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;

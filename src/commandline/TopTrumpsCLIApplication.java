@@ -24,25 +24,22 @@ public class TopTrumpsCLIApplication {
 
 		// Loop until the user wants to exit the game
 		while (!userWantsToQuit) {
-			
-			// The Main method that call MVC, to implement game logic 
 
-			DataGame model = DataGame.resetAndGetInstance(4);
-			ViewCLI view = new ViewCLI(model); // we need to pass in view here
-			Controller controller = new Controller(model, view, writeGameLogsToFile);
-			
-			int userChoice = controller.startGame();
+			// The Main method that call MVC, to implement game logic
 
-			
-			
+			DataGame model = DataGame.resetAndGetInstance(4); // model
+
+			ViewCLI view = new ViewCLI(model); // initiailize view
+
+			Controller controller = new Controller(model, view, writeGameLogsToFile); // initialize controller
+
+			int userChoice = controller.startGame(); // start game, if return 1, then user wants to quit else, nothing
+
 			if (userChoice == 1) {
-				userWantsToQuit=true;
+				userWantsToQuit=true; // use this when the user wants to exit the game
 			}
 
-			//			userWantsToQuit=true; // use this when the user wants to exit the game
-
 		}
-
 
 	}
 
