@@ -20,14 +20,14 @@ public class ProgramDatabase {
 	//	private static final String password="2431088l";
 
 	//When running database via remote IP address, release annotation below 3 line
-//	private static final String url="jdbc:postgresql://52.24.215.108:5432/TryCatch";
-//	private static final String userID="TryCatch";
-//	private static final String password="TryCatch";
+	private static final String url="jdbc:postgresql://52.24.215.108:5432/TryCatch";
+	private static final String userID="TryCatch";
+	private static final String password="TryCatch";
 	
 	//When running database via Estelle's database.
-	private static final String url="jdbc:postgresql://localhost:5432/TopTrump";
-	private static final String userID="postgres";
-	private static final String password="qmffldqmffld3";
+//	private static final String url="jdbc:postgresql://localhost:5432/TopTrump";
+//	private static final String userID="postgres";
+//	private static final String password="qmffldqmffld3";
 	private static Connection conn;
 
 	//Getters
