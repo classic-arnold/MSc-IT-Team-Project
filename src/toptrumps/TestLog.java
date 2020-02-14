@@ -355,7 +355,8 @@ public class TestLog {
               bw = new BufferedWriter(fw);
               bw.write("Communal Pile Contents");
               if(model.getCardsInCommonPile().length==0) {
-            	  bw.write("The communal pile is empty");
+            	  bw.write("The communal pile is empty \n");
+            	  
               }
               if(model.getCardsInCommonPile().length>0) {
             	  bw.newLine();
