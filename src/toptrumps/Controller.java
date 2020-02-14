@@ -64,8 +64,7 @@ public class Controller {
 				testLog = new TestLog (dataGame);
 				this.testLog.writeDeckContents();
 				this.testLog.writeShuffledDeckContents();
-				this.testLog.writePlayerDecks();
-				this.testLog.writeCardsInPlay();
+				this.testLog.writePlayerDecksInitial();
 			}
 
 			// while game is running, keep playing rounds
@@ -85,21 +84,25 @@ public class Controller {
 				} else { // else, ask player to select category
 					category = this.viewCli.displayCategorySelection();
 				}
-
-				// play the round
-				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
-
-				// print test log strings
+				
+				// if flag was added at the beginning, print test log strings
 				if(this.writeGameLogsToFile) {
 					this.testLog.writeRoundNumber();
 					this.testLog.writePlayerDecks();
 					this.testLog.writeNumCardsInDeck();
 					this.testLog.writeCardsInPlay();
 					this.testLog.writeActivePlayer();
-					this.testLog.writeRoundWinningCard();
-					this.testLog.writeCommunalPile();
+				}
+
+				// play the round
+				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
+
+				// print test log strings
+				if(this.writeGameLogsToFile) {
 					this.testLog.writeCategorySelected();
+					this.testLog.writeRoundWinningCard();
 					this.testLog.writeRoundWinner();
+					this.testLog.writeCommunalPile();
 				}
 
 				// display the round results

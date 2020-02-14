@@ -339,6 +339,81 @@ public class TestLog {
             }
         }
     }}
+	
+	
+	/**
+     *Writes each player deck to test log
+     */
+
+	public void writePlayerDecksInitial() {
+		FileWriter fw = null;
+    BufferedWriter bw = null;
+    try {
+        fw = new FileWriter(outF,true);
+        bw = new BufferedWriter(fw);
+        String separator="------------------------------------------------------------------------";
+        bw.write(separator);
+        bw.newLine();
+        bw.newLine();             
+      	bw.write("Initial Player Decks");       
+        bw.newLine();
+        bw.newLine();
+      
+        for (int j=0;j<model.getActivePlayers().length;j++) {
+        	String player=model.getActivePlayers()[j].getName();
+        	  bw.write(player);
+        	  bw.newLine();
+        	  bw.newLine();
+            bw.write(header);
+            bw.newLine();
+            bw.newLine();
+        	 for(int i=0;i<model.getActivePlayers()[j].getDeck().size();i++) {
+            	   String space=" ";
+            	   String description =model.getActivePlayers()[j].getDeck().get(i).getDescription();
+            	   String size=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getCategory1());
+            	   String speed=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getCategory2());
+            	   String range=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getCategory3());
+            	   String firepower=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getCategory4());
+            	   String cargo=String.valueOf(model.getActivePlayers()[j].getDeck().get(i).getCategory5());
+                   bw.write(description);
+                   bw.write(space);
+                   bw.write(size);
+                   bw.write(space);
+                   bw.write(speed);
+                   bw.write(space);
+                   bw.write(range);
+                   bw.write(space);
+                   bw.write(firepower);
+                   bw.write(space);
+                   bw.write(cargo);
+                   bw.newLine();
+                   bw.newLine();
+               }
+        	 if(j!=model.getActivePlayers().length-1) {
+        		 bw.write("----------------------------");
+        	 }
+        	 bw.newLine();
+        	 
+        	 
+        }
+        
+         bw.close();
+           
+      
+    }catch(IOException e) {
+        e.printStackTrace();
+    }finally {
+       
+        if(fw!=null) {
+            try {
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }}
+	
+	
 	 /**
      *Writes contents of communal pile to test log
      */
