@@ -286,14 +286,8 @@ public class TestLog {
         String separator="------------------------------------------------------------------------";
         bw.write(separator);
         bw.newLine();
-        bw.newLine();
-        if(model.getRound().getRoundNumber()==0) {
-        	  bw.write("Initial Player Decks");
-        }
-        if(model.getRound().getRoundNumber()!=0) {
-      	  bw.write("Player Decks");
-      }
-    
+        bw.newLine();             
+      	bw.write("Player Decks");       
         bw.newLine();
         bw.newLine();
       
@@ -425,7 +419,7 @@ public class TestLog {
 	        bw.write(separator);
 	        bw.newLine();
 	        bw.newLine();
-	        bw.write("Player's Top Cards");
+	        bw.write("Players' Top Cards");
 	        bw.newLine();
 	        bw.newLine();
 	      
@@ -458,8 +452,10 @@ public class TestLog {
 	                   bw.write(cargo);
 	                   bw.newLine();
 	                   bw.newLine();
-	            
-	        	 bw.write("----------------------------");
+	            if (j != model.getActivePlayers().length-1) {
+	            	bw.write("----------------------------");
+	            }
+	        	 
 	        	 bw.newLine();
 	        	 
 	        	 

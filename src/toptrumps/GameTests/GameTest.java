@@ -17,6 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 import toptrumps.Controller;
 import toptrumps.DataCard;
+import toptrumps.DataCardCache;
 import toptrumps.DataGame;
 import toptrumps.DataPlayer;
 import toptrumps.ProgramDatabase;
@@ -507,9 +508,5 @@ public class GameTest{
 		assertTrue(card3.findTopCategory()==2 || card3.findTopCategory()==3);
 	}
 	
-//	@After
-//	public void restoreStreams() {
-//		System.setOut(originalOut);
-//	}
 
 }

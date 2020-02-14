@@ -70,10 +70,12 @@ public class Controller {
 				
 //				TestLog print
 				if(this.writeGameLogsToFile) {
+					
 					this.testLog.writePlayerDecks();
 					this.testLog.writeCardsInPlay();
-					this.testLog.writeCommunalPile();
 					this.testLog.writeCategorySelected();
+					this.testLog.writeCommunalPile();
+					
 					
 				}
 
