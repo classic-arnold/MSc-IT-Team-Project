@@ -580,14 +580,8 @@ public class DataGame{
 	 * @return int representing the category mapped from 1 to 5
 	 */
 	public int getBestCategoryForPlayer(DataPlayer player) {
-		// check if the player is AI first
-		if(player.getType()==DataPlayer.PlayerType.AI) {
-			// return the best category for the players topmost card
-			return player.getDeck().get(0).findTopCategory();
-		} else {
-			// throw exception if player isn't AI
-			throw new exceptions.PlayerIsNotAIException();
-		}
+		// return the best category for the players topmost card
+		return player.getDeck().get(0).findTopCategory();
 	}
 
 	/**
@@ -729,10 +723,12 @@ public class DataGame{
 		}
 
 		/**
-		 * increase the round number by 1
+		 * increase the round number by 1, only if game is running
 		 */
 		public void incrementRound() {
-			this.roundNumber+=1;
+			if(gameState==DataGame.GameState.RUNNING) {
+				this.roundNumber+=1;
+			}
 		}
 
 		/**

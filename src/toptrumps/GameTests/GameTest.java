@@ -149,7 +149,7 @@ public class GameTest{
 		ArrayList<DataCard> playerCards = new ArrayList<DataCard>();
 		
 		for(int i=0;i<players.length;i++) {
-			playerCards.add(players[i].getDeck().get(i));
+			playerCards.add(players[i].getDeck().get(0));
 		}
 		
 		this.model.playRound(DataGame.CATEGORYNAMES[0]);
@@ -266,11 +266,94 @@ public class GameTest{
 		//test that the winner displayed is correct
 		//test that the correct score for each player is returned
 		//test that the correct score for each player is displayed
+		
+		int lastRoundNumberControl = 0;
+		int lastRoundNumberCheck = 0;
+		
+		int gameRoundNumber = 0;
+		
+		this.model.startGame();
+		
+
+		while(this.model.getGameState()==DataGame.GameState.RUNNING) {
+			int category;
+
+
+			DataPlayer activePlayer = this.model.getCategoryChooser();
+			this.view.updateView();
+			if(this.model.getRound().getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+				category = this.model.getBestCategoryForPlayer(activePlayer);
+			} else {
+				category = 2;
+			}
+			// int category = this.viewCli.displayCategorySelection();
+
+			this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
+
+			this.model.getRound().incrementRound();
+
+		}
+		
+		lastRoundNumberControl = this.model.getRound().getRoundNumber();
+		
+		this.model.playRound(DataGame.CATEGORYNAMES[0]);
+		
+		lastRoundNumberCheck = this.model.getRound().getRoundNumber();
+		
+		assertEquals(lastRoundNumberControl, lastRoundNumberCheck);
+		
+		
 	}
 	
 	@Test
 	public void testGameRestart() {
 		//test that when a game ends, the user is able to either start a new game or view statistics
+		int gameRoundNumber = 0;
+		
+		this.model.startGame();
+		
+
+		while(this.model.getGameState()==DataGame.GameState.RUNNING) {
+			int category;
+
+
+			DataPlayer activePlayer = this.model.getCategoryChooser();
+			this.view.updateView();
+			if(this.model.getRound().getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+				category = this.model.getBestCategoryForPlayer(activePlayer);
+			} else {
+				category = 2;
+			}
+			// int category = this.viewCli.displayCategorySelection();
+
+			this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
+
+			this.model.getRound().incrementRound();
+
+		}
+		
+		this.model.startGame();
+		
+		int category;
+
+
+		DataPlayer activePlayer = this.model.getCategoryChooser();
+		this.view.updateView();
+		if(this.model.getRound().getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+			category = this.model.getBestCategoryForPlayer(activePlayer);
+		} else {
+			category = 2;
+		}
+		// int category = this.viewCli.displayCategorySelection();
+
+		this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
+		
+		gameRoundNumber = this.model.getRound().getRoundNumber();
+
+		this.model.getRound().incrementRound();
+		
+		assertEquals(1, gameRoundNumber);
+		
 	}
 	
 	@Test
@@ -359,18 +442,74 @@ public class GameTest{
 	public void testGameStatisticsDisplay() {
 		//test that all the above data are displayed correctly
 	}
+
+	
+	// Unit Tests
+	@Test
+	public void testBestCategoryForPlayer() {
+		DataPlayer player = new DataPlayer(DataPlayer.PlayerType.HUMAN, 0);
+		
+		player.addCardToDeck(DataCardCache.getAllCardsInOrder()[0]);
+		
+		assertEquals(2, this.model.getBestCategoryForPlayer(player));
+	}
+	
+	@Test
+	public void testCardShuffle() {
+		this.model.startGame();
+		assert(
+			!this.model.getInitialShuffledDeck()[0].equals(this.model.getInitialUnshuffledDeck()[0]) ||
+			!this.model.getInitialShuffledDeck()[1].equals(this.model.getInitialUnshuffledDeck()[1]) ||
+			!this.model.getInitialShuffledDeck()[2].equals(this.model.getInitialUnshuffledDeck()[2]) ||
+			!this.model.getInitialShuffledDeck()[3].equals(this.model.getInitialUnshuffledDeck()[3]) 
+		);
+	}
+	
+	@Test
+	public void testGetHumanPlayer() {
+		assertTrue(this.model.getHumanPlayer().getType()==DataPlayer.PlayerType.HUMAN);
+	}
+	
+	@Test
+	public void testListToArrayAndArrayToList() {
+		this.model.startGame();
+		ArrayList<DataPlayer> playersList = new ArrayList<DataPlayer>();
+		playersList.add(this.model.getAllPlayers()[0]);
+		ArrayList<DataCard> cardsList = new ArrayList<DataCard>();
+		cardsList.add(this.model.getInitialUnshuffledDeck()[0]);
+		
+		DataPlayer[] playersArr;
+		DataCard[] cardsArr;
+		
+		playersArr = DataGame.arrayListToArrayPlayer(playersList);
+		cardsArr = DataGame.arrayListToArrayCard(cardsList);
+		
+		assertEquals(playersList.get(0), playersArr[0]);
+		assertEquals(cardsList.get(0), cardsArr[0]);
+		
+		ArrayList<DataPlayer> playersList2 = new ArrayList<DataPlayer>();
+		playersList2 = DataGame.arrayToArrayList(playersArr);
+		ArrayList<DataCard> cardsList2 = new ArrayList<DataCard>();
+		cardsList2 = DataGame.arrayToArrayList(cardsArr);
+		
+		assertEquals(playersList2.get(0), playersArr[0]);
+		assertEquals(cardsList2.get(0), cardsArr[0]);
+	}
+	
+	@Test
+	public void testTopCategory() {
+		DataCard card = new DataCard("Test", 1,1,1,1,5);
+		DataCard card2 = new DataCard("Test", 1,1,7,1,1);
+		DataCard card3 = new DataCard("Test", 1,4,4,1,1);
+		
+		assertEquals(5, card.findTopCategory());
+		assertEquals(3, card2.findTopCategory());
+		assertTrue(card3.findTopCategory()==2 || card3.findTopCategory()==3);
+	}
 	
 //	@After
 //	public void restoreStreams() {
 //		System.setOut(originalOut);
 //	}
-	
-	@After
-	public void tearDown() {
-//		controller = null;
-	}
-	
-	
-	
 
 }
