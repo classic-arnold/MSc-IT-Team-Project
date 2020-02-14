@@ -91,6 +91,8 @@
 			.alert {
 				border-radius: 0;
 				border: none;
+				padding-top:0px;
+				padding-bottom:0px;
 			}
 			.alert-info{
 			background-color:#F0A202;
@@ -110,15 +112,20 @@
 
 
 			.card-img-top {
-				width: 50%;
+				width: 100px;
+				height:100px;
 				border-radius: 20px;
 				clip: rect(0px, 60px, 200px, 0px);
-				margin-top:10px;
+				margin-right:100px;
+				margin-left:100px;
+				margin-top:20px;
 			
 			}
 
 			.card {
-				box-shadow: 0 0 10px black;
+			    box-shadow: 0 0 10px black;
+			    /*color for on highlight*/
+				/*box-shadow: 0 0 10px #FF8300;*/
 				font-family: 'Roboto Mono', monospace;
 				font-weight: bold;
 			}
@@ -173,6 +180,35 @@
 				font-weight: bold;
 			
 			}
+			
+			.table{
+			color:white;
+			
+			
+			}
+			.table th, .table td {
+   				border-top:none;
+                       }
+			.card-header{
+			
+			background-color:#659999;
+			
+			}
+			@supports (-ms-ime-align:auto) {
+			
+				.card-img-top {
+				width: 100px;
+				height:100px;
+				border-radius: 20px;
+				clip: rect(0px, 60px, 200px, 0px);
+				margin-right:60px;
+				margin-left:60px;
+				margin-top:20px;
+			
+			}
+			
+	
+}
 						
 		</style>
 
@@ -214,6 +250,39 @@
 								<option value="3">Three</option>
 								<option value="4">Four</option>
 							</select>
+						</div>
+						<div id="displayEndScores" class="action-div">
+						<table class="table">
+						 <thead>
+    					<tr>
+     					<th>Player</th>
+            			<th>Score</th>
+          				</tr>
+            			</thead>
+            			
+						<tbody>
+			             	<tr>
+     					<th id="playerOneName">Player1</th>
+            			<th id="playerOneScore">1</th>
+          				</tr>
+          				<tr>
+     					<th id="playerTwoName">Player2</th>
+            			<th id="playerTwoScore">2</th>
+          				</tr>
+          				<tr>
+     					<th id="playerThreeName">Player3</th>
+            			<th id="playerThreeScore">3</th>
+          				</tr>
+          				<tr>
+     					<th id="playerFourName">Player4</th>
+            			<th id="playerFourScore">4</th>
+          				</tr>
+          				<tr>
+     					<th id="playerFiveName">Player5</th>
+            			<th id="playerFiveScore">5</th>
+          				</tr>
+						</tbody>
+						</table>
 						</div>
 						<div id="selectCategoryMenu" class="action-div categories">
 							<h3 id="selection-category-menu">Please select your category</h3>
@@ -272,7 +341,7 @@
 																							  class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
-								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+								<img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
 								</div>
 								<div class="card-body">
 									<h5 id="cardTwoTitle"class="card-title">m50</h5>
@@ -300,7 +369,7 @@
 																								class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
-								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+								<img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
 								</div>
 								<div class="card-body">
 									<h5 id="cardThreeTitle" class="card-title">Orion</h5>
@@ -332,7 +401,7 @@
 																							   class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
-								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+								<img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
 								</div>
 								<div class="card-body">
 									<h5 id="cardFourTitle" class="card-title">Hawk</h5>
@@ -360,7 +429,7 @@
 																							   class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
-								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+								<img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
 								</div>
 								<div class="card-body">
 									<h5 id="cardFiveTitle" class="card-title">Hurricane</h5>
@@ -387,7 +456,7 @@
 								<div class="card-header"><span class="player-name"></span><span class="badge badge-primary float-right cards-left"></span>
 								</div>
 								 <div class="row justify-content-center ">
-								<img class="card-img-top" src="http://placekitten.com/300/300" alt="Card image cap">
+								<img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
 								</div>
 								<div class="card-body">
 									<h5 class="card-title">Sabre</h5>

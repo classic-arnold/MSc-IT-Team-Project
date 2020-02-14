@@ -19,8 +19,6 @@ public class Controller {
 		this.dataGame = dataGame;
 		this.viewCli = viewCli;
 		this.writeGameLogsToFile = writeGameLogsToFile;
-
-		testLog = new TestLog (dataGame); // refactor this
 	}
 
 	public int startGame() {
@@ -36,6 +34,7 @@ public class Controller {
 			
 //			TestLog print
 			if(this.writeGameLogsToFile) {
+				testLog = new TestLog (dataGame); // refactor this
 				this.testLog.writeDeckContents();
 				this.testLog.writeShuffledDeckContents();
 			}
