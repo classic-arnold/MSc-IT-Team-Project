@@ -38,7 +38,7 @@ public class DataPlayer {
 	 * @param type PlayerType enum representing the type of player
 	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players
 	 */
-	DataPlayer(PlayerType type, int numberOfArtificialIntelligencePlayers) {
+	public DataPlayer(PlayerType type, int numberOfArtificialIntelligencePlayers) {
 		this.type = type; //set type
 		this.score = 0;
 
@@ -62,33 +62,11 @@ public class DataPlayer {
 		}
 	}
 
-	//	ArrayList<DataCard> createRandomDeck(ArrayList<DataCard> deck) {
-	//		ArrayList<DataCard> completeDeck = deck;
-	//		ArrayList<DataCard> cardDeck = new ArrayList<DataCard>(Collections.nCopies(7, null));
-	//		ArrayList<Integer> randomNumbers = new ArrayList<Integer>();
-	//
-	//		Random random = new Random();
-	//		for(int i=0;i<cardDeck.size();i++) {
-	//			int randomNumber;
-	//			do {
-	//				randomNumber = random.nextInt(completeDeck.size());
-	//			} while(randomNumbers.contains(randomNumber));
-	//			
-	//			cardDeck.remove(i);
-	//			cardDeck.add(i, completeDeck.get(randomNumber));
-	//			completeDeck.remove(randomNumber);
-	//			
-	//			randomNumbers.add(randomNumber);
-	//		}
-	//		
-	//		return cardDeck;
-	//	}
-
 	/**
 	 * add cardS to player deck
 	 * @param newCards represents the lists of cards to be added to deck
 	 */
-	void addCardsToDeck(ArrayList<DataCard> newCards) {
+	public void addCardsToDeck(ArrayList<DataCard> newCards) {
 		for(DataCard card : newCards) {
 			this.cardDeck.add(card);
 		}
@@ -98,18 +76,8 @@ public class DataPlayer {
 	 * add card to player deck
 	 * @param newCard represents the card to be added to deck
 	 */
-	void addCardToDeck(DataCard newCard) {
+	public void addCardToDeck(DataCard newCard) {
 		this.cardDeck.add(newCard);
-	}
-
-	/**
-	 * remove cardS from player deck
-	 * @param cardsToRemove represents the lists of cards to be removed from deck
-	 */
-	void removeCardsFromDeck(ArrayList<DataCard> cardsToRemove) {
-		for(DataCard card : cardsToRemove) {
-			this.cardDeck.remove(card);
-		}
 	}
 
 	/**
@@ -120,26 +88,10 @@ public class DataPlayer {
 	}
 
 	/**
-	 * remove card from player deck
-	 * @param cardToRemove represents the card to be removed from deck
-	 */
-	void removeCardFromDeck(DataCard cardToRemove) {
-		this.cardDeck.remove(cardToRemove);
-	}
-
-	/**
 	 * remove top card from player deck
 	 */
 	void removeTopCardFromDeck() {
 		this.cardDeck.remove(0);
-	}
-
-	/**
-	 * set player deck
-	 * @param deck the list of cards we want to set player deck to
-	 */
-	void setDeck(ArrayList<DataCard> deck) {
-		this.cardDeck = deck;
 	}
 
 	// GETTER METHODS START

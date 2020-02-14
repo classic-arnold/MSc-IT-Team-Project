@@ -8,7 +8,7 @@ package toptrumps;
  * 
  */
 public class DataCard implements Cloneable{
-	
+
 	/** string representing card description */
 	private String description;
 
@@ -38,7 +38,7 @@ public class DataCard implements Cloneable{
 	 * @param category4 integer representing card category4
 	 * @param category5 integer representing card category5
 	 */
-	DataCard(String description, int category1, int category2, int category3, int category4, int category5){
+	public DataCard(String description, int category1, int category2, int category3, int category4, int category5){
 		this.description = description;
 		this.category1 = category1;
 		this.category2 = category2;
@@ -58,53 +58,56 @@ public class DataCard implements Cloneable{
 	 */
 	int compare(DataCard otherCard, String category){
 		/* 
-		 * uses switch to set the result to true or false, depending on the category chosen.
-		 * since the first letter of all categories are different, we check for this (and its uppercase) only
-		 * to avoid formatting error.
+		 * set the result, depending on the category chosen.
+		 * we check if the categories are same by checking if the strings are equals ignoring case
 		 * 
 		 */
-		String category1FirstTwoLetters =DataGame.CATEGORYNAMES[0].charAt(0)+""+DataGame.CATEGORYNAMES[0].charAt(1);
-		String category2FirstTwoLetters =DataGame.CATEGORYNAMES[1].charAt(0)+""+DataGame.CATEGORYNAMES[1].charAt(1);
-		String category3FirstTwoLetters =DataGame.CATEGORYNAMES[2].charAt(0)+""+DataGame.CATEGORYNAMES[2].charAt(1);
-		String category4FirstTwoLetters =DataGame.CATEGORYNAMES[3].charAt(0)+""+DataGame.CATEGORYNAMES[3].charAt(1);
-		String category5FirstTwoLetters =DataGame.CATEGORYNAMES[4].charAt(0)+""+DataGame.CATEGORYNAMES[4].charAt(1);
-		String chosenCategoryFirstTwoLetters =Character.toLowerCase(category.charAt(0))+""+Character.toLowerCase(category.charAt(1));
-		
+		String category1 =DataGame.CATEGORYNAMES[0];
+		String category2 =DataGame.CATEGORYNAMES[1];
+		String category3 =DataGame.CATEGORYNAMES[2];
+		String category4 =DataGame.CATEGORYNAMES[3];
+		String category5 =DataGame.CATEGORYNAMES[4];
+		String chosenCategory = category;
+
 		int result = 0;
-		
-		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category1FirstTwoLetters)) {
+
+		if(chosenCategory.equalsIgnoreCase(category1)) {
 			result = this.category1 > otherCard.category1 ? 1 : result;
 			result = this.category1 == otherCard.category1 ? 2 : result;
 			return result;
 		}
-		
-		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category2FirstTwoLetters)) {
+
+		if(chosenCategory.equalsIgnoreCase(category2)) {
 			result = this.category2 > otherCard.category2 ? 1 : result;
 			result = this.category2 == otherCard.category2 ? 2 : result;
 			return result;
 		}
-		
-		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category3FirstTwoLetters)) {
+
+		if(chosenCategory.equalsIgnoreCase(category3)) {
 			result = this.category3 > otherCard.category3 ? 1 : result;
 			result = this.category3 == otherCard.category3 ? 2 : result;
 			return result;
 		}
-		
-		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category4FirstTwoLetters)) {
+
+		if(chosenCategory.equalsIgnoreCase(category4)) {
 			result = this.category4 > otherCard.category4 ? 1 : result;
 			result = this.category4 == otherCard.category4 ? 2 : result;
 			return result;
 		}
-		
-		if(chosenCategoryFirstTwoLetters.equalsIgnoreCase(category5FirstTwoLetters)) {
+
+		if(chosenCategory.equalsIgnoreCase(category5)) {
 			result = this.category5 > otherCard.category5 ? 1 : result;
 			result = this.category5 == otherCard.category5 ? 2 : result;
 			return result;
 		}
-		
+
 		throw new exceptions.CategoryNotFoundException(); // if category does not exist
 	}
-	
+
+	/**
+	 * find the highest category for the card
+	 * @return int mapped to the category descriptions. See DataGame.CATEGORYNAMES
+	 */
 	public int findTopCategory() {
 		if(this.category1>=this.category2 && this.category1>=this.category3 && this.category1>=this.category4 && this.category1>=this.category5) {
 			return 1;
@@ -191,7 +194,7 @@ public class DataCard implements Cloneable{
 
 		return cloneCard;
 	}
-	
+
 	/**
 	 * used to render this class to string
 	 * @return string representing class details
@@ -204,17 +207,17 @@ public class DataCard implements Cloneable{
 		String arrow = ">";
 		String colon = ":";
 		String newLine = "\n";
-		
+
 		// create strings
 		string += arrow + space + DataGame.CATEGORYNAMES[0] + colon + space + this.category1 + newLine;
 		string += arrow + space + DataGame.CATEGORYNAMES[1] + colon + space + this.category2 + newLine;
 		string += arrow + space + DataGame.CATEGORYNAMES[2] + colon + space + this.category3 + newLine;
 		string += arrow + space + DataGame.CATEGORYNAMES[3] + colon + space + this.category4 + newLine;
 		string += arrow + space + DataGame.CATEGORYNAMES[4] + colon + space + this.category5 + newLine;
-		
+
 		return string;
 	}
-	
+
 	/**
 	 * used to render this class to string with winning category
 	 * @return string representing class details
@@ -226,41 +229,41 @@ public class DataCard implements Cloneable{
 		String arrow = ">";
 		String colon = ":";
 		String newLine = "\n";
-		
+
 		// create strings
 		string += arrow + space + DataGame.CATEGORYNAMES[0] + colon + space + this.category1;
 		if(((category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equalsIgnoreCase(DataGame.CATEGORYNAMES[0].charAt(0)+""+DataGame.CATEGORYNAMES[0].charAt(1))){
 			string += " <--";
 		}
 		string += newLine;
-		
-		
+
+
 		string += arrow + space + DataGame.CATEGORYNAMES[1] + colon + space + this.category2;
 		if((Character.toLowerCase(category.charAt(0)) + "" + Character.toLowerCase(category.charAt(1))).equalsIgnoreCase(DataGame.CATEGORYNAMES[1].charAt(0)+""+DataGame.CATEGORYNAMES[1].charAt(1))){
 			string += " <--";
 		}
 		string += newLine;
-		
-		
+
+
 		string += arrow + space + DataGame.CATEGORYNAMES[2] + colon + space + this.category3;
 		if((category.charAt(0)) == DataGame.CATEGORYNAMES[2].charAt(0)){
 			string += " <--";
 		}
 		string += newLine;
-		
-		
+
+
 		string += arrow + space + DataGame.CATEGORYNAMES[3] + colon + space + this.category4;
 		if((category.charAt(0)) == DataGame.CATEGORYNAMES[3].charAt(0)){
 			string += " <--";
 		}
 		string += newLine;
-		
+
 		string += arrow + space + DataGame.CATEGORYNAMES[4] + colon + space + this.category5;
 		if((category.charAt(0)) == DataGame.CATEGORYNAMES[4].charAt(0)){
 			string += " <--";
 		}
 		string += newLine;
-		
+
 		return string;
 	}
 
