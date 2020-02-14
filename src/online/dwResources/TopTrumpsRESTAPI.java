@@ -482,7 +482,7 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/result/scores")
-	public String getGameResult(){		
+	public String getGameResult(){
 		//Categories for the human player
 		List<String> gameResult=new ArrayList<String>();
 		
@@ -532,6 +532,31 @@ public class TopTrumpsRESTAPI {
 			e.printStackTrace();
 		}
 		return statisticsAsString;
+	}
+	
+	@GET
+	@Path("/game/allPlayersScores")
+	public String getAllPlayersAndScores() {
+		String result=null;
+		
+		DataPlayer[] players = this.model.getAllPlayers();
+		
+		List<HashMap<String, Object>> listOfPlayersAndScores = new ArrayList<HashMap<String, Object>>();
+		
+		for(DataPlayer player : players) {
+			HashMap<String, Object> playersAndScores = new HashMap<String, Object>();
+			playersAndScores.put("name", player.getName());
+			playersAndScores.put("score", player.getScore());
+			listOfPlayersAndScores.add(playersAndScores);
+		}
+		
+		try {
+			result = oWriter.writeValueAsString(listOfPlayersAndScores);
+		} catch (JsonProcessingException e) {
+			
+		}
+		
+		return result;
 	}
 	
 	
@@ -616,16 +641,6 @@ public class TopTrumpsRESTAPI {
 //	@Path("/game/cardsInCommonPile")
 //	public DataCard[] getCardsInCommonPile() {
 //		return model.getCardsInCommonPile();
-//	}
-	
-	
-
-
-	
-//	@GET
-//	@Path("/game/allPlayers")
-//	public DataPlayer[] getAllPlayers() {
-//		return model.getAllPlayers();
 //	}
 	
 	

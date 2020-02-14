@@ -284,26 +284,6 @@
             			</thead>
             			
 						<tbody>
-			             	<tr>
-     					<th id="playerOneName">Player1</th>
-            			<th id="playerOneScore">1</th>
-          				</tr>
-          				<tr>
-     					<th id="playerTwoName">Player2</th>
-            			<th id="playerTwoScore">2</th>
-          				</tr>
-          				<tr>
-     					<th id="playerThreeName">Player3</th>
-            			<th id="playerThreeScore">3</th>
-          				</tr>
-          				<tr>
-     					<th id="playerFourName">Player4</th>
-            			<th id="playerFourScore">4</th>
-          				</tr>
-          				<tr>
-     					<th id="playerFiveName">Player5</th>
-            			<th id="playerFiveScore">5</th>
-          				</tr>
 						</tbody>
 						</table>
 						</div>
@@ -324,7 +304,7 @@
 					<div class="row">
 						<div id="status-col" class="col-sm-12">
 							<div class="alert alert-info" role="alert">
-								<p id="status-message"></p><p class="float-right" id="common-pile">Common Pile:1</p>
+								<p id="status-message"></p><p class="float-right" id="common-pile"></p>
 							</div>
 						</div>
 					</div>
@@ -475,23 +455,6 @@
 									</ul>
 								</div>
 							</div>
-							<div id="cardSix" class="card">
-								<div class="card-header"><span class="player-name"></span><span class="badge badge-primary float-right cards-left"></span>
-								</div>
-								 <div class="row justify-content-center ">
-								<img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
-								</div>
-								<div class="card-body">
-									<h5 class="card-title">Sabre</h5>
-									<ul class="list-group list-group-flush">
-										<li class="list-group-item card-cat1"><span class="cat-1"></span><span class="float-right card-val1"></span></li>
-										<li class="list-group-item card-cat2"><span class="cat-2"></span><span class="float-right card-val2"></span></li>
-										<li class="list-group-item card-cat3"><span class="cat-3"></span><span class="float-right card-val3"></span></li>
-										<li class="list-group-item card-cat4"><span class="cat-4"></span><span class="float-right card-val4"></span></li>
-										<li class="list-group-item card-cat5"><span class="cat-5"></span><span class="float-right card-val5"></span></li>
-									</ul>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -527,6 +490,7 @@
 					// all custom jQuery will go here
 					
 					$(".card-deck").toggle();
+					$(".table").toggle();
 					
 					$("#num-player-select").change(()=>{
 						startGame($("#num-player-select").val()).then(()=>{
@@ -534,7 +498,8 @@
 								$("#actionButton").html("NO ACTION");
 								$("#actionButtonDiv").fadeIn("fast", "swing", ()=>{
 									playRound().then(()=>{
-								
+										getRoundActiveCards();
+										getRoundActivePlayers();
 									});
 								});
 							});
@@ -707,6 +672,7 @@
 										$("#actionButtonDiv").fadeIn("fast", "swing");
 									});
 									$("#status-message").append(" You selected " + $("#category-select").val() + ".");
+									
 									resolve($("#category-select").val());
 								});
 							});
@@ -932,6 +898,62 @@
 				
 			}
 			
+			function setPlayerScores(){
+				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/allPlayersScores"); // Request type and URL
+			
+
+				// Message is not sent yet, but we can check that the browser supports CORS
+				if (!xhr) {
+					alert("CORS not supported");
+				}
+
+				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+				// to do when the response arrives
+				xhr.onload = function(e) {
+					var responseText = xhr.response; // the text of the response// 
+					var players = JSON.parse(responseText);
+					
+					$(document).ready(function() {
+						players.map((player, i)=>{
+							var tableData = "<tr><th>" + players[i].name + "</th><th>" + players[i].score + "</th></tr>\n"
+							$(".table").append(tableData);
+						});
+					});
+				};
+
+				// We have done everything we need to prepare the CORS request, so send it
+				xhr.send();	
+			}
+			
+			
+			function getNumberOfCardsInCommonPile(){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/numberOfCardsInCommonPile"); // Request type and URL
+			
+
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response//
+					
+						$(document).ready(function() {
+							$("#common-pile").html("Common Pile: " + responseText);
+							resolve();
+						});
+					};
+
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
 			async function playRound(){
 				let humanSelectCategory = await shouldHumanSelectCategory();
 
@@ -939,10 +961,20 @@
 				
 						
 				let roundNumber = await getRoundNumber();
+				
+				
 				if(roundNumber==="1"){
 					await getRoundActiveCards();
 					await getRoundActivePlayers();
 				}
+				
+				$(document).ready(function() {
+					$(".card").map((i, card)=>{
+						if ($(card).find(".player-name").html() !== "You"){
+							$(card).find(".card-body").css("visibility", "hidden");
+						}
+					});
+				});
 				
 				if(humanSelectCategory === "true"){
 					categorySelected = await selectCategoryForHuman();
@@ -969,8 +1001,6 @@
 						
 						var responseText = xhr.response; // the text of the response
 						
-						getRoundWinner();
-						
 						if(responseText != "running"){
 							$(document).ready(function() {
 								// all custom jQuery will go here
@@ -988,6 +1018,9 @@
 
 								$("#actionButton").toggle();
 								$(".cardDeck").toggle();
+								$(".table").toggle(()=>{
+									setPlayerScores();
+								});
 								$("#status-message").html("Game won by " + responseText + ".");
 								resolve();
 							});
@@ -995,14 +1028,34 @@
 						
 						$(document).ready(function() {
 							// all custom jQuery will go here
-							$("#actionButton").html("NEXT ROUND");
-							$("#actionButton").click(async ()=>{
-								$('#actionButton').off('click');								
-								await getRoundActiveCards();
-								await getRoundActivePlayers();
+							$("#actionButton").html("NEXT ROUND", );
+							setTimeout(()=>{
+								var nextRound = (async ()=>{
+						
+									getRoundWinner();							
+									await getRoundActiveCards();
+									await getRoundActivePlayers();
+									await getNumberOfCardsInCommonPile();
 								
-								playRound();
-							});
+									$(".card").map((i, card)=>{
+										if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
+											$(card).find(".card-body").css("visibility", "visible");
+										}
+									});
+								
+									$("#actionButton").html("3");
+									setTimeout(()=>{
+										$("#actionButton").html("2");
+										setTimeout(()=>{
+											$("#actionButton").html("1");
+											setTimeout(()=>{
+												playRound();
+											}, 2000);
+										}, 2000);
+									}, 2000);
+								})();
+							}, 2000);
+							
 						});
 					};
 		
