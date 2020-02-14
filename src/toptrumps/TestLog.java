@@ -123,8 +123,6 @@ public class TestLog {
 	        bw.write(separator);
 	        bw.newLine();
 	        bw.newLine();
-	        bw.newLine();
-	        bw.newLine();
 	        bw.write("The active player is "+ model.getCategoryChooser().getName() + "\n");
 	        bw.close();
 	           
