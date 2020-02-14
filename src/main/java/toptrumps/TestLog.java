@@ -521,6 +521,41 @@ public class TestLog {
 	    }
 	}
 	
+	public void writeGameStats() {
+		FileWriter fw = null;
+	    BufferedWriter bw = null;
+	    try {
+	        fw = new FileWriter(outF,true);
+	        bw = new BufferedWriter(fw);
+	        String separator="------------------------------------------------------------------------";
+	        bw.write(separator);
+	        bw.newLine();
+		      bw.write("Game Stats");
+		      bw.newLine();
+			bw.write("Number of Games : " + model.getNumberOfGames()+"\n");
+				bw.write("Number of Human Wins:" + model.getNumberOfHumanWins()+"\n");
+				bw.write("Number of AI Wins : " + model.getNumberOfAIWins()+"\n");
+				bw.write("Average number of Draws : " + model.getAvgNumberOfDraws()+"\n");
+				bw.write("Longest Game : " + model.getLongestGame()+"\n");
+		
+		  	
+	         bw.close();
+	           
+	      
+	    }catch(IOException e) {
+	        e.printStackTrace();
+	    }finally {
+	       
+	        if(fw!=null) {
+	            try {
+	                fw.close();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
+	
 	public void writeRoundWinner() {
 		FileWriter fw = null;
 	    BufferedWriter bw = null;
