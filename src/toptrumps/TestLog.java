@@ -96,7 +96,7 @@ public class TestLog {
 	        bw.newLine();
 	        bw.newLine();
 	        String roundWinner=model.getRound().getRoundWinningPlayers().get(0).getName();
-	        bw.write("The winner of the round was  "+roundWinner);
+	        bw.write("The winner of the round was  "+roundWinner+"\n");
 	        bw.close();
 	           
 	      
@@ -152,17 +152,14 @@ public class TestLog {
 	        String separator="------------------------------------------------------------------------";
 	        bw.write(separator);
 	        bw.newLine();
-	        bw.newLine();
-	        bw.newLine();
-	        bw.newLine();
 	        for (int i = 0; i < model.getActivePlayers().length; i++) {
 				if (model.getActivePlayers()[i].getTypeAsString().equals("human")) {
 					bw.write(model.getActivePlayers()[i].getName() + " have "
-							+ model.getActivePlayers()[i].getNumberOfCardsInDeck() + " cards in your deck.");
+							+ model.getActivePlayers()[i].getNumberOfCardsInDeck() + " cards in your deck. \n");
 				}
 				if (model.getActivePlayers()[i].getTypeAsString().equals("ai")) {
 					bw.write(model.getActivePlayers()[i].getName() + " has "
-							+ model.getActivePlayers()[i].getNumberOfCardsInDeck() + " cards.");
+							+ model.getActivePlayers()[i].getNumberOfCardsInDeck() + " cards. \n");
 				}
 
 			}
@@ -253,10 +250,8 @@ public class TestLog {
 	        bw.write(separator);
 	        bw.newLine();
 	        bw.newLine();
-	        bw.newLine();
-	        bw.newLine();
 	        String roundNumber=String.valueOf(model.getRound().getRoundNumber());
-	        bw.write("Round: " + roundNumber);
+	        bw.write("Round: " + roundNumber +"\n");
 	        bw.close();
 	           
 	      
@@ -353,10 +348,17 @@ public class TestLog {
           try {
               fw = new FileWriter(outF,true);
               bw = new BufferedWriter(fw);
-              bw.write("Communal Pile Contents");
+              String separator="------------------------------------------------------------------------";
+  	        bw.write(separator);
+  	      bw.newLine();
+              bw.write("Communal Pile Contents \n");
               if(model.getCardsInCommonPile().length==0) {
             	  bw.write("The communal pile is empty \n");
+<<<<<<< HEAD
             	  
+=======
+            	  bw.newLine();
+>>>>>>> ed84b5c2a3996b2c24b8235ac770bfa4fecb796c
               }
               if(model.getCardsInCommonPile().length>0) {
             	  bw.newLine();
@@ -488,16 +490,13 @@ public class TestLog {
 	        String separator="------------------------------------------------------------------------";
 	        bw.write(separator);
 	        bw.newLine();
-	        bw.newLine();
-	        bw.write("Round Winner");
-	        bw.newLine();
-	        bw.newLine();
+		      bw.write("Round Winner");
+		      bw.newLine();
 	        String roundWinner="The winner of the round was ";
 	      
 	      roundWinner+=model.getRound().getRoundWinningPlayers().get(0).getName()+" .";
 	        
-	        
-	        
+	
 	        bw.write(roundWinner);
 	         bw.close();
 	           
@@ -605,7 +604,7 @@ public class TestLog {
 	        bw.newLine();
 	        bw.newLine();
 	        if(model.getRound().getRoundWasDraw()) {
-	        	bw.write("There was no winning card this round");
+	        	bw.write("There was no winning card this round \n");
 	        }
 	        if(!model.getRound().getRoundWasDraw()) {
 	        	  String space=" ";
@@ -613,15 +612,17 @@ public class TestLog {
 		          bw.write(header);
 		          bw.newLine();
 		          bw.newLine();
-	        	bw.write(model.getRound().getRoundWinningCard().getCategory1());
+	        	bw.write(String.valueOf(model.getRound().getRoundWinningCard().getCategory1()));
 	        	 bw.write(space);
-	          	bw.write(model.getRound().getRoundWinningCard().getCategory2());
+	          	bw.write(String.valueOf(model.getRound().getRoundWinningCard().getCategory2()));
 	          	 bw.write(space);
-	          	bw.write(model.getRound().getRoundWinningCard().getCategory3());
+	          	bw.write(String.valueOf(model.getRound().getRoundWinningCard().getCategory3()));
 	          	 bw.write(space);
-	          	bw.write(model.getRound().getRoundWinningCard().getCategory4());
+	          	bw.write(String.valueOf(model.getRound().getRoundWinningCard().getCategory4()));
 	          	 bw.write(space);
-	          	bw.write(model.getRound().getRoundWinningCard().getCategory5());
+	          	bw.write(String.valueOf(model.getRound().getRoundWinningCard().getCategory5()));
+	          	 bw.newLine();
+	 	        bw.newLine();
 	        }
 	
 	        
