@@ -180,6 +180,12 @@
 				font-weight: bold;
 			
 			}
+			#common-pile{
+			color:white;
+				font-size:20px;
+					font-family: 'Roboto Mono', monospace;
+				font-weight: bold;
+			}
 			
 			.table{
 			color:white;
@@ -318,7 +324,7 @@
 					<div class="row">
 						<div id="status-col" class="col-sm-12">
 							<div class="alert alert-info" role="alert">
-								<p id="status-message"></p>
+								<p id="status-message"></p><p class="float-right" id="common-pile">Common Pile:1</p>
 							</div>
 						</div>
 					</div>
