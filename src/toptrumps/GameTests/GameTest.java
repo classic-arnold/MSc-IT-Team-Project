@@ -33,6 +33,7 @@ import toptrumps.DataPlayer;
 import toptrumps.ProgramDatabase;
 import toptrumps.ViewCLI;
 
+public class GameTest{
 //	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 //	private final PrintStream originalOut = System.out;
 	
@@ -170,7 +171,7 @@ import toptrumps.ViewCLI;
 		}
 		
 		this.model.playRound(DataGame.CATEGORYNAMES[0]);
-		DataCard[] cards = this.model.getRoundCards();
+		DataCard[] cards = this.model.getRound().getRoundCards();
 		
 		for(DataCard card : cards) {
 			assertTrue(playerCards.contains(card));
