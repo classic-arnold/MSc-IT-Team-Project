@@ -180,6 +180,12 @@
 				font-weight: bold;
 			
 			}
+			#common-pile{
+			color:white;
+				font-size:20px;
+					font-family: 'Roboto Mono', monospace;
+				font-weight: bold;
+			}
 			
 			.table{
 			color:white;

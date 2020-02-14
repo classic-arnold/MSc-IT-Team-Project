@@ -536,14 +536,14 @@ public class TestLog {
 		  	if (!model.getRound().getRoundWasDraw()) {
 	        String roundWinner="The winner of the round was ";
 	      
-	      roundWinner+=model.getRound().getRoundWinningPlayers().get(0).getName()+" .";
+	      roundWinner+=model.getRound().getRoundWinningPlayers().get(0).getName()+" . \n";
 	        
 	
 	        bw.write(roundWinner);
 		  	}
 		  	
 		 	if (model.getRound().getRoundWasDraw()) {
-		        String roundWinner="There was a draw";
+		        String roundWinner="There was a draw \n";
 		      
 		  
 		        
