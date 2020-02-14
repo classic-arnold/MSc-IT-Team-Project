@@ -282,11 +282,94 @@ public class GameTest{
 		//test that the winner displayed is correct
 		//test that the correct score for each player is returned
 		//test that the correct score for each player is displayed
+		
+		int lastRoundNumberControl = 0;
+		int lastRoundNumberCheck = 0;
+		
+		int gameRoundNumber = 0;
+		
+		this.model.startGame();
+		
+
+		while(this.model.getGameState()==DataGame.GameState.RUNNING) {
+			int category;
+
+
+			DataPlayer activePlayer = this.model.getCategoryChooser();
+			this.view.updateView();
+			if(this.model.getRound().getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+				category = this.model.getBestCategoryForPlayer(activePlayer);
+			} else {
+				category = 2;
+			}
+			// int category = this.viewCli.displayCategorySelection();
+
+			this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
+
+			this.model.getRound().incrementRound();
+
+		}
+		
+		lastRoundNumberControl = this.model.getRound().getRoundNumber();
+		
+		this.model.playRound(DataGame.CATEGORYNAMES[0]);
+		
+		lastRoundNumberCheck = this.model.getRound().getRoundNumber();
+		
+		assertEquals(lastRoundNumberControl, lastRoundNumberCheck);
+		
+		
 	}
 	
 	@Test
 	public void testGameRestart() {
 		//test that when a game ends, the user is able to either start a new game or view statistics
+		int gameRoundNumber = 0;
+		
+		this.model.startGame();
+		
+
+		while(this.model.getGameState()==DataGame.GameState.RUNNING) {
+			int category;
+
+
+			DataPlayer activePlayer = this.model.getCategoryChooser();
+			this.view.updateView();
+			if(this.model.getRound().getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+				category = this.model.getBestCategoryForPlayer(activePlayer);
+			} else {
+				category = 2;
+			}
+			// int category = this.viewCli.displayCategorySelection();
+
+			this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
+
+			this.model.getRound().incrementRound();
+
+		}
+		
+		this.model.startGame();
+		
+		int category;
+
+
+		DataPlayer activePlayer = this.model.getCategoryChooser();
+		this.view.updateView();
+		if(this.model.getRound().getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+			category = this.model.getBestCategoryForPlayer(activePlayer);
+		} else {
+			category = 2;
+		}
+		// int category = this.viewCli.displayCategorySelection();
+
+		this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
+		
+		gameRoundNumber = this.model.getRound().getRoundNumber();
+
+		this.model.getRound().incrementRound();
+		
+		assertEquals(1, gameRoundNumber);
+		
 	}
 	
 	@Test
@@ -376,17 +459,11 @@ public class GameTest{
 		//test that all the above data are displayed correctly
 	}
 	
+	
+	
 //	@After
 //	public void restoreStreams() {
 //		System.setOut(originalOut);
 //	}
-	
-	@After
-	public void tearDown() {
-//		controller = null;
-	}
-	
-	
-	
 
 }

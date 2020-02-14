@@ -729,10 +729,12 @@ public class DataGame{
 		}
 
 		/**
-		 * increase the round number by 1
+		 * increase the round number by 1, only if game is running
 		 */
 		public void incrementRound() {
-			this.roundNumber+=1;
+			if(gameState==DataGame.GameState.RUNNING) {
+				this.roundNumber+=1;
+			}
 		}
 
 		/**
