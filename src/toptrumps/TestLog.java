@@ -123,8 +123,6 @@ public class TestLog {
 	        bw.write(separator);
 	        bw.newLine();
 	        bw.newLine();
-	        bw.newLine();
-	        bw.newLine();
 	        bw.write("The active player is "+ model.getCategoryChooser().getName() + "\n");
 	        bw.close();
 	           
@@ -563,12 +561,25 @@ public class TestLog {
 	        bw.newLine();
 		      bw.write("Round Winner");
 		      bw.newLine();
+		      
+		  	if (!model.getRound().getRoundWasDraw()) {
 	        String roundWinner="The winner of the round was ";
 	      
 	      roundWinner+=model.getRound().getRoundWinningPlayers().get(0).getName()+" .";
 	        
 	
 	        bw.write(roundWinner);
+		  	}
+		  	
+		 	if (model.getRound().getRoundWasDraw()) {
+		        String roundWinner="There was a draw";
+		      
+		      roundWinner+=model.getRound().getRoundWinningPlayers().get(0).getName()+".";
+		        
+		
+		        bw.write(roundWinner);
+			  	}
+		  	
 	         bw.close();
 	           
 	      
