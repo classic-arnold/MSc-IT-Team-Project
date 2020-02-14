@@ -1,32 +1,3 @@
-<<<<<<< HEAD
-=======
-package toptrumps.GameTests;
-
-import static org.junit.Assert.*;
-
-
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-
-import org.junit.After;
-import org.junit.Before;
-
->>>>>>> c4be08128df45b32e5aafccc2e13dace5504f9c1
-/**
- * This class contains the various test cases for the CLI version of the game
- * 
- * Team: TRY_CATCH
- * 
- * @author Chika Hope Elumeziem 2500799E
- * 
- * */
-
 package toptrumps.GameTests;
 
 import static org.junit.Assert.*;

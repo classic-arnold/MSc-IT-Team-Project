@@ -95,13 +95,8 @@ public class Controller {
 					this.testLog.writePlayerDecks();
 					this.testLog.writeCardsInPlay();
 					this.testLog.writeCategorySelected();
-<<<<<<< HEAD
 					this.testLog.writeCommunalPile();
 					
-					
-=======
-
->>>>>>> c4be08128df45b32e5aafccc2e13dace5504f9c1
 				}
 
 				// display the round results
