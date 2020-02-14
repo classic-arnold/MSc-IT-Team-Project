@@ -2,18 +2,19 @@ package test.java;
 
 import static org.junit.Assert.*;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import main.java.toptrumps.Controller;
-import main.java.toptrumps.DataCard;
-import main.java.toptrumps.DataCardCache;
-import main.java.toptrumps.DataGame;
-import main.java.toptrumps.DataPlayer;
-import main.java.toptrumps.ProgramDatabase;
-import main.java.toptrumps.ViewCLI;
+import main.java.com.toptrumps.toptrumps.Controller;
+import main.java.com.toptrumps.toptrumps.DataCard;
+import main.java.com.toptrumps.toptrumps.DataCardCache;
+import main.java.com.toptrumps.toptrumps.DataGame;
+import main.java.com.toptrumps.toptrumps.DataPlayer;
+import main.java.com.toptrumps.toptrumps.ProgramDatabase;
+import main.java.com.toptrumps.toptrumps.ViewCLI;
 
 public class GameTest{
 	
