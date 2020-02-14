@@ -1,7 +1,5 @@
 package toptrumps;
 
-import java.util.Random;
-
 import toptrumps.DataGame;
 
 /**
@@ -58,7 +56,7 @@ public class Controller {
 				
 				DataPlayer activePlayer = this.dataGame.getCategoryChooser();
 				this.viewCli.updateView();
-				if(this.dataGame.getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+				if(this.dataGame.getRound().getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
 					category = this.dataGame.getBestCategoryForPlayer(activePlayer);
 				} else {
 					category = this.viewCli.displayCategorySelection();
@@ -87,7 +85,7 @@ public class Controller {
 					break;
 				}
 
-				this.dataGame.incrementRound();
+				this.dataGame.getRound().incrementRound();
 
 			}
 
@@ -102,45 +100,6 @@ public class Controller {
 		}
 
 		return 0;
-	}
-	
-	public void startGameForTests() {
-		int startChoice = 2;
-
-		if(startChoice == 1) {
-			this.viewCli.displayStats();
-		} else if(startChoice == 2) {
-
-			this.dataGame.startGame();
-
-			while(this.dataGame.getGameState()==DataGame.GameState.RUNNING) {
-				this.viewCli.updateView();
-				int category = 2;
-
-				// int category = this.viewCli.displayCategorySelection();
-
-				this.dataGame.playRound(DataGame.CATEGORYNAMES[category-1]);
-
-				this.viewCli.displayRoundResult(DataGame.CATEGORYNAMES[category-1]);
-				
-//				this.testLog.printSomething;
-
-				this.dataGame.incrementRound();
-
-			}
-
-			this.viewCli.gameEnd();
-
-		}
-
-	}
-
-	public int getRandomCategory() {
-		Random random = new Random();
-
-		int randomNumber = random.nextInt(DataGame.CATEGORYNAMES.length) + 1;
-
-		return randomNumber;
 	}
 
 }

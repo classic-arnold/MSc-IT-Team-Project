@@ -32,6 +32,8 @@ import toptrumps.ProgramDatabase;
 import toptrumps.ViewCLI;
 
 public class CLITest {
+	// TEST DECK SHUFFLED PROPERLY
+	
 //	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 //	private final PrintStream originalOut = System.out;
 	
@@ -112,7 +114,7 @@ public class CLITest {
 
 				DataPlayer activePlayer = this.model.getCategoryChooser();
 				this.view.updateView();
-				if(this.model.getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+				if(this.model.getRound().getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
 					category = this.model.getBestCategoryForPlayer(activePlayer);
 				} else {
 					category = 2;
@@ -129,7 +131,7 @@ public class CLITest {
 					break;
 				}
 
-				this.model.incrementRound();
+				this.model.getRound().incrementRound();
 				
 				round++; //the round is manually incremented so that it can be compared with game round
 
@@ -144,7 +146,7 @@ public class CLITest {
 		} else {
 		}
 		
-		assertEquals(round, this.model.getRoundNumber());
+		assertEquals(round, this.model.getRound().getRoundNumber());
 	}
 	
 	@Test
@@ -185,7 +187,7 @@ public class CLITest {
 		
 		this.model.playRound(DataGame.CATEGORYNAMES[0]);
 		
-		ArrayList<DataPlayer> winners = this.model.getRoundWinningPlayers();
+		ArrayList<DataPlayer> winners = this.model.getRound().getRoundWinningPlayers();
 		
 		if(winners.size()==1) {
 			assert winners.get(0).getDeck().size() == 12;
@@ -210,7 +212,7 @@ public class CLITest {
 		
 		assert 40 == totalAmountOfCards + this.model.getNumberOfCardsInCommonPile();
 		
-		this.model.incrementRound();
+		this.model.getRound().incrementRound();
 		
 		
 		this.model.playRound(DataGame.CATEGORYNAMES[0]);
@@ -297,7 +299,7 @@ public class CLITest {
 
 			DataPlayer activePlayer = this.model.getCategoryChooser();
 			this.view.updateView();
-			if(this.model.getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+			if(this.model.getRound().getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
 				category = this.model.getBestCategoryForPlayer(activePlayer);
 			} else {
 				category = 2;
@@ -306,9 +308,9 @@ public class CLITest {
 
 			this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
 			
-			game1RoundNumber = this.model.getRoundNumber();
+			game1RoundNumber = this.model.getRound().getRoundNumber();
 
-			this.model.incrementRound();
+			this.model.getRound().incrementRound();
 
 		}
 		
@@ -333,7 +335,7 @@ public class CLITest {
 
 			DataPlayer activePlayer = this.model.getCategoryChooser();
 			this.view.updateView();
-			if(this.model.getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
+			if(this.model.getRound().getRoundActivePlayer().getType() == DataPlayer.PlayerType.AI) {
 				category = this.model.getBestCategoryForPlayer(activePlayer);
 			} else {
 				category = this.view.displayCategorySelection();
@@ -343,9 +345,9 @@ public class CLITest {
 
 			this.model.playRound(DataGame.CATEGORYNAMES[category-1]);
 			
-			game2RoundNumber = this.model.getRoundNumber();
+			game2RoundNumber = this.model.getRound().getRoundNumber();
 
-			this.model.incrementRound();
+			this.model.getRound().incrementRound();
 
 		}
 		

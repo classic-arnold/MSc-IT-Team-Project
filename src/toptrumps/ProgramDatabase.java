@@ -20,21 +20,15 @@ public class ProgramDatabase {
 	//	private static final String password="2431088l";
 
 	//When running database via remote IP address, release annotation below 3 line
-//	private static final String url="jdbc:postgresql://52.24.215.108:5432/TryCatch";
-//	private static final String userID="TryCatch";
-//	private static final String password="TryCatch";
+	private static final String url="jdbc:postgresql://52.24.215.108:5432/TryCatch";
+	private static final String userID="TryCatch";
+	private static final String password="TryCatch";
 	
 	//When running database via Estelle's database.
-	private static final String url="jdbc:postgresql://localhost:5432/TopTrump";
-	private static final String userID="postgres";
-	private static final String password="qmffldqmffld3";
+//	private static final String url="jdbc:postgresql://localhost:5432/TopTrump";
+//	private static final String userID="postgres";
+//	private static final String password="qmffldqmffld3";
 	private static Connection conn;
-
-	private int gameCount;
-	private int humanWon;
-	private int AIWon;
-	private double draws;
-	private int largestRound;
 
 	//Getters
 	/** 
@@ -42,8 +36,32 @@ public class ProgramDatabase {
 	 * @return
 	 * int gameCount 
 	 * */
-	public int getGameCount() {
-		return gameCount;
+	public static int getGameCount() {
+		int result=0;
+		
+		try{
+			conn=DriverManager.getConnection(url,userID,password);
+
+			Statement stmt=conn.createStatement();
+			
+			ResultSet rs=stmt.executeQuery("select " + 
+					"count(gameid) as gameCount " +
+					"from TopTrumps.gameStats;");
+			
+			while(rs.next()) {
+				result=rs.getInt("gameCount");
+			}
+				
+			rs.close();
+			stmt.close();
+
+			// close the connection to the database
+			conn.close();
+		}catch(SQLException e) {
+			throw new exceptions.CannotConnectToDataBaseException();
+		} // try-catch exception
+		
+		return result;
 	}
 
 	/** 
@@ -51,8 +69,32 @@ public class ProgramDatabase {
 	 * @return
 	 * int humanWon 
 	 * */
-	public int getHumanWon() {
-		return humanWon;
+	public static int getHumanWon() {
+		int result=0;
+		
+		try{
+			conn=DriverManager.getConnection(url,userID,password);
+
+			Statement stmt=conn.createStatement();
+			
+			ResultSet rs=stmt.executeQuery("select " + 
+					"count(*) filter(where isHumanWon) as humanWon " +
+					"from TopTrumps.gameStats;");
+			
+			while(rs.next()) {
+				result = rs.getInt("humanWon");
+			}
+			
+			rs.close();
+			stmt.close();
+
+			// close the connection to the database
+			conn.close();
+		}catch(SQLException e) {
+			throw new exceptions.CannotConnectToDataBaseException();
+		} // try-catch exception
+		
+		return result;
 	}
 
 	/** 
@@ -60,8 +102,29 @@ public class ProgramDatabase {
 	 * @return
 	 * int AIWon 
 	 * */
-	public int getAIWon() {
-		return AIWon;
+	public static int getAIWon() {
+		int result = 0;
+		try{
+			conn=DriverManager.getConnection(url,userID,password);
+
+			Statement stmt=conn.createStatement();
+			
+			ResultSet rs=stmt.executeQuery("select " +
+					"count(*) filter(where not isHumanWon) as AIWon " +
+					"from TopTrumps.gameStats;");
+
+			while(rs.next()) {
+				result=rs.getInt("AIWon");
+			}
+			rs.close();
+			stmt.close();
+
+			//close the connection to the database
+			conn.close();
+		}catch(SQLException e) {
+			throw new exceptions.CannotConnectToDataBaseException();
+		}//try-catch exception
+		return result;
 	}
 
 	/** 
@@ -69,8 +132,31 @@ public class ProgramDatabase {
 	 * @return
 	 * int draws 
 	 * */
-	public double getDraws() {
-		return draws;
+	public static double getDraws() {
+		double result = 0;
+		
+		try{
+			conn=DriverManager.getConnection(url,userID,password);
+
+			Statement stmt=conn.createStatement();
+			
+			ResultSet rs=stmt.executeQuery("select " +
+					"round(avg(draws)::numeric,1) as averageDraws " +
+					"from TopTrumps.gameStats;");
+
+			while(rs.next()) {
+				result=rs.getDouble("averageDraws");
+			}
+			rs.close();
+			stmt.close();
+
+			//close the connection to the database
+			conn.close();
+		}catch(SQLException e) {
+			throw new exceptions.CannotConnectToDataBaseException();
+		}//try-catch exception
+		
+		return result;
 	}
 
 	/** 
@@ -78,8 +164,29 @@ public class ProgramDatabase {
 	 * @return
 	 * int largestRound 
 	 * */
-	public int getLargestRound() {
-		return largestRound;
+	public static int getLargestRound() {
+		int result=0;
+		try{
+			conn=DriverManager.getConnection(url,userID,password);
+
+			Statement stmt=conn.createStatement();
+			
+			ResultSet rs=stmt.executeQuery("select " +
+					"max(roundNumber) as largestRound " + 
+					"from TopTrumps.gameStats;");
+
+			while(rs.next()) {
+				result = rs.getInt("largestRound");
+			}
+			rs.close();
+			stmt.close();
+
+			//close the connection to the database
+			conn.close();
+		}catch(SQLException e) {
+			throw new exceptions.CannotConnectToDataBaseException();
+		}//try-catch exception
+		return result;
 	}
 
 
@@ -100,7 +207,7 @@ public class ProgramDatabase {
 	 * 'roundNumber:int' 
 	 * into Database table.
 	 * */
-	void insertGameStats(DataGame model){
+	static void insertGameStats(DataGame model){
 		String SQL="INSERT INTO TOPTRUMPS.GAMESTATS "
 				+"VALUES (default, ?,?,?,?,?,?,?,?)";
 		try{
@@ -135,14 +242,14 @@ public class ProgramDatabase {
 			pstmt.setInt(7, model.getNumberOfDraws());
 
 			//get int value for total round number
-			pstmt.setInt(8, model.getRoundNumber());
+			pstmt.setInt(8, model.getRound().getRoundNumber());
 				
 			
 			//execute the preparedstatement insert
 			pstmt.executeUpdate();
 			pstmt.close();
 		}catch(SQLException e) {
-			e.printStackTrace();
+			throw new exceptions.CannotConnectToDataBaseException();
 		}
 	}
 	
@@ -159,54 +266,9 @@ public class ProgramDatabase {
                    pstmt.executeUpdate();
                    pstmt.close();
            }catch(SQLException e) {
-                   e.printStackTrace();
+        	   throw new exceptions.CannotConnectToDataBaseException();
            }
    }
-
-
-
-	/**
-	 * selection method
-	 * 
-	 * @select
-	 * 'how many games were played',
-	 * 'counts for human won',
-	 * 'counts for AI won',
-	 * 'counts for draws',
-	 * 'largestRound'
-	 */	
-	void selectGameStats(){
-		try{
-			conn=DriverManager.getConnection(url,userID,password);
-
-			Statement stmt=conn.createStatement();
-			
-			ResultSet rs=stmt.executeQuery("select \r\n" + 
-					"	count(gameid) as gameCount, \r\n" + 
-					"	count(*) filter(where isHumanWon) as humanWon, \r\n" + 
-					"	count(*) filter(where not isHumanWon) as AIWon,\r\n" + 
-					"	round(avg(draws)::numeric,1) as averageDraws, \r\n" + 
-					"	max(roundNumber) as largestRound\r\n" + 
-					"from TopTrumps.gameStats;");
-
-			while(rs.next()) {
-				gameCount=rs.getInt("gameCount");
-				humanWon=rs.getInt("humanWon");
-				AIWon=rs.getInt("AIWon");
-				draws=rs.getDouble("averageDraws");
-				largestRound=rs.getInt("largestRound");
-			}
-			rs.close();
-			stmt.close();
-
-			//close the connection to the database
-			conn.close();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}//try-catch exception
-
-
-	}
 
 	/**
 	 * main static method to test database connection when testing

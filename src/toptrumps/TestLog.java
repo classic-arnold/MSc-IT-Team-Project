@@ -95,7 +95,7 @@ public class TestLog {
 	        bw.newLine();
 	        bw.newLine();
 	        bw.newLine();
-	        String roundWinner=model.getRoundWinningPlayers().get(0).getName();
+	        String roundWinner=model.getRound().getRoundWinningPlayers().get(0).getName();
 	        bw.write("The winner of the round was  "+roundWinner);
 	        bw.close();
 	           
@@ -255,7 +255,7 @@ public class TestLog {
 	        bw.newLine();
 	        bw.newLine();
 	        bw.newLine();
-	        String roundNumber=String.valueOf(model.getRoundNumber());
+	        String roundNumber=String.valueOf(model.getRound().getRoundNumber());
 	        bw.write("Round: " + roundNumber);
 	        bw.close();
 	           
@@ -287,10 +287,10 @@ public class TestLog {
         bw.write(separator);
         bw.newLine();
         bw.newLine();
-        if(model.getRoundNumber()==0) {
+        if(model.getRound().getRoundNumber()==0) {
         	  bw.write("Initial Player Decks");
         }
-        if(model.getRoundNumber()!=0) {
+        if(model.getRound().getRoundNumber()!=0) {
       	  bw.write("Player Decks");
       }
     
@@ -497,7 +497,7 @@ public class TestLog {
 	        bw.newLine();
 	        String roundWinner="The winner of the round was ";
 	      
-	      roundWinner+=model.getRoundWinningPlayers().get(0).getName()+" .";
+	      roundWinner+=model.getRound().getRoundWinningPlayers().get(0).getName()+" .";
 	        
 	        
 	        
@@ -538,7 +538,7 @@ public class TestLog {
 	        bw.newLine();
 	        String catSelected="";
 	      
-	       catSelected=model.getCategoryChooser().getName()+" selected "+model.getRoundCategory()+"\n";
+	       catSelected=model.getCategoryChooser().getName()+" selected "+model.getRound().getRoundCategory()+"\n";
 	        
 	        
 	        
@@ -607,24 +607,24 @@ public class TestLog {
 	        bw.write("Round Winning Card");
 	        bw.newLine();
 	        bw.newLine();
-	        if(model.getRoundWasDraw()) {
+	        if(model.getRound().getRoundWasDraw()) {
 	        	bw.write("There was no winning card this round");
 	        }
-	        if(!model.getRoundWasDraw()) {
+	        if(!model.getRound().getRoundWasDraw()) {
 	        	  String space=" ";
 	        	  String header="Description Size Speed Range Firepower Cargo";
 		          bw.write(header);
 		          bw.newLine();
 		          bw.newLine();
-	        	bw.write(model.getRoundWinningCard().getCategory1());
+	        	bw.write(model.getRound().getRoundWinningCard().getCategory1());
 	        	 bw.write(space);
-	          	bw.write(model.getRoundWinningCard().getCategory2());
+	          	bw.write(model.getRound().getRoundWinningCard().getCategory2());
 	          	 bw.write(space);
-	          	bw.write(model.getRoundWinningCard().getCategory3());
+	          	bw.write(model.getRound().getRoundWinningCard().getCategory3());
 	          	 bw.write(space);
-	          	bw.write(model.getRoundWinningCard().getCategory4());
+	          	bw.write(model.getRound().getRoundWinningCard().getCategory4());
 	          	 bw.write(space);
-	          	bw.write(model.getRoundWinningCard().getCategory5());
+	          	bw.write(model.getRound().getRoundWinningCard().getCategory5());
 	        }
 	
 	        
