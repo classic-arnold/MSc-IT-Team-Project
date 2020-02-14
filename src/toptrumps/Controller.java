@@ -91,12 +91,15 @@ public class Controller {
 
 				// print test log strings
 				if(this.writeGameLogsToFile) {
-					
+					this.testLog.writeRoundNumber();
 					this.testLog.writePlayerDecks();
+					this.testLog.writeNumCardsInDeck();
 					this.testLog.writeCardsInPlay();
-					this.testLog.writeCategorySelected();
+					this.testLog.writeActivePlayer();
+					this.testLog.writeRoundWinningCard();
 					this.testLog.writeCommunalPile();
-					
+					this.testLog.writeCategorySelected();
+					this.testLog.writeRoundWinner();
 				}
 
 				// display the round results
@@ -118,6 +121,10 @@ public class Controller {
 			// if above loop finished and player didn't ask to quit, end game properly
 			if(continueOrEndGameChoice.contentEquals("")) {
 				this.viewCli.gameEnd();
+				
+				if(this.writeGameLogsToFile) {
+					this.testLog.writeGameWinner();
+				}
 			}
 		} else { // if start choice was not 1(view stats) or 2(play game), return 1 to represent that the game was ended by user
 			return 1;
