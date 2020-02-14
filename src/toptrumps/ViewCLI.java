@@ -55,14 +55,14 @@ public class ViewCLI {
 	 * Displays round number
 	 */
 	private void displayRound() {
-		if (model.getRoundNumber() == 1) {
+		if (model.getRound().getRoundNumber() == 1) {
 			System.out.println("\n/*****GAME START*****/ \n");
 		}
-		System.out.println("Round " + model.getRoundNumber()+"\n");
+		System.out.println("Round " + model.getRound().getRoundNumber()+"\n");
 	}
 	
 	private void displayRoundMessageAndActivePlayer() {
-		System.out.println("\nRound " + model.getRoundNumber() + " : Players have drawn their cards");
+		System.out.println("\nRound " + model.getRound().getRoundNumber() + " : Players have drawn their cards");
         System.out.println("The active player is "+ model.getCategoryChooser().getName() + "\n");
 	}
 
@@ -102,7 +102,7 @@ public class ViewCLI {
 		String getInput = null;
 		int categoryChoice = 0;
 		boolean redo = false;
-		while (!NumberUtils.isParsable(getInput) || categoryChoice < 0 || categoryChoice > 5) {
+		while (!NumberUtils.isParsable(getInput) || categoryChoice <= 0 || categoryChoice > 5) {
 			if (redo) {
 				System.out.println("\n Invalid input.Please input a number between 1 and 5");
 			}
@@ -162,13 +162,13 @@ public class ViewCLI {
 	 */
 	public void displayRoundResult(String category) {
 		System.out.println("");
-		if (!model.getRoundWasDraw()) {
+		if (!model.getRound().getRoundWasDraw()) {
 
-			System.out.println("Round " + model.getRoundNumber() + " " + model.getRoundWinningPlayers().get(0).getName()
+			System.out.println("Round " + model.getRound().getRoundNumber() + " " + model.getRound().getRoundWinningPlayers().get(0).getName()
 					+ " won this round.");
-			System.out.println(model.getRoundWinningCardToString(category));
+			System.out.println(model.getRound().getRoundWinningCard().toString(category));
 		}
-		if (model.getRoundWasDraw()) {
+		if (model.getRound().getRoundWasDraw()) {
 			System.out.println("This round was a draw.There are now " + model.getNumberOfCardsInCommonPile()
 					+ " cards in the common pile");
 		}

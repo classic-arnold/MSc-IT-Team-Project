@@ -54,7 +54,7 @@ public class DataCard implements Cloneable{
 	 * 
 	 * @param otherCard DataCard class representing the other card
 	 * @param category String representing the category
-	 * @return true if this card category value is greater than the other card's "otherCard". Returns false otherwise.
+	 * @return 0 if card this card is less than, 1 if this card is greater than and 2 if cards are equal
 	 */
 	int compare(DataCard otherCard, String category){
 		/* 
@@ -101,8 +101,6 @@ public class DataCard implements Cloneable{
 			result = this.category5 == otherCard.category5 ? 2 : result;
 			return result;
 		}
-		
-		System.out.println(chosenCategoryFirstTwoLetters);
 		
 		throw new exceptions.CategoryNotFoundException(); // if category does not exist
 	}

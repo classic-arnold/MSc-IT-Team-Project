@@ -90,64 +90,64 @@
 	</head>
 
     <body onload="initalize()"> <!-- Call the initalize method when the page loads -->
-    <nav class="navbar navbar-expand-lg navbar-dark"style="background-color:black">
-   <a class="navbar-brand" href="#">STAR CITIZEN TOP TRUMPS</a>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-   <span class="navbar-toggler-icon"></span>
-   </button>
-   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-         <li class="nav-item">
-            <a class="nav-link" href="/toptrumps/game">Game <span class="sr-only">(current)</span></a>
-         </li>
-         <li class="nav-item">
-            <a class="nav-link" href="/toptrumps/">Home</a>
-         </li>
-      </ul>
-   </div>
-</nav>
-    	
-    	
+			<nav class="navbar navbar-expand-lg navbar-dark"style="background-color:black">
+		   <a class="navbar-brand" href="#">STAR CITIZEN TOP TRUMPS</a>
+		   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		   <span class="navbar-toggler-icon"></span>
+		   </button>
+		   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			  <ul class="navbar-nav ml-auto">
+				 <li class="nav-item">
+					<a class="nav-link" href="/toptrumps/game">Game <span class="sr-only">(current)</span></a>
+				 </li>
+				 <li class="nav-item">
+					<a class="nav-link" href="/toptrumps/">Home</a>
+				 </li>
+			  </ul>
+		   </div>
+		</nav>
+		
+		
 
-<div class="container-fluid h-100">
-<div class="row h-100">
-<div class="col-sm-3 section1 ">
+		<div class="container-fluid h-100">
+		<div class="row h-100">
+		<div class="col-sm-3 section1 ">
    
-</div>
-<div class="col-sm-9 section2 justify-content-center">
-<div class="row">
-<div class="col-sm-12 text-center header-div">
-<h1>Statistics</h1>
-</div>
-</div>
-<div class="row">
-<div class="col-sm-12 table-div">
-<table class="table">
-  <tbody>
-    <tr>
-      <td>Number of Games</td>
-       <td id="numberOfGames">1</td>
-    </tr>
-    <tr>
-         <td>Number of Human Wins</td>
-      <td id="numberOfHumanWins">2</td>
-    </tr>
-    <tr>
-      <td>Number of AI Wins</td>
-       <td id="numberOfAIWins">3</td>
-    </tr>
-    <tr>
-    <td>Average Number of Draws</td>
-    <td id="numberOfDraws">4</td>
-    </tr>
-    <tr>
-       <td>Longest Game</td>
-       <td id="longestGame">5</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>   
+		</div>
+		<div class="col-sm-9 section2 justify-content-center">
+		<div class="row">
+		<div class="col-sm-12 text-center header-div">
+		<h1>Statistics <span class="loading">loading...</span></h1>
+		</div>
+		</div>
+		<div class="row">
+		<div class="col-sm-12 table-div">
+		<table class="table">
+		  <tbody>
+			<tr>
+			  <td>Number of Games</td>
+			   <td id="numberOfGames"></td>
+			</tr>
+			<tr>
+				 <td>Number of Human Wins</td>
+			  <td id="numberOfHumanWins"></td>
+			</tr>
+			<tr>
+			  <td>Number of AI Wins</td>
+			   <td id="numberOfAIWins"></td>
+			</tr>
+			<tr>
+			<td>Average Number of Draws</td>
+			<td id="numberOfDraws"></td>
+			</tr>
+			<tr>
+			   <td>Longest Game</td>
+			   <td id="longestGame"></td>
+			</tr>
+		  </tbody>
+		</table>
+		</div>
+		</div>   
       </div>
    </div>
 </div>
@@ -156,8 +156,14 @@
 		<script type="text/javascript">
 		
 			// Method that is called on page load
-			function initalize() {
-			
+			async function initalize() {
+				$(document).ready(function() {
+					$(".loading").fadeIn("fast", "swing");
+				});
+				await updateStatistics();
+				$(document).ready(function() {
+					$(".loading").fadeOut("fast", "swing");
+				});
 			}
 			
 			// -----------------------------------------
@@ -195,47 +201,35 @@
 		<script type="text/javascript">
 		
 			// This calls the helloJSONList REST method from TopTrumpsRESTAPI
-			function helloJSONList() {
+			function updateStatistics() {
 			
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloJSONList"); // Request type and URL
+				return new Promise((res)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/stats/statistics"); // Request type and URL
 				
-				// Message is not sent yet, but we can check that the browser supports CORS
-				if (!xhr) {
-  					alert("CORS not supported");
-				}
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
 
-				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives 
-				xhr.onload = function(e) {
- 					var responseText = xhr.response; // the text of the response
-					alert(responseText); // lets produce an alert
-				};
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives 
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response
+						responseText = JSON.parse(responseText);
+						console.log(responseText)
+						
+						$("#numberOfGames").html(responseText.numberOfGames);
+						$("#numberOfHumanWins").html(responseText.numberOfHumanWins);
+						$("#numberOfAIWins").html(responseText.numberOfAIWins);
+						$("#numberOfDraws").html(responseText.avgNumberOfDraws);
+						$("#longestGame").html(responseText.roundNumberOfLongestGame);
+						res();
+					};
 				
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();		
-			}
-			
-			// This calls the helloJSONList REST method from TopTrumpsRESTAPI
-			function helloWord(word) {
-			
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/helloWord?Word="+word); // Request type and URL+parameters
-				
-				// Message is not sent yet, but we can check that the browser supports CORS
-				if (!xhr) {
-  					alert("CORS not supported");
-				}
-
-				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives 
-				xhr.onload = function(e) {
- 					var responseText = xhr.response; // the text of the response
-					alert(responseText); // lets produce an alert
-				};
-				
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();		
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				})
 			}
 
 		</script>
