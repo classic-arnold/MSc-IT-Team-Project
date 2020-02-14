@@ -16,13 +16,10 @@ import java.util.Random;
  * Do not bother about enums. I'm using it only in the model. It makes my work easier and i can convert to string for anyone to use.
  *
  * NOTE TO SELF
- * TODO: Uncomment database parts and add JavaDoc comments
  * TODO: Test all functions
  * TODO: Verify game specifications are accurate
- * TODO: Remove wasted codes and comments
- * TODO: Remove unnecessary and unused codes
- * TODO: Improve code algorithms
- * TODO: Add methods and class visibility
+ * TODO: Remove MARKED FOR REMOVAL
+ * TODO: Add methods visibility
  * TODO: Reduce couplings and increase cohesion
  * TODO: Maybe create abstract class Cardable and move all deck methods there
  * TODO: Deal with all warnings
@@ -32,28 +29,28 @@ import java.util.Random;
 
 /**
  * 
- * DataGame represents the game class. It should only be created once per game, hence singleton pattern is used
+ * represents the game class. It should only be created once per game, hence singleton pattern is used
  * @author Team TRY-CATCH - Arnold Umakhihe 2445734U
  *
  */
 public class DataGame{
 
-	/** represents the DataGame instance */
-	private static DataGame instance = null;
-
 	/** represents an array of the category names */
 	public static String[] CATEGORYNAMES;
+
+	/** enumerated data type to represent the game state. Possible game states are running and ended */
+	public enum GameState {
+		RUNNING, ENDED
+	}
+
+	/** represents the DataGame instance */
+	private static DataGame instance = null;
 
 	/** represents the list of players (still active) in the game */
 	private ArrayList<DataPlayer> activePlayers = new ArrayList<DataPlayer>();
 
 	/** represents the list of all players (including failed and active players) that started the game */
 	private ArrayList<DataPlayer> allPlayers = new ArrayList<DataPlayer>();
-
-	/** enumerated data type to represent the game state. Possible game states are running and ended */
-	public enum GameState {
-		RUNNING, ENDED
-	}
 
 	/** represents the game state */
 	private GameState gameState;
@@ -76,35 +73,8 @@ public class DataGame{
 	/** represents the winner of the game(not round) */
 	private DataPlayer gameWinner;
 
-	/** represents the current round number */
-	private int roundNumber;
-
-	/** represents the draw status of round */
-	private boolean roundWasDraw;
-
-	/** represents the winning cards of the round */
-	private ArrayList<DataCard> roundWinningCards = new ArrayList<DataCard>();
-
-	/** represents the winning players of round */
-	private ArrayList<DataPlayer> roundWinningPlayers = new ArrayList<DataPlayer>();
-
-	/** represents the card drawn by human player for each round */
-	private DataCard roundHumanPlayerCard;
-
-	/** represents the cards drawn by AI players for each round */
-	private ArrayList<DataCard> roundAIPlayerCards = new ArrayList<DataCard>();
-
-	/** represents the round category */
-	private String roundCategory;
-
-	/** represents the player that won last in any round */
-	private DataPlayer roundLastWinner;
-
-	/** represents the player that chose category in round */
-	private DataPlayer roundActivePlayer;
-
-	/** represents the cards in a round */
-	private ArrayList<DataCard> roundCards = new ArrayList<DataCard>();
+	/** represents the round. Used to store data of the round */
+	private Round round = new Round();
 
 	/**
 	 * creates a new DataGame Object. Private because we implement the Singleton pattern.
@@ -174,7 +144,7 @@ public class DataGame{
 
 		this.originalDeck.clear(); // clear the leftover cards in the deck
 
-		this.incrementRound(); // increase the round number
+		this.round.incrementRound(); // increase the round number
 
 	}
 
@@ -185,12 +155,12 @@ public class DataGame{
 	public void playRound(String category) {
 
 		// clear last round details
-		this.roundWinningPlayers.clear();
-		this.roundWinningCards.clear();
-		this.roundAIPlayerCards.clear();
+		this.round.roundWinningPlayers.clear();
+		this.round.roundWinningCards.clear();
+		this.round.roundAIPlayerCards.clear();
 
 		// store round category
-		this.roundCategory = category;
+		this.round.roundCategory = category;
 
 		ArrayList<DataCard> roundCards = new ArrayList<DataCard>(); // represents the cards drawn for this round
 
@@ -202,14 +172,10 @@ public class DataGame{
 			roundCards.add(card); // add player's topmost card to round cards
 
 			// store human player card and AI players cards for the round
-			if(player.getType()==DataPlayer.PlayerType.HUMAN) {
-				this.roundHumanPlayerCard = card;
-			} else if (player.getType()==DataPlayer.PlayerType.AI) {
-				this.roundAIPlayerCards.add(card);
+			if (player.getType()==DataPlayer.PlayerType.AI) {
+				this.round.roundAIPlayerCards.add(card);
 			}
 		}
-
-		this.roundCards = roundCards; // store round cards
 
 		// represents the winning cards and winning players for the round
 		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(DataGame.arrayListToArrayCard(roundCards), category);
@@ -218,33 +184,33 @@ public class DataGame{
 		//		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(roundCards.toArray(new DataCard[roundCards.size()]), category);
 
 		// store round winning cards
-		this.roundWinningCards = (ArrayList<DataCard>)winningCardsAndPlayers.get("winning cards");
+		this.round.roundWinningCards = (ArrayList<DataCard>)winningCardsAndPlayers.get("winning cards");
 
 		// represents round winning players
 		HashSet<DataPlayer> roundWinningPlayers = (HashSet<DataPlayer>)winningCardsAndPlayers.get("winning players");
 
 		// store round winning players from set
 		for(DataPlayer player : roundWinningPlayers) {
-			this.roundWinningPlayers.add(player);
+			this.round.roundWinningPlayers.add(player);
 		}
 
 		// if there is only 1 winning player, round wasn't drawn
-		if(this.roundWinningPlayers.size()==1) {
+		if(this.round.roundWinningPlayers.size()==1) {
 
 			roundCards.addAll(this.commonDeck); // add common deck cards to round cards
 			this.commonDeck.clear(); // clear common deck
 
-			this.roundWinningPlayers.get(0).addCardsToDeck(roundCards); // add round cards to winner deck
-			this.roundWinningPlayers.get(0).incrementScore(); // increment winner score
+			this.round.roundWinningPlayers.get(0).addCardsToDeck(roundCards); // add round cards to winner deck
+			this.round.roundWinningPlayers.get(0).incrementScore(); // increment winner score
 
-			this.roundWasDraw = false; // store that round was not draw
+			this.round.roundWasDraw = false; // store that round was not draw
 
-			this.roundLastWinner = this.roundWinningPlayers.get(0); // store last round winner
+			this.round.roundLastWinner = this.round.roundWinningPlayers.get(0); // store last round winner
 
-		} else if (this.roundWinningPlayers.size()>1) { // if there were multiple winning players, round was drawn
+		} else if (this.round.roundWinningPlayers.size()>1) { // if there were multiple winning players, round was drawn
 			this.incrementNumberOfDraws(); // increment number of draws
 
-			this.roundWasDraw = true; // store that round was draw
+			this.round.roundWasDraw = true; // store that round was draw
 
 			this.commonDeck.addAll(roundCards); // add round cards to common deck
 		}
@@ -281,7 +247,7 @@ public class DataGame{
 	 * used to get a fresh new deck
 	 * @return ArrayList representing lists of cards in new deck
 	 */
-	public ArrayList<DataCard> getNewDeck() {
+	private ArrayList<DataCard> getNewDeck() {
 		return new ArrayList<DataCard>(Arrays.asList(DataCardCache.getAllCardsInOrder()));
 	}
 
@@ -289,7 +255,7 @@ public class DataGame{
 	 * checks if game has ended
 	 * @return GameState HashMap containing the winning player and the new game state
 	 */
-	public HashMap<String, Object> getNewGameStateAndWinner() {
+	private HashMap<String, Object> getNewGameStateAndWinner() {
 		HashMap<String, Object> result = new HashMap<String, Object>(); // represents result of the method
 
 		// check the numbers of players left. If it's just one, the game has ended and the player left is the winner
@@ -362,16 +328,9 @@ public class DataGame{
 	}
 
 	/**
-	 * increase the round number by 1
-	 */
-	public void incrementRound() {
-		this.roundNumber += 1;
-	}
-
-	/**
 	 * increase the number of draws by 1
 	 */
-	public void incrementNumberOfDraws() {
+	private void incrementNumberOfDraws() {
 		this.numberOfDraws += 1;
 	}
 
@@ -456,7 +415,7 @@ public class DataGame{
 	/**
 	 * Updates database, using methods provided in the database class
 	 */
-	public void saveGameStats() {
+	private void saveGameStats() {
 		ProgramDatabase.insertGameStats(this);
 	}
 
@@ -476,14 +435,6 @@ public class DataGame{
 	 */
 	public DataCard[] getInitialShuffledDeck() {
 		return this.initialShuffledDeck.toArray(new DataCard[this.initialShuffledDeck.size()]);
-	}
-
-	/**
-	 * get the round number
-	 * @return int representing the round number
-	 */
-	public int getRoundNumber() {
-		return this.roundNumber;
 	}
 
 	/**
@@ -511,14 +462,6 @@ public class DataGame{
 	}
 
 	/**
-	 * get if round was draw
-	 * @return boolean representing if round was drawn
-	 */
-	public boolean getRoundWasDraw() {
-		return this.roundWasDraw;
-	}
-
-	/**
 	 * get number of cards in common pile
 	 * @return int representing number of cards in common pile
 	 */
@@ -540,30 +483,6 @@ public class DataGame{
 	 */
 	public GameState getGameState() {
 		return this.gameState;
-	}
-
-	/**
-	 * get round winning card. Used to display info.
-	 * @return DataCard object representing the winning card
-	 */
-	public DataCard getRoundWinningCard() {
-		return this.roundWinningCards.get(0);
-	}
-
-	/**
-	 * get round winning players
-	 * @return ArrayList<DataPlayer> representing list of winning players
-	 */
-	public ArrayList<DataPlayer> getRoundWinningPlayers() {
-		return this.roundWinningPlayers;
-	}
-
-	/**
-	 * get round category
-	 * @return String representing round category
-	 */
-	public String getRoundCategory() {
-		return this.roundCategory;
 	}
 
 	/**
@@ -620,14 +539,6 @@ public class DataGame{
 	}
 
 	/**
-	 * get the player to choose category for the round
-	 * @return DataPlayer representing the player to choose category for the round
-	 */
-	public DataPlayer getRoundActivePlayer() {
-		return this.roundActivePlayer;
-	}
-
-	/**
 	 * calculate, stores and get the player to choose category for the round
 	 * @return DataPlayer representing the player to choose category for the round
 	 */
@@ -635,17 +546,17 @@ public class DataGame{
 		DataPlayer player; // represents the player to choose category for the round
 
 		// no player won last round, this means no player has won any round
-		if (this.roundLastWinner != null) {
-			player = this.roundLastWinner;
-		} else if (this.roundActivePlayer != null){ // no player won last round, this means no player has won any round
+		if (this.round.roundLastWinner != null) {
+			player = this.round.roundLastWinner;
+		} else if (this.round.roundActivePlayer != null){ // no player won last round, this means no player has won any round
 			// we need the last active player, this would happen when all previous rounds are draws
-			return player = this.roundActivePlayer;
+			return player = this.round.roundActivePlayer;
 		} else { // no player won last round, and has ever been active, this is only possible at round 1
 			// we need to get a random player
 			Random r = new Random();
 			player = this.activePlayers.get(r.nextInt(this.activePlayers.size()));
 		}
-		this.roundActivePlayer = player; // store the player as the active player
+		this.round.roundActivePlayer = player; // store the player as the active player
 		return player;
 	}
 
@@ -663,6 +574,14 @@ public class DataGame{
 			// throw exception if player isn't AI
 			throw new exceptions.PlayerIsNotAIException();
 		}
+	}
+
+	/**
+	 * get the round details
+	 * @return Round representing current round of game
+	 */
+	public Round getRound() {
+		return this.round;
 	}
 
 	// GETTERS FROM DATABASE
@@ -707,5 +626,93 @@ public class DataGame{
 	}
 
 	// GETTER METHODS END
+
+	/**
+	 * 
+	 * Represents the round. Used to store round details.
+	 * @author Team TRY-CATCH - Arnold Umakhihe 2445734U
+	 * 
+	 */
+	public class Round{
+
+		/** represents the current round number */
+		private int roundNumber;
+
+		/** represents the draw status of round */
+		private boolean roundWasDraw;
+
+		/** represents the winning cards of the round */
+		private ArrayList<DataCard> roundWinningCards = new ArrayList<DataCard>();
+
+		/** represents the winning players of round */
+		private ArrayList<DataPlayer> roundWinningPlayers = new ArrayList<DataPlayer>();
+
+		/** represents the cards drawn by AI players for each round */
+		private ArrayList<DataCard> roundAIPlayerCards = new ArrayList<DataCard>();
+
+		/** represents the round category */
+		private String roundCategory;
+
+		/** represents the player that won last in any round */
+		private DataPlayer roundLastWinner;
+
+		/** represents the player that chose category in round */
+		private DataPlayer roundActivePlayer;
+
+		/**
+		 * get the player to choose category for the round
+		 * @return DataPlayer representing the player to choose category for the round
+		 */
+		public DataPlayer getRoundActivePlayer() {
+			return this.roundActivePlayer;
+		}
+
+		/**
+		 * get round winning card. Used to display info.
+		 * @return DataCard object representing the winning card
+		 */
+		public DataCard getRoundWinningCard() {
+			return this.roundWinningCards.get(0);
+		}
+
+		/**
+		 * get round winning players
+		 * @return ArrayList<DataPlayer> representing list of winning players
+		 */
+		public ArrayList<DataPlayer> getRoundWinningPlayers() {
+			return this.roundWinningPlayers;
+		}
+
+		/**
+		 * get round category
+		 * @return String representing round category
+		 */
+		public String getRoundCategory() {
+			return this.roundCategory;
+		}
+
+		/**
+		 * get if round was draw
+		 * @return boolean representing if round was drawn
+		 */
+		public boolean getRoundWasDraw() {
+			return this.roundWasDraw;
+		}
+
+		/**
+		 * get the round number
+		 * @return int representing the round number
+		 */
+		public int getRoundNumber() {
+			return this.roundNumber;
+		}
+
+		/**
+		 * increase the round number by 1
+		 */
+		public void incrementRound() {
+			this.roundNumber+=1;
+		}
+	}
 
 }

@@ -242,7 +242,7 @@ public class ProgramDatabase {
 			pstmt.setInt(7, model.getNumberOfDraws());
 
 			//get int value for total round number
-			pstmt.setInt(8, model.getRoundNumber());
+			pstmt.setInt(8, model.getRound().getRoundNumber());
 				
 			
 			//execute the preparedstatement insert

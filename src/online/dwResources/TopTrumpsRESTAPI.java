@@ -13,7 +13,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import online.configuration.TopTrumpsJSONConfiguration;
 import toptrumps.DataCard;
@@ -189,7 +188,7 @@ public class TopTrumpsRESTAPI {
 	public String getRoundNumber() {
 		String roundNumber="";
 		try {
-			roundNumber = oWriter.writeValueAsString(model.getRoundNumber());
+			roundNumber = oWriter.writeValueAsString(model.getRound().getRoundNumber());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -235,9 +234,9 @@ public class TopTrumpsRESTAPI {
 	public String playRound(@QueryParam("category") String category){
 		model.playRound(category);
 		if(model.getGameState()!=DataGame.GameState.RUNNING) {
-			return "" + model.getGameWinner().getName() + " at round " + model.getRoundNumber();
+			return "" + model.getGameWinner().getName() + " at round " + model.getRound().getRoundNumber();
 		}
-		model.incrementRound();
+		model.getRound().incrementRound();
 		return "running";
 	}
 	
@@ -266,7 +265,7 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/game/getRoundActivePlayer")
 	public String getRoundActivePlayer(){
-		return model.getRoundActivePlayer().getName();
+		return model.getRound().getRoundActivePlayer().getName();
 	}
 	
 
@@ -307,7 +306,7 @@ public class TopTrumpsRESTAPI {
 		
 		boolean shouldHumanChooseCategory;
 		
-		if (this.model.getRoundActivePlayer().getType()==DataPlayer.PlayerType.HUMAN) {
+		if (this.model.getRound().getRoundActivePlayer().getType()==DataPlayer.PlayerType.HUMAN) {
 			shouldHumanChooseCategory = true;
 		} else {
 			shouldHumanChooseCategory = false;
@@ -336,7 +335,7 @@ public class TopTrumpsRESTAPI {
 	public String getRoundCategory(){
 		String roundCategory="";
 		try {
-			roundCategory = oWriter.writeValueAsString(model.getRoundCategory());
+			roundCategory = oWriter.writeValueAsString(model.getRound().getRoundCategory());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -437,7 +436,7 @@ public class TopTrumpsRESTAPI {
 	@Path("/game/getRoundWinner")
 	public String getRoundWinner() throws IOException{
 		String result = null;
-		ArrayList<DataPlayer> roundWinningPlayers = model.getRoundWinningPlayers();
+		ArrayList<DataPlayer> roundWinningPlayers = model.getRound().getRoundWinningPlayers();
 		if(roundWinningPlayers.size() == 1) {
 			result = roundWinningPlayers.get(0).getName();
 		} else {
