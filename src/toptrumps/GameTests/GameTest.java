@@ -1,12 +1,14 @@
-package toptrumps.CLITests;
+package toptrumps.GameTests;
 
 import static org.junit.Assert.*;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.junit.After;
@@ -31,7 +33,7 @@ import toptrumps.DataPlayer;
 import toptrumps.ProgramDatabase;
 import toptrumps.ViewCLI;
 
-public class CLITest {
+public class GameTest {
 //	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 //	private final PrintStream originalOut = System.out;
 	
@@ -160,7 +162,20 @@ public class CLITest {
 		
 		this.model.startGame();
 		
+		DataPlayer[] players = this.model.getActivePlayers();
 		
+		ArrayList<DataCard> playerCards = new ArrayList<DataCard>();
+		
+		for(int i=0;i<players.length;i++) {
+			playerCards.add(players[i].getDeck().get(i));
+		}
+		
+		this.model.playRound(DataGame.CATEGORYNAMES[0]);
+		DataCard[] cards = this.model.getRoundCards();
+		
+		for(DataCard card : cards) {
+			assertTrue(playerCards.contains(card));
+		}
 		
 	}
 	

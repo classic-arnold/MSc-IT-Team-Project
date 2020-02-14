@@ -38,6 +38,8 @@ public class Controller {
 			if(this.writeGameLogsToFile) {
 				this.testLog.writeDeckContents();
 				this.testLog.writeShuffledDeckContents();
+				this.testLog.writePlayerDecks();
+				this.testLog.writeCardsInPlay();
 			}
 
 			while(this.dataGame.getGameState()==DataGame.GameState.RUNNING) {
