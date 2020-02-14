@@ -545,7 +545,7 @@ public class TestLog {
 		 	if (model.getRound().getRoundWasDraw()) {
 		        String roundWinner="There was a draw";
 		      
-		      roundWinner+=model.getRound().getRoundWinningPlayers().get(0).getName()+".";
+		  
 		        
 		
 		        bw.write(roundWinner);
