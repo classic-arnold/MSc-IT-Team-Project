@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class TestLog {
 	 private DataGame model;
 	 private String outF="testlog.txt";
-	 private String header="";
+	 private String header="Description ";
 	 
 	 //constructor sets model
 	 public TestLog(DataGame model) {
@@ -694,6 +694,8 @@ public class TestLog {
 		          bw.write(header);
 		          bw.newLine();
 		          bw.newLine();
+		          bw.write(model.getRound().getRoundWinningCard().getDescription());
+		          bw.write(space);
 	        	bw.write(String.valueOf(model.getRound().getRoundWinningCard().getCategory1()));
 	        	 bw.write(space);
 	          	bw.write(String.valueOf(model.getRound().getRoundWinningCard().getCategory2()));
