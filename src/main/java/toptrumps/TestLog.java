@@ -83,36 +83,7 @@ public class TestLog {
           }
 	}
 	
-	public void writeRoundWinner() {
-		FileWriter fw = null;
-	    BufferedWriter bw = null;
-	    try {
-	        fw = new FileWriter(outF,true);
-	        bw = new BufferedWriter(fw);
-	        String separator="------------------------------------------------------------------------";
-	        bw.write(separator);
-	        bw.newLine();
-	        bw.newLine();
-	        bw.newLine();
-	        bw.newLine();
-	        String roundWinner=model.getRound().getRoundWinningPlayers().get(0).getName();
-	        bw.write("The winner of the round was  "+roundWinner+"\n");
-	        bw.close();
-	           
-	      
-	    }catch(IOException e) {
-	        e.printStackTrace();
-	    }finally {
-	       
-	        if(fw!=null) {
-	            try {
-	                fw.close();
-	            } catch (IOException e) {
-	                e.printStackTrace();
-	            }
-	        }
-	}
-	}
+
 	public void writeActivePlayer() {
 		FileWriter fw = null;
 	    BufferedWriter bw = null;
@@ -550,7 +521,7 @@ public class TestLog {
 	    }
 	}
 	
-	public void displayRoundWinner() {
+	public void writeRoundWinner() {
 		FileWriter fw = null;
 	    BufferedWriter bw = null;
 	    try {
