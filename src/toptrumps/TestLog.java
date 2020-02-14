@@ -354,11 +354,7 @@ public class TestLog {
               bw.write("Communal Pile Contents \n");
               if(model.getCardsInCommonPile().length==0) {
             	  bw.write("The communal pile is empty \n");
-<<<<<<< HEAD
-            	  
-=======
             	  bw.newLine();
->>>>>>> ed84b5c2a3996b2c24b8235ac770bfa4fecb796c
               }
               if(model.getCardsInCommonPile().length>0) {
             	  bw.newLine();
