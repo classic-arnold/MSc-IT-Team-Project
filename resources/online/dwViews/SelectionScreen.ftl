@@ -129,7 +129,7 @@
         <div class="col-sm-12">
         	<div class="fullscreen">
 				<video loop muted autoplay class="fullscreen_video">
-					<source src="assets/galaxy.mp4" type="video/mp4">
+					<source src="/assets/galaxy.mp4" type="video/mp4">
 				</video>
 			</div>
             <div id="title-div"class="row justify-content-center">
