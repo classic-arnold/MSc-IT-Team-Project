@@ -255,6 +255,10 @@
 				transform: scaleY(100%);
 				transform-origin: top left;
 			}
+			
+			#actionButtonReal{
+				display:none;
+			}
 
 			
 						
@@ -288,6 +292,10 @@
 					<div class="row justify-content-center p-5">
 						<div id="actionButtonDiv" class="action-div">
 							<span id="actionButton" class="text-center"></span>	
+						</div>
+						
+						<div class="action-div">
+							<button id="actionButtonReal" class="btn btn-block btn-light"></button>	
 						</div>
 						
 						<div id="selectPlayersMenu" class="action-div">
@@ -564,10 +572,7 @@
 							$(".alert").slideDown("fast", "swing");
 						});
 						$("#actionButtonDiv").fadeIn("fast", "swing", ()=>{
-							playRound().then(()=>{
-								getRoundActiveCards();
-								getRoundActivePlayers();
-							});
+							playRound();
 						});
 					});
 				});
@@ -1021,14 +1026,12 @@
 						
 				let roundNumber = await getRoundNumber();
 				
-				$(".card").addClass("flip-card");
-				
 				if(roundNumber==="1"){
 					await getRoundActiveCards();
 					await getRoundActivePlayers();
+				} else {
+					$(".card").addClass("flip-card");
 				}
-				
-				
 				
 				$(document).ready(function() {
 					$(".card").map((i, card)=>{
@@ -1069,7 +1072,7 @@
 						var responseText = xhr.response; // the text of the response
 						
 						if(responseText != "running"){
-							$(document).ready(function() {
+							$(document).ready(async function() {
 								// all custom jQuery will go here
 								// $("#actionButton").html("Start New Game");
 // 								$("#actionButton").click(()=>{
@@ -1084,11 +1087,19 @@
 
 
 								$("#actionButton").toggle();
-								$(".cardDeck").toggle();
+								$(".card-deck").slideUp();
 								$(".table").toggle(()=>{
 									setPlayerScores();
 								});
 								$("#status-message").html("Game won by " + responseText + ".");
+								
+								$(".card").map((card)=>{
+									if($(card).find(".player-name").html() === responseText){
+										$(card).animate({width: "+=50", height: "+=50"}, 2000);
+									} else {
+										$(card).toggle();
+									}
+								});
 								
 								resolve();
 							});
@@ -1096,6 +1107,9 @@
 							$(document).ready(function() {
 								// all custom jQuery will go here
 								$("#actionButton").html("<h2 class='font-weight-bold'>ROUND " + roundNumber + "</h2>");
+								
+								var prog = 0;
+								
 								setTimeout(()=>{
 									var nextRound = (async ()=>{
 						
@@ -1108,25 +1122,66 @@
 										});
 								
 										$("#actionButton").html("<h2 class='font-weight-bold'>3</h2>");
+										
+										prog++;
+										
 										setTimeout(()=>{
 											$("#actionButton").html("<h2 class='font-weight-bold'>2</h2>");
+											prog++;
 											setTimeout(()=>{
-												$("#actionButton").html("<h2 class='font-weight-bold'>1</h2>");
-												$(".card").removeClass("flip-card");
-												setTimeout(async ()=>{
-													await getRoundActiveCards();
-													await getRoundActivePlayers();
-													await getNumberOfCardsInCommonPile();
-													$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
-													$(".winning-card").removeClass("winning-card");
-													$(".active-player-card").removeClass("active-player-card");
+												$("#actionButtonReal").off("click");
+												$("#actionButtonReal").hide("fast", "swing", ()=>{
+													$("#actionButton").html("<h2 class='font-weight-bold'>1</h2>");
+													$(".card").removeClass("flip-card");
+													setTimeout(async ()=>{
+														await getRoundActiveCards();
+														await getRoundActivePlayers();
+														await getNumberOfCardsInCommonPile();
+														$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
+														$(".winning-card").removeClass("winning-card");
+														$(".active-player-card").removeClass("active-player-card");
 													
-													playRound();
+														playRound();
 												
-												}, 2000);
+													}, 2000);
+												});
 											}, 2000);
 										}, 2000);
 									})();
+									
+									$("#actionButtonReal").show("fast", "swing").html("SKIP").click(async ()=>{
+										$("#actionButtonReal").off("click");
+										$("#actionButtonReal").hide("fast", "swing");
+										let max = setTimeout(()=>{
+											()=>{}
+										}, 1000);
+										
+										for(let i=0; i<=max; i++){
+											clearTimeout(i);
+										}
+										
+										if (prog<=2){
+											if (prog<=1){
+												if(prog==0){
+													getRoundWinner();
+													$(".card").map((i, card)=>{
+														if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
+															$(card).find(".card-body").css("visibility", "visible");
+														}
+													});
+												}
+											}
+											await getRoundActiveCards();
+											await getRoundActivePlayers();
+											await getNumberOfCardsInCommonPile();
+											$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
+											$(".winning-card").removeClass("winning-card");
+											$(".active-player-card").removeClass("active-player-card");
+											
+											playRound();
+										}
+										
+									});
 								}, 2000);
 							
 							});	
