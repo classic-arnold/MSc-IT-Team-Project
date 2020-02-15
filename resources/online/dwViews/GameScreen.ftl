@@ -237,24 +237,25 @@
 			@keyframes changeCard {
   
 			  25%{
-				transform: scaleX(50%);
+				transform: scaleY(50%);
 			  }
 			  
 			  50%{
-				transform: scaleX(0);
+				transform: scaleY(0);
 			  }
 
 			  100% {
-				transform: scaleX(50%);
+				transform: scaleY(50%);
 			  }
 			  
 			}
 			
 			.flip-card{
 				animation: changeCard 1.5s;
-				transform: scaleX(100%);
+				transform: scaleY(100%);
 				transform-origin: top left;
 			}
+
 			
 						
 		</style>
@@ -1111,6 +1112,7 @@
 											$("#actionButton").html("<h2 class='font-weight-bold'>2</h2>");
 											setTimeout(()=>{
 												$("#actionButton").html("<h2 class='font-weight-bold'>1</h2>");
+												$(".card").removeClass("flip-card");
 												setTimeout(async ()=>{
 													await getRoundActiveCards();
 													await getRoundActivePlayers();
@@ -1118,7 +1120,7 @@
 													$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
 													$(".winning-card").removeClass("winning-card");
 													$(".active-player-card").removeClass("active-player-card");
-													$(".card").removeClass("flip-card");
+													
 													playRound();
 												
 												}, 2000);
