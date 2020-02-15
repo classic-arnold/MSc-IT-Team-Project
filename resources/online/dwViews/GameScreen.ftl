@@ -726,7 +726,7 @@
 								$("#selectCategoryMenu .btn").each((i, elem)=>{
 									$(elem).html(categoryList[i]);
 									$(elem).click(()=>{
-										$(elem).off("click");
+										$("#selectCategoryMenu .btn").off("click");
 										$(".categories").slideUp("fast", "swing", ()=>{
 											$("#actionButtonDiv").slideDown("fast", "swing");
 										});
@@ -923,6 +923,11 @@
 							$(card).find(".cards-left").html(await getNoOfCardsLeft(players[i].name));
 						}
 					});
+					$(".card").map((i, card)=>{
+						if ($(card).find(".player-name").html() !== "You"){
+							$(card).find(".card-body").css("visibility", "hidden");
+						}
+					});
 				});
 			}
 			
@@ -1027,19 +1032,11 @@
 				let roundNumber = await getRoundNumber();
 				
 				if(roundNumber==="1"){
-					await getRoundActiveCards();
 					await getRoundActivePlayers();
+					await getRoundActiveCards();
 				} else {
 					$(".card").addClass("flip-card");
 				}
-				
-				$(document).ready(function() {
-					$(".card").map((i, card)=>{
-						if ($(card).find(".player-name").html() !== "You"){
-							$(card).find(".card-body").css("visibility", "hidden");
-						}
-					});
-				});
 				
 				
 				if(humanSelectCategory === "true"){
@@ -1133,8 +1130,8 @@
 												$("#actionButtonReal").hide("fast", "swing");
 												$(".card").removeClass("flip-card");
 											}
-											await getRoundActiveCards();
 											await getRoundActivePlayers();
+											await getRoundActiveCards();
 											await getNumberOfCardsInCommonPile();
 											$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
 											$(".winning-card").removeClass("winning-card");
@@ -1169,19 +1166,19 @@
 												$(".card").removeClass("flip-card");
 												prog=3;
 												setTimeout(async ()=>{
-													await getRoundActiveCards();
 													await getRoundActivePlayers();
+													await getRoundActiveCards();
 													await getNumberOfCardsInCommonPile();
 													$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
 													$(".winning-card").removeClass("winning-card");
 													$(".active-player-card").removeClass("active-player-card");
 													playRound();
 										
-												}, 2000);
-											}, 2000);
-										}, 2000);
+												}, 3000);
+											}, 3000);
+										}, 3000);
 									})();
-								}, 2000);
+								}, 3000);
 							});	
 						}
 					};
