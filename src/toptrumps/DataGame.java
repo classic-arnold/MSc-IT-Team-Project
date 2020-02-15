@@ -12,28 +12,17 @@ import java.util.Random;
 import exceptions.*;
 
 /*
- * 
- * NOTE TO TEAM
-
-
- * We should use singleton design pattern to ensure this object is only created once to avoid hard to detect bugs, as the program is quite complex.
- * Do not bother about enums. I'm using it only in the model. It makes my work easier and i can convert to string for anyone to use.
  *
  * NOTE TO SELF
- * TODO: Test all functions
  * TODO: Verify game specifications are accurate
  * TODO: Remove MARKED FOR REMOVAL
- * TODO: Add methods visibility
  * TODO: Reduce couplings and increase cohesion
- * TODO: Maybe create abstract class Cardable and move all deck methods there
- * TODO: Deal with all warnings
- * TODO: Refactor database to prevent object creation everytime
  *
  */
 
 /**
  * 
- * represents the game class. It should only be created once per game, hence singleton pattern is used
+ * represents the game class.
  * @author Team TRY-CATCH - Arnold Umakhihe 2445734U
  *
  */
@@ -46,9 +35,9 @@ public class DataGame{
 	public enum GameState {
 		RUNNING, ENDED
 	}
-
-	/** represents the DataGame instance */
-	private static DataGame instance = null;
+//
+//	/** represents the DataGame instance */
+//	private static DataGame instance = null;
 
 	/** represents the list of players (still active) in the game */
 	private ArrayList<DataPlayer> activePlayers = new ArrayList<DataPlayer>();
@@ -81,10 +70,10 @@ public class DataGame{
 	private Round round = new Round();
 
 	/**
-	 * creates a new DataGame Object. Private because we implement the Singleton pattern.
+	 * creates a new DataGame Object.
 	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players in the game
 	 */
-	private DataGame(int numberOfArtificialIntelligencePlayers) {
+	public DataGame(int numberOfArtificialIntelligencePlayers) {
 		this.gameState = GameState.RUNNING; // set game state to running
 
 		this.activePlayers.add(new DataPlayer(DataPlayer.PlayerType.HUMAN, numberOfArtificialIntelligencePlayers)); // add one human player
@@ -102,28 +91,28 @@ public class DataGame{
 	// ------------------------------------------- //
 	// ------------------------------------------- //
 
-	/**
-	 * gets the instance of the single DataGame
-	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players in the game
-	 * @return DataGame object representing the current game
-	 */
-	public static DataGame getInstance(int numberOfArtificialIntelligencePlayers) {
-		// if game hasn't been started, start it
-		if(DataGame.instance == null) {
-			DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers);
-		}
-		return DataGame.instance;
-	}
-
-	/**
-	 * starts a new game by resetting the instance
-	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players in the game
-	 * @return DataGame object representing the new game
-	 */
-	public static DataGame resetAndGetInstance(int numberOfArtificialIntelligencePlayers) {
-		DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers); // start game
-		return DataGame.instance;
-	}
+//	/**
+//	 * gets the instance of the single DataGame
+//	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players in the game
+//	 * @return DataGame object representing the current game
+//	 */
+//	public static DataGame getInstance(int numberOfArtificialIntelligencePlayers) {
+//		// if game hasn't been started, start it
+//		if(DataGame.instance == null) {
+//			DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers);
+//		}
+//		return DataGame.instance;
+//	}
+//
+//	/**
+//	 * starts a new game by resetting the instance
+//	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players in the game
+//	 * @return DataGame object representing the new game
+//	 */
+//	public static DataGame resetAndGetInstance(int numberOfArtificialIntelligencePlayers) {
+//		DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers); // start game
+//		return DataGame.instance;
+//	}
 
 	/**
 	 * starts the game
@@ -189,10 +178,7 @@ public class DataGame{
 
 		// represents the winning cards and winning players for the round
 		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(DataGame.arrayListToArrayCard(roundCards), category);
-
-		//		MARKED FOR REMOVAL
-		//		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(roundCards.toArray(new DataCard[roundCards.size()]), category);
-
+		
 		// store round winning cards
 		this.round.roundWinningCards = (ArrayList<DataCard>)winningCardsAndPlayers.get("winning cards");
 

@@ -27,7 +27,7 @@ public class TopTrumpsCLIApplication {
 
 			// The Main method that call MVC, to implement game logic
 
-			DataGame model = DataGame.resetAndGetInstance(4); // model
+			DataGame model = new DataGame(4); // model
 
 			ViewCLI view = new ViewCLI(model); // initiailize view
 

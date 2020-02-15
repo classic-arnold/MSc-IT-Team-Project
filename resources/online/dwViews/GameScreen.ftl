@@ -235,25 +235,30 @@
 			}
 			
 			@keyframes changeCard {
+			  0%{
+				transform: rotateY(0deg);
+			  }
   
 			  25%{
-				transform: scaleY(50%);
+				transform: rotateY(45deg);
 			  }
 			  
 			  50%{
-				transform: scaleY(0);
+				transform: rotateY(90deg);
 			  }
 
 			  75% {
-				transform: scaleY(50%);
+				transform: rotateY(45deg);
+			  }
+			  
+			  100% {
+				transform: rotateY(0deg);
 			  }
 			  
 			}
 			
 			.flip-card{
-				animation: changeCard 2s;
-				transform: scaleY(100%);
-				transform-origin: top;
+				animation: changeCard 0.5s;
 			}
 			
 			#actionButtonReal{
@@ -295,7 +300,7 @@
 						</div>
 						
 						<div class="action-div">
-							<button id="actionButtonReal" class="btn btn-block btn-light"></button>	
+							<button id="actionButtonReal" class="btn btn-block text-light"></button>	
 						</div>
 						
 						<div id="selectPlayersMenu" class="action-div">
@@ -925,6 +930,7 @@
 					});
 					$(".card").map((i, card)=>{
 						if ($(card).find(".player-name").html() !== "You"){
+							$(card).find(".card-img-top").css("visibility", "hidden");
 							$(card).find(".card-body").css("visibility", "hidden");
 						}
 					});
@@ -958,7 +964,7 @@
 							$(card).find(".card-val5").html(cards[i].category5);
 						} catch(e){
 							if (e instanceof TypeError){
-								$(card).fadeOut("fast", "swing");
+								$(card).slideUp("fast", "swing");
 							}
 						}
 					});
@@ -1105,7 +1111,7 @@
 						} else{
 							$(document).ready(function() {
 								// all custom jQuery will go here
-								$("#actionButton").html("<h2 class='font-weight-bold'>ROUND " + roundNumber + "</h2>");
+								$("#actionButton").html("<h2 class='font-weight-bold'>ROUND " + roundNumber + "...</h2>");
 								
 								var prog = 0;
 								setTimeout(()=>{
@@ -1125,6 +1131,7 @@
 													getRoundWinner();
 													$(".card").map((i, card)=>{
 														if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
+															$(card).find(".card-img-top").css("visibility", "visible");
 															$(card).find(".card-body").css("visibility", "visible");
 														}
 													});
@@ -1150,6 +1157,7 @@
 								
 										$(".card").map((i, card)=>{
 											if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
+												$(card).find(".card-img-top").css("visibility", "visible");
 												$(card).find(".card-body").css("visibility", "visible");
 											}
 										});

@@ -201,7 +201,7 @@ public class ViewCLI {
 	}
 
 	public static void main(String[] args) {
-		DataGame model = DataGame.resetAndGetInstance(4);
+		DataGame model = new DataGame(4);
 		model.startGame();
 		ViewCLI testview = new ViewCLI(model);
 		testview.nextRoundChoice();
