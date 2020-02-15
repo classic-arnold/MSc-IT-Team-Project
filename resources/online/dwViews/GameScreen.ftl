@@ -151,10 +151,6 @@
 				font-weight: bold;
 			}
 			
-			.categories{
-				display: none;
-			}
-			
 			#status-message{
 				color:white;
 				font-size:20px;
@@ -168,8 +164,7 @@
 				font-size:20px;
 				font-family: 'Roboto Mono', monospace;
 				font-weight: bold;
-				border-image-source: linear-gradient(to right, #659999, #f4791f);
-				border-image-slice: 1;
+				border-color: #FFA500;
 			}
 			
 			.table{
@@ -179,10 +174,6 @@
 			.table th, .table td {
    				border-top:none;
             }
-			
-			#selectPlayersMenu{
-				display: none;
-			}
 			
 			.action-div .btn{
 				background-color:rgba(9,36,55,0.6);
@@ -261,8 +252,8 @@
 				animation: changeCard 0.5s;
 			}
 			
-			#actionButtonReal{
-				display:none;
+			.table, #selectPlayersMenu, #actionButtonReal, .categories{
+				display: none;
 			}
 
 			
@@ -537,7 +528,6 @@
 					// all custom jQuery will go here
 					
 					$(".card-deck").toggle();
-					$(".table").toggle();
 					
 					window.onbeforeunload = function() {
 					  return 'Are you sure you want to leave? All game progress will be lost!';
@@ -965,7 +955,7 @@
 							$(card).find(".card-val5").html(cards[i].category5);
 						} catch(e){
 							if (e instanceof TypeError){
-								$(card).slideUp("fast", "swing");
+								$(card).fadeOut("slow", "linear");
 							}
 						}
 					});
