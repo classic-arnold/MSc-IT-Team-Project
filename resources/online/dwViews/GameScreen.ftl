@@ -714,6 +714,8 @@
 			
 			async function selectCategoryForHuman(){
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				getRoundActivePlayer();
+				
 				let categoryList = await getCategories();
 				
 				return new Promise((resolve,reject)=>{
@@ -769,7 +771,6 @@
 					}
 					
 				};
-				
 				
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();
@@ -1073,35 +1074,22 @@
 					xhr.onload = async function(e) {
 						
 						var responseText = xhr.response; // the text of the response
-						
-						if(responseText != "running"){
-							$(document).ready(async function() {
-								// all custom jQuery will go here
-								// $("#actionButton").html("Start New Game");
-// 								$("#actionButton").click(()=>{
-// 									$('#actionButton').off('click');
-// 									$("#actionButtonDiv").fadeOut("fast", "swing", ()=>{
-// 										$("#selectPlayersMenu").fadeIn("fast", "swing");
-// 									});
-// 									initalize();
-// 								});
-// 								$("#status-message").html("Game won by " + responseText + ".");
-// 								resolve();
-
-
+						if(responseText !== "running"){
+							$(document).ready(function() {
+								
 								$("#actionButton").toggle();
-								$(".card-deck").slideUp();
 								$(".table").toggle(()=>{
 									setPlayerScores();
 								});
 								$("#status-message").html("Game won by " + responseText + ".");
 								
-								$(".card").map((card)=>{
-									if($(card).find(".player-name").html() === responseText){
-										$(card).animate({width: "+=50", height: "+=50"}, 2000);
-									} else {
-										$(card).toggle();
-									}
+								getRoundActivePlayers().then(()=>{
+									getRoundActiveCards().then(()=>{
+										$(".card").map((i, card)=>{
+											$(card).find(".card-img-top").css("visibility", "visible");
+											$(card).find(".card-body").css("visibility", "visible");
+										});
+									});
 								});
 								
 								window.onbeforeunload = null;
@@ -1188,7 +1176,7 @@
 											}, 3000);
 										}, 3000);
 									})();
-								}, 3000);
+								}, 1000);
 							});	
 						}
 					};
