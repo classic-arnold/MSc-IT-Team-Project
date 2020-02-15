@@ -552,7 +552,7 @@ public class DataGame{
 		// no player won last round, this means no player has won any round
 		if (this.round.roundLastWinner != null) {
 			player = this.round.roundLastWinner;
-		} else if (this.round.roundActivePlayer != null){ // no player won last round, this means no player has won any round
+		} else if (this.round.roundActivePlayer != null){ // if the last player to choose category is not null
 			// we need the last active player, this would happen when all previous rounds are draws
 			return player = this.round.roundActivePlayer;
 		} else { // no player won last round, and has ever been active, this is only possible at round 1
