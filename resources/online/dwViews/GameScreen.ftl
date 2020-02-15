@@ -244,16 +244,16 @@
 				transform: scaleY(0);
 			  }
 
-			  100% {
+			  75% {
 				transform: scaleY(50%);
 			  }
 			  
 			}
 			
 			.flip-card{
-				animation: changeCard 1.5s;
+				animation: changeCard 2s;
 				transform: scaleY(100%);
-				transform-origin: top left;
+				transform-origin: top;
 			}
 			
 			#actionButtonReal{
@@ -534,9 +534,9 @@
 					$(".card-deck").toggle();
 					$(".table").toggle();
 					
-					$(window).bind('beforeunload', function(){
+					window.onbeforeunload = function() {
 					  return 'Are you sure you want to leave? All game progress will be lost!';
-					});
+					}
 					
 					$("#selectPlayersMenu").slideDown(()=>{
 						$(".select-player-btns .one").click(()=>{
@@ -1097,6 +1097,8 @@
 										$(card).toggle();
 									}
 								});
+								
+								window.onbeforeunload = null;
 								
 								resolve();
 							});
