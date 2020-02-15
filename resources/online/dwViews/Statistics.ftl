@@ -111,12 +111,9 @@
 
 		<div class="container-fluid h-100">
 		<div class="row h-100">
-		<div class="col-sm-3 section1 ">
-   
-		</div>
-		<div class="col-sm-9 section2 justify-content-center">
+		<div class="col-sm-12 section2 justify-content-center">
 		<div class="row">
-		<div class="col-sm-12 text-center header-div">
+		<div class="col-sm-12 text-center header-div pt-5">
 		<h1>Statistics <span class="loading">loading...</span></h1>
 		</div>
 		</div>

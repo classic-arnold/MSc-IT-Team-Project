@@ -22,7 +22,12 @@
 		<!-- Additional styles -->
 		<style type="text/css">
 			/* Navbar Styles*/
-
+			
+			h2{
+				color:white;
+				font-size: 3em;
+			}
+			
 			.navbar-brand {
 				font-family: 'Orbitron', sans-serif;
 				font-size: 27px;
@@ -63,12 +68,8 @@
 			}
 			#actionButtonDiv{
 				display:none;
-			
+				width:100%;
 			}
-			#actionButtonDiv{
-				display:none;
-			}
-			
 			
 			#selectPlayersMenu{
 				display:inline;
@@ -89,6 +90,7 @@
 			}
 
 			.alert {
+				display: none;
 				border-radius: 0;
 				border: none;
 				padding-top:0px;
@@ -112,15 +114,11 @@
 
 
 			.card-img-top {
-				width: 100px;
+				width: 100%;
 				height:100px;
-				border-radius: 20px;
-				clip: rect(0px, 60px, 200px, 0px);
-				margin-right:100px;
-				margin-left:100px;
-				margin-top:20px;
-			
+				border-radius: 0;
 			}
+			
 
 			.card {
 			    box-shadow: 0 0 10px black;
@@ -128,6 +126,7 @@
 				/*box-shadow: 0 0 10px #FF8300;*/
 				font-family: 'Roboto Mono', monospace;
 				font-weight: bold;
+				padding:0;
 			}
 
 			.card-title {
@@ -151,87 +150,112 @@
 				font-family: 'Roboto Mono', monospace;
 				font-weight: bold;
 			}
-			#cardOne{
-				visibility:visible;
-			}
-			#cardTwo{
-				visibility:visible;
-			}
-			#cardThree{
-				visibility:visible;
-			}
-			#cardFour{
-				visibility:visible;
-			}
-			#cardFive{
-				visibility:visible;
-			}
-			#cardSix{
-				visibility:hidden;
-			}
 			
 			.categories{
 				display: none;
 			}
-			#status-message{
-			color:white;
-				font-size:20px;
-					font-family: 'Roboto Mono', monospace;
-				font-weight: bold;
 			
-			}
-			#common-pile{
-			color:white;
+			#status-message{
+				color:white;
 				font-size:20px;
-					font-family: 'Roboto Mono', monospace;
+				font-family: 'Roboto Mono', monospace;
 				font-weight: bold;
+			}
+			
+			#common-pile{
+				display: none;
+				color: black;
+				font-size:20px;
+				font-family: 'Roboto Mono', monospace;
+				font-weight: bold;
+				border-image-source: linear-gradient(to right, #659999, #f4791f);
+				border-image-slice: 1;
 			}
 			
 			.table{
-			color:white;
-			
-			
+				color:white;
 			}
+			
 			.table th, .table td {
    				border-top:none;
-                       }
-			.card-header{
+            }
 			
-			background-color:#659999;
-			
-			}
-			@supports (-ms-ime-align:auto) {
-			
-				.card-img-top {
-				width: 100px;
-				height:100px;
-				border-radius: 20px;
-				clip: rect(0px, 60px, 200px, 0px);
-				margin-right:60px;
-				margin-left:60px;
-				margin-top:20px;
-			
+			#selectPlayersMenu{
+				display: none;
 			}
 			
+			.action-div .btn{
+				background-color:rgba(9,36,55,0.6);
+				font-size:20px;
+				box-shadow: 0px 0px 5px #5DBCD2;
+				transition-duration: 0.4s;
+			}
+			
+			.action-div .btn:hover{
+        
+			  box-shadow: 0px 0px 15px #FFA500;
 	
-}
-
-@media not all and (min-resolution:.001dpcm) { 
-    @media {
-        .safari10 { 
-          		.card-img-top {
-				width: 100px;
-				height:100px;
-				border-radius: 20px;
-				clip: rect(0px, 60px, 200px, 0px);
-				margin-right:60px;
-				margin-left:60px;
-				margin-top:20px;
-			
 			}
-        }
-    }
-}
+			
+			.cat-selected{
+				color: #F0A202;
+				-webkit-transition: all 0.5s;
+				-moz-transition: all 0.5s;
+				 -o-transition: all 0.5s;
+					transition: all 0.5s;
+			}
+			
+			.active-player-card{
+				box-shadow: 0px 0px 15px #FFA500;
+			}
+			
+			.winning-card{
+				animation: shake 1.5s cubic-bezier(.50,.09,.23,.87) both;
+				  transform: translate3d(0, 0, 0);
+				  backface-visibility: hidden;
+				  perspective: 1000px;
+			}
+
+			@keyframes shake {
+			  10%, 90% {
+				transform: translate3d(-1px, 0, 0);
+			  }
+  
+			  20%, 80% {
+				transform: translate3d(2px, 0, 0);
+			  }
+
+			  30%, 50%, 70% {
+				transform: translate3d(-4px, 0, 0);
+			  }
+
+			  40%, 60% {
+				transform: translate3d(4px, 0, 0);
+			  }
+			}
+			
+			@keyframes changeCard {
+  
+			  25%{
+				transform: scaleX(50%);
+			  }
+			  
+			  50%{
+				transform: scaleX(0);
+			  }
+
+			  100% {
+				transform: scaleX(50%);
+			  }
+			  
+			}
+			
+			.flip-card{
+				animation: changeCard 1.5s;
+				transform: scaleX(100%);
+				transform-origin: top left;
+			}
+			
 						
 		</style>
 
@@ -259,20 +283,51 @@
 
 		<div class="container-fluid h-100">
 			<div class="row h-100">
-				<div class="col-sm-3 section1 ">
+				<div class="col-sm-3 section1">
 					<div class="row justify-content-center p-5">
 						<div id="actionButtonDiv" class="action-div">
-							<button id="actionButton" type="button" class="btn btn-dark btn-block">NO ACTION</button>	
+							<span id="actionButton" class="text-center"></span>	
 						</div>
+						
 						<div id="selectPlayersMenu" class="action-div">
-							<h3 id="selection-choice-menu">Please select the number of AI Players</h3>
-							<select class="custom-select" id="num-player-select">
-								<option>Select</option>
-								<option value="1">One</option>
+							<h2 id="selection-choice-menu" class="font-weight-bold">Please select the number of AI Players</h2>
+<!-- 
+							<input type="hidden" class="custom-select w-100" id="num-player-select"/>
+<!~~ 								<option>Select</option> ~~>
+								<!~~ 
+<option value="1">One</option>
 								<option value="2">Two</option>
 								<option value="3">Three</option>
 								<option value="4">Four</option>
+ ~~>
+ -->
+							<div class="select-player-btns">
+								<button class="one btn btn-block text-white">1</button>
+								<button class="two btn btn-block text-white">2</button>
+								<button class="three btn btn-block text-white">3</button>
+								<button class="four btn btn-block text-white">4</button>
+							</div>
+						</div>
+						<div id="selectCategoryMenu" class="action-div categories">
+							<h2 id="selection-category-menu" class="font-weight-bold">Please select your category</h2>
+							<!-- 
+<select class="custom-select w-100" id="category-select">
+								<option>Select</option>
+								<option value=""></option>
+								<option value=""></option>
+								<option value=""></option>
+								<option value=""></option>
+								<option value=""></option>
 							</select>
+ -->
+							
+							<div class="select-cat-btns">
+								<button class="cat-btn-1 btn btn-block text-white"></button>
+								<button class="cat-btn-2 btn btn-block text-white"></button>
+								<button class="cat-btn-3 btn btn-block text-white"></button>
+								<button class="cat-btn-4 btn btn-block text-white"></button>
+								<button class="cat-btn-5 btn btn-block text-white"></button>
+							</div>
 						</div>
 						<div id="displayEndScores" class="action-div">
 						<table class="table">
@@ -287,173 +342,151 @@
 						</tbody>
 						</table>
 						</div>
-						<div id="selectCategoryMenu" class="action-div categories">
-							<h3 id="selection-category-menu">Please select your category</h3>
-							<select class="custom-select" id="category-select">
-								<option>Select</option>
-								<option value=""></option>
-								<option value=""></option>
-								<option value=""></option>
-								<option value=""></option>
-								<option value=""></option>
-							</select>
-						</div>
 					</div>
 				</div>
 				<div class="col-sm-9 section2">
 					<div class="row">
 						<div id="status-col" class="col-sm-12">
 							<div class="alert alert-info" role="alert">
-								<p id="status-message"></p><p class="float-right" id="common-pile"></p>
+								<p id="status-message"></p>
 							</div>
 						</div>
 					</div>
-					<div class="row justify-content-center">
-						<div class="card-deck">
-							<div id="cardOne" class="card" style="width: 3rem;">
-								<div id="playerOneCard" class="card-header"><span class="player-name"></span><span id="deckOne"
-																							  class="badge badge-primary float-right cards-left"></span>
-								</div>
-								<div class="row justify-content-center">
-								<img class="card-img-top" src="http://dcs.gla.ac.uk/~richardm/TopTrumps/Avenger.jpg" width="100" height="100"
-									 alt="Card image cap">
-									 </div>
-								<div class="card-body">
-									<h5 id="cardOneTitle" class="card-title">Avenger</h5>
-									<ul class="list-group list-group-flush">
-										<li id="cardOneCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardOneValOne"
-																								 class="float-right card-val1"></span>
-										</li>
-										<li id="cardOneCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardOneValTwo"
-																								  class="float-right card-val2"></span>
-										</li>
-										<li id="cardOneCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardOneValThree"
-																									class="float-right card-val3"></span>
-										</li>
-										<li id="cardOneCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardOneValFour"
-																									   class="float-right card-val4"></span>
-										</li>
-										<li id="cardOneCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardOneValFive"
-																								   class="float-right card-val5"></span>
-										</li>
-									</ul>
-								</div>
+					<div id="common-pile" class="badge badge-primary text-center w-100">Common Pile: 0</div>
+					
+					<div class="card-deck row justify-content-center mt-3">
+					
+						<div id="cardOne" class="card col-3">
+							<div id="playerOneCard" class="card-header"><span class="player-name"></span><span id="deckOne"
+																						  class="badge badge-primary float-right cards-left"></span>
 							</div>
-							<div id="cardTwo" class="card">
-								<div id="playerTwoCard" class="card-header"><span class="player-name"></span><span id="deckTwo"
-																							  class="badge badge-primary float-right cards-left"></span>
-								</div>
-								 <div class="row justify-content-center ">
-								<img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
-								</div>
-								<div class="card-body">
-									<h5 id="cardTwoTitle"class="card-title">m50</h5>
-									<ul class="list-group list-group-flush">
-										<li id="cardTwoCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardTwoValOne"
-																								 class="float-right card-val1"></span>
-										</li>
-										<li id="cardTwoCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardTwoValTwo"
-																								  class="float-right card-val2"></span>
-										</li>
-										<li id="cardTwoCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardTwoValThree"
-																									class="float-right card-val3"></span>
-										</li>
-										<li id="cardTwoCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardTwoValFour"
-																									   class="float-right card-val4"></span>
-										</li>
-										<li id="cardTwoCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardTwoValFive"
-																								   class="float-right card-val5"></span>
-										</li>
-									</ul>
-								</div>
+							<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
+							<div class="card-body">
+								<h5 id="cardOneTitle" class="card-title"></h5>
+								<ul class="list-group list-group-flush">
+									<li id="cardOneCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardOneValOne"
+																							 class="float-right card-val1"></span>
+									</li>
+									<li id="cardOneCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardOneValTwo"
+																							  class="float-right card-val2"></span>
+									</li>
+									<li id="cardOneCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardOneValThree"
+																								class="float-right card-val3"></span>
+									</li>
+									<li id="cardOneCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardOneValFour"
+																								   class="float-right card-val4"></span>
+									</li>
+									<li id="cardOneCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardOneValFive"
+																							   class="float-right card-val5"></span>
+									</li>
+								</ul>
 							</div>
-							<div id="cardThree" class="card">
-								<div id="playerThreeCard" class="card-header"><span class="player-name"></span><span id="DeckThree"
-																								class="badge badge-primary float-right cards-left"></span>
-								</div>
-								 <div class="row justify-content-center ">
-								<img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
-								</div>
-								<div class="card-body">
-									<h5 id="cardThreeTitle" class="card-title">Orion</h5>
-									<ul class="list-group list-group-flush">
-										<li id="cardThreeCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardThreeValOne"
-																								   class="float-right card-val1"></span>
-										</li>
-										<li id="cardThreeCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardThreeValTwo"
-																									class="float-right card-val2"></span>
-										</li>
-										<li id="cardThreeCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardThreeValThree"
-																									  class="float-right card-val3"></span>
-										</li>
-										<li id="cardThreeCarFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardThreeValFour"
-																										 class="float-right card-val4"></span>
-										</li>
-										<li id="cardThreeCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardThreeValFive"
-																									 class="float-right card-val5"></span>
-										</li>
-									</ul>
-								</div>
+						</div>
+						<div id="cardTwo" class="card col-3">
+							<div id="playerTwoCard" class="card-header"><span class="player-name"></span><span id="deckTwo"
+																						  class="badge badge-primary float-right cards-left"></span>
+							</div>
+							<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
+							<div class="card-body">
+								<h5 id="cardTwoTitle"class="card-title"></h5>
+								<ul class="list-group list-group-flush">
+									<li id="cardTwoCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardTwoValOne"
+																							 class="float-right card-val1"></span>
+									</li>
+									<li id="cardTwoCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardTwoValTwo"
+																							  class="float-right card-val2"></span>
+									</li>
+									<li id="cardTwoCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardTwoValThree"
+																								class="float-right card-val3"></span>
+									</li>
+									<li id="cardTwoCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardTwoValFour"
+																								   class="float-right card-val4"></span>
+									</li>
+									<li id="cardTwoCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardTwoValFive"
+																							   class="float-right card-val5"></span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="cardThree" class="card col-3">
+							<div id="playerThreeCard" class="card-header"><span class="player-name"></span><span id="DeckThree"
+																							class="badge badge-primary float-right cards-left"></span>
+							</div>
+							<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
+							<div class="card-body">
+								<h5 id="cardThreeTitle" class="card-title"></h5>
+								<ul class="list-group list-group-flush">
+									<li id="cardThreeCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardThreeValOne"
+																							   class="float-right card-val1"></span>
+									</li>
+									<li id="cardThreeCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardThreeValTwo"
+																								class="float-right card-val2"></span>
+									</li>
+									<li id="cardThreeCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardThreeValThree"
+																								  class="float-right card-val3"></span>
+									</li>
+									<li id="cardThreeCarFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardThreeValFour"
+																									 class="float-right card-val4"></span>
+									</li>
+									<li id="cardThreeCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardThreeValFive"
+																								 class="float-right card-val5"></span>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="row justify-content-center cardrow2">
-						<div class="card-deck">
-							<div id="cardFour" class="card" style="width: 3rem;">
-								<div id="playerFourCard" class="card-header"><span class="player-name"></span><span id="deckFour"
-																							   class="badge badge-primary float-right cards-left"></span>
-								</div>
-								 <div class="row justify-content-center ">
-								<img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
-								</div>
-								<div class="card-body">
-									<h5 id="cardFourTitle" class="card-title">Hawk</h5>
-									<ul class="list-group list-group-flush">
-										<li id="cardFourCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardFourValOne"
-																								  class="float-right card-val1"></span>
-										</li>
-										<li id="cardFourCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardFourValTwo"
-																								   class="float-right card-val2"></span>
-										</li>
-										<li id="cardFourCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardFourValThree"
-																									 class="float-right card-val3"></span>
-										</li>
-										<li id="cardFourCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardFourValFour"
-																										class="float-right card-val4"></span>
-										</li>
-										<li id="cardFourCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardFourValFive"
-																									class="float-right card-val5"></span>
-										</li>
-									</ul>
-								</div>
+					<br/>
+					<div class="card-deck row justify-content-center">
+						<div id="cardFour" class="card col-3">
+							<div id="playerFourCard" class="card-header"><span class="player-name"></span><span id="deckFour"
+																						   class="badge badge-primary float-right cards-left"></span>
 							</div>
-							<div id="cardFive" class="card">
-								<div id="playerFiveCard" class="card-header"><span class="player-name"></span><span id="DeckFive"
-																							   class="badge badge-primary float-right cards-left"></span>
-								</div>
-								 <div class="row justify-content-center ">
-								<img class="card-img-top" src="http://placekitten.com/300/300" width="100" height="100" alt="Card image cap">
-								</div>
-								<div class="card-body">
-									<h5 id="cardFiveTitle" class="card-title">Hurricane</h5>
-									<ul class="list-group list-group-flush">
-										<li id="cardFiveCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardFiveValOne"
-																								   class="float-right card-val1"></span>
-										</li>
-										<li id="cardFiveCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardFiveValTwo"
-																									class="float-right card-val2"></span>
-										</li>
-										<li id="cardFiveCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardFiveValThree"
-																									  class="float-right card-val3"></span>
-										</li>
-										<li id="cardFiveCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardFiveValFour"
-																										class="float-right card-val4"></span>
-										</li>
-										<li id="cardFiveCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardFiveValFive"
-																									class="float-right card-val5"></span>
-										</li>
-									</ul>
-								</div>
+							<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
+							<div class="card-body">
+								<h5 id="cardFourTitle" class="card-title"></h5>
+								<ul class="list-group list-group-flush">
+									<li id="cardFourCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardFourValOne"
+																							  class="float-right card-val1"></span>
+									</li>
+									<li id="cardFourCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardFourValTwo"
+																							   class="float-right card-val2"></span>
+									</li>
+									<li id="cardFourCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardFourValThree"
+																								 class="float-right card-val3"></span>
+									</li>
+									<li id="cardFourCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardFourValFour"
+																									class="float-right card-val4"></span>
+									</li>
+									<li id="cardFourCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardFourValFive"
+																								class="float-right card-val5"></span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="cardFive" class="card col-3">
+							<div id="playerFiveCard" class="card-header"><span class="player-name"></span><span id="DeckFive"
+																						   class="badge badge-primary float-right cards-left"></span>
+							</div>
+							<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
+							<div class="card-body">
+								<h5 id="cardFiveTitle" class="card-title"></h5>
+								<ul class="list-group list-group-flush">
+									<li id="cardFiveCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardFiveValOne"
+																							   class="float-right card-val1"></span>
+									</li>
+									<li id="cardFiveCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardFiveValTwo"
+																								class="float-right card-val2"></span>
+									</li>
+									<li id="cardFiveCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardFiveValThree"
+																								  class="float-right card-val3"></span>
+									</li>
+									<li id="cardFiveCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardFiveValFour"
+																									class="float-right card-val4"></span>
+									</li>
+									<li id="cardFiveCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardFiveValFive"
+																								class="float-right card-val5"></span>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -492,20 +525,26 @@
 					$(".card-deck").toggle();
 					$(".table").toggle();
 					
-					$("#num-player-select").change(()=>{
-						startGame($("#num-player-select").val()).then(()=>{
-							$("#selectPlayersMenu").fadeOut("fast", "swing", ()=>{
-								$("#actionButton").html("NO ACTION");
-								$("#actionButtonDiv").fadeIn("fast", "swing", ()=>{
-									playRound().then(()=>{
-										getRoundActiveCards();
-										getRoundActivePlayers();
-									});
-								});
-							});
-							
-// 							$(".card-deck").fadeIn("fast", "swing");
-// 							loadCards();
+					$(window).bind('beforeunload', function(){
+					  return 'Are you sure you want to leave? All game progress will be lost!';
+					});
+					
+					$("#selectPlayersMenu").slideDown(()=>{
+						$(".select-player-btns .one").click(()=>{
+							initGame(1);
+							$("#selectPlayersMenu").slideUp("fast", "swing");
+						});
+						$(".select-player-btns .two").click(()=>{
+							initGame(2);
+							$("#selectPlayersMenu").slideUp("fast", "swing");
+						});
+						$(".select-player-btns .three").click(()=>{
+							initGame(3);
+							$("#selectPlayersMenu").slideUp("fast", "swing");
+						});
+						$(".select-player-btns .four").click(()=>{
+							initGame(4);
+							$("#selectPlayersMenu").slideUp("fast", "swing");
 						});
 					});
 				});
@@ -514,6 +553,23 @@
 // 				selectCategory();
 // 				getStats();
 
+			}
+			
+			function initGame(noOfAiPlayers){
+				$(document).ready(function() {
+					// all custom jQuery will go here
+					startGame(noOfAiPlayers).then(()=>{
+						$("#common-pile").slideDown("fast", "swing", ()=>{
+							$(".alert").slideDown("fast", "swing");
+						});
+						$("#actionButtonDiv").fadeIn("fast", "swing", ()=>{
+							playRound().then(()=>{
+								getRoundActiveCards();
+								getRoundActivePlayers();
+							});
+						});
+					});
+				});
 			}
 
 			// -----------------------------------------
@@ -659,21 +715,19 @@
 					$(document).ready(function() {
 						// all custom jQuery will go here
 // 						$("#status-message").append(" It is your turn to select a category.");
-						$("#actionButtonDiv").fadeOut("fast", "swing", ()=>{
-							$("#category-select").val("Select");
-							$(".categories").fadeIn("fast", "swing", ()=>{
-								$("#category-select>option").slice(1).each((i, elem)=>{
-									$(elem).val(categoryList[i]);
+						$("#actionButtonDiv").slideUp("fast", "swing", ()=>{
+							$(".categories").slideDown("fast", "swing", ()=>{
+								$("#selectCategoryMenu .btn").each((i, elem)=>{
 									$(elem).html(categoryList[i]);
-								});
-								$("#category-select").change(()=>{
-									$("#category-select").off("change");
-									$(".categories").fadeOut("fast", "swing", ()=>{
-										$("#actionButtonDiv").fadeIn("fast", "swing");
-									});
-									$("#status-message").append(" You selected " + $("#category-select").val() + ".");
+									$(elem).click(()=>{
+										$(elem).off("click");
+										$(".categories").slideUp("fast", "swing", ()=>{
+											$("#actionButtonDiv").slideDown("fast", "swing");
+										});
+										$("#status-message").append(" You selected " + categoryList[i] + ".");
 									
-									resolve($("#category-select").val());
+										resolve(categoryList[i]);
+									})
 								});
 							});
 						});
@@ -697,9 +751,12 @@
 					var responseText = xhr.response; // the text of the response// 
 					if(responseText === "draw"){
 						$("#status-message").append(" Round was a draw.");
+						$("#common-pile").addClass("winning-card");
 					} else {
 						$("#status-message").append(" " + responseText + " won this round.")
+						$(".card .player-name:contains(" + responseText + ")").closest(".card").addClass("winning-card");
 					}
+					
 				};
 				
 				
@@ -769,6 +826,7 @@
 					// to do when the response arrives
 					xhr.onload = function(e) {
 						var responseText = xhr.response; // the text of the response// 
+						$(".card .player-name:contains(" + responseText + ")").closest(".card").addClass("active-player-card");
 						resolve(responseText);
 					};
 	
@@ -889,12 +947,12 @@
 							$(card).find(".card-val5").html(cards[i].category5);
 						} catch(e){
 							if (e instanceof TypeError){
-								$(card).css("visibility", "hidden");
+								$(card).fadeOut("fast", "swing");
 							}
 						}
 					});
 				});
-				$(".card-deck").fadeIn("fast", "swing");
+				$(".card-deck").slideDown("fast", "swing");
 				
 			}
 			
@@ -962,11 +1020,14 @@
 						
 				let roundNumber = await getRoundNumber();
 				
+				$(".card").addClass("flip-card");
 				
 				if(roundNumber==="1"){
 					await getRoundActiveCards();
 					await getRoundActivePlayers();
 				}
+				
+				
 				
 				$(document).ready(function() {
 					$(".card").map((i, card)=>{
@@ -976,6 +1037,7 @@
 					});
 				});
 				
+				
 				if(humanSelectCategory === "true"){
 					categorySelected = await selectCategoryForHuman();
 				} else {
@@ -984,6 +1046,10 @@
 						categorySelected = await selectCategoryForHuman();
 					}
 				}
+				
+				$(document).ready(function() {
+					$("span:contains(" + categorySelected + ")").parent().addClass("cat-selected");
+				});
 				
 				return new Promise((resolve,reject)=>{
 				
@@ -1022,47 +1088,55 @@
 									setPlayerScores();
 								});
 								$("#status-message").html("Game won by " + responseText + ".");
+								
 								resolve();
 							});
-						}
+						} else{
+							$(document).ready(function() {
+								// all custom jQuery will go here
+								$("#actionButton").html("<h2 class='font-weight-bold'>ROUND " + roundNumber + "</h2>");
+								setTimeout(()=>{
+									var nextRound = (async ()=>{
 						
-						$(document).ready(function() {
-							// all custom jQuery will go here
-							$("#actionButton").html("NEXT ROUND", );
-							setTimeout(()=>{
-								var nextRound = (async ()=>{
-						
-									getRoundWinner();							
-									await getRoundActiveCards();
-									await getRoundActivePlayers();
-									await getNumberOfCardsInCommonPile();
+										getRoundWinner();
 								
-									$(".card").map((i, card)=>{
-										if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
-											$(card).find(".card-body").css("visibility", "visible");
-										}
-									});
+										$(".card").map((i, card)=>{
+											if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
+												$(card).find(".card-body").css("visibility", "visible");
+											}
+										});
 								
-									$("#actionButton").html("3");
-									setTimeout(()=>{
-										$("#actionButton").html("2");
+										$("#actionButton").html("<h2 class='font-weight-bold'>3</h2>");
 										setTimeout(()=>{
-											$("#actionButton").html("1");
+											$("#actionButton").html("<h2 class='font-weight-bold'>2</h2>");
 											setTimeout(()=>{
-												playRound();
+												$("#actionButton").html("<h2 class='font-weight-bold'>1</h2>");
+												setTimeout(async ()=>{
+													await getRoundActiveCards();
+													await getRoundActivePlayers();
+													await getNumberOfCardsInCommonPile();
+													$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
+													$(".winning-card").removeClass("winning-card");
+													$(".active-player-card").removeClass("active-player-card");
+													$(".card").removeClass("flip-card");
+													playRound();
+												
+												}, 2000);
 											}, 2000);
 										}, 2000);
-									}, 2000);
-								})();
-							}, 2000);
+									})();
+								}, 2000);
 							
-						});
+							});	
+						}
 					};
 		
 					// We have done everything we need to prepare the CORS request, so send it
 					xhr.send();	
 				});
 			}
+			
+			
 	
 			// This calls the game REST method from TopTrumpsRESTAPI
 			function getStats() {
@@ -1085,6 +1159,32 @@
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();		
 			}
+			
+// 			async function setSelectAiNoValue(){
+// 				var AiNoChosen = await showSelectValues();
+// 				
+// 				
+// 				$(".num-player-select").val(AiNoChosen);
+// 			}
+// 			
+// 			function showSelectValues(){
+// 				return new Promise((resolve)=>{
+// 					$(".select-player-btns").slideDown("fast", "swing", ()=>{
+// 						$(".select-player-btns .one").click(()=>{
+// 							$(".select-player-btns").slideUp("fast", "swing");
+// 						});
+// 						$(".select-player-btns .two").click(()=>{
+// 							$(".select-player-btns").slideUp("fast", "swing");
+// 						});
+// 						$(".select-player-btns .three").click(()=>{
+// 							$(".select-player-btns").slideUp("fast", "swing");
+// 						});
+// 						$(".select-player-btns .four").click(()=>{
+// 							$(".select-player-btns").slideUp("fast", "swing");
+// 						});
+// 					});
+// 				})
+// 			}
 			
 			// ------------------------------------------------------------ //
 			// ------------------------------------------------------------ //
@@ -1113,13 +1213,6 @@
 				}
 				return xhr;
 			}
-			
-			$(document).ready(function() {
-				// all custom jQuery will go here
-				$(window).bind('beforeunload', function(){
-				  return 'Are you sure you want to leave? All game progress will be lost!';
-				});
-			});
 		</script>
 	</body>
 </html>

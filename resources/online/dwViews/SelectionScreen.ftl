@@ -84,7 +84,7 @@
         color:#5DBCD2;
         font-size:20px;
         box-shadow: 0px 0px 5px #5DBCD2;
-           transition-duration: 0.4s;
+        transition-duration: 0.4s;
         }
        
         
