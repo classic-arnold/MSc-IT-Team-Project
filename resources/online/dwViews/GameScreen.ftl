@@ -1110,6 +1110,44 @@
 								
 								var prog = 0;
 								
+								$("#actionButtonReal").html("SKIP").show("fast", "swing").click(async ()=>{
+									$("#actionButtonReal").off("click");
+									$("#actionButtonReal").hide("fast", "swing");
+									
+									
+									let max = setTimeout(()=>{
+										()=>{}
+									}, 1000);
+									
+									while (max--) {
+										console.log(max);
+										clearTimeout(max);
+									}
+									
+									if (prog<=2){
+										if (prog<=1){
+											if(prog===0){
+												getRoundWinner();
+												$(".card").map((i, card)=>{
+													if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
+														$(card).find(".card-body").css("visibility", "visible");
+													}
+												});
+											}
+										}
+										$(".card").removeClass("flip-card");
+										await getRoundActiveCards();
+										await getRoundActivePlayers();
+										await getNumberOfCardsInCommonPile();
+										$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
+										$(".winning-card").removeClass("winning-card");
+										$(".active-player-card").removeClass("active-player-card");
+										
+										playRound();
+									}
+									
+								});
+								
 								setTimeout(()=>{
 									var nextRound = (async ()=>{
 						
@@ -1123,67 +1161,30 @@
 								
 										$("#actionButton").html("<h2 class='font-weight-bold'>3</h2>");
 										
-										prog++;
+										prog=1;
 										
 										setTimeout(()=>{
 											$("#actionButton").html("<h2 class='font-weight-bold'>2</h2>");
-											prog++;
+											prog=2;
 											setTimeout(()=>{
+												$("#actionButton").html("<h2 class='font-weight-bold'>1</h2>");
 												$("#actionButtonReal").off("click");
-												$("#actionButtonReal").hide("fast", "swing", ()=>{
-													$("#actionButton").html("<h2 class='font-weight-bold'>1</h2>");
-													$(".card").removeClass("flip-card");
-													setTimeout(async ()=>{
-														await getRoundActiveCards();
-														await getRoundActivePlayers();
-														await getNumberOfCardsInCommonPile();
-														$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
-														$(".winning-card").removeClass("winning-card");
-														$(".active-player-card").removeClass("active-player-card");
-													
-														playRound();
-												
-													}, 2000);
-												});
+												$("#actionButtonReal").hide("fast", "swing");
+												$(".card").removeClass("flip-card");
+												setTimeout(async ()=>{
+													await getRoundActiveCards();
+													await getRoundActivePlayers();
+													await getNumberOfCardsInCommonPile();
+													$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
+													$(".winning-card").removeClass("winning-card");
+													$(".active-player-card").removeClass("active-player-card");
+													playRound();
+										
+												}, 2000);
 											}, 2000);
 										}, 2000);
 									})();
-									
-									$("#actionButtonReal").show("fast", "swing").html("SKIP").click(async ()=>{
-										$("#actionButtonReal").off("click");
-										$("#actionButtonReal").hide("fast", "swing");
-										let max = setTimeout(()=>{
-											()=>{}
-										}, 1000);
-										
-										for(let i=0; i<=max; i++){
-											clearTimeout(i);
-										}
-										
-										if (prog<=2){
-											if (prog<=1){
-												if(prog==0){
-													getRoundWinner();
-													$(".card").map((i, card)=>{
-														if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
-															$(card).find(".card-body").css("visibility", "visible");
-														}
-													});
-												}
-											}
-											await getRoundActiveCards();
-											await getRoundActivePlayers();
-											await getNumberOfCardsInCommonPile();
-											$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
-											$(".winning-card").removeClass("winning-card");
-											$(".active-player-card").removeClass("active-player-card");
-											
-											playRound();
-										}
-										
-									});
 								}, 2000);
-							
 							});	
 						}
 					};
