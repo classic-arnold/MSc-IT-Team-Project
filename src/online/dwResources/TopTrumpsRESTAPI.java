@@ -2,9 +2,6 @@ package online.dwResources;
 
 import java.io.IOException;
 
-
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +16,9 @@ import javax.ws.rs.core.MediaType;
 import online.configuration.TopTrumpsJSONConfiguration;
 import toptrumps.DataCard;
 import toptrumps.DataGame;
+import toptrumps.DataListOfGames;
 import toptrumps.DataPlayer;
+
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -57,7 +56,9 @@ public class TopTrumpsRESTAPI {
 	private String deckFile;
 	private int numAIPlayers;
 	
-	private DataGame model;
+//	private DataGame model;
+	
+	private DataListOfGames listOfGames = new DataListOfGames();
 	
 	/**
 	 * Constructor method for the REST API. This is called first. It provides
@@ -123,29 +124,28 @@ public class TopTrumpsRESTAPI {
 	 * /game/result/scores				-- getGameResult()
 	 * /stats/statistics				-- getStatistics()
 	 */
-
-	 
-
 	
 	/**
 	 * Starts the game
-	 * @returns 1 if failed, 0 if successful
+	 * @Controller.js: function startGame
+	 * @returns game ID
 	 */	
 	@GET
 	@Path("/game/startGame")
 	public int startGame(@QueryParam("numberOfAIPlayers") int numberOfAIPlayers) {
-		try {
-			this.numAIPlayers = numberOfAIPlayers;
-			this.conf.setNumAIPlayers(numberOfAIPlayers);
-			this.model = new DataGame(numberOfAIPlayers);
-			this.model.startGame();
-		} catch(Exception e) {
-			return 1;
-		}
-		return 0;
+		int gameID;
+		this.numAIPlayers = numberOfAIPlayers;
+		this.conf.setNumAIPlayers(numberOfAIPlayers);
+		
+		DataGame game = new DataGame(numberOfAIPlayers);
+		
+		gameID = this.listOfGames.add(game);
+		
+		game.startGame();
+		return gameID;
 	}
 
-	
+	// WAS THIS USED?
 	/**
 	 * Get deck file location when the game starts.
 	 * @Controller.js: function displayCard 
@@ -157,158 +157,21 @@ public class TopTrumpsRESTAPI {
 		return deckFile;
 	}
 	
-	
-	/**
-	 * Get categories for selecting menu
-	 * @Controller.js: 
-	 * @returns JSONString type
-	 */	
-	@GET
- 	@Path("/game/categoryMenu")
- 	public String getCategoryForMenu() {
-		List<String> listOfCategory=new ArrayList<String>();
- 		for(int i=0;i<model.CATEGORYNAMES.length;i++) {
- 			listOfCategory.add(model.CATEGORYNAMES[i]);
- 		}		
- 		String categoriesInString="";
-		try {
-			categoriesInString = oWriter.writeValueAsString(listOfCategory);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
- 		return categoriesInString;
-	}
-	
-	/**
-	 * Get current round number:integer.
-	 * @Controller.js: function roundNumber
-	 * @returns JSONString type
-	 */	
-	@GET
-	@Path("/game/roundNumber")
-	public String getRoundNumber() {
-		String roundNumber="";
-		try {
-			roundNumber = oWriter.writeValueAsString(model.getRound().getRoundNumber());
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return roundNumber;
-	}
-	
-	
-	/**
-	 * Get card name, card categories for all active players.
-	 * @Controller.js:
-	 * @return JSONString type
-	 * @throws IOException
-	 */	
-	@GET
-	@Path("/game/roundCards")
-	public String getRoundCardsBeforePlayRound() {	
-		List<DataCard> listOfCards=new ArrayList<DataCard>();
-		DataCard humanCard = model.getRoundHumanPlayerCardBeforePlayRound();
-		if(humanCard!=null) {
-			listOfCards.add(model.getRoundHumanPlayerCardBeforePlayRound());
-		}
-		DataCard[] cards = model.getRoundAIPlayerCardsBeforePlayRound();
-		for(int i=0;i<cards.length;i++) {
-			listOfCards.add(cards[i]);
-		}
-		
-		String everyPlayersCard="";
-		try {
-			everyPlayersCard = oWriter.writeValueAsString(listOfCards);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return everyPlayersCard;
-	}
-	
-	
-
-	
-	@GET
-	@Path("/game/playRound")
-	public String playRound(@QueryParam("category") String category){
-		model.playRound(category);
-		if(model.getGameState()!=DataGame.GameState.RUNNING) {
-			return "" + model.getGameWinner().getName() + " at round " + model.getRound().getRoundNumber();
-		}
-		model.getRound().incrementRound();
-		return "running";
-	}
-	
-	
-
-	
-	/**
-	 * get number of cards in common pile. which is number of active players..
-	 * @return model.getNumberOfCardsInCommonPile()
-	 * @throws IOException
-	 * */
-	@GET
-	@Path("/game/numberOfCardsInCommonPile")
-	public int getNumberOfCardsInCommonPile() {
-		return model.getNumberOfCardsInCommonPile();
-	}
-	
-	
-	
-	
-	/**
-	 * Get category chooser of the round:String.
-	 * @Controller.js: 
-	 * @returns String type
-	 */	
-	@GET
-	@Path("/game/getRoundActivePlayer")
-	public String getRoundActivePlayer(){
-		return model.getRound().getRoundActivePlayer().getName();
-	}
-	
-
-	
-	/**
-	 *Get the category that had selected from the AI players.
-	 *@return human: when active player is human, result: when there is a valid result.
-	 *@throws IOException
-	 * */
-	@GET
-	@Path("/game/getAIPlayerCategory")
-	public String getAIPlayerCategory() {
-		String result = "";
-		
-		DataPlayer activePlayer = this.model.getCategoryChooser();
-		int category = this.model.getBestCategoryForPlayer(activePlayer);
-		
-		// sometimes the first player is human and this is not accounted for here
-		if(category==0) {
-			return "human";
-		}
-		result = DataGame.CATEGORYNAMES[category-1];
-		
-		return result;
-	}
-	
-	
 	/**
 	 * return boolean value as String whether human selects or not.
-	 * @Controller.js:
+	 * @Controller.js: function shouldHumanSelectCategory
 	 * @return JSONString type
-	 * @throws IOException
 	 */	
 	@GET
 	@Path("/game/shouldHumanSelectCategory")
-	public String shouldHumanSelectCategory() {
+	public String shouldHumanSelectCategory(@QueryParam("gameID") int gameID) {
 		String result = "";
 		
 		boolean shouldHumanChooseCategory;
 		
-		if (this.model.getCategoryChooser().getType()==DataPlayer.PlayerType.HUMAN) {
+		DataGame game = this.listOfGames.get(gameID);
+		
+		if (game.getCategoryChooser().getType()==DataPlayer.PlayerType.HUMAN) {
 			shouldHumanChooseCategory = true;
 		} else {
 			shouldHumanChooseCategory = false;
@@ -324,49 +187,26 @@ public class TopTrumpsRESTAPI {
 		return result;
 	}
 	
-
-	
-	
 	/**
-	 * Get round category:String.
-	 * @Controller.js: 
+	 * Get current round number:integer.
+	 * @Controller.js: function roundNumber
 	 * @returns JSONString type
 	 */	
 	@GET
-	@Path("/game/roundCategory")
-	public String getRoundCategory(){
-		String roundCategory="";
+	@Path("/game/roundNumber")
+	public String getRoundNumber(@QueryParam("gameID") int gameID) {
+		String roundNumber="";
+		
+		DataGame game = this.listOfGames.get(gameID);
+		
 		try {
-			roundCategory = oWriter.writeValueAsString(model.getRound().getRoundCategory());
+			roundNumber = oWriter.writeValueAsString(game.getRound().getRoundNumber());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return roundCategory;
+		return roundNumber;
 	}
-	
-	
-
-	/**
-	 * get playerName's deck number
-	 * @return integer
-	 */
-	@GET
-	@Path("/game/cardsLeft")
-	public int getPlayerDeck(@QueryParam("playerName") String playerName){
-		int numberOfDeck=0;
-		DataPlayer[] players = model.getActivePlayers();
-		if(playerName!=null) {
-			for(int i=0;i<players.length;i++) {
-				if(players[i].getName().equals(playerName)) {
-					numberOfDeck=players[i].getDeck().size();
-				}
-			}
-		}
-		return numberOfDeck;
-	}
-	
-	
 	
 	/**
 	 * Call every active players from a list and return in JSONString
@@ -375,10 +215,13 @@ public class TopTrumpsRESTAPI {
 	 */	
 	@GET
 	@Path("/game/activePlayers")
-	public String getActivePlayers() {
+	public String getActivePlayers(@QueryParam("gameID") int gameID) {
 		String activePlayersAsString="";
+		
+		DataGame game = this.listOfGames.get(gameID);
+		
 		try {
-			activePlayersAsString = oWriter.writeValueAsString(model.getActivePlayers());
+			activePlayersAsString = oWriter.writeValueAsString(game.getActivePlayers());
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -386,160 +229,127 @@ public class TopTrumpsRESTAPI {
 		return activePlayersAsString;
 	}
 	
-	
-	
-	
 	/**
-	 * Get the number of cards in deck:integer.
-	 * numberOfCardsInDeck[0]=human
-	 * numberOfCardsInDeck[1]=ai1
-	 * numberOfCardsInDeck[2]=ai2
-	 * numberOfCardsInDeck[3]=ai3
-	 * numberOfCardsInDeck[4]=ai4
-	 * @Controller.js: 
-	 * @returns JSONString[] type
+	 * Get card name, card categories for all active players.
+	 * @Controller.js:
+	 * @return JSONString type
 	 * @throws IOException
 	 */	
 	@GET
-	@Path("/game/numberOfCardsInDeck")
-	public String getNumberOfCardsInDeck(){
-		List<Integer> numberOfCardsInDeck=new ArrayList<Integer>();
+	@Path("/game/roundCards")
+	public String getRoundCardsBeforePlayRound(@QueryParam("gameID") int gameID) {	
+		List<DataCard> listOfCards=new ArrayList<DataCard>();
+		DataGame game = this.listOfGames.get(gameID);
+		DataCard humanCard = game.getRoundHumanPlayerCardBeforePlayRound();
 		
-		int cardsInDeck;
-		for(int i=0;i<model.getActivePlayers().length;i++) {
-			if(model.getActivePlayers()[i].toString().contains("human")) {
-				cardsInDeck=model.getActivePlayers()[i].getDeck().size();
-				numberOfCardsInDeck.add(cardsInDeck);
-			}else {//stores the number of ai players cards in deck
-				cardsInDeck=model.getActivePlayers()[i].getDeck().size();
-				numberOfCardsInDeck.add(cardsInDeck);
-			}
+		if(humanCard!=null) {
+			listOfCards.add(game.getRoundHumanPlayerCardBeforePlayRound());
 		}
-		String numberOfCardsInDeckAsString="";
+		
+		DataCard[] cards = game.getRoundAIPlayerCardsBeforePlayRound();
+		
+		for(int i=0;i<cards.length;i++) {
+			listOfCards.add(cards[i]);
+		}
+		
+		String everyPlayersCard="";
+		
 		try {
-			numberOfCardsInDeckAsString = oWriter.writeValueAsString(numberOfCardsInDeck);
+			everyPlayersCard = oWriter.writeValueAsString(listOfCards);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return numberOfCardsInDeckAsString;
+		
+		return everyPlayersCard;
 	}
 	
-
-	
-	
 	/**
-	 * Get round winner's name or 'draw'
-	 * @Controller.js: 
-	 * @returns String type
-	 * @throws IOException
-	 */	
+	 *Get the category that had selected from the AI players.
+	 *@return human: when active player is human, result: when there is a valid result.
+	 *@throws IOException
+	 * */
 	@GET
-	@Path("/game/getRoundWinner")
-	public String getRoundWinner() throws IOException{
-		String result = null;
-		ArrayList<DataPlayer> roundWinningPlayers = model.getRound().getRoundWinningPlayers();
-		if(roundWinningPlayers.size() == 1) {
-			result = roundWinningPlayers.get(0).getName();
-		} else {
-			result = "draw";
+	@Path("/game/getAIPlayerCategory")
+	public String getAIPlayerCategory(@QueryParam("gameID") int gameID) {
+		String result = "";
+		
+		DataGame game = this.listOfGames.get(gameID);
+		
+		DataPlayer activePlayer = game.getCategoryChooser();
+		int category = game.getBestCategoryForPlayer(activePlayer);
+		
+		// sometimes the first player is human and this is not accounted for here
+		if(category==0) {
+			return "human";
 		}
+		result = DataGame.CATEGORYNAMES[category-1];
+		
 		return result;
 	}
 	
-	
-	
 	/**
-	 * get game winner's name from DataPlayer
-	 * @return JSONString
-	 * */
+	 * plays the round
+	 * @param category
+	 * @param gameID
+	 * @return
+	 */
 	@GET
-	@Path("/game/gameWinner")
-	public String getGameWinner(){
-		String gameWinner="";
-		try {
-			gameWinner = oWriter.writeValueAsString(model.getGameWinner().getName());
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	@Path("/game/playRound")
+	public String playRound(@QueryParam("category") String category, @QueryParam("gameID") int gameID){
+		DataGame game = this.listOfGames.get(gameID);
+		
+		game.playRound(category);
+		if(game.getGameState()!=DataGame.GameState.RUNNING) {
+			return "" + game.getGameWinner().getName() + " at round " + game.getRound().getRoundNumber();
 		}
-		return gameWinner;
+		game.getRound().incrementRound();
+		return "running";
 	}
 	
 	
-	
 	/**
-	 * Get game result
-	 * includes:
-	 * "Player scores
-	 * you: score
-	 * ai1: score
-	 * ai2: score
-	 * ai3: score
-	 * ai4: score".
-	 * @Controller.js:
-	 * @return JSONString type
+	 * Get categories for selecting menu
+	 * @Controller.js: 
+	 * @returns JSONString type
 	 */	
 	@GET
-	@Path("/game/result/scores")
-	public String getGameResult(){
-		//Categories for the human player
-		List<String> gameResult=new ArrayList<String>();
-		
-		gameResult.add("Player scores");
-		for(int i=0;i<model.getAllPlayers().length;i++) {
-			gameResult.add(String.format("%s : %d", model.getAllPlayers()[i].getName(), model.getAllPlayers()[i].getScore()));
-		}
-		
-		String gameResultAsString="";
+ 	@Path("/game/categoryMenu")
+ 	public String getCategoryForMenu() {
+		List<String> listOfCategory=new ArrayList<String>();
+ 		for(int i=0;i<DataGame.CATEGORYNAMES.length;i++) {
+ 			listOfCategory.add(DataGame.CATEGORYNAMES[i]);
+ 		}		
+ 		String categoriesInString="";
 		try {
-			gameResultAsString = oWriter.writeValueAsString(gameResult);
+			categoriesInString = oWriter.writeValueAsString(listOfCategory);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return gameResultAsString;
-	}	
-	
-	
+ 		return categoriesInString;
+	}
 	
 	/**
-	 * Get game statistics
-	 * @Controller.js:
-	 * @return JSONString type
-	 * number of games
-	 * number of human wins
-	 * number of ai wins
-	 * average of draws
-	 * longest game
+	 * Get category chooser of the round:String.
+	 * @Controller.js: 
+	 * @returns String type
 	 */	
 	@GET
-	@Path("/stats/statistics") // implement this as HashMap
-	public String getStatistics() {	
-		HashMap<String, String> statistics=new HashMap<String, String>();
-		
-		statistics.put("numberOfGames", DataGame.getNumberOfGames()+"");
-		statistics.put("numberOfHumanWins", DataGame.getNumberOfHumanWins()+"");
-		statistics.put("numberOfAIWins", DataGame.getNumberOfAIWins()+"");
-		statistics.put("avgNumberOfDraws", DataGame.getAvgNumberOfDraws()+"");
-		statistics.put("roundNumberOfLongestGame", DataGame.getLongestGame()+"");
-		
-		String statisticsAsString="";
-		try {
-			statisticsAsString = oWriter.writeValueAsString(statistics);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return statisticsAsString;
+	@Path("/game/getRoundActivePlayer")
+	public String getRoundActivePlayer(@QueryParam("gameID") int gameID){
+		DataGame game = this.listOfGames.get(gameID);
+		return game.getRound().getRoundActivePlayer().getName();
 	}
 	
 	@GET
 	@Path("/game/allPlayersScores")
-	public String getAllPlayersAndScores() {
+	public String getAllPlayersAndScores(@QueryParam("gameID") int gameID) {
 		String result=null;
 		
-		DataPlayer[] players = this.model.getAllPlayers();
+		DataGame game = this.listOfGames.get(gameID);
+		
+		DataPlayer[] players = game.getAllPlayers();
 		
 		List<HashMap<String, Object>> listOfPlayersAndScores = new ArrayList<HashMap<String, Object>>();
 		
@@ -559,6 +369,201 @@ public class TopTrumpsRESTAPI {
 		return result;
 	}
 	
+	/**
+	 * Get round winner's name or 'draw'
+	 * @Controller.js: 
+	 * @returns String type
+	 * @throws IOException
+	 */	
+	@GET
+	@Path("/game/getRoundWinner")
+	public String getRoundWinner(@QueryParam("gameID") int gameID){
+		String result = null;
+		DataGame game = this.listOfGames.get(gameID);
+		
+		ArrayList<DataPlayer> roundWinningPlayers = game.getRound().getRoundWinningPlayers();
+		
+		if(roundWinningPlayers.size() == 1) {
+			result = roundWinningPlayers.get(0).getName();
+		} else {
+			result = "draw";
+		}
+		return result;
+	}
+	
+	/**
+	 * get number of cards in common pile. which is number of active players..
+	 * @return model.getNumberOfCardsInCommonPile()
+	 * @throws IOException
+	 * */
+	@GET
+	@Path("/game/numberOfCardsInCommonPile")
+	public int getNumberOfCardsInCommonPile(@QueryParam("gameID") int gameID) {
+		DataGame game = this.listOfGames.get(gameID);
+		return game.getNumberOfCardsInCommonPile();
+	}
+	
+	/**
+	 * get playerName's deck number
+	 * @return integer
+	 */
+	@GET
+	@Path("/game/cardsLeft")
+	public int getPlayerDeck(@QueryParam("playerName") String playerName, @QueryParam("gameID") int gameID){
+		int numberOfDeck=0;
+		DataGame game = this.listOfGames.get(gameID);
+		DataPlayer[] players = game.getActivePlayers();
+		if(playerName!=null) {
+			for(int i=0;i<players.length;i++) {
+				if(players[i].getName().equals(playerName)) {
+					numberOfDeck=players[i].getDeck().size();
+				}
+			}
+		}
+		return numberOfDeck;
+	}
+	
+	/**
+	 * Get game statistics
+	 * @Controller.js:
+	 * @return JSONString type
+	 * number of games
+	 * number of human wins
+	 * number of ai wins
+	 * average of draws
+	 * longest game
+	 */	
+	@GET
+	@Path("/stats/statistics")
+	public String getStatistics() {	
+		HashMap<String, String> statistics=new HashMap<String, String>();
+		
+		statistics.put("numberOfGames", DataGame.getNumberOfGames()+"");
+		statistics.put("numberOfHumanWins", DataGame.getNumberOfHumanWins()+"");
+		statistics.put("numberOfAIWins", DataGame.getNumberOfAIWins()+"");
+		statistics.put("avgNumberOfDraws", DataGame.getAvgNumberOfDraws()+"");
+		statistics.put("roundNumberOfLongestGame", DataGame.getLongestGame()+"");
+		
+		String statisticsAsString="";
+		try {
+			statisticsAsString = oWriter.writeValueAsString(statistics);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return statisticsAsString;
+	}
+	
+//	/**
+//	 * Get round category:String.
+//	 * @Controller.js: 
+//	 * @returns JSONString type
+//	 */	
+//	@GET
+//	@Path("/game/roundCategory")
+//	public String getRoundCategory(){
+//		String roundCategory="";
+//		try {
+//			roundCategory = oWriter.writeValueAsString(model.getRound().getRoundCategory());
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return roundCategory;
+//	}
+	
+	
+
+
+	
+//	/**
+//	 * Get the number of cards in deck:integer.
+//	 * numberOfCardsInDeck[0]=human
+//	 * numberOfCardsInDeck[1]=ai1
+//	 * numberOfCardsInDeck[2]=ai2
+//	 * numberOfCardsInDeck[3]=ai3
+//	 * numberOfCardsInDeck[4]=ai4
+//	 * @Controller.js: 
+//	 * @returns JSONString[] type
+//	 * @throws IOException
+//	 */	
+//	@GET
+//	@Path("/game/numberOfCardsInDeck")
+//	public String getNumberOfCardsInDeck(){
+//		List<Integer> numberOfCardsInDeck=new ArrayList<Integer>();
+//		
+//		int cardsInDeck;
+//		for(int i=0;i<model.getActivePlayers().length;i++) {
+//			if(model.getActivePlayers()[i].toString().contains("human")) {
+//				cardsInDeck=model.getActivePlayers()[i].getDeck().size();
+//				numberOfCardsInDeck.add(cardsInDeck);
+//			}else {//stores the number of ai players cards in deck
+//				cardsInDeck=model.getActivePlayers()[i].getDeck().size();
+//				numberOfCardsInDeck.add(cardsInDeck);
+//			}
+//		}
+//		String numberOfCardsInDeckAsString="";
+//		try {
+//			numberOfCardsInDeckAsString = oWriter.writeValueAsString(numberOfCardsInDeck);
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return numberOfCardsInDeckAsString;
+//	}
+	
+	
+//	/**
+//	 * get game winner's name from DataPlayer
+//	 * @return JSONString
+//	 * */
+//	@GET
+//	@Path("/game/gameWinner")
+//	public String getGameWinner(){
+//		String gameWinner="";
+//		try {
+//			gameWinner = oWriter.writeValueAsString(model.getGameWinner().getName());
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return gameWinner;
+//	}
+	
+	
+	
+//	/**
+//	 * Get game result
+//	 * includes:
+//	 * "Player scores
+//	 * you: score
+//	 * ai1: score
+//	 * ai2: score
+//	 * ai3: score
+//	 * ai4: score".
+//	 * @Controller.js:
+//	 * @return JSONString type
+//	 */	
+//	@GET
+//	@Path("/game/result/scores")
+//	public String getGameResult(){
+//		//Categories for the human player
+//		List<String> gameResult=new ArrayList<String>();
+//		
+//		gameResult.add("Player scores");
+//		for(int i=0;i<model.getAllPlayers().length;i++) {
+//			gameResult.add(String.format("%s : %d", model.getAllPlayers()[i].getName(), model.getAllPlayers()[i].getScore()));
+//		}
+//		
+//		String gameResultAsString="";
+//		try {
+//			gameResultAsString = oWriter.writeValueAsString(gameResult);
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return gameResultAsString;
+//	}
 	
 //	/**
 //	 * get original deck as string. before shuffled.

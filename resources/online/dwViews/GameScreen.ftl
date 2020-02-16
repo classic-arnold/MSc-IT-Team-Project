@@ -499,24 +499,25 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-		
-//			Needed methods
-
-// 			getRoundNumber();
-// 			shouldHumanSelectCategory();
-// 			getPlayerToChooseRound();
-// 			getDeck();
-// 			getRoundCategory();
-// 			getRoundCards();
-// 			getRoundWinner();
-// 			getNumberOfCardInCommonPile();
-// 			wasRoundDraw();
-// 			getGamePlayers();
-// 			getGameScores();
-// 			getGameStatistics();
-// 			getGameWinner();
-// 			getPlayerDeck(playerName);
-// 			getNumberOfRoundsInGame();
+			// the Game class
+			class Game {
+				// set the gameID
+				setGameID(gameID){
+					this.gameID = gameID;
+				}
+				
+				// create url with params
+				makeUrl(endpoint){
+					return "http://localhost:7777/toptrumps/" + endpoint + "?gameID=" + this.gameID;
+				}
+				
+				// create the standard url
+				static makeUrlWithoutParam(endpoint){
+					return "http://localhost:7777/toptrumps/" + endpoint;
+				}
+			}
+			
+			const game = new Game(); // our game instance
 
 			// Method that is called on page load
 			function initalize() {
@@ -524,15 +525,11 @@
 				// --------------------------------------------------------------------------
 				// You can call other methods you want to run when the page first loads here
 				// --------------------------------------------------------------------------
+				
 				$(document).ready(function() {
-					// all custom jQuery will go here
+					$(".card-deck").toggle(); // hide the deck
 					
-					$(".card-deck").toggle();
-					
-					window.onbeforeunload = function() {
-					  return 'Are you sure you want to leave? All game progress will be lost!';
-					}
-					
+					// show number of player select menu and start game depending on users choice
 					$("#selectPlayersMenu").slideDown(()=>{
 						$(".select-player-btns .one").click(()=>{
 							initGame(1);
@@ -552,17 +549,21 @@
 						});
 					});
 				});
-				
-// 				getCategories();
-// 				selectCategory();
-// 				getStats();
-
 			}
 			
+			// initialize game
 			function initGame(noOfAiPlayers){
 				$(document).ready(function() {
-					// all custom jQuery will go here
-					startGame(noOfAiPlayers).then(()=>{
+					// start the game and show the elements required to play game
+					startGame(noOfAiPlayers).then((startGameResponseInt)=>{
+						// if game started successfully, make the game object
+						game.setGameID(startGameResponseInt);
+						
+						// warn user before exiting
+						window.onbeforeunload = function() {
+						  return 'Are you sure you want to leave? All game progress will be lost!';
+						}
+						
 						$("#common-pile").slideDown("fast", "swing", ()=>{
 							$(".alert").slideDown("fast", "swing");
 						});
@@ -577,33 +578,12 @@
 			// Add your other Javascript methods Here
 			// -----------------------------------------
 			
-			function loadCards(){
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundCards"); // Request type and URL
-		
-				// Message is not sent yet, but we can check that the browser supports CORS
-				if (!xhr) {
-					alert("CORS not supported");
-				}
-
-				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives
-				xhr.onload = function(e) {
-					var responseText = xhr.response; // the text of the response
-					alert(responseText);
-				};
-		
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();	
-			}
-	
-			// This starts the game
+			// This starts the game from the API
 			function startGame(numberOfAIPlayersFromUser) {
-				return new Promise((resolve,reject)=>{
-// 					let numberOfAIPlayersFromUser = 4; //change this to get from button
+				return new Promise((resolve)=>{
 				
 					// First create a CORS request, this is the message we are going to send (a get request in this case)
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/startGame?numberOfAIPlayers=" + numberOfAIPlayersFromUser); // Request type and URL
+					var xhr = createCORSRequest('GET', Game.makeUrlWithoutParam("game/startGame") + "?numberOfAIPlayers=" + numberOfAIPlayersFromUser); // Request type and URL
 		
 					// Message is not sent yet, but we can check that the browser supports CORS
 					if (!xhr) {
@@ -613,11 +593,14 @@
 					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
 					// to do when the response arrives
 					xhr.onload = function(e) {
-						var responseText = xhr.response; // the text of the response
-						if(responseText == "0"){
-							resolve();
-						} else{
-							reject();
+						const responseText = xhr.response; // the text of the response
+						const responseInt = parseInt(responseText);
+						// 1 means game didn't start
+						if(isNaN(responseInt)){
+							alert("Error. Game refused to start. Please try again.");
+						} else {
+							// any other integer is the game ID
+							resolve(responseInt);
 						}
 					};
 		
@@ -626,433 +609,45 @@
 				});
 			}
 			
-			function getRoundNumber(){
-				return new Promise((resolve)=>{
-					// First create a CORS request, this is the message we are going to send (a get request in this case)
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundNumber"); // Request type and URL
-		
-					// Message is not sent yet, but we can check that the browser supports CORS
-					if (!xhr) {
-						alert("CORS not supported");
-					}
-
-					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-					// to do when the response arrives
-					xhr.onload = function(e) {
-						var responseText = xhr.response; // the text of the response
-						$(document).ready(function() {
-							// all custom jQuery will go here
-							$("#status-message").html("Round Number " + responseText + ".");
-						});
-						resolve(responseText);
-					};
-		
-					// We have done everything we need to prepare the CORS request, so send it
-					xhr.send();
-				});
-			}
-			
-			function shouldHumanSelectCategory(){
-				return new Promise(resolve=>{
-					// First create a CORS request, this is the message we are going to send (a get request in this case)
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/shouldHumanSelectCategory"); // Request type and URL
-		
-					// Message is not sent yet, but we can check that the browser supports CORS
-					if (!xhr) {
-						alert("CORS not supported");
-					}
-
-					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-					// to do when the response arrives
-					xhr.onload = function(e) {
-						var responseText = xhr.response; // the text of the response
-						resolve(responseText);
-					};
-		
-					// We have done everything we need to prepare the CORS request, so send it
-					xhr.send();	
-				})
-			}
-			
-			function getCategories(){
-				return new Promise(resolve=>{
-					// First create a CORS request, this is the message we are going to send (a get request in this case)
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/categoryMenu"); // Request type and URL
-		
-					// Message is not sent yet, but we can check that the browser supports CORS
-					if (!xhr) {
-						alert("CORS not supported");
-					}
-
-					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-					// to do when the response arrives
-					xhr.onload = function(e) {
-						var responseText = xhr.response; // the text of the response
-						responseText = JSON.parse(responseText);
-						
-						responseText.map((cat, i)=>{
-							$(".cat-" + (i+1)).html(cat);
-						})
-						
-						resolve(responseText);
-					};
-		
-					// We have done everything we need to prepare the CORS request, so send it
-					xhr.send();	
-				});
-			}
-			
-			async function selectCategoryForHuman(){
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				getRoundActivePlayer();
+			// function that plays a round
+			function playRound(){
+				return new Promise(async (resolve)=>{
 				
-				let categoryList = await getCategories();
-				
-				return new Promise((resolve,reject)=>{
-				
-					categoryList = categoryList;
-					
-					
-	// 				categorySelectedByHuman = categoryList[0];
+					// check it is humans turn to select category
+					let humanSelectCategory = await shouldHumanSelectCategory();
 
-					$(document).ready(function() {
-						// all custom jQuery will go here
-// 						$("#status-message").append(" It is your turn to select a category.");
-						$("#actionButtonDiv").slideUp("fast", "swing", ()=>{
-							$(".categories").slideDown("fast", "swing", ()=>{
-								$("#selectCategoryMenu .btn").each((i, elem)=>{
-									$(elem).html(categoryList[i]);
-									$(elem).click(()=>{
-										$("#selectCategoryMenu .btn").off("click");
-										$(".categories").slideUp("fast", "swing", ()=>{
-											$("#actionButtonDiv").slideDown("fast", "swing");
-										});
-										$("#status-message").append(" You selected " + categoryList[i] + ".");
-									
-										resolve(categoryList[i]);
-									})
-								});
-							});
-						});
-					});
-				});
-			}
-			
-			function getRoundWinner(){
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/getRoundWinner"); // Request type and URL
+					let categorySelected; // represents category selected
 				
-	
-				// Message is not sent yet, but we can check that the browser supports CORS
-				if (!xhr) {
-					alert("CORS not supported");
-				}
-
-				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives
-				xhr.onload = function(e) {
-					var responseText = xhr.response; // the text of the response// 
-					if(responseText === "draw"){
-						$("#status-message").append(" Round was a draw.");
-						$("#common-pile").addClass("winning-card");
+					// get the current round number and update status message
+					let roundNumber = await getRoundNumber();
+				
+					// update card and player details for the 1st round
+					if(roundNumber===1){
+						await updateCardsAndPlayers();
 					} else {
-						$("#status-message").append(" " + responseText + " won this round.")
-						$(".card .player-name:contains(" + responseText + ")").closest(".card").addClass("winning-card");
+						$(".card").addClass("flip-card");
 					}
 					
-				};
-				
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();
-				
-			}
-			
-			async function selectCategoryForAI(){
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				
-// 				$(document).ready(()=>{
-// 					$("#status-message").append("AI selecting category...");
-// 				})
-				
-				let categoryList = await getCategories();
-				
-				return new Promise((resolve,reject)=>{
-				
-					categoryList = categoryList;
+					let categoryList = await getCategories();
+					let activePlayer = await getRoundActivePlayer(); // get active player
 					
-					
-					// First create a CORS request, this is the message we are going to send (a get request in this case)
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/getAIPlayerCategory"); // Request type and URL
-					
-		
-					// Message is not sent yet, but we can check that the browser supports CORS
-					if (!xhr) {
-						alert("CORS not supported");
-					}
-
-					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-					// to do when the response arrives
-					xhr.onload = function(e) {
-						var responseText = xhr.response; // the text of the response// 
-						categorySelected = responseText;
-						$(document).ready(()=>{
-							if(categorySelected!=="human"){
-								getRoundActivePlayer().then((res)=>{
-									$("#status-message").append(" " + res + " selected " + categorySelected + ".");
-								});
-							}
-						})
-						resolve(categorySelected);
-					};
-					
-		
-					// We have done everything we need to prepare the CORS request, so send it
-					xhr.send();	
-				
-				});
-				
-			}
-			
-			function getRoundActivePlayer(){
-				return new Promise((resolve)=>{
-					// First create a CORS request, this is the message we are going to send (a get request in this case)
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/getRoundActivePlayer"); // Request type and URL
-				
-	
-					// Message is not sent yet, but we can check that the browser supports CORS
-					if (!xhr) {
-						alert("CORS not supported");
-					}
-
-					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-					// to do when the response arrives
-					xhr.onload = function(e) {
-						var responseText = xhr.response; // the text of the response// 
-						$(".card .player-name:contains(" + responseText + ")").closest(".card").addClass("active-player-card");
-						resolve(responseText);
-					};
-	
-					// We have done everything we need to prepare the CORS request, so send it
-					xhr.send();	
-				});
-			}
-			
-			function getRoundActiveCards(){
-				return new Promise((resolve)=>{
-					// First create a CORS request, this is the message we are going to send (a get request in this case)
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/roundCards"); // Request type and URL
-				
-	
-					// Message is not sent yet, but we can check that the browser supports CORS
-					if (!xhr) {
-						alert("CORS not supported");
-					}
-
-					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-					// to do when the response arrives
-					xhr.onload = function(e) {
-						var responseText = xhr.response; // the text of the response// 
-						updateCards(responseText);
-						resolve();
-					};
-	
-					// We have done everything we need to prepare the CORS request, so send it
-					xhr.send();	
-				});
-			}
-			
-			function getRoundActivePlayers(){
-				return new Promise((resolve)=>{
-					// First create a CORS request, this is the message we are going to send (a get request in this case)
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/activePlayers"); // Request type and URL
-				
-	
-					// Message is not sent yet, but we can check that the browser supports CORS
-					if (!xhr) {
-						alert("CORS not supported");
-					}
-
-					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-					// to do when the response arrives
-					xhr.onload = function(e) {
-						var responseText = xhr.response; // the text of the response// 
-						updatePlayers(responseText);
-						resolve();
-					};
-	
-					// We have done everything we need to prepare the CORS request, so send it
-					xhr.send();	
-				});
-			}
-			
-			
-			function getNoOfCardsLeft(playersName){
-				return new Promise((resolve)=>{
-					// First create a CORS request, this is the message we are going to send (a get request in this case)
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/cardsLeft?playerName="+playersName); // Request type and URL
-				
-	
-					// Message is not sent yet, but we can check that the browser supports CORS
-					if (!xhr) {
-						alert("CORS not supported");
-					}
-
-					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-					// to do when the response arrives
-					xhr.onload = function(e) {
-						var responseText = xhr.response; // the text of the response//
-						resolve(responseText);
-					};
-	
-					// We have done everything we need to prepare the CORS request, so send it
-					xhr.send();	
-				});
-			}
-			
-			function updatePlayers(players){
-				players = JSON.parse(players);
-				
-				$(document).ready(function() {
-					$(".card").map(async(i, card)=>{
-						if(i<=players.length-1){
-							$(card).find(".player-name").html(players[i].name);
-							$(card).find(".cards-left").html(await getNoOfCardsLeft(players[i].name));
+					// get player choice
+					if(humanSelectCategory === "true"){
+						categorySelected = await selectCategoryForHuman(categoryList);
+					} else {
+						categorySelected = await selectCategoryForAI(activePlayer);
+						if(categorySelected==="human"){
+							categorySelected = await selectCategoryForHuman(categoryList);
 						}
-					});
-					$(".card").map((i, card)=>{
-						if ($(card).find(".player-name").html() !== "You"){
-							$(card).find(".card-img-top").css("visibility", "hidden");
-							$(card).find(".card-body").css("visibility", "hidden");
-						}
-					});
-				});
-			}
-			
-			function updateCards(cards){
-				cards = JSON.parse(cards);
-				$(document).ready(function() {
-					$(".card").map((i, card)=>{
-					
-						// if(i>cards.length-1){
-// 							$(card).fadeOut("fast", "swing");
-// 						} else{
-// 							$(card).find(".card-title").html(cards[i].description);
-// 							$(card).find(".card-val1").html(cards[i].category1);
-// 							$(card).find(".card-val2").html(cards[i].category2);
-// 							$(card).find(".card-val3").html(cards[i].category3);
-// 							$(card).find(".card-val4").html(cards[i].category4);
-// 							$(card).find(".card-val5").html(cards[i].category5);
-// 						}
-						try{
-							$(card).find(".card-title").html(cards[i].description);
-							
-							$(card).find(".card-img-top").attr("src", "http://dcs.gla.ac.uk/~richardm/TopTrumps/" + cards[i].description + ".jpg");
-							
-							$(card).find(".card-val1").html(cards[i].category1);
-							$(card).find(".card-val2").html(cards[i].category2);
-							$(card).find(".card-val3").html(cards[i].category3);
-							$(card).find(".card-val4").html(cards[i].category4);
-							$(card).find(".card-val5").html(cards[i].category5);
-						} catch(e){
-							if (e instanceof TypeError){
-								$(card).fadeOut("slow", "linear");
-							}
-						}
-					});
-				});
-				$(".card-deck").slideDown("fast", "swing");
+					}
 				
-			}
-			
-			function setPlayerScores(){
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/allPlayersScores"); // Request type and URL
-			
-
-				// Message is not sent yet, but we can check that the browser supports CORS
-				if (!xhr) {
-					alert("CORS not supported");
-				}
-
-				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives
-				xhr.onload = function(e) {
-					var responseText = xhr.response; // the text of the response// 
-					var players = JSON.parse(responseText);
-					
+					// highlight active category
 					$(document).ready(function() {
-						players.map((player, i)=>{
-							var tableData = "<tr><th>" + players[i].name + "</th><th>" + players[i].score + "</th></tr>\n"
-							$(".table").append(tableData);
-						});
+						$("span:contains(" + categorySelected + ")").parent().addClass("cat-selected");
 					});
-				};
-
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();	
-			}
-			
-			
-			function getNumberOfCardsInCommonPile(){
-				return new Promise((resolve)=>{
-					// First create a CORS request, this is the message we are going to send (a get request in this case)
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/numberOfCardsInCommonPile"); // Request type and URL
-			
-
-					// Message is not sent yet, but we can check that the browser supports CORS
-					if (!xhr) {
-						alert("CORS not supported");
-					}
-
-					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-					// to do when the response arrives
-					xhr.onload = function(e) {
-						var responseText = xhr.response; // the text of the response//
-					
-						$(document).ready(function() {
-							$("#common-pile").html("Common Pile: " + responseText);
-							resolve();
-						});
-					};
-
-					// We have done everything we need to prepare the CORS request, so send it
-					xhr.send();	
-				});
-			}
-			
-			async function playRound(){
-				let humanSelectCategory = await shouldHumanSelectCategory();
-
-				let categorySelected;
-				
-						
-				let roundNumber = await getRoundNumber();
-				
-				if(roundNumber==="1"){
-					await getRoundActivePlayers();
-					await getRoundActiveCards();
-				} else {
-					$(".card").addClass("flip-card");
-				}
-				
-				
-				if(humanSelectCategory === "true"){
-					categorySelected = await selectCategoryForHuman();
-				} else {
-					categorySelected = await selectCategoryForAI();
-					if(categorySelected==="human"){
-						categorySelected = await selectCategoryForHuman();
-					}
-				}
-				
-				$(document).ready(function() {
-					$("span:contains(" + categorySelected + ")").parent().addClass("cat-selected");
-				});
-				
-				return new Promise((resolve,reject)=>{
 				
 					// First create a CORS request, this is the message we are going to send (a get request in this case)
-					var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/game/playRound?category=" + categorySelected); // Request type and URL
+					var xhr = createCORSRequest('GET', game.makeUrl("game/playRound") + "&category=" + categorySelected); // Request type and URL
 		
 					// Message is not sent yet, but we can check that the browser supports CORS
 					if (!xhr) {
@@ -1061,26 +656,29 @@
 
 					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
 					// to do when the response arrives
-					xhr.onload = async function(e) {
+					xhr.onload = function(e) {
 						
 						var responseText = xhr.response; // the text of the response
+						
+						// if this, game has ended
 						if(responseText !== "running"){
-							$(document).ready(function() {
+							$(document).ready(async function() {
+								// remove action button
+								$("#actionButton").hide();
 								
-								$("#actionButton").toggle();
-								$(".table").toggle(()=>{
+								// show stats table
+								$(".table").show(()=>{
 									setPlayerScores();
 								});
-								$("#status-message").html("Game won by " + responseText + ".");
 								
-								getRoundActivePlayers().then(()=>{
-									getRoundActiveCards().then(()=>{
-										$(".card").map((i, card)=>{
-											$(card).find(".card-img-top").css("visibility", "visible");
-											$(card).find(".card-body").css("visibility", "visible");
-										});
+								changeStatusMessage("Game won by " + responseText + ".");
+								
+								await updateCardsAndPlayers().then(()=>{
+									$(".card").map((i, card)=>{
+										$(card).find(".card-img-top").css("visibility", "visible");
+										$(card).find(".card-body").css("visibility", "visible");
 									});
-								});
+								})
 								
 								window.onbeforeunload = null;
 								
@@ -1117,8 +715,7 @@
 												$("#actionButtonReal").hide("fast", "swing");
 												$(".card").removeClass("flip-card");
 											}
-											await getRoundActivePlayers();
-											await getRoundActiveCards();
+											await updateCardsAndPlayers();
 											await getNumberOfCardsInCommonPile();
 											$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
 											$(".winning-card").removeClass("winning-card");
@@ -1154,8 +751,7 @@
 												$(".card").removeClass("flip-card");
 												prog=3;
 												setTimeout(async ()=>{
-													await getRoundActivePlayers();
-													await getRoundActiveCards();
+													await updateCardsAndPlayers();
 													await getNumberOfCardsInCommonPile();
 													$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
 													$(".winning-card").removeClass("winning-card");
@@ -1176,7 +772,378 @@
 				});
 			}
 			
+			function shouldHumanSelectCategory(){
+				return new Promise(resolve=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', game.makeUrl("game/shouldHumanSelectCategory")); // Request type and URL
+		
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						var responseText = xhr.response; // the text of the response
+						resolve(responseText);
+					};
+		
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				})
+			}
 			
+			function getRoundNumber(){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', game.makeUrl("game/roundNumber")); // Request type and URL
+		
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						const responseText = xhr.response; // the text of the response
+						const roundNumber = parseInt(responseText);
+						
+						changeStatusMessage("Round Number " + roundNumber + ".");
+						
+						resolve(roundNumber);
+					};
+		
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();
+				});
+			}
+			
+			// change the status message
+			function changeStatusMessage(message){
+				$(document).ready(function() {
+					$("#status-message").html(message);
+				});
+			}
+			
+			// append the status message
+			function appendStatusMessage(message){
+				$(document).ready(function() {
+					$("#status-message").append(message);
+				});
+			}
+			
+			// get the players still in the game
+			function getRoundActivePlayers(){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', game.makeUrl("game/activePlayers")); // Request type and URL
+					
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						const responseText = xhr.response; // the text of the response//
+						const players = JSON.parse(responseText);
+						resolve(players);
+					};
+	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			// update player details
+			function updatePlayers(players){
+				$(document).ready(function() {
+					$(".card").map(async(i, card)=>{
+						if(i<=players.length-1){
+							$(card).find(".player-name").html(players[i].name);
+							$(card).find(".cards-left").html(await getNoOfCardsLeft(players[i].name));
+						}
+					});
+					$(".card").map((i, card)=>{
+						if ($(card).find(".player-name").html() !== "You"){
+							$(card).find(".card-img-top").css("visibility", "hidden");
+							$(card).find(".card-body").css("visibility", "hidden");
+						}
+					});
+				});
+			}
+			
+			function updateCards(cards){
+				$(document).ready(function() {
+					$(".card").map((i, card)=>{
+						try{
+							$(card).find(".card-title").html(cards[i].description);
+							
+							$(card).find(".card-img-top").attr("src", "http://dcs.gla.ac.uk/~richardm/TopTrumps/" + cards[i].description + ".jpg");
+							
+							$(card).find(".card-val1").html(cards[i].category1);
+							$(card).find(".card-val2").html(cards[i].category2);
+							$(card).find(".card-val3").html(cards[i].category3);
+							$(card).find(".card-val4").html(cards[i].category4);
+							$(card).find(".card-val5").html(cards[i].category5);
+						} catch(e){
+							if (e instanceof TypeError){
+								$(card).fadeOut("slow", "linear");
+							}
+						}
+					});
+				});
+				$(".card-deck").slideDown("fast", "swing");
+				
+			}
+			
+			function updateCardsAndPlayers(){
+				return new Promise(async (resolve)=>{
+					const players = await getRoundActivePlayers();
+					updatePlayers(players);
+				
+					const cards = await getRoundActiveCards();
+					updateCards(cards);
+					
+					resolve();
+				});
+			}
+			
+			function getRoundActiveCards(){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', game.makeUrl("game/roundCards")); // Request type and URL
+				
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						const responseText = xhr.response; // the text of the response// 
+						const cards = JSON.parse(responseText);
+						resolve(cards);
+					};
+	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			function selectCategoryForHuman(categoryList){
+				return new Promise(async (resolve)=>{
+					
+					$(document).ready(function() {
+						$("#actionButtonDiv").slideUp("fast", "swing", ()=>{
+							$(".categories").slideDown("fast", "swing", ()=>{
+								$("#selectCategoryMenu .btn").each((i, elem)=>{
+									$(elem).html(categoryList[i]);
+									$(elem).click(()=>{
+										$("#selectCategoryMenu .btn").off("click");
+										$(".categories").slideUp("fast", "swing", ()=>{
+											$("#actionButtonDiv").slideDown("fast", "swing");
+										});
+										appendStatusMessage(" You selected " + categoryList[i] + ".");
+										resolve(categoryList[i]);
+									})
+								});
+							});
+						});
+					});
+				});
+			}
+			
+			async function selectCategoryForAI(activePlayer){
+				return new Promise((resolve)=>{
+				
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', game.makeUrl("game/getAIPlayerCategory")); // Request type and URL
+					
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						const responseText = xhr.response; // the text of the response// 
+						const categorySelected = responseText;
+						$(document).ready(()=>{
+							if(categorySelected!=="human"){
+								appendStatusMessage(" " + activePlayer + " selected " + categorySelected + ".");
+							}
+						})
+						resolve(categorySelected);
+					};
+					
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				
+				});
+				
+			}
+			
+			function getCategories(){
+				return new Promise(resolve=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', Game.makeUrlWithoutParam("game/categoryMenu")); // Request type and URL
+					
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						const responseText = xhr.response; // the text of the response
+						const categories = JSON.parse(responseText);
+						
+						categories.map((cat, i)=>{
+							$(".cat-" + (i+1)).html(cat);
+						})
+						
+						resolve(categories);
+					};
+		
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			function getRoundActivePlayer(){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', game.makeUrl("game/getRoundActivePlayer")); // Request type and URL
+				
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						const responseText = xhr.response; // the text of the response// 
+						$(".card .player-name:contains(" + responseText + ")").closest(".card").addClass("active-player-card");
+						resolve(responseText);
+					};
+	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			function setPlayerScores(){
+				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				var xhr = createCORSRequest('GET', game.makeUrl("game/allPlayersScores")); // Request type and URL
+
+				// Message is not sent yet, but we can check that the browser supports CORS
+				if (!xhr) {
+					alert("CORS not supported");
+				}
+
+				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+				// to do when the response arrives
+				xhr.onload = function(e) {
+					const responseText = xhr.response; // the text of the response// 
+					const players = JSON.parse(responseText);
+					
+					$(document).ready(function() {
+						players.map((player, i)=>{
+							var tableData = "<tr><th>" + players[i].name + "</th><th>" + players[i].score + "</th></tr>\n"
+							$(".table").append(tableData);
+						});
+					});
+				};
+
+				// We have done everything we need to prepare the CORS request, so send it
+				xhr.send();	
+			}
+			
+			function getRoundWinner(){
+				// First create a CORS request, this is the message we are going to send (a get request in this case)
+				var xhr = createCORSRequest('GET', game.makeUrl("game/getRoundWinner")); // Request type and URL
+				
+	
+				// Message is not sent yet, but we can check that the browser supports CORS
+				if (!xhr) {
+					alert("CORS not supported");
+				}
+
+				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+				// to do when the response arrives
+				xhr.onload = function(e) {
+					const responseText = xhr.response; // the text of the response// 
+					if(responseText === "draw"){
+						appendStatusMessage(" Round was a draw.");
+						$("#common-pile").addClass("winning-card");
+					} else {
+						appendStatusMessage(" " + responseText + " won this round.");
+						$(".card .player-name:contains(" + responseText + ")").closest(".card").addClass("winning-card");
+					}
+					
+				};
+				
+				// We have done everything we need to prepare the CORS request, so send it
+				xhr.send();
+				
+			}
+			
+			function getNumberOfCardsInCommonPile(){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', game.makeUrl("game/numberOfCardsInCommonPile")); // Request type and URL
+					
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						const responseText = xhr.response; // the text of the response//
+					
+						$(document).ready(function() {
+							$("#common-pile").html("Common Pile: " + responseText);
+							resolve();
+						});
+					};
+
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
+			
+			function getNoOfCardsLeft(playersName){
+				return new Promise((resolve)=>{
+					// First create a CORS request, this is the message we are going to send (a get request in this case)
+					var xhr = createCORSRequest('GET', game.makeUrl("game/cardsLeft") + "&playerName="+playersName); // Request type and URL
+				
+	
+					// Message is not sent yet, but we can check that the browser supports CORS
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+
+					// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
+					// to do when the response arrives
+					xhr.onload = function(e) {
+						const responseText = xhr.response; // the text of the response//
+						resolve(responseText);
+					};
+	
+					// We have done everything we need to prepare the CORS request, so send it
+					xhr.send();	
+				});
+			}
 	
 			// This calls the game REST method from TopTrumpsRESTAPI
 			function getStats() {
@@ -1188,7 +1155,7 @@
 				if (!xhr) {
 					alert("CORS not supported");
 				}
-
+				
 				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
 				// to do when the response arrives 
 				xhr.onload = function(e) {
@@ -1199,32 +1166,6 @@
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();		
 			}
-			
-// 			async function setSelectAiNoValue(){
-// 				var AiNoChosen = await showSelectValues();
-// 				
-// 				
-// 				$(".num-player-select").val(AiNoChosen);
-// 			}
-// 			
-// 			function showSelectValues(){
-// 				return new Promise((resolve)=>{
-// 					$(".select-player-btns").slideDown("fast", "swing", ()=>{
-// 						$(".select-player-btns .one").click(()=>{
-// 							$(".select-player-btns").slideUp("fast", "swing");
-// 						});
-// 						$(".select-player-btns .two").click(()=>{
-// 							$(".select-player-btns").slideUp("fast", "swing");
-// 						});
-// 						$(".select-player-btns .three").click(()=>{
-// 							$(".select-player-btns").slideUp("fast", "swing");
-// 						});
-// 						$(".select-player-btns .four").click(()=>{
-// 							$(".select-player-btns").slideUp("fast", "swing");
-// 						});
-// 					});
-// 				})
-// 			}
 			
 			// ------------------------------------------------------------ //
 			// ------------------------------------------------------------ //
