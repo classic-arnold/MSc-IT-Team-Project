@@ -59,6 +59,8 @@ public class ViewCLI {
 	private void displayRound() {
 		if (model.getRound().getRoundNumber() == 1) {
 			System.out.println("\n/*****GAME START*****/ \n");
+		} else {
+			System.out.println("\n/********************/ \n");
 		}
 		System.out.println("Round " + model.getRound().getRoundNumber()+"\n");
 	}
