@@ -775,6 +775,7 @@
 												if(prog===0){
 													getRoundWinner();
 													
+													$("#common-pile").removeClass("winning-card");
 													$(".card").removeClass("winning-card").removeClass("flip-card").removeClass("shift-card").addClass("flip-card");
 													$(".card").map((i, card)=>{
 														if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
@@ -800,6 +801,7 @@
 									var nextRound = (async ()=>{
 										getRoundWinner();
 										
+										$("#common-pile").removeClass("winning-card");
 										$(".card").removeClass("winning-card").removeClass("flip-card").removeClass("shift-card").addClass("flip-card");
 										$(".card").map((i, card)=>{
 											if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
