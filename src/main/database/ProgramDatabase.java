@@ -8,8 +8,7 @@ import main.model.*;
 
 /**
  * ProgramDatabase - creates the connection of postgre database with Eclipse. 
- * And Two methods: insertGameStats(DataGame model): void, selectGameStats(): void
- * getters for passing statistical values to DataGame class (model).
+ * And Two methods: insertGameStats(DataGame model): void, static methods to pass values from database to model.
  * 
  * - ProgramDatabase class should be used both for CLI version and GUI version.
  * 
@@ -25,7 +24,6 @@ public class ProgramDatabase {
 
 	private static Connection conn;
 
-	//Getters
 	/** 
 	 * Count game number
 	 * @return

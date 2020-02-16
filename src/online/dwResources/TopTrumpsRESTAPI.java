@@ -52,7 +52,6 @@ public class TopTrumpsRESTAPI {
 	ObjectWriter oWriter = new ObjectMapper().writerWithDefaultPrettyPrinter();
 	TopTrumpsJSONConfiguration conf;
 
-	//	private DataGame model;
 
 	/**
 	 * listOfGames when accessing two or more players in game via different devices.
@@ -72,9 +71,6 @@ public class TopTrumpsRESTAPI {
 		this.conf = conf;
 	}
 
-	// ----------------------------------------------------
-	// Add relevant API methods here
-	// ----------------------------------------------------
 
 	/**
 	 * Starts the game
