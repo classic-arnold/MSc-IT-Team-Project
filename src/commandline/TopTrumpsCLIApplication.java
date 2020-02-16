@@ -1,6 +1,8 @@
 package commandline;
 
-import main.*;
+import main.model.*;
+import main.view.*;
+import main.controller.*;
 
 /**
  * Top Trumps command line application

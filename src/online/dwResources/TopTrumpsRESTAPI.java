@@ -2,6 +2,7 @@ package online.dwResources;
 
 import java.io.IOException;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +15,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import online.configuration.TopTrumpsJSONConfiguration;
-import main.*;
+import main.model.*;
+import main.view.*;
+import main.controller.*;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
