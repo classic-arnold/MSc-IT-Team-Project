@@ -1,3 +1,4 @@
+ -- Creat a schema and table for the game.
  create schema TopTrumps
 
  create table TopTrumps.gameStats
