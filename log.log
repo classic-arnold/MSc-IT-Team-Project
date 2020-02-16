@@ -1,0 +1,741 @@
+*   c1b4ff7 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\  
+| *   a31471c : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\  
+| | * d945a7c : comments final
+| | * 6bd5374 : comments added
+| | * 0046d8b : comments changed
+| | *   192f091 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | |\  
+| | * | 075e9f4 : comments added
+| * | | 2453edf : comments and formatting
+* | | | 5020190 : background change
+* | | | 1de6e6e : new bg
+| |_|/  
+|/| |   
+* | |   5809333 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \ \  
+| |/ /  
+| * | 63ba5c9 : cli view edits
+| * | 5299c67 : testlog controller modified
+| * |   8351c3a : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev pulling
+| |\ \  
+| | |/  
+| * |   0722a91 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev pulling
+| |\ \  
+| * | | 27981fa : controller modified
+* | | | b0c1c25 : comments
+| |_|/  
+|/| |   
+* | | bdda3e0 : final web untested uncleaned - cleanup in progress - package restructure - ftl beatify
+* | | dfa32f5 : final web untested uncleaned - cleanup in progress - package restructure - ftl beatify
+* | | 78b75be : final web untested uncleaned - cleanup in progress - package restructure - ftl beatify
+* | | c19554b : final web untested uncleaned - cleanup in progress - package restructure - ftl beatify
+* | | e890f6e : final web untested uncleaned - cleanup in progress - package restructure
+* | | 67250dd : final web untested uncleaned - cleanup in progress - package restructure
+* | | df13948 : final web untested uncleaned - cleanup in progress - package restructure
+* | | 67234a7 : final web untested uncleaned - cleanup in progress - package restructure
+* | | d6a17cf : final web untested uncleaned - cleanup in progress - package restructure
+* | | 0dcdf55 : final web untested uncleaned - cleanup in progress - package restructure
+* | | 2cd92bd : final web untested uncleaned - cleanup in progress
+* | | 7e20a9a : final web untested uncleaned - cleanup in progress
+* | | 2c6a49e : final web untested uncleaned
+| |/  
+|/|   
+* | 7112377 : final web untested uncleaned
+* | 728a8a2 : final web untested uncleaned
+* | 151a76e : final web untested uncleaned
+* | f361ba3 : final web untested uncleaned
+* | 3dd3f89 : final web untested uncleaned
+* | 092140d : stateless untested
+* |   23a4ded : stateless untested
+|\ \  
+| * | 956e6f5 : added cardfront and cardback
+* | | ed8beb8 : stateless untested
+|/ /  
+* | 99bd9e1 : web
+* | ad7f04f : web
+* | 8c5b3cc : web
+* | 710a747 : web
+* | 78416a9 : singleton removed - more design
+* | 0f71706 : singleton removed
+* | 38f6b3b : mod gitignore
+* | fb65ba0 : web
+* | 26206a9 : web
+* | c0527d8 : web
+* | 54db5ac : web
+* |   3d34582 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \  
+| * | fbe2e7e : removed main added javadoc comments to testlog
+* | | 335d1eb : web
+|/ /  
+* | 4d30dd4 : web
+* | 4a6410f : web refactor
+* | 2ef81cb : web
+* | f84303b : html unformatted
+* | 6ba13b4 : ftl formatted
+* | e30869b : ftl formatted
+* | 82eb318 : unrepackaged
+* | 6af7b86 : unrepackaged
+* | da7bf5b : package names
+* |   20adb51 : pulling
+|\ \  
+| |/  
+| * 2806f93 : testlog changes
+| * e58077e : view update
+| * 75ae418 : added testlog function
+| * 48871e9 : testlog fix
+| * 22735d1 : testlog changes
+| * d3bb082 : testlog changes
+| * 1fae55d : updated testlog
+* | 3785c07 : package names
+|/  
+*   f9e31de : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\  
+| *   08def18 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev pulling
+| |\  
+| | * 8e0e840 : test log updates
+| | * 079dca1 : fixed test log displayed
+| * | 23ebb7d : testlog modified
+| |/  
+* | 2b37572 : restructured
+* | 4e81f7b : testlog new
+|/  
+* 07fe833 : testlog issues
+*   aafe000 : testlog changes
+|\  
+| *   ed84b5c : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\  
+| * | 3ad8620 : testlog updates
+* | | b5d2f0d : test log updated
+| |/  
+|/|   
+* | 3d29b39 : test moved
+* | b2f8731 : test moved
+* | 66a5af4 : lints
+* | 0348724 : quit working
+|/  
+* 79889cb : testlog more functions
+* 3daed1d : Head fixed
+*   9955377 : not sure
+|\  
+| *   c4be081 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\  
+| | *   6e0a44e : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | |\  
+| | * | 8ca2299 : model refactor finished
+| * | | a0345c5 : removed from comments
+| | |/  
+| |/|   
+| * | a634b3f : removed lab database connection info only
+| |/  
+* | d86c75f : not sure
+* |   0ccfebb : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev pulling
+|\ \  
+| |/  
+| * 07847ce : model refactor finished - game test finished
+| * 2d9e92d : css modifications for safari
+| * 9f11ee4 : tests v1
+* | 8e13f77 : test updated
+|/  
+* 002ebe4 : test
+*   ce6c7a1 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\  
+| *   81a001c : test updated
+| |\  
+| * | 8305ac0 : tests updated
+* | | 4bf7a1e : roundcards added back
+| |/  
+|/|   
+* |   eb0c754 : Merge pull request #5 from branchd1/dev-refactor
+|\ \  
+| * | 5c5a218 : DB conn remote
+| * | 017bd38 : api shouldHuman
+| * | 82bef9a : exception details
+| * | 1e4e22c : lint
+| * | 882e977 : round class created
+| * |   e27415f : pulling
+| |\ \  
+| |/ /  
+|/| |   
+* | | b45b830 : cleancode
+* | |   509be06 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \ \  
+| * | | 24479b8 : resetMain
+| * | | 7abc7d4 : cleanMainclass
+| * | |   c7db024 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \ \  
+| * | | | 361fc50 : restAPI-- comments done
+* | | | | acb92b3 : Added Score Table to Sidebar
+| |/ / /  
+|/| | |   
+* | | | 4509b2c : commented in highlight code
+|/ / /  
+* | | e9f08a7 : Updated Selection Screen View
+* | |   fb9b7f9 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \ \  
+| * | | c841801 : DeleteUselessPart
+| * | | 122fd22 : Delete Controller.js
+| * | | 57c55e9 : cleanuseless
+* | | | c0b16e3 : Edited WebView
+| | * | 6bd5419 : DB refactor
+| | * | 28b1adb : refactor
+| |/ /  
+| * | 5a2f70e : cleanuseless
+| * | a9de46a : commenting changed
+| * | 81c398e : testlog initialized elsewhere
+| * | a746338 : add comment on top
+| * | dbb4f6d : commented some functions that are not used
+| * | 0de2e1b : add comment in ProgramDatabase.java, remove CheckDatabase.java
+| * |   bf43881 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| |/ /  
+|/| |   
+* | | ca01e84 : Fixed Display Issues in WebView
+* | | 8f70ea0 : web version v1 - images added
+* | |   502c10b : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \ \  
+| * | | 03a9aa0 : more test log functions and changes
+| * | | 1392b34 : Further testlog changes
+| * | | 2a24c31 : TestLog modifications
+* | | | 2856580 : web version v1
+|/ / /  
+* | | 1c15294 : web version v1
+* | | fde3514 : web version v1
+* | | 4715828 : web version v1
+* | | e7724ed : web version almost done
+* | | 595d87c : web version almost done
+* | | 3cfee27 : almost
+* | | 6f6257a : almost
+* | | 0dc3b73 : almost
+| * | fe30b53 : database: add connection url
+|/ /  
+* | 2cc6142 : web work
+* |   e6335e3 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \  
+| |/  
+| * a3d68c7 : checking database connection--success
+| * 518c34d : changed database connection, create sql file, add RESTAPI
+| * 6f0d26c : categoryMenu--changing
+| *   5efb4f0 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\  
+| | *   ffce547 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | |\  
+| | | * 341d36a : Fixed CLI error and online view changes
+| | * | 6035163 : bug #3 fixed?
+| | * | 7ac8edc : number of AI wins tested
+| | * | 9e93b02 : number of human wins tested
+| * | | 1fcd222 : RestAPI: returns roundCards object success
+| | |/  
+| |/|   
+| * | c899f1a : Connection conn can be used without defining everytime
+| * |   46e46d2 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| | |/  
+| | * dfb7f5c : test
+| | * 32fd5d7 : merged resolved
+| | *   daeba61 : test
+| | |\  
+| | * | a52f352 : test
+| * | | 00e785f : changed insertGameStats and selectGameStats visibilities of methods from public to package
+| | |/  
+| |/|   
+| * |   ff1f531 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| * | | a77898e : no changed on result but merged static method into main
+* | | | 6e4d408 : pulling
+| |/ /  
+|/| |   
+* | | 182574c : web - cards remaining
+* | | 3a54826 : web version work
+* | | e62f3c2 : web version work
+* | | bb32b5d : web version work
+* | | 7903e30 : web version work
+* | | 0cf40ec : web work
+* | | c1859ef : select category stage
+* | |   b7d9639 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \ \  
+| * | | d3d294b : added css visibility toggles for cards,siderbar button and menu
+| * | | 15ce159 : Five Player Cards Display in GameScreen
+| * | | b94e18c : changes
+| * | | fba29df : update
+| * | | 71c8c28 : updatecontroller
+| * | | 6e33173 : Update Statistics.ftl
+| * | | 84c1d38 : Update Controller.js
+| * | | b33467c : update
+| |/ /  
+| * |   22842a7 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| * | | 3114bd0 : added in rest api
+* | | | d3a53b0 : round number
+| |/ /  
+|/| |   
+* | |   3acac97 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \ \  
+| * | | 110cebd : cleancode
+| |/ /  
+* | | f283d81 : changes
+|/ /  
+* |   bc8af06 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \  
+| * \   22f1b2d : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| * | | 97dd1b9 : get round active player
+* | | | d18df2d : uncommit category menu
+| |/ /  
+|/| |   
+* | | c01410d : delete original text file of restAPI
+* | | 8c642a5 : cleancode
+|/ /  
+* |   56eaec4 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \  
+| |/  
+| *   d1dd33b : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev pulling again
+| |\  
+| * | 36d3343 : view updated
+* | | 6579aa8 : getcatogory chooser change
+| |/  
+|/|   
+* |   61dd3cd : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \  
+| * \   8d0e64a : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| | |/  
+| | *   085d8e1 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | |\  
+| | * | e685e01 : Added additional view function
+| * | | d5b0ef4 : restAPI. edit in gameResult
+| | |/  
+| |/|   
+| * |   3b9b66c : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| | |/  
+| * | b8ebe67 : add restapi
+* | | c4602db : getcatogory chooser change
+| |/  
+|/|   
+* |   dc32afd : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \  
+| * | 956e60f : Edited GameScreen View
+* | | 1eb512e : category chooser
+* | | f10d4b7 : js methods
+|/ /  
+* | fcd28d3 : gamescreen fix 2
+* |   4d790a0 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \  
+| * \   9451774 : merge
+| |\ \  
+| | |/  
+| | *   147a860 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | |\  
+| | | * 45c2e81 : unit tests updated
+| | | *   4fa68f6 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev pulling again
+| | | |\  
+| | | * \   dba1cf3 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev another pull
+| | | |\ \  
+| | | * \ \   0c43e77 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev further modification on unit tests
+| | | |\ \ \  
+| | | * | | | fdfb655 : first stage of initializations completed
+| | * | | | | 41f03a0 : getAICards changed
+| | | |_|_|/  
+| | |/| | |   
+| * | | | | 093488d : Edited CLI View Methods
+* | | | | | f6ef5af : gamescreen changes
+| |/ / / /  
+|/| | | |   
+* | | | |   97a06e8 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \ \ \ \  
+| | |_|_|/  
+| |/| | |   
+| * | | | f72cda7 : gamescreen ftl revert
+| * | | |   c28e6f2 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \ \ \  
+| | |/ / /  
+| | * | |   e25dc94 : merge conflicts fixed
+| | |\ \ \  
+| | | | |/  
+| | | |/|   
+| | * | | 3f43538 : Edited GameScreen view image display
+| * | | | f2a0b1f : changes
+| | |/ /  
+| |/| |   
+| * | |   0d9b348 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \ \  
+| * | | | 3337d2c : online mode false
+* | | | | 086ea52 : errors modifide
+| |/ / /  
+|/| | |   
+* | | |   2c72eb6 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \ \ \  
+| |/ / /  
+| * | | 39c948c : some methods public
+| * | |   290c85c : api changes
+| |\ \ \  
+| | |/ /  
+| * | | ff02485 : js and api changes
+| * | | 17b2b75 : ftl arrangement
+* | | | eb17e48 : api:continuing
+| |/ /  
+|/| |   
+* | | 8dfc413 : restAPI:modifying
+* | | 2229aac : restAPI--testing via postman. ++ need modification on functions that returns array
+* | | 50fa72c : rest api-- some functions need modification.
+* | | 877da47 : api: description part modified
+|/ /  
+* | 15cbc8c : API : need more editing in description part
+* |   920fc77 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \  
+| * | 9e515d1 : modifyCallRESTAPI
+| * | a653d89 : modification
+| * | 85aadc1 : selectCategory
+| * |   1625206 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| | * | e40f6c6 : TestLog and CLI View Method Changes
+| * | | ec8e625 : selectCatButton
+| |/ /  
+* | | b2c79a1 : restAPI : add more GET
+|/ /  
+* |   556a8cd : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \  
+| * | 6032bdd : category chooser and getname public
+| * |   33ddefd : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| * | | 247139d : fixed nextroundchoice method
+* | | | 627bc9e : restAPI: need modification
+| |/ /  
+|/| |   
+* | |   fb68ac4 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \ \  
+| |/ /  
+| * |   c8e0147 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| * | | ea98cd3 : fixed display cat selected test log for first round
+* | | | 4f82ab2 : RestAPI continuing
+| |/ /  
+|/| |   
+* | |   f8f357f : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \ \  
+| * | | 755ed6d : Update GameScreen.ftl
+| |/ /  
+* | | a408db0 : RestAPI continuing: functions made in Controller, all included
+|/ /  
+* | e9412a8 : Database: Added comments
+* |   e798c1c : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \  
+| * | b01d4d5 : fixed merge issues
+| * |   9fedf4d : merge
+| |\ \  
+| | * | 268b42d : update
+| | * | 36c5656 : update
+| * | | 514e534 : updated game and stats views
+* | | | 6c19c8d : RestAPI continuing
+| |/ /  
+|/| |   
+* | | 3543463 : changes
+* | |   c168817 : RestAPI
+|\ \ \  
+| |/ /  
+| * | 967ce4e : update
+| * | 05917ad : update
+| * | c59d4dc : Additional Game Screen View Changes
+| * | 7d876b4 : fixed merge issues
+| * |   9c0a061 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| | * \   fa2e2e7 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | |\ \  
+| | | * \   babb103 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | | |\ \  
+| | | | |/  
+| | | | * 6348d98 : more test
+| | | * | 9142b91 : some changes
+| | * | | a5c41e8 : update
+| | | |/  
+| | |/|   
+| | * | c36ee78 : update
+| * | | 1c666c0 : Game View Changes
+| |/ /  
+| * | 8c03781 : Added category selection testlog method and fixed gamewinner testlog method
+| * | 4367986 : Added quit option to view start menu method
+| * | 55824ae : Added CLI display of number of cards in deck for AI players
+| * | 9901624 : Fixed errors in displayStats view method,added further error handling
+| * | 46ef6de : update
+| * | 3314c8b : tests
+| |/  
+* | 5548b6c : Database final && RestAPI onProcess
+|/  
+* 6ea5d6b : db values correct
+*   7188841 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\  
+| * a58700c : database updating
+* | e3582fb : pulled
+|/  
+* 24e506c : update
+* b229cf9 : arrow back
+*   93fb6f7 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\  
+| *   655e1ff : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\  
+| * | a28909b : Fixed Game End View Method Error
+* | | d476a08 : use database
+| |/  
+|/|   
+* | 3ad562e : removed connection object in insertion method
+* |   f367c03 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev git pull
+|\ \  
+| |/  
+| * e876783 : frame
+| *   b2b94f1 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\  
+| | * 9a84a7d : some tests
+| | * f698985 : human first
+| | * 0f3d582 : public methods
+| | *   ddc9222 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | |\  
+| | | * 2df3490 : draft
+| | | * 137d2f9 : intelligent AI
+| | | * 6176ba5 : refactoring
+| | | * d5d40dd : gitignore testlog
+| | | * 2ca5fdf : quit modified
+| | | * e878082 : commented out printlns
+| | | * ccd3dce : testlog
+| | | * 816c396 : added database get methods
+| | * | b158d2b : modification on test structure
+| * | | 81f06f9 : Created Statistics View
+| | |/  
+| |/|   
+| * | efeb65e : Fixed merge issues
+| * |   2b1a660 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| | * \   8cf1112 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | |\ \  
+| * | \ \   ae9bdfc : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \ \ \  
+| | |/ / /  
+| |/| / /   
+| | |/ /    
+| | * | 6d431f5 : initial
+| | * | fc58aba : quit round and game
+| * | | 13efa46 : Added error handling to start menu and category selection methods
+| |/ /  
+* | | a170839 : API continuing
+|/ /  
+* | 170e028 : Added hyperlinks to navbars and selection screen menu
+* | cc732c9 : Created Selection Screen View
+* | 78137ee : added display communal pile contents test log method
+* | 149cf83 : view method to allow user to quit or move to next round
+* | 854f961 : Created Game Screen View
+* | 442c39b : added dropwizard asset handling
+* | 2e37fbc : Database modified. Check 'CheckDatabase.java'
+* | 920f256 : Database Connection Success. --yacata version updated -- checking class (temporary) updated
+* | a3005a1 : Database --localhost version
+* | 895ffff : Added javadoc.
+* | dc512fa : ProgramDatabase modified.--add INSERTION, SELECTION
+|/  
+*   b7aec1b : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev pulling again
+|\  
+| * 8171d0f : changed common pile impl
+| * e42d107 : added methods model
+| *   1673fc4 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\  
+| * | 58175bd : extra methods
+* | | d34ff96 : various testcases for the CLI verion in skeletal form
+| |/  
+|/|   
+* | 56c5ddf : deleted unittest
+* |   b8b43c6 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\ \  
+| * | aaded41 : add Database connection test
+| * | 7ec2e98 : Database version1-connection success
+| * |   a27a212 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| | * | 5e639c7 : Added Test Log Methods
+| | |/  
+| | * 657aaf1 : CLI version v1 - main uncommented
+| | * d29b260 : CLI version v1
+| | * 113d3dc : remove model System out
+| | * f74c341 : winning category arrow
+| | *   1d4624e : indentations improv
+| | |\  
+| | * | 318dd44 : indentations improv
+| * | | 5b0dd55 : Update ProgramDatabase.java
+| * | | 454f0b4 : Update ProgramDatabase.java
+| * | | d346dd0 : database connection part only
+| * | | a071053 : Database classes modified..
+| | |/  
+| |/|   
+| * | cf6951a : Database modified
+| |/  
+| * bdff257 : working v1 - round number bug fix
+| * c40fcc1 : working v1 - optimizations
+| * 2e88149 : working v1
+| * 023c201 : working v1
+| * 9edda34 : category choosing impl
+| * d171e4c : changed updateview and category selection methods
+| * b8de142 : many chanegs
+| *   b50ca2d : edited view scanners
+| |\  
+| | * a0b7430 : main edited
+| * | 3f1e519 : edited scanner
+| |/  
+| * 0e526ce : main modified- test 1
+| *   bc8f24c : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\  
+| | *   17ae88b : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | |\  
+| | * | c9361ed : controller v1
+| * | | 177e65e : set model
+| | |/  
+| |/|   
+| * |   4c10f8e : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| | |/  
+| | * 303cab6 : game loop - model changes
+| | * 5572ffa : game loop
+| | *   e10e4df : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | |\  
+| | | *   0da4366 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | | |\  
+| | | * | e38882c : playRound return
+| | * | | e693e6e : game loop
+| | | |/  
+| | |/|   
+| * | | e4d2824 : updated display round result method
+| |/ /  
+| * |   a50eb4b : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| | * | 0232fcc : game loop
+| * | | 61d9ce5 : changed update view function
+| |/ /  
+| * |   8dca30c : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| | |/  
+| | * c4b1169 : staged controller
+| | * 0178e43 : added get human player method
+| * | 8c696dc : updated view methods
+| * | f7761f0 : altered choose display method
+| |/  
+| *   0bff6e7 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\  
+| | * def4ae2 : more comments - comments done - added initial deck methods
+| | * 1b4d722 : more comments - comments done
+| | * 7130a33 : more comments - comments done
+| | * 82c6e22 : more comments - comment DataCommonDeck done
+| | * 391011d : more comments - comment datacard done
+| | *   dc0b274 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| | |\  
+| | | * 26b2bfe : fixed displayCategorySelection
+| | | * dd22442 : updated with model changes
+| | | * ccac3a2 : added model getters to view and created test log class
+| | * | d9ca5a8 : more comments - comment dataplayer done
+| | |/  
+| | * e533edf : commentsing DataPlayer - round bug fixed
+| | * 8004d48 : commentsing DataPlayer
+| | * 340f01e : commentsing DataPlayer
+| | * 9e4c64d : comments and added optimizations - cataGame comments extra
+| | * e744dfb : comments and added optimizations - cataGame comments extra
+| | * 31b11a5 : comments and added optimizations - cDataGame comments done
+| | * 50f2f9d : comments and added optimizations - common deck buug fix
+| | * 0ac18f0 : comments and added optimizations - round bug fix
+| | * 7a19878 : comments and added optimizations
+| | * d2e9327 : changes in main
+| | * fabeee8 : singleton improved - model improvements
+| | * 93df10c : singleton improved - model improvements
+| | * 734a3cd : singleton improved - model improvements
+| | * 3fc3cb9 : singleton improved - model improvements
+| | * 8142b18 : singleton improved - model comments and improvements - draw impl
+| | * 3e1f7f8 : singleton improved - model comments and improvements
+| | * c7239d0 : singleton improved
+| | * b8d0dc6 : singleton
+| | * c901755 : singleton
+| | * 35a848f : model v1
+| * | 9aad0b4 : controller
+| |/  
+| * d0668db : startGame and playRound impl
+| * 106e056 : changed .classpath
+| * e58a8da : changed .classpath
+| * f195a53 : dish cards impl - Lib error introduced
+| * 26ee222 : just pulled
+| * 940e8bc : Database
+| *   8eed4ae : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\  
+| | * 5c547bd : commenting - not everything working properly yet - DataGame comments done - bug fixes - some work on database methods
+| | * 0590c28 : commenting - not everything working properly yet - DataGame comments done - bug fixes
+| | * 17a9b26 : commenting - not everything working properly yet - DataGame comments done
+| | * 14c2d5b : commenting - not everything working properly yet - shuffledeck changed
+| | * 5475a81 : commenting - not everything working properly yet - getWinningCards change
+| | * 3327088 : commenting - not everything working properly yet - getWinningCards change
+| | * 2cc2f51 : commenting - not everything working properly yet - optimizations
+| * |   0968648 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| * | | d6c9dd7 : Database connection JDBC file directory
+* | | |   8b2b6f6 : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev third pull request
+|\ \ \ \  
+| | |_|/  
+| |/| |   
+| * | | cb63c0c : commenting - not everything working properly yet - optimizations
+| * | | 2258bb7 : commenting - not everything working properly yet - getPlayers impl
+| * | | c8c21e6 : commenting - not everything working properly yet
+| * | | eed37b9 : commenting - not everything working properly yet
+| * | | 1411b56 : many modifications - cards and deck - singleton removed - shuffle deck - dishing deck - added get player type - added category names
+| * | |   5d727fd : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \ \  
+| | | |/  
+| | |/|   
+| | * | 2a4bb86 : updated view with additional model getters
+| * | | b2ca7f5 : many modifications - cards and deck - singleton removed - shuffle deck - dishing deck - added get player type
+| |/ /  
+| * | 95555fb : many modifications - cards and deck - singleton removed - shuffle deck - dishing deck
+| * | 0491df8 : many modifications - cards and deck - singleton removed - shuffle deck
+| * | d4d1b64 : many modifications - cards and deck - singleton removed
+| * | a5fb9f7 : many modifications - cards and deck - fixed stackoverflow
+| * | ceb382f : many modifications - cards and deck - fixed stackoverflow
+| * | b88a442 : many modifications - cards and deck
+| * | d8c5cf5 : many modifications - cards and deck
+| * | e8050da : many modifications - cards and deck
+| * | 9e267dd : many modifications
+| * | b4ff9e7 : array arraylists methods
+| * | f07dfa3 : fixed card array
+| * |   c0b2b3a : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+| |\ \  
+| | * | c71d6c5 : updated view methods with round number getter from model
+| * | | 5171f02 : fixing card array
+| |/ /  
+| * | 022296a : modified model - added methods for View
+| |/  
+* |   271bdee : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev second pull
+|\ \  
+| |/  
+| * 85c7d29 : Added method to display statistics
+* | 5dc50fa : added files to gitignore
+|/  
+* 69b8c23 : optimize
+*   a87c70a : Merge branch 'dev' of https://github.com/branchd1/MSc-IT-Team-Project into dev
+|\  
+| * fbc1b37 : added gameEnd method and additional comments
+| * 8b2936f : added cli view class
+* | d20eee2 : extra exceptions and date
+|/  
+* 0d1730b : added more methods & implementations
+* 8b8447f : added more methods & implementations
+* dc4430d : some optimizations
+* f885764 : some optimizations
+* 14b24f6 : some optimizations
+* b3fc3a7 : loading card using Prototype pattern implementation - implemented singleton pattern on DataGame - working - read file
+* 457a467 : loading card using Prototype pattern implementation - implemented singleton pattern on DataGame - working
+* 2d121e7 : loading card using Prototype pattern implementation - implemented singleton pattern on DataGame
+* f8e39cc : loading card using Prototype pattern implementation - implemented singleton pattern on DataGame
+* 4f3eb9e : loading card using Prototype pattern implementation
+* d13eb7d : loading card using Prototype pattern implementation
+* 076f7a8 : working on DataPlayer create random deck method - need correct card file - updated gitignore - added exception classes
+* 187e9ae : working on DataPlayer create random deck method - need correct card file
+* 69300a6 : working on DataPlayer now
+* 179fc82 : removed target/.DS_Store from git tracking
+* 8e2e720 : added gitignore. ignored target/.DS_Store
+* 76c9cbb : added some comments to DataCard
+* 1fa38ed : added some comments to DataCard
+* 541a078 : added some comments to DataCard
+* 77230c1 : added some comments to DataCard
+* 8af0552 : added some comments to DataCard
+* 41a12bc : created model classes, DataCard attributes, and DataCard methods
+* 968f3ac : created model classes, DataCard attributes, and DataCard methods
+* 1075f99 : init commit
