@@ -623,7 +623,7 @@ public class TestLog {
 			bw.newLine();
 			String catSelected = "";
 
-			catSelected = model.getCategoryChooser().getName() + " selected " + model.getRound().getRoundCategory()
+			catSelected = model.getRound().getRoundActivePlayer().getName() + " selected " + model.getRound().getRoundCategory()
 					+ "\n";
 
 			bw.write(catSelected);
