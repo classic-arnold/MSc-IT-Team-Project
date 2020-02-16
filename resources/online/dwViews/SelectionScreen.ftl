@@ -31,7 +31,10 @@
 			/*Card Styles*/
 
 			#main-screen {
-				background: transparent;
+				background: #000000;
+				background-image: url(/assets/galaxy.jpg);
+				background-repeat: no repeat;
+				background-size: 100vh;
 			}
 
 			h1 {
@@ -71,25 +74,6 @@
 			.btn-lg:hover {
 				box-shadow: 0px 0px 15px #FFA500;
 			}
-
-			.fullscreen {
-				position: fixed;
-				top: 0;
-				right: 0;
-				bottom: 0;
-				left: 0;
-				overflow: hidden;
-				z-index: -100;
-				background: black;
-			}
-
-			.fullscreen_video {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-			}
 		</style>
 	</head>
 
@@ -97,18 +81,10 @@
 		<div id="main-screen" class="container-fluid h-100">
 			<div class="row h-50 d-flex align-items-center justify-content-center">
 				<div class="col-sm-12">
-					<div class="fullscreen">
-						<video loop muted autoplay class="fullscreen_video">
-							<source src="/assets/galaxy.mp4" type="video/mp4">
-						</video>
-					</div>
 					<div id="title-div" class="row justify-content-center">
 						<h1 class="glow">STAR CITIZEN TOP TRUMPS</h1>
-
 					</div>
-
 				</div>
-
 			</div>
 			<div class="row h-50 d-flex align-items-center justify-content-center">
 				<a href="/toptrumps/game">
