@@ -35,7 +35,7 @@ public class ViewCLI {
 		while (!NumberUtils.isParsable(getInput) || startChoice < 1 || startChoice > 3) {
 			// displays invalid input method if the user is trying to input again
 			if (redo) {
-				System.out.println("\nInvalid input.Please input 1, 2 or 3\n");
+				System.out.println("\nInvalid input. Please input 1, 2 or 3\n");
 			}
 			System.out.println("Do you want to see past results, play a game or quit the program?");
 			System.out.println("1:Print Game Statistics");
@@ -183,7 +183,7 @@ public class ViewCLI {
 	 * Displays game winner and scores
 	 */
 	public void gameEnd() {
-		System.out.println("Game End");
+		System.out.println("\n/*****GAME END*****/ \n");
 		System.out.println(model.getGameWinner().getName() + " won the game \n");
 		System.out.println("Player scores");
 		for (int i = 0; i < model.getAllPlayers().length; i++) {
