@@ -2,14 +2,15 @@ package test;
 
 import static org.junit.Assert.*;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
 import main.model.*;
-import main.view.*;
-import main.controller.*;
+import commandline.view.*;
+import commandline.controller.*;
 import main.database.*;
 
 /**

@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -10,8 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.model.*;
-import main.view.*;
-import main.controller.*;
+import commandline.view.*;
+import commandline.controller.*;
 
 /**
  * Game unit tests
