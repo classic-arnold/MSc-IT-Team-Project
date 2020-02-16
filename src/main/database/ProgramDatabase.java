@@ -8,8 +8,7 @@ import main.model.*;
 
 /**
  * ProgramDatabase - creates the connection of postgre database with Eclipse. 
- * And Two methods: insertGameStats(DataGame model): void, selectGameStats(): void
- * getters for passing statistical values to DataGame class (model).
+ * And Two methods: insertGameStats(DataGame model): void, static methods to pass values from database to model.
  * 
  * - ProgramDatabase class should be used both for CLI version and GUI version.
  * 
@@ -23,13 +22,8 @@ public class ProgramDatabase {
 	private static final String userID="TryCatch";
 	private static final String password="TryCatch";
 
-	//When running database via Estelle's database.
-	//	private static final String url="jdbc:postgresql://localhost:5432/TopTrump";
-	//	private static final String userID="postgres";
-	//	private static final String password="qmffldqmffld3";
 	private static Connection conn;
 
-	//Getters
 	/** 
 	 * Count game number
 	 * @return
@@ -192,19 +186,8 @@ public class ProgramDatabase {
 	/** 
 	 * insertion method
 	 * 
-	 * @return 0 or 1 (long).
-	 * @throws SQLException 
-	 * 
-	 * @inserts values 
-	 * 'isHumanWon:Boolean', 
-	 * 'humanScore:int', 
-	 * 'AI1Score:int', 
-	 * 'AI2Score:int', 
-	 * 'AI3Score:int', 
-	 * 'AI4Score:int', 
-	 * 'draws:int', 
-	 * 'roundNumber:int' 
-	 * into Database table.
+	 * @inserts values into database
+	 * @return null
 	 * */
 	public static void insertGameStats(DataGame model){
 		String SQL="INSERT INTO TOPTRUMPS.GAMESTATS "
@@ -269,33 +252,4 @@ public class ProgramDatabase {
 		}
 	}
 
-	/**
-	 * main static method to test database connection when testing
-	 * */
-	public static void main(String[] args) {
-		//load the JDBC driver
-		try {
-			Class.forName("org.postgresql.Driver");
-		}catch(ClassNotFoundException e) {
-			System.out.println("Could not find JDBC Driver");
-			e.printStackTrace();
-			return;
-		}//try-catch exception
-
-		//the driver is loaded
-		System.out.println("PostgreSQL JDBC Driver found!");
-
-		try {
-			conn=DriverManager.getConnection(url,userID,password);
-			System.out.println("Opened database successfully");
-		}catch(SQLException e) {
-			System.out.println("Connection Failed!");
-			e.printStackTrace();
-			return;
-		}catch(Exception e) {
-			System.exit(0);
-		}//try-catch exception
-
-
-	}
 }
