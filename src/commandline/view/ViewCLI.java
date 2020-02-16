@@ -66,7 +66,7 @@ public class ViewCLI {
 	}
 
 	private void displayRoundMessageAndActivePlayer() {
-		System.out.println("\nRound " + model.getRound().getRoundNumber() + " : Players have drawn their cards");
+		System.out.println("\n"+"Players have drawn their cards");
 		System.out.println("The active player is "+ model.getCategoryChooser().getName() + "\n");
 	}
 
@@ -169,7 +169,7 @@ public class ViewCLI {
 		System.out.println("");
 		if (!model.getRound().getRoundWasDraw()) {
 
-			System.out.println("Round " + model.getRound().getRoundNumber() + " " + model.getRound().getRoundWinningPlayers().get(0).getName()
+			System.out.println(model.getRound().getRoundWinningPlayers().get(0).getName()
 					+ " won this round.");
 			System.out.println(model.getRound().getRoundWinningCard().toString(category));
 		}
