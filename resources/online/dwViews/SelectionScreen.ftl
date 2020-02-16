@@ -34,7 +34,8 @@
 				background: #000000;
 				background-image: url(/assets/galaxy.jpg);
 				background-repeat: no repeat;
-				background-size: 100vh;
+				background-size: cover;
+				background-position: center;
 			}
 
 			h1 {
