@@ -1153,10 +1153,10 @@
 				xhr.onload = function(e) {
 					const responseText = xhr.response; // the text of the response// 
 					if(responseText === "draw"){
-						appendStatusMessage(" Round was a draw.");
 						$(".card").removeClass("winning-card").removeClass("shift-card").removeClass("flip-card", ()=>{
 							$("#common-pile").addClass("winning-card");
 						});
+						appendStatusMessage(" Round was a draw.");
 					} else {
 						$(".card").removeClass("winning-card").removeClass("shift-card").removeClass("flip-card", ()=>{
 							$(".card .player-name:contains(" + responseText + ")").closest(".card").addClass("winning-card");
