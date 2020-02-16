@@ -1,8 +1,9 @@
-package toptrumps;
+package main.database;
 import java.sql.*;
 
-
 import exceptions.*;
+
+import main.model.*;
 
 
 /**
@@ -21,11 +22,11 @@ public class ProgramDatabase {
 	private static final String url="jdbc:postgresql://52.24.215.108:5432/TryCatch";
 	private static final String userID="TryCatch";
 	private static final String password="TryCatch";
-	
+
 	//When running database via Estelle's database.
-//	private static final String url="jdbc:postgresql://localhost:5432/TopTrump";
-//	private static final String userID="postgres";
-//	private static final String password="qmffldqmffld3";
+	//	private static final String url="jdbc:postgresql://localhost:5432/TopTrump";
+	//	private static final String userID="postgres";
+	//	private static final String password="qmffldqmffld3";
 	private static Connection conn;
 
 	//Getters
@@ -36,20 +37,20 @@ public class ProgramDatabase {
 	 * */
 	public static int getGameCount() {
 		int result=0;
-		
+
 		try{
 			conn=DriverManager.getConnection(url,userID,password);
 
 			Statement stmt=conn.createStatement();
-			
+
 			ResultSet rs=stmt.executeQuery("select " + 
 					"count(gameid) as gameCount " +
 					"from TopTrumps.gameStats;");
-			
+
 			while(rs.next()) {
 				result=rs.getInt("gameCount");
 			}
-				
+
 			rs.close();
 			stmt.close();
 
@@ -58,7 +59,7 @@ public class ProgramDatabase {
 		}catch(SQLException e) {
 			throw new CannotConnectToDataBaseException();
 		} // try-catch exception
-		
+
 		return result;
 	}
 
@@ -69,20 +70,20 @@ public class ProgramDatabase {
 	 * */
 	public static int getHumanWon() {
 		int result=0;
-		
+
 		try{
 			conn=DriverManager.getConnection(url,userID,password);
 
 			Statement stmt=conn.createStatement();
-			
+
 			ResultSet rs=stmt.executeQuery("select " + 
 					"count(*) filter(where isHumanWon) as humanWon " +
 					"from TopTrumps.gameStats;");
-			
+
 			while(rs.next()) {
 				result = rs.getInt("humanWon");
 			}
-			
+
 			rs.close();
 			stmt.close();
 
@@ -91,7 +92,7 @@ public class ProgramDatabase {
 		}catch(SQLException e) {
 			throw new CannotConnectToDataBaseException();
 		} // try-catch exception
-		
+
 		return result;
 	}
 
@@ -106,7 +107,7 @@ public class ProgramDatabase {
 			conn=DriverManager.getConnection(url,userID,password);
 
 			Statement stmt=conn.createStatement();
-			
+
 			ResultSet rs=stmt.executeQuery("select " +
 					"count(*) filter(where not isHumanWon) as AIWon " +
 					"from TopTrumps.gameStats;");
@@ -132,12 +133,12 @@ public class ProgramDatabase {
 	 * */
 	public static double getDraws() {
 		double result = 0;
-		
+
 		try{
 			conn=DriverManager.getConnection(url,userID,password);
 
 			Statement stmt=conn.createStatement();
-			
+
 			ResultSet rs=stmt.executeQuery("select " +
 					"round(avg(draws)::numeric,1) as averageDraws " +
 					"from TopTrumps.gameStats;");
@@ -153,7 +154,7 @@ public class ProgramDatabase {
 		}catch(SQLException e) {
 			throw new CannotConnectToDataBaseException();
 		}//try-catch exception
-		
+
 		return result;
 	}
 
@@ -168,7 +169,7 @@ public class ProgramDatabase {
 			conn=DriverManager.getConnection(url,userID,password);
 
 			Statement stmt=conn.createStatement();
-			
+
 			ResultSet rs=stmt.executeQuery("select " +
 					"max(roundNumber) as largestRound " + 
 					"from TopTrumps.gameStats;");
@@ -205,7 +206,7 @@ public class ProgramDatabase {
 	 * 'roundNumber:int' 
 	 * into Database table.
 	 * */
-	static void insertGameStats(DataGame model){
+	public static void insertGameStats(DataGame model){
 		String SQL="INSERT INTO TOPTRUMPS.GAMESTATS "
 				+"VALUES (default, ?,?,?,?,?,?,?,?)";
 		try{
@@ -225,7 +226,7 @@ public class ProgramDatabase {
 			for(int i=0;i<model.getAllPlayers().length;i++) {
 				pstmt.setInt(2+i, model.getAllPlayers()[i].getScore());
 			}
-			
+
 			if(model.getAllPlayers().length<=4) {
 				pstmt.setInt(6, 0);
 				if(model.getAllPlayers().length<=3) {
@@ -241,8 +242,8 @@ public class ProgramDatabase {
 
 			//get int value for total round number
 			pstmt.setInt(8, model.getRound().getRoundNumber());
-				
-			
+
+
 			//execute the preparedstatement insert
 			pstmt.executeUpdate();
 			pstmt.close();
@@ -250,23 +251,23 @@ public class ProgramDatabase {
 			throw new CannotConnectToDataBaseException();
 		}
 	}
-	
-	
+
+
 	/**
 	 * use clearDB when testing
 	 * */
 	public static void clearDB(DataGame model) {
-           String SQL="delete from toptrumps.gamestats where true;";
+		String SQL="delete from toptrumps.gamestats where true;";
 
-           try{
-                   conn=DriverManager.getConnection(url,userID,password);
-                   PreparedStatement pstmt=conn.prepareStatement(SQL);
-                   pstmt.executeUpdate();
-                   pstmt.close();
-           }catch(SQLException e) {
-        	   throw new CannotConnectToDataBaseException();
-           }
-   }
+		try{
+			conn=DriverManager.getConnection(url,userID,password);
+			PreparedStatement pstmt=conn.prepareStatement(SQL);
+			pstmt.executeUpdate();
+			pstmt.close();
+		}catch(SQLException e) {
+			throw new CannotConnectToDataBaseException();
+		}
+	}
 
 	/**
 	 * main static method to test database connection when testing

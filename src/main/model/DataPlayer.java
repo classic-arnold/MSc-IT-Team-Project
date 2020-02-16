@@ -1,4 +1,4 @@
-package toptrumps;
+package main.model;
 
 import java.util.ArrayList;
 
@@ -94,6 +94,13 @@ public class DataPlayer {
 		this.cardDeck.remove(0);
 	}
 
+	/**
+	 * remove all cards from player deck
+	 */
+	public void removeAllCardsFromDeck() {
+		this.cardDeck.clear();
+	}
+
 	// GETTER METHODS START
 
 	/**
@@ -116,7 +123,7 @@ public class DataPlayer {
 	 * get players type as string
 	 * @return String representing the player's type
 	 */
-	String getTypeAsString() {
+	public String getTypeAsString() {
 		if(this.type == PlayerType.AI) {
 			return "ai";
 		} else if (this.type == PlayerType.HUMAN) {
@@ -146,7 +153,7 @@ public class DataPlayer {
 	 * get number of cards in players deck
 	 * @return int representing the number of cards in players deck
 	 */
-	int getNumberOfCardsInDeck() {
+	public int getNumberOfCardsInDeck() {
 		return this.cardDeck.size();
 	}
 

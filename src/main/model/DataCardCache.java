@@ -1,4 +1,4 @@
-package toptrumps;
+package main.model;
 
 import java.io.FileNotFoundException;
 

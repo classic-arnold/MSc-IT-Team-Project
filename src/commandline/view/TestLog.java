@@ -1,6 +1,7 @@
-package toptrumps;
+package commandline.view;
 
 import java.io.BufferedWriter;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -8,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import main.model.*;
 
 /**
  * TestLog- creates a log of data created when model updates

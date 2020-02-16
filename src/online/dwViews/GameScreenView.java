@@ -19,8 +19,8 @@ public class GameScreenView extends View {
 	/**
 	 * Simple Constructor method, it simply specifies where the HTML page is to return.
 	 */
-    public GameScreenView() {
-        super("GameScreen.ftl");
-    }
+	public GameScreenView() {
+		super("GameScreen.ftl");
+	}
 
 }

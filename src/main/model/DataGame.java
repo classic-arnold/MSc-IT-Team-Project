@@ -1,8 +1,6 @@
-package toptrumps;
+package main.model;
 
 import java.util.ArrayList;
-
-
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,14 +9,7 @@ import java.util.Random;
 
 import exceptions.*;
 
-/*
- *
- * NOTE TO SELF
- * TODO: Verify game specifications are accurate
- * TODO: Remove MARKED FOR REMOVAL
- * TODO: Reduce couplings and increase cohesion
- *
- */
+import main.database.*;
 
 /**
  * 
@@ -35,9 +26,6 @@ public class DataGame{
 	public enum GameState {
 		RUNNING, ENDED
 	}
-//
-//	/** represents the DataGame instance */
-//	private static DataGame instance = null;
 
 	/** represents the list of players (still active) in the game */
 	private ArrayList<DataPlayer> activePlayers = new ArrayList<DataPlayer>();
@@ -90,29 +78,6 @@ public class DataGame{
 	// ------------------------------------------- //
 	// ------------------------------------------- //
 	// ------------------------------------------- //
-
-//	/**
-//	 * gets the instance of the single DataGame
-//	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players in the game
-//	 * @return DataGame object representing the current game
-//	 */
-//	public static DataGame getInstance(int numberOfArtificialIntelligencePlayers) {
-//		// if game hasn't been started, start it
-//		if(DataGame.instance == null) {
-//			DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers);
-//		}
-//		return DataGame.instance;
-//	}
-//
-//	/**
-//	 * starts a new game by resetting the instance
-//	 * @param numberOfArtificialIntelligencePlayers represents the number of AI players in the game
-//	 * @return DataGame object representing the new game
-//	 */
-//	public static DataGame resetAndGetInstance(int numberOfArtificialIntelligencePlayers) {
-//		DataGame.instance = new DataGame(numberOfArtificialIntelligencePlayers); // start game
-//		return DataGame.instance;
-//	}
 
 	/**
 	 * starts the game
@@ -178,7 +143,7 @@ public class DataGame{
 
 		// represents the winning cards and winning players for the round
 		HashMap<String, Object> winningCardsAndPlayers = this.getWinningCardsAndPlayers(DataGame.arrayListToArrayCard(roundCards), category);
-		
+
 		// store round winning cards
 		this.round.roundWinningCards = (ArrayList<DataCard>)winningCardsAndPlayers.get("winning cards");
 

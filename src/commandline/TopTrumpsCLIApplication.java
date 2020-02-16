@@ -1,8 +1,9 @@
 package commandline;
 
-import toptrumps.Controller;
-import toptrumps.DataGame;
-import toptrumps.ViewCLI;
+import main.model.*;
+
+import commandline.view.*;
+import commandline.controller.*;
 
 /**
  * Top Trumps command line application

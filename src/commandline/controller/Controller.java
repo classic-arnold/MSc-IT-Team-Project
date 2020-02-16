@@ -1,6 +1,8 @@
-package toptrumps;
+package commandline.controller;
 
-import toptrumps.DataGame;
+import main.model.*;
+
+import commandline.view.*;
 
 /**
  * The controller update the Model and View according to user input
@@ -84,7 +86,7 @@ public class Controller {
 				} else { // else, ask player to select category
 					category = this.viewCli.displayCategorySelection();
 				}
-				
+
 				// if flag was added at the beginning, print test log strings
 				if(this.writeGameLogsToFile) {
 					this.testLog.writeRoundNumber();
@@ -124,7 +126,7 @@ public class Controller {
 			// if above loop finished and player didn't ask to quit, end game properly
 			if(continueOrEndGameChoice.contentEquals("")) {
 				this.viewCli.gameEnd();
-				
+
 				if(this.writeGameLogsToFile) {
 					this.testLog.writeGameWinner();
 					this.testLog.writeGameStats();
