@@ -19,7 +19,7 @@ public class SelectionScreenView extends View {
 	/**
 	 * Simple Constructor method, it simply specifies where the HTML page is to return.
 	 */
-    public SelectionScreenView() {
-        super("SelectionScreen.ftl");
-    }
+	public SelectionScreenView() {
+		super("SelectionScreen.ftl");
+	}
 }

@@ -19,7 +19,7 @@ public class StatisticsView extends View {
 	/**
 	 * Simple Constructor method, it simply specifies where the HTML page is to return.
 	 */
-    public StatisticsView() {
-        super("Statistics.ftl");
-    }
+	public StatisticsView() {
+		super("Statistics.ftl");
+	}
 }

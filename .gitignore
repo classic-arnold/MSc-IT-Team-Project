@@ -5,3 +5,4 @@ resources/.DS_Store
 .settings/org.eclipse.jdt.core.prefs
 .DS_Store
 testlog.txt
+src/.DS_Store
