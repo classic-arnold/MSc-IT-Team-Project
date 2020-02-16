@@ -2,5 +2,5 @@
 Top Trumps Game
 
 ********************************************
-WARNING: RUNNING TESTS WILL CLEAR DATABASE
+WARNING: Running Tests Will CLEAR Database
 ********************************************
