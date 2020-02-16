@@ -276,15 +276,15 @@
             }
 
             25%{
-                transform: translate(0px, 1000px);
+                transform: translate(0px, 700px);
             }
             
             50%{
-                transform: translate(0px, 2000px);
+                transform: translate(0px, 1400px);
             }
 
             75% {
-                transform: translate(0px, 1000px);
+                transform: translate(0px, 700px);
             }
 
             100% {
@@ -294,7 +294,7 @@
         }
 
         .shift-card{
-            animation: shiftCardDeck 1.5s;
+            animation: shiftCardDeck 1s;
         }
 
         .table, #selectPlayersMenu, #actionButtonReal, .categories{
