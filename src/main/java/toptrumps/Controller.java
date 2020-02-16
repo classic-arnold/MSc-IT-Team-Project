@@ -127,6 +127,7 @@ public class Controller {
 				
 				if(this.writeGameLogsToFile) {
 					this.testLog.writeGameWinner();
+					this.testLog.writeGameStats();
 				}
 			}
 		} else { // if start choice was not 1(view stats) or 2(play game), return 1 to represent that the game was ended by user
