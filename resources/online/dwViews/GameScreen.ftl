@@ -1,321 +1,339 @@
 <html>
-	<head>
-		<!-- Web page title -->
-		<title>Top Trumps</title>
+<head>
+    <!-- Web page title -->
+    <title>Top Trumps</title>
 
-		<!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) -->
-		<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
-		<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-		<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
+    <!-- Import JQuery, as it provides functions you will probably find useful (see https://jquery.com/) -->
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
 
-		<!-- Optional Styling of the Website, for the demo I used Bootstrap (see https://getbootstrap.com/docs/4.0/getting-started/introduction/) -->
-		<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/TREC_IS/bootstrap.min.css">
-		<script src="http://dcs.gla.ac.uk/~richardm/vex.combined.min.js"></script>
-		<script>vex.defaultOptions.className = 'vex-theme-os';</script>
-		<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex.css"/>
-		<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex-theme-os.css"/>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-		<link href="https://fonts.googleapis.com/css?family=Montserrat|Orbitron&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono|Source+Sans+Pro&display=swap" rel="stylesheet">
+    <!-- Optional Styling of the Website, for the demo I used Bootstrap (see https://getbootstrap.com/docs/4.0/getting-started/introduction/) -->
+    <link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/TREC_IS/bootstrap.min.css">
+    <script src="http://dcs.gla.ac.uk/~richardm/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os';</script>
+    <link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex.css"/>
+    <link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex-theme-os.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Orbitron&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono|Source+Sans+Pro&display=swap" rel="stylesheet">
 
-		<!-- Additional styles -->
-		<style type="text/css">
-			/* Navbar Styles*/
-			
-			h2{
-				color:white;
-				font-size: 3em;
-			}
-			
-			.navbar-brand {
-				font-family: 'Orbitron', sans-serif;
-				font-size: 27px;
-				font-weight: bold;
-			}
+    <!-- Additional styles -->
+    <style type="text/css">
+        /* Navbar Styles*/
 
-			.navbar {
-				border-bottom: 5px solid;
-				border-image-source: linear-gradient(to right, #659999, #f4791f);
-				border-image-slice: 1;
-			}
+        h2{
+            color:white;
+            font-size: 3em;
+        }
 
-			.navbar .nav-link {
-				font-size: 15px;
-			}
+        .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 27px;
+            font-weight: bold;
+        }
 
-			/*Section 1 Styles*/
+        .navbar {
+            border-bottom: 5px solid;
+            border-image-source: linear-gradient(to right, #659999, #f4791f);
+            border-image-slice: 1;
+        }
 
-			.section1 {
-				background: #C33764;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to bottom, rgba(29, 38, 113, 0.7), rgba(195, 55, 100, 0.7));
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to bottom, rgba(29, 38, 113, 0.7), rgba(195, 55, 100, 0.7));
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-				background: url(/assets/testsidebar.jpg);
-				background-repeat: no repeat;
-				background-size: 100vh;
-				border-right: 2px solid black;
-			}
+        .navbar .nav-link {
+            font-size: 15px;
+        }
 
-			#actionButton {
-				font-size: 13px;
-				padding-top: 30px;
-				padding-bottom: 30px;
-				padding-right: 10px;
-				padding-left: 10px;
-			}
-			#actionButtonDiv{
-				display:none;
-				width:100%;
-			}
-			
-			#selectPlayersMenu{
-				display:inline;
-			}
+        /*Section 1 Styles*/
 
-			.action-div {
-		   		margin-top: 100px;
-			}
-			
+        .section1 {
+            background: #C33764;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to bottom, rgba(29, 38, 113, 0.7), rgba(195, 55, 100, 0.7));
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to bottom, rgba(29, 38, 113, 0.7), rgba(195, 55, 100, 0.7));
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: url(/assets/testsidebar.jpg);
+            background-repeat: no repeat;
+            background-size: 100vh;
+            border-right: 2px solid black;
+        }
 
-			/*Section 2 Styles*/
-			.section2 {
-				background-color: #DCE6E5;
-			}
+        #actionButton {
+            font-size: 13px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+        #actionButtonDiv{
+            display:none;
+            width:100%;
+        }
 
-			#status-col {
-				padding: 0px;
-			}
+        #selectPlayersMenu{
+            display:inline;
+        }
 
-			.alert {
-				display: none;
-				border-radius: 0;
-				border: none;
-				padding-top:0px;
-				padding-bottom:0px;
-			}
-			.alert-info{
-			background-color:#F0A202;
-			
-			}
+        .action-div {
+            margin-top: 100px;
+        }
 
 
-			/*Card Styles*/
-			.list-group-item {
-				border: 1px solid black;
-				padding: 2px;
-			}
-
-			.cardrow2 {
-				padding-top: 10px;
-			}
-
-
-			.card-img-top {
-				width: 100%;
-				height:100px;
-				border-radius: 0;
-			}
-			
-
-			.card {
-			    box-shadow: 0 0 10px black;
-			    /*color for on highlight*/
-				/*box-shadow: 0 0 10px #FF8300;*/
-				font-family: 'Roboto Mono', monospace;
-				font-weight: bold;
-				padding:0;
-			}
-
-			.card-title {
-				text-align: center;
-			}
-			.badge-primary {
-				color: black;
-				background-color: #fafafa;
-				font-size: 15px;
-				border: 1px solid grey;
-				border-radius: 0px;
-				padding-left: 10px;
-				padding-right: 10px;
-			}
-			.card-body {
-				padding: 0.5rem;
-			}
-			h3{
-				color:white;
-				font-size:20px;
-				font-family: 'Roboto Mono', monospace;
-				font-weight: bold;
-			}
-			
-			#status-message{
-				color:white;
-				font-size:20px;
-				font-family: 'Roboto Mono', monospace;
-				font-weight: bold;
-			}
-			
-			#common-pile{
-				display: none;
-				color: black;
-				font-size:20px;
-				font-family: 'Roboto Mono', monospace;
-				font-weight: bold;
-				border-color: #FFA500;
-			}
-			
-			.table{
-				color:white;
-			}
-			
-			.table th, .table td {
-   				border-top:none;
-            }
-			
-			.action-div .btn{
-				background-color:rgba(9,36,55,0.6);
-				font-size:20px;
-				box-shadow: 0px 0px 5px #5DBCD2;
-				transition-duration: 0.4s;
-			}
-			
-			.action-div .btn:hover{
+        /*Section 2 Styles*/
+           .card-front{
+        display:block;
+        }
         
-			  box-shadow: 0px 0px 15px #FFA500;
-	
-			}
-			
-			.cat-selected{
-				color: #F0A202;
-				-webkit-transition: all 0.5s;
-				-moz-transition: all 0.5s;
-				 -o-transition: all 0.5s;
-					transition: all 0.5s;
-			}
-			
-			.active-player-card{
-				box-shadow: 0px 0px 15px #FFA500;
-			}
-			
-			.winning-card{
-				animation: shake 1.5s cubic-bezier(.50,.09,.23,.87) both;
-				  transform: translate3d(0, 0, 0);
-				  backface-visibility: hidden;
-				  perspective: 1000px;
-			}
+        .card-back{
+        
+        font-size:50px;
+     border-top:20px solid black;
+     border-bottom:20px solid black;
+    margin-top:20px;
+    display:none;
+        
+        }
+        .section2 {
+            background-color: #DCE6E5;
+        }
 
-			@keyframes shake {
-			  10%, 90% {
-				transform: translate3d(-1px, 0, 0);
-			  }
-  
-			  20%, 80% {
-				transform: translate3d(2px, 0, 0);
-			  }
+        #status-col {
+            padding: 0px;
+        }
 
-			  30%, 50%, 70% {
-				transform: translate3d(-4px, 0, 0);
-			  }
+        .alert {
+            display: none;
+            border-radius: 0;
+            border: none;
+            padding-top:0px;
+            padding-bottom:0px;
+        }
+        .alert-info{
+            background-color:#F0A202;
 
-			  40%, 60% {
-				transform: translate3d(4px, 0, 0);
-			  }
-			}
-			
-			@keyframes changeCard {
-			  0%{
-				transform: rotateY(0deg);
-			  }
-  
-			  25%{
-				transform: rotateY(45deg);
-			  }
-			  
-			  50%{
-				transform: rotateY(90deg);
-			  }
-
-			  75% {
-				transform: rotateY(45deg);
-			  }
-			  
-			  100% {
-				transform: rotateY(0deg);
-			  }
-			  
-			}
-			
-			.flip-card{
-				animation: changeCard 0.5s;
-			}
-			
-			.table, #selectPlayersMenu, #actionButtonReal, .categories{
-				display: none;
-			}
-
-			
-						
-		</style>
-
-	</head>
-
-	<body onload="initalize()"> <!-- Call the initalize method when the page loads -->
-		<nav class="navbar navbar-expand-lg navbar-dark " style="background-color:black">
-			<a class="navbar-brand" href="#">STAR CITIZEN TOP TRUMPS</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="/toptrumps">Home <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/toptrumps/stats">View Statistics</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
+        }
 
 
-		<div class="container-fluid h-100">
-			<div class="row h-100">
-				<div class="col-sm-3 section1">
-					<div class="row justify-content-center p-5">
-						<div id="actionButtonDiv" class="action-div">
-							<span id="actionButton" class="text-center"></span>	
-						</div>
-						
-						<div class="action-div">
-							<button id="actionButtonReal" class="btn btn-block text-light"></button>	
-						</div>
-						
-						<div id="selectPlayersMenu" class="action-div">
-							<h2 id="selection-choice-menu" class="font-weight-bold">Please select the number of AI Players</h2>
-<!-- 
-							<input type="hidden" class="custom-select w-100" id="num-player-select"/>
-<!~~ 								<option>Select</option> ~~>
-								<!~~ 
-<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
-								<option value="4">Four</option>
- ~~>
- -->
-							<div class="select-player-btns">
-								<button class="one btn btn-block text-white">1</button>
-								<button class="two btn btn-block text-white">2</button>
-								<button class="three btn btn-block text-white">3</button>
-								<button class="four btn btn-block text-white">4</button>
-							</div>
-						</div>
-						<div id="selectCategoryMenu" class="action-div categories">
-							<h2 id="selection-category-menu" class="font-weight-bold">Please select your category</h2>
-							<!-- 
+        /*Card Styles*/
+        .list-group-item {
+            border: 1px solid black;
+            padding: 2px;
+        }
+
+        .cardrow2 {
+            padding-top: 10px;
+        }
+
+
+        .card-img-top {
+            width: 100%;
+            height:100px;
+            border-radius: 0;
+        }
+
+
+        .card {
+            box-shadow: 0 0 10px black;
+            /*color for on highlight*/
+            /*box-shadow: 0 0 10px #FF8300;*/
+            font-family: 'Roboto Mono', monospace;
+            font-weight: bold;
+            padding:0;
+            width:250.938px;
+            height:328.500px
+            
+        }
+        
+     
+
+        .card-title {
+            text-align: center;
+        }
+        .badge-primary {
+            color: black;
+            background-color: #fafafa;
+            font-size: 15px;
+            border: 1px solid grey;
+            border-radius: 0px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .card-body {
+            padding: 0.5rem;
+        }
+        h3{
+            color:white;
+            font-size:20px;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: bold;
+        }
+
+        #status-message{
+            color:white;
+            font-size:20px;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: bold;
+        }
+
+        #common-pile{
+            display: none;
+            color: black;
+            font-size:20px;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: bold;
+            border-color: #FFA500;
+        }
+
+        .table{
+            color:white;
+        }
+
+        .table th, .table td {
+            border-top:none;
+        }
+
+        .action-div .btn{
+            background-color:rgba(9,36,55,0.6);
+            font-size:20px;
+            box-shadow: 0px 0px 5px #5DBCD2;
+            transition-duration: 0.4s;
+        }
+
+        .action-div .btn:hover{
+
+            box-shadow: 0px 0px 15px #FFA500;
+
+        }
+
+        .cat-selected{
+            color: #F0A202;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+        .active-player-card{
+            box-shadow: 0px 0px 15px #FFA500;
+        }
+
+        .winning-card{
+            animation: shake 1.5s cubic-bezier(.50,.09,.23,.87) both;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        @keyframes shake {
+            10%, 90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+
+            20%, 80% {
+                transform: translate3d(2px, 0, 0);
+            }
+
+            30%, 50%, 70% {
+                transform: translate3d(-4px, 0, 0);
+            }
+
+            40%, 60% {
+                transform: translate3d(4px, 0, 0);
+            }
+        }
+
+        @keyframes changeCard {
+            0%{
+                transform: rotateY(0deg);
+            }
+
+            25%{
+                transform: rotateY(45deg);
+            }
+
+            50%{
+                transform: rotateY(90deg);
+            }
+
+            75% {
+                transform: rotateY(45deg);
+            }
+
+            100% {
+                transform: rotateY(0deg);
+            }
+
+        }
+
+        .flip-card{
+            animation: changeCard 0.5s;
+        }
+
+        .table, #selectPlayersMenu, #actionButtonReal, .categories{
+            display: none;
+        }
+
+
+
+    </style>
+
+</head>
+
+<body onload="initalize()"> <!-- Call the initalize method when the page loads -->
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color:black">
+    <a class="navbar-brand" href="#">STAR CITIZEN TOP TRUMPS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/toptrumps">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/toptrumps/stats">View Statistics</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="col-sm-3 section1">
+            <div class="row justify-content-center p-5">
+                <div id="actionButtonDiv" class="action-div">
+                    <span id="actionButton" class="text-center"></span>
+                </div>
+
+                <div class="action-div">
+                    <button id="actionButtonReal" class="btn btn-block text-light"></button>
+                </div>
+
+                <div id="selectPlayersMenu" class="action-div">
+                    <h2 id="selection-choice-menu" class="font-weight-bold">Please select the number of AI Players</h2>
+                    <!--
+                                                <input type="hidden" class="custom-select w-100" id="num-player-select"/>
+                    <!~~ 								<option>Select</option> ~~>
+                                                    <!~~
+                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                    <option value="4">Four</option>
+                     ~~>
+                     -->
+                    <div class="select-player-btns">
+                        <button class="one btn btn-block text-white">1</button>
+                        <button class="two btn btn-block text-white">2</button>
+                        <button class="three btn btn-block text-white">3</button>
+                        <button class="four btn btn-block text-white">4</button>
+                    </div>
+                </div>
+                <div id="selectCategoryMenu" class="action-div categories">
+                    <h2 id="selection-category-menu" class="font-weight-bold">Please select your category</h2>
+                    <!--
 <select class="custom-select w-100" id="category-select">
 								<option>Select</option>
 								<option value=""></option>
