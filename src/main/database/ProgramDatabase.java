@@ -188,8 +188,8 @@ public class ProgramDatabase {
 	/** 
 	 * insertion method
 	 * 
-	 * 
-	 * @inserts values 
+	 * @inserts values into database
+	 * @return null
 	 * */
 	public static void insertGameStats(DataGame model){
 		String SQL="INSERT INTO TOPTRUMPS.GAMESTATS "

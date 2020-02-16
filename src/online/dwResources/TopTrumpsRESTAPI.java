@@ -54,6 +54,9 @@ public class TopTrumpsRESTAPI {
 
 	//	private DataGame model;
 
+	/**
+	 * listOfGames when accessing two or more players in game via different devices.
+	 * */
 	private DataListOfGames listOfGames = new DataListOfGames();
 
 	/**
@@ -75,6 +78,7 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 * Starts the game
+	 * @param numberOfAIPlayers: int
 	 * @returns game ID
 	 */	
 	@GET
@@ -93,6 +97,7 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 * return boolean value as String whether human selects or not.
+	 * @param gameID: int
 	 * @return JSONString type
 	 */	
 	@GET
@@ -122,6 +127,7 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 * Get current round number:integer.
+	 * @param gameID: int
 	 * @returns JSONString type
 	 */	
 	@GET
@@ -142,6 +148,7 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 * Call every active players from a list and return in JSONString
+	 * @param gameID: int
 	 * @returns JSONString
 	 */	
 	@GET
@@ -162,6 +169,7 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 * Get card name, card categories for all active players.
+	 * @param gameID: int
 	 * @return JSONString type
 	 */	
 	@GET
@@ -195,6 +203,7 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 *Get the category that had selected from the AI players.
+	 * @param gameID: int
 	 *@return human: when active player is human, result: when there is a valid result.
 	 * */
 	@GET
@@ -238,7 +247,6 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 * Get categories for selecting menu
-	 * @Controller.js: 
 	 * @returns JSONString type
 	 */	
 	@GET
@@ -260,7 +268,7 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 * Get category chooser of the round:String.
-	 * @Controller.js: 
+	 * @param gameID: int
 	 * @returns String type
 	 */	
 	@GET
@@ -272,7 +280,7 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 * Get players result of the game
-	 * @Controller.js: 
+	 * @param gameID: int
 	 * @returns String type
 	 */	
 	@GET
@@ -304,6 +312,7 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 * Get round winner's name or 'draw'
+	 * @param gameID: int
 	 * @returns String type
 	 */	
 	@GET
@@ -324,6 +333,7 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 * get number of cards in common pile. which is number of active players..
+	 * @param gameID: int
 	 * @return model.getNumberOfCardsInCommonPile()
 	 * */
 	@GET
@@ -335,6 +345,7 @@ public class TopTrumpsRESTAPI {
 
 	/**
 	 * get playerName's deck number
+	 * @param playerName: String, gameID: int
 	 * @return integer
 	 */
 	@GET
