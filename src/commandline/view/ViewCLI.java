@@ -108,7 +108,7 @@ public class ViewCLI {
 			if (redo) {
 				System.out.println("\nInvalid input. Please input a number between 1 and 5\n");
 			}
-			System.out.println(" \nIt is your turn to select a category, the categories are: ");
+			System.out.println(" \nIt is your turn to select a category, the categories are:");
 			System.out.println("1: " + DataGame.CATEGORYNAMES[0]);
 			System.out.println("2: " + DataGame.CATEGORYNAMES[1]);
 			System.out.println("3: " + DataGame.CATEGORYNAMES[2]);
@@ -185,7 +185,7 @@ public class ViewCLI {
 		System.out.println(model.getGameWinner().getName() + " won the game \n");
 		System.out.println("Player scores");
 		for (int i = 0; i < model.getAllPlayers().length; i++) {
-			System.out.println(model.getAllPlayers()[i].getName() + " :" + model.getAllPlayers()[i].getScore());
+			System.out.println(model.getAllPlayers()[i].getName() + " : " + model.getAllPlayers()[i].getScore());
 		}
 		System.out.println(" ");
 
@@ -197,7 +197,7 @@ public class ViewCLI {
 	public void displayStats() {
 		System.out.println("\nGame Statistics:");
 		System.out.println("Number of Games : " + DataGame.getNumberOfGames());
-		System.out.println("Number of Human Wins:" + DataGame.getNumberOfHumanWins());
+		System.out.println("Number of Human Wins : " + DataGame.getNumberOfHumanWins());
 		System.out.println("Number of AI Wins : " + DataGame.getNumberOfAIWins());
 		System.out.println("Average number of Draws : " + DataGame.getAvgNumberOfDraws());
 		System.out.println("Longest Game : " + DataGame.getLongestGame());
