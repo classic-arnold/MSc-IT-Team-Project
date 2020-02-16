@@ -18,9 +18,9 @@ public class ViewCLI {
 
 	private DataGame model;
 
-	 /**
-     *view constructor sets the model
-     */
+	/**
+	 *view constructor sets the model
+	 */
 	public ViewCLI(DataGame model) {
 		this.model = model;
 	}
@@ -35,9 +35,9 @@ public class ViewCLI {
 		while (!NumberUtils.isParsable(getInput) || startChoice < 1 || startChoice > 3) {
 			// displays invalid input method if the user is trying to input again
 			if (redo) {
-				System.out.println("\n Invalid input.Please input 1,2 or 3");
+				System.out.println("\nInvalid input.Please input 1, 2 or 3\n");
 			}
-			System.out.println("Do you want to see past results,play a game or quit the program?");
+			System.out.println("Do you want to see past results, play a game or quit the program?");
 			System.out.println("1:Print Game Statistics");
 			System.out.println("2:Play game");
 			System.out.println("3:Quit program");
@@ -62,20 +62,20 @@ public class ViewCLI {
 		}
 		System.out.println("Round " + model.getRound().getRoundNumber()+"\n");
 	}
-	
+
 	private void displayRoundMessageAndActivePlayer() {
 		System.out.println("\nRound " + model.getRound().getRoundNumber() + " : Players have drawn their cards");
-        System.out.println("The active player is "+ model.getCategoryChooser().getName() + "\n");
+		System.out.println("The active player is "+ model.getCategoryChooser().getName() + "\n");
 	}
 
 	/**
 	 * Displays human player card
 	 */
 	private void displayPlayerCard() {
-	
+
 		if (model.getHumanPlayer().getDeck().size() > 0) {
 			System.out.println("You drew " + model.getHumanPlayer().getDeck().get(0).getDescription() + " :");
-			System.out.println(model.getHumanPlayer().getDeck().get(0));
+			System.out.print(model.getHumanPlayer().getDeck().get(0));
 		}
 	}
 
@@ -106,9 +106,9 @@ public class ViewCLI {
 		boolean redo = false;
 		while (!NumberUtils.isParsable(getInput) || categoryChoice <= 0 || categoryChoice > 5) {
 			if (redo) {
-				System.out.println("\n Invalid input.Please input a number between 1 and 5");
+				System.out.println("\nInvalid input. Please input a number between 1 and 5\n");
 			}
-			System.out.println(" \n It is your turn to select a category, the categories are: ");
+			System.out.println(" \nIt is your turn to select a category, the categories are: ");
 			System.out.println("1: " + DataGame.CATEGORYNAMES[0]);
 			System.out.println("2: " + DataGame.CATEGORYNAMES[1]);
 			System.out.println("3: " + DataGame.CATEGORYNAMES[2]);
@@ -135,7 +135,7 @@ public class ViewCLI {
 		displayNumDeckCards();
 		displayRoundMessageAndActivePlayer();
 		displayPlayerCard();
-		
+
 
 	}
 
@@ -152,7 +152,7 @@ public class ViewCLI {
 			System.out.println("Press enter to move to next round or press q to quit");
 			Scanner nextRoundChoiceIn = new Scanner(System.in);
 			nextRoundAction = nextRoundChoiceIn.nextLine();
-			System.out.println(nextRoundAction);
+			System.out.println();
 			redo = true;
 		}
 
@@ -161,6 +161,7 @@ public class ViewCLI {
 
 	/**
 	 * Displays the result of the round
+	 * @param string category chosen
 	 */
 	public void displayRoundResult(String category) {
 		System.out.println("");
@@ -171,8 +172,8 @@ public class ViewCLI {
 			System.out.println(model.getRound().getRoundWinningCard().toString(category));
 		}
 		if (model.getRound().getRoundWasDraw()) {
-			System.out.println("This round was a draw.There are now " + model.getNumberOfCardsInCommonPile()
-					+ " cards in the common pile");
+			System.out.println("This round was a draw. There are now " + model.getNumberOfCardsInCommonPile()
+			+ " cards in the common pile\n");
 		}
 	}
 
@@ -195,19 +196,12 @@ public class ViewCLI {
 	 */
 	public void displayStats() {
 		System.out.println("\nGame Statistics:");
-		System.out.println("Number of Games : " + model.getNumberOfGames());
-		System.out.println("Number of Human Wins:" + model.getNumberOfHumanWins());
-		System.out.println("Number of AI Wins : " + model.getNumberOfAIWins());
-		System.out.println("Average number of Draws : " + model.getAvgNumberOfDraws());
-		System.out.println("Longest Game : " + model.getLongestGame());
-	}
-
-	public static void main(String[] args) {
-		DataGame model = new DataGame(4);
-		model.startGame();
-		ViewCLI testview = new ViewCLI(model);
-		testview.nextRoundChoice();
-
+		System.out.println("Number of Games : " + DataGame.getNumberOfGames());
+		System.out.println("Number of Human Wins:" + DataGame.getNumberOfHumanWins());
+		System.out.println("Number of AI Wins : " + DataGame.getNumberOfAIWins());
+		System.out.println("Average number of Draws : " + DataGame.getAvgNumberOfDraws());
+		System.out.println("Longest Game : " + DataGame.getLongestGame());
+		System.out.println();
 	}
 
 }
