@@ -66,7 +66,7 @@ public class TopTrumpsRESTAPI {
 		// ----------------------------------------------------
 		// Add relevant initalization here
 		// ----------------------------------------------------
-		this.conf = conf; // added by Arnold
+		this.conf = conf;
 	}
 
 	// ----------------------------------------------------
