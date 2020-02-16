@@ -32,10 +32,10 @@ public class GameWebPagesResource {
 	 * play a game. Hosted at 'http://localhost:7777/toptrumps/'
 	 * @return
 	 */
-    public SelectionScreenView getSelectionScreen() {
-        return new SelectionScreenView();
-    }
-	
+	public SelectionScreenView getSelectionScreen() {
+		return new SelectionScreenView();
+	}
+
 	@GET
 	@Path("/game")
 	/**
@@ -43,10 +43,10 @@ public class GameWebPagesResource {
 	 * Hosted at 'http://localhost:7777/toptrumps/game'
 	 * @return
 	 */
-    public GameScreenView getGameScreen() {
-        return new GameScreenView();
-    }
-	
+	public GameScreenView getGameScreen() {
+		return new GameScreenView();
+	}
+
 	@GET
 	@Path("/stats")
 	/**
@@ -54,8 +54,8 @@ public class GameWebPagesResource {
 	 * Hosted at 'http://localhost:7777/toptrumps/stats'
 	 * @return
 	 */
-    public StatisticsView getStatisticsView() {
-        return new StatisticsView();
-    }
-	
+	public StatisticsView getStatisticsView() {
+		return new StatisticsView();
+	}
+
 }
