@@ -19,11 +19,12 @@ import main.model.*;
  */
 
 public class TestLog {
+	// class attributes
 	private DataGame model;
 	private String outF = "testlog.txt";
 	private String header = "Description ";
 
-	// constructor sets model for test log and generates header from it 
+	// constructor sets model for test log and generates header from it
 	public TestLog(DataGame model) {
 		this.model = model;
 		for (int i = 0; i < model.CATEGORYNAMES.length; i++) {
@@ -47,7 +48,7 @@ public class TestLog {
 			bw.write(header);
 			bw.newLine();
 			bw.newLine();
-
+			// loop through initial deck to write each member to test log
 			for (int i = 0; i < model.getInitialUnshuffledDeck().length; i++) {
 
 				String space = " ";
@@ -130,6 +131,7 @@ public class TestLog {
 			String separator = "------------------------------------------------------------------------";
 			bw.write(separator);
 			bw.newLine();
+			// loop through active players to write number of cards in deck to testlog
 			for (int i = 0; i < model.getActivePlayers().length; i++) {
 				if (model.getActivePlayers()[i].getTypeAsString().equals("human")) {
 					bw.write(model.getActivePlayers()[i].getName() + " have "
@@ -176,7 +178,7 @@ public class TestLog {
 			bw.write(header);
 			bw.newLine();
 			bw.newLine();
-
+			// loop through shuffled deck to write each member to test log
 			for (int i = 0; i < model.getInitialShuffledDeck().length; i++) {
 
 				String space = " ";
@@ -274,6 +276,7 @@ public class TestLog {
 				bw.write(header);
 				bw.newLine();
 				bw.newLine();
+				// write deck of each active player
 				for (int i = 0; i < model.getActivePlayers()[j].getDeck().size(); i++) {
 					String space = " ";
 					String description = model.getActivePlayers()[j].getDeck().get(i).getDescription();
@@ -472,7 +475,7 @@ public class TestLog {
 			bw.write("Players' Top Cards");
 			bw.newLine();
 			bw.newLine();
-
+			// loop through active players to get cards in play
 			for (int j = 0; j < model.getActivePlayers().length; j++) {
 				String player = model.getActivePlayers()[j].getName();
 				bw.write(player);
@@ -540,6 +543,7 @@ public class TestLog {
 			bw.newLine();
 			bw.write("Player scores");
 			bw.newLine();
+			// write scores for all players
 			for (int i = 0; i < model.getAllPlayers().length; i++) {
 				bw.write(model.getAllPlayers()[i].getName() + " :" + model.getAllPlayers()[i].getScore() + "\n");
 			}
@@ -623,8 +627,8 @@ public class TestLog {
 			bw.newLine();
 			String catSelected = "";
 
-			catSelected = model.getRound().getRoundActivePlayer().getName() + " selected " + model.getRound().getRoundCategory()
-					+ "\n";
+			catSelected = model.getRound().getRoundActivePlayer().getName() + " selected "
+					+ model.getRound().getRoundCategory() + "\n";
 
 			bw.write(catSelected);
 			bw.close();
@@ -693,6 +697,7 @@ public class TestLog {
 			bw.write("Round Winning Card");
 			bw.newLine();
 			bw.newLine();
+			// check if round was draw
 			if (model.getRound().getRoundWasDraw()) {
 				bw.write("There was no winning card this round \n");
 			}

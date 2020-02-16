@@ -19,7 +19,7 @@ public class ViewCLI {
 	private DataGame model;
 
 	/**
-	 *view constructor sets the model
+	 * view constructor sets the model
 	 */
 	public ViewCLI(DataGame model) {
 		this.model = model;
@@ -33,7 +33,7 @@ public class ViewCLI {
 		int startChoice = 1;
 		boolean redo = false;
 		while (!NumberUtils.isParsable(getInput) || startChoice < 1 || startChoice > 3) {
-			// displays invalid input method if the user is trying to input again
+			// displays invalid input message if the user is trying to input again
 			if (redo) {
 				System.out.println("\nInvalid input. Please input 1, 2 or 3\n");
 			}
@@ -45,6 +45,7 @@ public class ViewCLI {
 			Scanner choiceIn = new Scanner(System.in);
 			getInput = choiceIn.nextLine();
 			redo = true;
+			// check that input is an integer
 			if (NumberUtils.isParsable(getInput)) {
 				startChoice = Integer.parseInt(getInput);
 			}
@@ -57,17 +58,22 @@ public class ViewCLI {
 	 * Displays round number
 	 */
 	private void displayRound() {
+		// if start of game display game start method else round separator
 		if (model.getRound().getRoundNumber() == 1) {
 			System.out.println("\n/*****GAME START*****/ \n");
 		} else {
 			System.out.println("\n/********************/ \n");
 		}
-		System.out.println("Round " + model.getRound().getRoundNumber()+"\n");
+		// print round number
+		System.out.println("Round " + model.getRound().getRoundNumber() + "\n");
 	}
 
+	/**
+	 * Displays message that players have drawn cards and the active player
+	 */
 	private void displayRoundMessageAndActivePlayer() {
-		System.out.println("\n"+"Players have drawn their cards");
-		System.out.println("The active player is "+ model.getCategoryChooser().getName() + "\n");
+		System.out.println("\n" + "Players have drawn their cards");
+		System.out.println("The active player is " + model.getCategoryChooser().getName() + "\n");
 	}
 
 	/**
@@ -87,10 +93,12 @@ public class ViewCLI {
 	private void displayNumDeckCards() {
 
 		for (int i = 0; i < model.getActivePlayers().length; i++) {
+			// number of cards in deck message for human player
 			if (model.getActivePlayers()[i].getTypeAsString().equals("human")) {
 				System.out.println(model.getActivePlayers()[i].getName() + " have "
 						+ model.getActivePlayers()[i].getNumberOfCardsInDeck() + " cards in your deck.");
 			}
+			// number of cards in deck message for AI players
 			if (model.getActivePlayers()[i].getTypeAsString().equals("ai")) {
 				System.out.println(model.getActivePlayers()[i].getName() + " has "
 						+ model.getActivePlayers()[i].getNumberOfCardsInDeck() + " cards.");
@@ -107,20 +115,22 @@ public class ViewCLI {
 		int categoryChoice = 0;
 		boolean redo = false;
 		while (!NumberUtils.isParsable(getInput) || categoryChoice <= 0 || categoryChoice > 5) {
+			// message to display if input was invalid
 			if (redo) {
 				System.out.println("\nInvalid input. Please input a number between 1 and 5\n");
 			}
+			// category selection menu
 			System.out.println(" \nIt is your turn to select a category, the categories are:");
 			System.out.println("1: " + DataGame.CATEGORYNAMES[0]);
 			System.out.println("2: " + DataGame.CATEGORYNAMES[1]);
 			System.out.println("3: " + DataGame.CATEGORYNAMES[2]);
 			System.out.println("4: " + DataGame.CATEGORYNAMES[3]);
-			;
 			System.out.println("5: " + DataGame.CATEGORYNAMES[4]);
 			System.out.print("Enter the number for your attribute: ");
 			Scanner categoryIn = new Scanner(System.in);
 			getInput = categoryIn.nextLine();
 			redo = true;
+			// check if input is an integer
 			if (NumberUtils.isParsable(getInput)) {
 				categoryChoice = Integer.parseInt(getInput);
 			}
@@ -137,7 +147,6 @@ public class ViewCLI {
 		displayNumDeckCards();
 		displayRoundMessageAndActivePlayer();
 		displayPlayerCard();
-
 
 	}
 
@@ -163,14 +172,14 @@ public class ViewCLI {
 
 	/**
 	 * Displays the result of the round
+	 * 
 	 * @param string category chosen
 	 */
 	public void displayRoundResult(String category) {
 		System.out.println("");
 		if (!model.getRound().getRoundWasDraw()) {
 
-			System.out.println(model.getRound().getRoundWinningPlayers().get(0).getName()
-					+ " won this round.");
+			System.out.println(model.getRound().getRoundWinningPlayers().get(0).getName() + " won this round.");
 			System.out.println(model.getRound().getRoundWinningCard().toString(category));
 		}
 		if (model.getRound().getRoundWasDraw()) {
