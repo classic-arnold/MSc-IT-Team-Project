@@ -379,139 +379,162 @@
 					
 					<div class="card-deck row justify-content-center mt-3">
 					
-						<div id="cardOne" class="card col-3">
-							<div id="playerOneCard" class="card-header"><span class="player-name"></span><span id="deckOne"
-																						  class="badge badge-primary float-right cards-left"></span>
-							</div>
+					<div id="cardOne" class="card col-3">
+						<div id="playerOneCard" class="card-header"><span class="player-name"></span><span id="deckOne"
+																										   class="badge badge-primary float-right cards-left"></span>
+						</div>
+	
+						<p id="cardBackOne" class="card-back">STAR CITIZEN</p>
+						<div class="card-front">
 							<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
 							<div class="card-body">
+					 
 								<h5 id="cardOneTitle" class="card-title"></h5>
 								<ul class="list-group list-group-flush">
 									<li id="cardOneCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardOneValOne"
-																							 class="float-right card-val1"></span>
+																															  class="float-right card-val1"></span>
 									</li>
 									<li id="cardOneCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardOneValTwo"
-																							  class="float-right card-val2"></span>
+																															  class="float-right card-val2"></span>
 									</li>
 									<li id="cardOneCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardOneValThree"
-																								class="float-right card-val3"></span>
+																																class="float-right card-val3"></span>
 									</li>
 									<li id="cardOneCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardOneValFour"
-																								   class="float-right card-val4"></span>
+																															   class="float-right card-val4"></span>
 									</li>
 									<li id="cardOneCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardOneValFive"
-																							   class="float-right card-val5"></span>
+																															   class="float-right card-val5"></span>
 									</li>
 								</ul>
+				  
 							</div>
 						</div>
-						<div id="cardTwo" class="card col-3">
-							<div id="playerTwoCard" class="card-header"><span class="player-name"></span><span id="deckTwo"
-																						  class="badge badge-primary float-right cards-left"></span>
-							</div>
+					</div>
+					<div id="cardTwo" class="card col-3">
+						<div id="playerTwoCard" class="card-header"><span class="player-name"></span><span id="deckTwo"
+																										   class="badge badge-primary float-right cards-left"></span>
+						</div>
+						 <p id="cardBackTwo" class="card-back">STAR CITIZEN</p>
+						 <div class="card-front">
 							<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
 							<div class="card-body">
-								<h5 id="cardTwoTitle"class="card-title"></h5>
+					  
+								<h5 id="cardTwoTitle"class="card-title "></h5>
 								<ul class="list-group list-group-flush">
 									<li id="cardTwoCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardTwoValOne"
-																							 class="float-right card-val1"></span>
+																															  class="float-right card-val1"></span>
 									</li>
 									<li id="cardTwoCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardTwoValTwo"
-																							  class="float-right card-val2"></span>
+																															  class="float-right card-val2"></span>
 									</li>
 									<li id="cardTwoCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardTwoValThree"
-																								class="float-right card-val3"></span>
+																																class="float-right card-val3"></span>
 									</li>
 									<li id="cardTwoCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardTwoValFour"
-																								   class="float-right card-val4"></span>
+																															   class="float-right card-val4"></span>
 									</li>
 									<li id="cardTwoCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardTwoValFive"
-																							   class="float-right card-val5"></span>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div id="cardThree" class="card col-3">
-							<div id="playerThreeCard" class="card-header"><span class="player-name"></span><span id="DeckThree"
-																							class="badge badge-primary float-right cards-left"></span>
-							</div>
-							<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
-							<div class="card-body">
-								<h5 id="cardThreeTitle" class="card-title"></h5>
-								<ul class="list-group list-group-flush">
-									<li id="cardThreeCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardThreeValOne"
-																							   class="float-right card-val1"></span>
-									</li>
-									<li id="cardThreeCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardThreeValTwo"
-																								class="float-right card-val2"></span>
-									</li>
-									<li id="cardThreeCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardThreeValThree"
-																								  class="float-right card-val3"></span>
-									</li>
-									<li id="cardThreeCarFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardThreeValFour"
-																									 class="float-right card-val4"></span>
-									</li>
-									<li id="cardThreeCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardThreeValFive"
-																								 class="float-right card-val5"></span>
+																															   class="float-right card-val5"></span>
 									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<br/>
-					<div class="card-deck row justify-content-center">
-						<div id="cardFour" class="card col-3">
-							<div id="playerFourCard" class="card-header"><span class="player-name"></span><span id="deckFour"
-																						   class="badge badge-primary float-right cards-left"></span>
-							</div>
-							<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
-							<div class="card-body">
+					<div id="cardThree" class="card col-3">
+						<div id="playerThreeCard" class="card-header"><span class="player-name"></span><span id="DeckThree"
+																											 class="badge badge-primary float-right cards-left"></span>
+						</div>
+							<p id="cardBackThree" class="card-back">STAR CITIZEN</p>
+							<div class="card-front">
+								<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
+				
+								<div class="card-body ">
+		   
+									<h5 id="cardThreeTitle" class="card-title"></h5>
+									<ul class="list-group list-group-flush">
+										<li id="cardThreeCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardThreeValOne"
+																																	class="float-right card-val1"></span>
+										</li>
+										<li id="cardThreeCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardThreeValTwo"
+																																	class="float-right card-val2"></span>
+										</li>
+										<li id="cardThreeCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardThreeValThree"
+																																	  class="float-right card-val3"></span>
+										</li>
+										<li id="cardThreeCarFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardThreeValFour"
+																																	 class="float-right card-val4"></span>
+										</li>
+										<li id="cardThreeCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardThreeValFive"
+																																	 class="float-right card-val5"></span>
+										</li>
+									</ul>
+								</div>
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="card-deck row justify-content-center">
+					<div id="cardFour" class="card col-3">
+						<div id="playerFourCard" class="card-header"><span class="player-name"></span><span id="deckFour"
+																											class="badge badge-primary float-right cards-left"></span>
+						</div>
+							 <p id="cardBackFour" class="card-back">STAR CITIZEN</p>
+								<div class="card-front">
+							<img class="card-img-top " src="http://placekitten.com/300/300"  alt="Card image cap">
+							<div class="card-body ">
+				 
 								<h5 id="cardFourTitle" class="card-title"></h5>
 								<ul class="list-group list-group-flush">
 									<li id="cardFourCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardFourValOne"
-																							  class="float-right card-val1"></span>
+																															   class="float-right card-val1"></span>
 									</li>
 									<li id="cardFourCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardFourValTwo"
-																							   class="float-right card-val2"></span>
+																															   class="float-right card-val2"></span>
 									</li>
 									<li id="cardFourCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardFourValThree"
-																								 class="float-right card-val3"></span>
+																																 class="float-right card-val3"></span>
 									</li>
 									<li id="cardFourCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardFourValFour"
-																									class="float-right card-val4"></span>
+																																class="float-right card-val4"></span>
 									</li>
 									<li id="cardFourCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardFourValFive"
-																								class="float-right card-val5"></span>
+																																class="float-right card-val5"></span>
 									</li>
 								</ul>
-							</div>
+								</div>
 						</div>
-						<div id="cardFive" class="card col-3">
-							<div id="playerFiveCard" class="card-header"><span class="player-name"></span><span id="DeckFive"
-																						   class="badge badge-primary float-right cards-left"></span>
-							</div>
-							<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
-							<div class="card-body">
-								<h5 id="cardFiveTitle" class="card-title"></h5>
-								<ul class="list-group list-group-flush">
-									<li id="cardFiveCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardFiveValOne"
-																							   class="float-right card-val1"></span>
-									</li>
-									<li id="cardFiveCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardFiveValTwo"
-																								class="float-right card-val2"></span>
-									</li>
-									<li id="cardFiveCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardFiveValThree"
-																								  class="float-right card-val3"></span>
-									</li>
-									<li id="cardFiveCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardFiveValFour"
-																									class="float-right card-val4"></span>
-									</li>
-									<li id="cardFiveCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardFiveValFive"
-																								class="float-right card-val5"></span>
-									</li>
-								</ul>
-							</div>
+					</div>
+					<div id="cardFive" class="card col-3">
+						<div id="playerFiveCard" class="card-header"><span class="player-name"></span><span id="DeckFive"
+																											class="badge badge-primary float-right cards-left"></span>
 						</div>
+						 <p id="cardBackFive" class="card-back">STAR CITIZEN</p>
+							<div class="card-front">
+						<img class="card-img-top" src="http://placekitten.com/300/300"  alt="Card image cap">
+						<div class="card-body ">
+				
+							<h5 id="cardFiveTitle" class="card-title"></h5>
+							<ul class="list-group list-group-flush">
+								<li id="cardFiveCatOne" class="list-group-item card-cat1"><span class="cat-1"></span><span id="cardFiveValOne"
+																														   class="float-right card-val1"></span>
+								</li>
+								<li id="cardFiveCatTwo" class="list-group-item card-cat2"><span class="cat-2"></span><span id="cardFiveValTwo"
+																														   class="float-right card-val2"></span>
+								</li>
+								<li id="cardFiveCatThree" class="list-group-item card-cat3"><span class="cat-3"></span><span id="cardFiveValThree"
+																															 class="float-right card-val3"></span>
+								</li>
+								<li id="cardFiveCatFour" class="list-group-item card-cat4"><span class="cat-4"></span><span id="cardFiveValFour"
+																															class="float-right card-val4"></span>
+								</li>
+								<li id="cardFiveCatFive" class="list-group-item card-cat5"><span class="cat-5"></span><span id="cardFiveValFive"
+																															class="float-right card-val5"></span>
+								</li>
+							</ul>
+						</div>
+						</div>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -642,8 +665,8 @@
 					// update card and player details for the 1st round
 					if(roundNumber===1){
 						await updateCardsAndPlayers();
-					} else {
-						$(".card").addClass("flip-card");
+					} else{
+						$(".card").removeClass("winning-card").removeClass("flip-card").addClass("flip-card");
 					}
 					
 					let categoryList = await getCategories();
@@ -680,7 +703,7 @@
 						
 						// if this, game has ended
 						if(responseText !== "running"){
-							$(document).ready(async function() {
+							$(document).ready(function() {
 								// remove action button
 								$("#actionButton").hide();
 								
@@ -691,12 +714,15 @@
 								
 								changeStatusMessage("Game won by " + responseText + ".");
 								
-								await updateCardsAndPlayers().then(()=>{
+								$(".card").removeClass("winning-card").removeClass("flip-card").addClass("flip-card");
+								
+								updateCardsAndPlayers().then(()=>{
 									$(".card").map((i, card)=>{
-										$(card).find(".card-img-top").css("visibility", "visible");
-										$(card).find(".card-body").css("visibility", "visible");
+										$(card).find(".card-back").hide();
+										$(card).find(".card-front").show();
 									});
 								})
+								getNumberOfCardsInCommonPile();
 								
 								window.onbeforeunload = null;
 								
@@ -723,20 +749,21 @@
 											if (prog<=2){
 												if(prog===0){
 													getRoundWinner();
+													
+													$(".card").removeClass("winning-card").removeClass("flip-card").addClass("flip-card");
 													$(".card").map((i, card)=>{
 														if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
-															$(card).find(".card-img-top").css("visibility", "visible");
-															$(card).find(".card-body").css("visibility", "visible");
+															$(card).find(".card-back").hide();
+															$(card).find(".card-front").show();
 														}
 													});
 												}
 												$("#actionButtonReal").hide("fast", "swing");
-												$(".card").removeClass("flip-card");
 											}
 											await updateCardsAndPlayers();
 											await getNumberOfCardsInCommonPile();
 											$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
-											$(".winning-card").removeClass("winning-card");
+											$(".card").removeClass("winning-card");
 											$(".active-player-card").removeClass("active-player-card");
 										
 											playRound();
@@ -745,13 +772,13 @@
 									});
 									
 									var nextRound = (async ()=>{
-						
 										getRoundWinner();
-								
+										
+										$(".card").removeClass("winning-card").removeClass("flip-card").addClass("flip-card");
 										$(".card").map((i, card)=>{
 											if ($(card).find(".player-name").html() !== "You" && $(card).find(".player-name").html() !== ""){
-												$(card).find(".card-img-top").css("visibility", "visible");
-												$(card).find(".card-body").css("visibility", "visible");
+												$(card).find(".card-back").hide();
+												$(card).find(".card-front").show();
 											}
 										});
 								
@@ -766,13 +793,11 @@
 												$("#actionButtonReal").off("click");
 												$("#actionButtonReal").hide("fast", "swing");
 												$("#actionButton").html("<h2 class='font-weight-bold'>1</h2>");
-												$(".card").removeClass("flip-card");
 												prog=3;
 												setTimeout(async ()=>{
 													await updateCardsAndPlayers();
 													await getNumberOfCardsInCommonPile();
 													$("span:contains(" + categorySelected + ")").parent().removeClass("cat-selected");
-													$(".winning-card").removeClass("winning-card");
 													$(".active-player-card").removeClass("active-player-card");
 													playRound();
 										
@@ -780,7 +805,7 @@
 											}, 3000);
 										}, 3000);
 									})();
-								}, 1000);
+								}, 1500);
 							});	
 						}
 					};
@@ -887,8 +912,8 @@
 					});
 					$(".card").map((i, card)=>{
 						if ($(card).find(".player-name").html() !== "You"){
-							$(card).find(".card-img-top").css("visibility", "hidden");
-							$(card).find(".card-body").css("visibility", "hidden");
+							$(card).find(".card-back").show();
+							$(card).find(".card-front").hide();
 						}
 					});
 				});
@@ -1101,10 +1126,14 @@
 					const responseText = xhr.response; // the text of the response// 
 					if(responseText === "draw"){
 						appendStatusMessage(" Round was a draw.");
-						$("#common-pile").addClass("winning-card");
+						$(".card").removeClass("winning-card").removeClass("flip-card", ()=>{
+							$("#common-pile").addClass("winning-card");
+						});
 					} else {
+						$(".card").removeClass("winning-card").removeClass("flip-card", ()=>{
+							$(".card .player-name:contains(" + responseText + ")").closest(".card").addClass("winning-card");
+						});
 						appendStatusMessage(" " + responseText + " won this round.");
-						$(".card .player-name:contains(" + responseText + ")").closest(".card").addClass("winning-card");
 					}
 					
 				};
