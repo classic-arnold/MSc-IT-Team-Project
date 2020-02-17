@@ -18,14 +18,14 @@ import main.model.*;
 public class ProgramDatabase {
 
 	//When running database via remote IP address, release annotation below 3 line
-//	private static final String url="jdbc:postgresql://52.24.215.108:5432/TryCatch";
-//	private static final String userID="TryCatch";
-//	private static final String password="TryCatch";
+	private static final String url="jdbc:postgresql://52.24.215.108:5432/TryCatch";
+	private static final String userID="TryCatch";
+	private static final String password="TryCatch";
 	
 	//when running database via Lab machine, release annotation below 3 line.
-	private static final String url="jdbc:postgresql://localhost:5432/m_19_2431088l";
-	private static final String userID="m_19_2431088l";
-	private static final String password="2431088l";
+//	private static final String url="jdbc:postgresql://localhost:5432/m_19_2431088l";
+//	private static final String userID="m_19_2431088l";
+//	private static final String password="2431088l";
 
 	private static Connection conn;
 
