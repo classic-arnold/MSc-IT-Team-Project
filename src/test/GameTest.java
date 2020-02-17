@@ -348,8 +348,8 @@ public class GameTest{
 //
 //		}
 //
-//		// assert that the database returns the correct avg number of draws, because only 1 game has been played and the avg should be
-//		// the number of draws in the last game
+//		// assert that the database returns the correct avg number of draws, because only 1 game has been played and 
+//		// the avg should be the number of draws in the last game
 //		assertEquals(DataGame.getAvgNumberOfDraws(), this.model.getNumberOfDraws(), 0.001);
 //
 //		// if the game was won by human or AI, assert that the database is returning the correct number of AI or human wins
